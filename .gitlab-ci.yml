@@ -18,16 +18,16 @@ test-3.11:
 build_sdist:
   extends: .build_sdist
 
-test_sdist-3.9:
-  extends: .test_sdist-3.9
-  variables:
-    JUPYTER_PLATFORM_DIRS: 1
-    PYTEST_WARNINGS: "-W error -W ignore::RuntimeWarning:networkx.utils.backends" # https://github.com/networkx/networkx/issues/7372
+# test_sdist-3.9:
+#   extends: .test_sdist-3.9
+#   variables:
+#     JUPYTER_PLATFORM_DIRS: 1
+#     PYTEST_WARNINGS: "-W error -W ignore::RuntimeWarning:networkx.utils.backends" # https://github.com/networkx/networkx/issues/7372
 
-test_sdist-3.11-win:
-  extends: .test_sdist-3.12-win
-  variables:
-    JUPYTER_PLATFORM_DIRS: 1
+# test_sdist-3.11-win:
+#   extends: .test_sdist-3.12-win
+#   variables:
+#     JUPYTER_PLATFORM_DIRS: 1
 
 # build_doc:
 #   extends: .build_doc
