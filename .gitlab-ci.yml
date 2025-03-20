@@ -29,11 +29,11 @@ test_sdist-3.11-win:
   variables:
     JUPYTER_PLATFORM_DIRS: 1
 
-build_doc:
-  extends: .build_doc
-  script:
-    - python -m pip install .[doc]
-    - sphinx-build doc html
+# build_doc:
+#   extends: .build_doc
+#   script:
+#     - python -m pip install .[doc]
+#     - sphinx-build doc html
 
 pages:
   extends: .pages
