@@ -35,8 +35,8 @@ build_sdist:
 #     - python -m pip install .[doc]
 #     - sphinx-build doc html
 
-pages:
-  extends: .pages
+# pages:
+#   extends: .pages
 
 assets:
   extends: .assets
