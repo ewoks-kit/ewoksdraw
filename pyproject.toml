@@ -21,7 +21,7 @@ Homepage = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/"
 Documentation = "https://ewoksdraw.readthedocs.io/"
 Repository = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/"
 Issues = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/issues/"
-Changelog = "https://gitlab.esrf.fr/workflow/ewoks/ewoksutils/-/blob/main/CHANGELOG.md"
+Changelog = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/-/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 test = [
@@ -45,8 +45,11 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.coverage.run]
-omit = ["setup.py", "*/tests/*"]
+omit = ["*/tests/*"]
 
 [[tool.mypy.overrides]]
 module = "setuptools.*"
 ignore_missing_imports = true
+
+[project.scripts]
+ewoksdraw = "ewoksdraw.main:main"
