@@ -19,4 +19,6 @@ class SvgTaskTitle(SvgText):
     """
 
     def __init__(self, text: str, x: int, y: int):
+        self.width_margin: int = 10
+        self.height_margin: int = 10
         super().__init__(text=text, x=x, y=y, css_class="task_title")

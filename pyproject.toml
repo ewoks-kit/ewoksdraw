@@ -15,6 +15,9 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.9"
+dependencies = [
+    "reportlab",
+]
 
 [project.urls]
 Homepage = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/"
