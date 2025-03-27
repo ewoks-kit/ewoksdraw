@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><style><![CDATA[
+.task_box {
+    fill: #00000000;
+    stroke: orange;
+    stroke-width: 0.2%;
+    rx: 0.5%;
+    ry: 0.5%;
+    width: 50px;
+    height: 200px;
+}
+
+
+]]></style><style><![CDATA[
+.task_title {
+    font-family: Helvetica, sans-serif;
+    font-size: 8px;
+    fill:  orange;
+    text-anchor: middle;
+    dominant-baseline: text-top;
+}
+]]></style><style><![CDATA[
+.task_anchor_link {
+    fill: orange;
+}
+
+]]></style><g><rect x="100" y="100" class="task_box" /><text x="150" y="110" class="task_title">My Task ID</text><circle cx="100" cy="150" r="4" class="task_anchor_link" /></g></svg>
