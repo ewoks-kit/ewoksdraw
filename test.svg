@@ -3,24 +3,14 @@
     fill: #00000000;
     stroke: orange;
     stroke-width: 0.2%;
-    rx: 0.5%;
-    ry: 0.5%;
-    width: 50px;
-    height: 200px;
+    /* rx: 0.5%;
+    ry: 0.5%; */
 }
 
 
 ]]></style><style><![CDATA[
 .task_title {
     font-family: Helvetica, sans-serif;
-    font-size: 8px;
     fill:  orange;
-    text-anchor: middle;
-    dominant-baseline: text-top;
 }
-]]></style><style><![CDATA[
-.task_anchor_link {
-    fill: orange;
-}
-
-]]></style><g><rect x="100" y="100" class="task_box" /><text x="150" y="110" class="task_title">My Task ID</text><circle cx="100" cy="150" r="4" class="task_anchor_link" /></g></svg>
+]]></style><g><rect x="0" y="0" width="200" height="100" class="task_box" /><text x="0" y="0" text-anchor="start" dominant-baseline="hanging" font-size="6.0px" class="task_title">My Task ID LONGOGJKSJDKSJKLDJSKLJDSKLJDKLSJKLDJSLJDSL</text></g></svg>
