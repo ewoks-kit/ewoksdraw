@@ -1,6 +1,6 @@
+from pathlib import Path
 from typing import List, Optional, Union
 from xml.etree.ElementTree import Element, tostring
-from pathlib import Path
 
 from .svg_element import SvgElement
 from .svg_group import SvgGroup
@@ -67,6 +67,8 @@ class SvgCanvas:
                     style_elements.append(style)
             elif isinstance(element, SvgGroup):
                 style_elements = self.gather_styles(element, style_elements)
+
+        # Remove duplicates from style_elements
         for style in style_elements:
             if style is not None:
                 svg.append(style)

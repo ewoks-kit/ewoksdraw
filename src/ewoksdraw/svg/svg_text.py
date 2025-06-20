@@ -36,7 +36,7 @@ class SvgText(SvgElement):
             "x": str(x),
             "y": str(y),
             "text-anchor": "start",
-            "dominant-baseline": "hanging",
+            "dominant-baseline": "middle",
             "font-size": "20px",
         }
         self.text = text
@@ -57,6 +57,10 @@ class SvgText(SvgElement):
 
     def set_font_size(self, font_size: float) -> None:
         self.attr["font-size"] = f"{font_size}px"
+        self.update_attribute()
+
+    def set_dominant_baseline(self, dominant_baseline: str) -> None:
+        self.attr["dominant-baseline"] = dominant_baseline
         self.update_attribute()
 
     @property

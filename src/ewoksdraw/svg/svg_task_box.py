@@ -14,7 +14,7 @@ class SvgTaskBox(SvgElement):
         :param y: The y-coordinate of the box.
         """
 
-        self._min_width = 100
+        self._min_width = 20
         self._min_height = 100
         self._max_width = 200
         self._max_height = 200
