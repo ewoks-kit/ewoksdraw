@@ -22,3 +22,6 @@ class SvgTaskTitle(SvgText):
         self.width_margin: int = 10
         self.height_margin: int = 10
         super().__init__(text=text, x=x, y=y, css_class="task_title")
+        self.set_font_size(8)
+        self.set_dominant_baseline("hanging")
+        self.set_position(x=int(self.width_margin / 2), y=int(self.height_margin / 2))

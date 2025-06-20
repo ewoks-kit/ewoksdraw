@@ -9,15 +9,15 @@ class SvgGroup:
     Class representing a group of SVG elements.
     """
 
-    def __init__(self, elements: Optional[List[Union[SvgElement, "SvgGroup"]]] = None):
+    def __init__(self):
         """
         Initialize a group to hold multiple elements or other groups.
 
         :param elements: A list of elements or groups to be included in the group.
         """
-        self.elements = elements or []
+        self.elements = []
+        self.tag = "group"
         self.xml_element = Element("g")
-        self.populate_group()
 
     def populate_group(self) -> None:
         """
@@ -26,16 +26,17 @@ class SvgGroup:
         for element in self.elements:
             self.xml_element.append(element.get_xml_element())
 
-    def add_elements(self, elements: Union[SvgElement, "SvgGroup"]) -> None:
+    def add_elements(self, elements: List[Union[SvgElement, "SvgGroup"]]) -> None:
         """
         Adds elements (SvgElement or SvgGroup) to the group.
 
         :param elements: The elements to be added.
         """
-        self.elements.append(elements)
+        for element in elements:
+            self.elements.append(element)
         self.populate_group()
 
-    def set_position(self, x: int, y: int) -> None:
+    def set_position(self, x: int = 0, y: int = 0) -> None:
         """
         Sets the position of the group by applying a transformation.
 
