@@ -1,4 +1,5 @@
 # Initialize the svg module
+from .svg_background import SvgBackground  # noqa: F401
 from .svg_canvas import SvgCanvas  # noqa: F401
 from .svg_element import SvgElement  # noqa: F401
 from .svg_group import SvgGroup  # noqa: F401

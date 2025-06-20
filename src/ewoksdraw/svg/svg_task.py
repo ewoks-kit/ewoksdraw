@@ -31,7 +31,6 @@ class SvgTask(SvgGroup):
         box = SvgTaskBox(x=0, y=0)
         io1 = SvgTaskIO({"io_txt": "Input", "pos_y": 50})
         io2 = SvgTaskIO({"io_txt": "Input", "pos_y": 70})
-
         self.add_elements([title, io1, box, io2])
         self._scale_elements_size()
 
@@ -45,9 +44,10 @@ class SvgTask(SvgGroup):
         if isinstance(title, SvgTaskTitle) and isinstance(box, SvgTaskBox):
 
             target_width = int(title.width) + title.width_margin
+
             if (target_width >= box._min_width) and (target_width <= box._max_width):
                 box.set_size(width=target_width)
+
             elif target_width > box._max_width:
                 box.set_size(width=box._max_width)
-                font_size = title.reduce_font_size_to_fit_width(box._max_width)
-                print("font_size", font_size)
+                title.modify_text_to_fit_width(box._max_width)

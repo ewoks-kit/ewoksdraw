@@ -19,7 +19,7 @@ class SvgTaskIO(SvgGroup):
         """
         txt = SvgText(self.params["io_txt"], x=5, y=0, css_class="task_text_io")
         txt.set_font_size(8)
-        anchor = SvgTaskAnchorLink(cx=0, cy=0, radius=3)
+        anchor = SvgTaskAnchorLink(cx=0, cy=0, radius=2.5)
 
         self.add_elements([txt, anchor])
 

@@ -69,9 +69,12 @@ class SvgCanvas:
                 style_elements = self.gather_styles(element, style_elements)
 
         # Remove duplicates from style_elements
+        list_style_str = set()
         for style in style_elements:
-            if style is not None:
+            if style is not None and (style.text not in list_style_str):
                 svg.append(style)
+                list_style_str.add(style.text)
+
         for element in self.elements:
             svg.append(element.get_xml_element())
         svg_string = tostring(svg, encoding="unicode", method="xml")
