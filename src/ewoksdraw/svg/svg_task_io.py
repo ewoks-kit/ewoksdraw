@@ -24,7 +24,7 @@ class SvgTaskIO(SvgGroup):
             y=0,
             css_class="task_text_io",
         )
-        anchor = SvgTaskAnchorLink(cx=0, cy=0, radius=2.5)
+        anchor = SvgTaskAnchorLink(cx=0, cy=0, radius=2.0)
 
         if self.params["I/O"] == "Output":
             txt.set_text_anchor("end")
@@ -46,6 +46,10 @@ class SvgTaskIO(SvgGroup):
     def width(self) -> float:
         width_txt = self.elements[0].width
         return width_txt + (self.anchor_text_spacing) * 2
+
+    @property
+    def height(self) -> float:
+        return self.elements[0].height
 
 
 class SvgTaskIOGroup(SvgGroup):
@@ -82,6 +86,10 @@ class SvgTaskIOGroup(SvgGroup):
         for element in self.elements:
             list_width.append(element.width)
         return max(list_width)
+
+    @property
+    def height(self) -> float:
+        return len(self.elements) * self.vertical_spacing
 
     @property
     def font_size(self) -> float:

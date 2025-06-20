@@ -20,11 +20,20 @@ class SvgTaskTitle(SvgText):
 
     def __init__(self, text: str, x: int, y: int):
         self.width_margin: int = 10
-        self.height_margin: int = 10
+        self.height_margin: int = 2
         super().__init__(text=text, x=x, y=y, css_class="task_title")
         self.set_font_size(8)
         self.set_dominant_baseline("hanging")
-        self.set_position(x=int(self.width_margin / 2), y=int(self.height_margin / 2))
+        self.set_text_anchor("middle")
+        # self.set_position(x=int(self.width_margin / 2), y=int(self.height_margin / 2))
 
     def modify_text_to_fit_width(self, target_width):
-        super().modify_text_to_fit_width(target_width, self.width_margin / 2, 6)
+        super().modify_text_to_fit_width(target_width, min_font_size=10)
+
+    @property
+    def width(self) -> float:
+        return super().width + self.width_margin
+
+    @property
+    def height(self) -> float:
+        return super().height + self.height_margin

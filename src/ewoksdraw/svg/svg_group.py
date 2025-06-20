@@ -36,15 +36,6 @@ class SvgGroup:
             self.elements.append(element)
         self.populate_group()
 
-    # def translate(self, x: int = 0, y: int = 0) -> None:
-
-    #     current_transform = self.xml_element.get("transform")
-    #     print("---")
-    #     print(current_transform)
-
-    #     transform = f"translate({x},{y})"
-    #     self.xml_element.set("transform", transform)
-
     def translate(self, x: int = 0, y: int = 0) -> None:
 
         new_transform = f"translate({x},{y})"

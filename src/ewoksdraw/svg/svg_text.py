@@ -1,6 +1,6 @@
 import re
 
-from reportlab.pdfbase.pdfmetrics import stringWidth
+from reportlab.pdfbase.pdfmetrics import getFont, stringWidth
 
 from .svg_element import SvgElement
 
@@ -37,7 +37,7 @@ class SvgText(SvgElement):
             "y": str(y),
             "text-anchor": "start",
             "dominant-baseline": "middle",
-            "font-size": "20px",
+            "font-size": "6px",
         }
 
         super().__init__(tag="text", css_class=css_class, attr=attr, text=text)
@@ -136,15 +136,14 @@ class SvgText(SvgElement):
 
         self.set_text(self.text.rstrip("…").rstrip()[:-1].rstrip() + "…")
 
-    def modify_text_to_fit_width(self, target_width, margin=0, min_font_size=6):
+    def modify_text_to_fit_width(self, target_width, min_font_size=6):
 
-        current_width = self.width + margin
+        current_width = self.width
 
         while (target_width < current_width) and (self.font_size >= min_font_size):
             self.set_font_size(self.font_size - 1)
-            current_width = self.width + margin
+            current_width = self.width
 
         while target_width < current_width:
-            print(self.text, target_width, current_width)
             self._truncate_text_by_one()
-            current_width = self.width + margin
+            current_width = self.width

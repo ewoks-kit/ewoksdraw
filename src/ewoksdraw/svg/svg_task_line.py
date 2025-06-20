@@ -20,7 +20,7 @@ class SvgTaskLine(SvgElement):
         attr = {"x1": str(x1), "y1": str(y1), "x2": str(x2), "y2": str(y2)}
         super().__init__(tag="line", css_class="task_line", attr=attr)
 
-    def set_position(self, x: int, y: int) -> None:
+    def set_position(self, x1: int, y1: int, x2: int, y2: int) -> None:
         """
         Sets the position of the box (updates x and y).
 
