@@ -55,5 +55,4 @@ class SvgTaskBox(SvgElement):
 
     @property
     def width(self) -> float:
-        print(float(self.attr["width"]))
         return float(self.attr["width"])
