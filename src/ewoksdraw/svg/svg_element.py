@@ -43,6 +43,22 @@ class SvgElement:
             element.set("class", self.css_class)
         return element
 
+    def set_position(self, x: int | None = None, y: int | None = None) -> None:
+
+        if self.tag == "circle":
+            attr_x = "cx"
+            attr_y = "cy"
+        else:
+            attr_x = "x"
+            attr_y = "y"
+
+        if x is not None:
+            self.attr[attr_x] = str(x)
+        if y is not None:
+            self.attr[attr_y] = str(y)
+
+        self.update_attribute()
+
     def set_text(self, text: str):
         self.text = text
         self.xml_element.text = text

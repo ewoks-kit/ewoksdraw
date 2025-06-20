@@ -5,26 +5,26 @@
 ]]></style><style><![CDATA[
 .task_title {
     font-family: Helvetica, sans-serif;
-    fill:  orange;
+    fill:  rgb(0, 255, 34);
 }
-]]></style><style><![CDATA[
-.task_text_io {
-    font-family: Helvetica, sans-serif;
-    fill:  orange;
-}
-]]></style><style><![CDATA[
-.task_anchor_link {
-    fill: orange;
-}
-
 ]]></style><style><![CDATA[
 .task_box {
     fill: #00000000;
-    stroke: orange;
+    stroke: rgb(0, 255, 55);
     stroke-width: 0.2%;
     rx: 0.5%;
     ry: 0.5%;
 }
 
 
-]]></style><rect width="500" height="500" class="background" /><g transform="translate(50,50)"><text x="5" y="5" text-anchor="start" dominant-baseline="hanging" font-size="8px" class="task_title">My Task ID</text><g transform="translate(0,50)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><rect x="0" y="0" width="50" height="100" class="task_box" /><g transform="translate(0,70)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g></g><g transform="translate(150,150)"><text x="5" y="5" text-anchor="start" dominant-baseline="hanging" font-size="8px" class="task_title">My LONG Task ID</text><g transform="translate(0,50)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><rect x="0" y="0" width="75" height="100" class="task_box" /><g transform="translate(0,70)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g></g><g transform="translate(200,300)"><text x="5" y="5" text-anchor="start" dominant-baseline="hanging" font-size="5.0px" class="task_title">My LOOOOOONNNG Task ID</text><g transform="translate(0,50)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><rect x="0" y="0" width="75" height="100" class="task_box" /><g transform="translate(0,70)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g></g></svg>
+]]></style><style><![CDATA[
+.task_text_io {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(0, 255, 98);
+}
+]]></style><style><![CDATA[
+.task_anchor_link {
+    fill: rgb(0, 255, 21);
+}
+
+]]></style><rect width="500" height="500" class="background" /><g transform="translate(40,40)"><text x="5" y="5" text-anchor="start" dominant-baseline="hanging" font-size="8px" class="task_title">My Task ID</text><rect x="0" y="0" width="53.91" height="200" class="task_box" /><g transform="translate(0,20)"><g transform="translate(0,0)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="10px" class="task_text_io">name_i_0</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><g transform="translate(0,10)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="10px" class="task_text_io">name_i_1</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><g transform="translate(0,20)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="10px" class="task_text_io">name_i_2</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><g transform="translate(0,30)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="10px" class="task_text_io">name_i_3</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><g transform="translate(0,40)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="10px" class="task_text_io">name_i_4</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g></g><g transform="translate(0,80) translate(53.91,0)"><g transform="translate(0,0)"><text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="10px" class="task_text_io">output_0</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><g transform="translate(0,10)"><text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="10px" class="task_text_io">output_1</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><g transform="translate(0,20)"><text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="10px" class="task_text_io">output_2</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><g transform="translate(0,30)"><text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="10px" class="task_text_io">output_3</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><g transform="translate(0,40)"><text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="10px" class="task_text_io">output_4_ejr;kwejrkjweklrjklwejrkljewklrj</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g></g></g></svg>
