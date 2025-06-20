@@ -36,15 +36,24 @@ class SvgGroup:
             self.elements.append(element)
         self.populate_group()
 
-    def set_position(self, x: int = 0, y: int = 0) -> None:
-        """
-        Sets the position of the group by applying a transformation.
+    # def translate(self, x: int = 0, y: int = 0) -> None:
 
-        :param x: The x-coordinate for the translation.
-        :param y: The y-coordinate for the translation.
-        """
-        transform = f"translate({x},{y})"
-        self.xml_element.set("transform", transform)
+    #     current_transform = self.xml_element.get("transform")
+    #     print("---")
+    #     print(current_transform)
+
+    #     transform = f"translate({x},{y})"
+    #     self.xml_element.set("transform", transform)
+
+    def translate(self, x: int = 0, y: int = 0) -> None:
+
+        new_transform = f"translate({x},{y})"
+        current_transform = self.xml_element.get("transform", "")
+        if current_transform:
+            updated_transform = f"{current_transform} {new_transform}"
+        else:
+            updated_transform = new_transform
+        self.xml_element.set("transform", updated_transform)
 
     def get_xml_element(self) -> Element:
         """

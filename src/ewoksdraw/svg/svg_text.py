@@ -42,25 +42,16 @@ class SvgText(SvgElement):
 
         super().__init__(tag="text", css_class=css_class, attr=attr, text=text)
 
-    def set_position(self, x: int | None = None, y: int | None = None) -> None:
-        """
-        Sets the position of the text element (updates x and y).
-
-        :param x: The new x-coordinate of the text.
-        :param y: The new y-coordinate of the text.
-        """
-        if x is not None:
-            self.attr["x"] = str(x)
-        if y is not None:
-            self.attr["y"] = str(y)
-        self.update_attribute()
-
     def set_font_size(self, font_size: float) -> None:
         self.attr["font-size"] = f"{font_size}px"
         self.update_attribute()
 
     def set_dominant_baseline(self, dominant_baseline: str) -> None:
         self.attr["dominant-baseline"] = dominant_baseline
+        self.update_attribute()
+
+    def set_text_anchor(self, text_anchor: str) -> None:
+        self.attr["text-anchor"] = text_anchor
         self.update_attribute()
 
     @property

@@ -15,9 +15,9 @@ class SvgTaskBox(SvgElement):
         """
 
         self._min_width = 20
-        self._min_height = 100
+        self._min_height = 200
         self._max_width = 75
-        self._max_height = 200
+        self._max_height = 400
 
         attr = {
             "x": str(x),
@@ -40,7 +40,7 @@ class SvgTaskBox(SvgElement):
             self.attr["y"] = str(y)
         self.update_attribute()
 
-    def set_size(self, width: int | None = None, height: int | None = None) -> None:
+    def set_size(self, width: float | None = None, height: float | None = None) -> None:
         """
         Sets the size of the box (updates width and height).
 
@@ -52,3 +52,8 @@ class SvgTaskBox(SvgElement):
         if height is not None:
             self.attr["height"] = str(height)
         self.update_attribute()
+
+    @property
+    def width(self) -> float:
+        print(float(self.attr["width"]))
+        return float(self.attr["width"])

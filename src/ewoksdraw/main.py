@@ -11,20 +11,30 @@ def main():
 
     svg_background = SvgBackground(canvas_width, canvas_height)
 
-    svg_task1 = SvgTask(params={"task_id": "My Task ID"})
-    svg_task1.set_position(x=50, y=50)
-
-    svg_task2 = SvgTask(params={"task_id": "My LONG Task ID"})
-    svg_task2.set_position(x=150, y=150)
-
-    svg_task3 = SvgTask(params={"task_id": "My LOOOOOONNNG Task ID"})
-    svg_task3.set_position(x=200, y=300)
+    svg_task1 = SvgTask(
+        params={
+            "task_id": "My Task ID",
+            "inputs": [
+                "name_i_0",
+                "name_i_1",
+                "name_i_2",
+                "name_i_3",
+                "name_i_4",
+            ],
+            "outputs": [
+                "output_0",
+                "output_1",
+                "output_2",
+                "output_3",
+                "output_4",
+            ],
+        }
+    )
+    svg_task1.translate(x=40, y=40)
 
     canvas = SvgCanvas(width=canvas_width, height=canvas_height)
     canvas.add_element(svg_background)
     canvas.add_element(svg_task1)
-    canvas.add_element(svg_task2)
-    canvas.add_element(svg_task3)
     canvas.generate_svg(filename)
 
 
