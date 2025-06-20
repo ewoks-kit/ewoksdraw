@@ -52,4 +52,5 @@ class SvgGroup:
 
         :return: The XML element.
         """
+
         return self.xml_element

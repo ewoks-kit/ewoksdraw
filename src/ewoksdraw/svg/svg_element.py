@@ -43,6 +43,10 @@ class SvgElement:
             element.set("class", self.css_class)
         return element
 
+    def set_text(self, text: str):
+        self.text = text
+        self.xml_element.text = text
+
     def load_css_style(self) -> Optional[Element]:
         """
         Loads the CSS style from a file and returns it as an XML <style> element.
@@ -73,6 +77,7 @@ class SvgElement:
 
         :return: The XML element.
         """
+
         return self.xml_element
 
     def get_style_element(self) -> Optional[Element]:

@@ -25,3 +25,6 @@ class SvgTaskTitle(SvgText):
         self.set_font_size(8)
         self.set_dominant_baseline("hanging")
         self.set_position(x=int(self.width_margin / 2), y=int(self.height_margin / 2))
+
+    def modify_text_to_fit_width(self, target_width):
+        super().modify_text_to_fit_width(target_width, self.width_margin / 2, 6)

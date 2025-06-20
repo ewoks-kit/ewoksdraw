@@ -1,16 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><style><![CDATA[
-.task_box {
-    fill: #00000000;
-    stroke: orange;
-    stroke-width: 0.2%;
-    /* rx: 0.5%;
-    ry: 0.5%; */
+.background {
+    fill: #000000;
 }
-
-
 ]]></style><style><![CDATA[
 .task_title {
     font-family: Helvetica, sans-serif;
     fill:  orange;
 }
-]]></style><g><rect x="0" y="0" width="200" height="100" class="task_box" /><text x="0" y="0" text-anchor="start" dominant-baseline="hanging" font-size="6.0px" class="task_title">My Task ID LONGOGJKSJDKSJKLDJSKLJDSKLJDKLSJKLDJSLJDSL</text></g></svg>
+]]></style><style><![CDATA[
+.task_text_io {
+    font-family: Helvetica, sans-serif;
+    fill:  orange;
+}
+]]></style><style><![CDATA[
+.task_anchor_link {
+    fill: orange;
+}
+
+]]></style><style><![CDATA[
+.task_box {
+    fill: #00000000;
+    stroke: orange;
+    stroke-width: 0.2%;
+    rx: 0.5%;
+    ry: 0.5%;
+}
+
+
+]]></style><rect width="500" height="500" class="background" /><g transform="translate(50,50)"><text x="5" y="5" text-anchor="start" dominant-baseline="hanging" font-size="8px" class="task_title">My Task ID</text><g transform="translate(0,50)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><rect x="0" y="0" width="50" height="100" class="task_box" /><g transform="translate(0,70)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g></g><g transform="translate(150,150)"><text x="5" y="5" text-anchor="start" dominant-baseline="hanging" font-size="8px" class="task_title">My LONG Task ID</text><g transform="translate(0,50)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><rect x="0" y="0" width="75" height="100" class="task_box" /><g transform="translate(0,70)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g></g><g transform="translate(200,300)"><text x="5" y="5" text-anchor="start" dominant-baseline="hanging" font-size="5.0px" class="task_title">My LOOOOOONNNG Task ID</text><g transform="translate(0,50)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g><rect x="0" y="0" width="75" height="100" class="task_box" /><g transform="translate(0,70)"><text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Input</text><circle cx="0" cy="0" r="2.5" class="task_anchor_link" /></g></g></svg>

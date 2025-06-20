@@ -16,7 +16,7 @@ class SvgTaskBox(SvgElement):
 
         self._min_width = 20
         self._min_height = 100
-        self._max_width = 200
+        self._max_width = 75
         self._max_height = 200
 
         attr = {

@@ -39,8 +39,8 @@ class SvgText(SvgElement):
             "dominant-baseline": "middle",
             "font-size": "20px",
         }
-        self.text = text
-        super().__init__(tag="text", css_class=css_class, attr=attr, text=self.text)
+
+        super().__init__(tag="text", css_class=css_class, attr=attr, text=text)
 
     def set_position(self, x: int | None = None, y: int | None = None) -> None:
         """
@@ -141,14 +141,19 @@ class SvgText(SvgElement):
         """
         return font_size
 
-    def reduce_font_size_to_fit_width(self, target_width, margin=0):
+    def _truncate_text_by_one(self):
+
+        self.set_text(self.text.rstrip("…").rstrip()[:-1].rstrip() + "…")
+
+    def modify_text_to_fit_width(self, target_width, margin=0, min_font_size=6):
 
         current_width = self.width + margin
 
-        while target_width < current_width:
-            print(self.font_size)
+        while (target_width < current_width) and (self.font_size >= min_font_size):
             self.set_font_size(self.font_size - 1)
             current_width = self.width + margin
-            if self.font_size < 1:
-                return self.font_size
-        return self.font_size
+
+        while target_width < current_width:
+            print(self.text, target_width, current_width)
+            self._truncate_text_by_one()
+            current_width = self.width + margin
