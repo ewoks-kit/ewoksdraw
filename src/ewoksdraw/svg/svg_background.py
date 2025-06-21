@@ -4,13 +4,19 @@ from .svg_element import SvgElement
 
 
 class SvgBackground(SvgElement):
+    """
+    Represents a background rectangle element in SVG.
 
-    def __init__(self, width: int = 0, height: int = 0):
+    :param width: The width of the background rectangle.
+    :param height: The height of the background rectangle.
+    """
+
+    def __init__(self, width: float = 0, height: float = 0):
         """
-        Initialize a box element with a specific position.
+        Initialize the background rectangle with specified width and height.
 
-        :param x: The x-coordinate of the box.
-        :param y: The y-coordinate of the box.
+        :param width: Width of the background. Defaults to 0.
+        :param height: Height of the background. Defaults to 0.
         """
 
         attr = {
@@ -19,18 +25,3 @@ class SvgBackground(SvgElement):
         }
 
         super().__init__(tag="rect", css_class="background", attr=attr)
-
-    def set_size(
-        self, width: Optional[int] = None, height: Optional[int] = None
-    ) -> None:
-        """
-        Sets the size of the box (updates width and height).
-
-        :param width: The new width of the box.
-        :param height: The new height of the box.
-        """
-        if width is not None:
-            self.attr["width"] = str(width)
-        if height is not None:
-            self.attr["height"] = str(height)
-        self.update_attribute()
