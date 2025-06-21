@@ -1,6 +1,10 @@
 from pathlib import Path
-from typing import List, Optional, Union
-from xml.etree.ElementTree import Element, tostring
+from typing import List
+from typing import Optional
+from typing import Union
+from xml.dom import minidom
+from xml.etree.ElementTree import Element
+from xml.etree.ElementTree import tostring
 
 from .svg_element import SvgElement
 from .svg_group import SvgGroup
@@ -49,9 +53,12 @@ class SvgCanvas:
 
     def generate_svg(self, filename: Union[Path, str]) -> None:
         """
-        Generates the SVG XML file.
+        Generates the SVG XML file with all elements and styles, and writes it to disk.
 
-        :param filename: The name of the output file.
+        This method collects styles from all elements and groups, removes duplicate styles,
+        appends all elements to the root SVG element, and outputs a pretty-printed SVG file.
+
+        :param filename: The path or filename where the SVG file will be saved.
         """
         svg = Element(
             "svg",
@@ -68,7 +75,6 @@ class SvgCanvas:
             elif isinstance(element, SvgGroup):
                 style_elements = self.gather_styles(element, style_elements)
 
-        # Remove duplicates from style_elements
         list_style_str = set()
         for style in style_elements:
             if style is not None and (style.text not in list_style_str):
@@ -81,5 +87,7 @@ class SvgCanvas:
         svg_string = svg_string.replace("&lt;![CDATA[", "<![CDATA[").replace(
             "]]&gt;", "]]>"
         )
+        dom = minidom.parseString(svg_string)
+        pretty_svg_string = dom.toprettyxml(indent="  ")
         with open(filename, "w") as file:
-            file.write(svg_string)
+            file.write(pretty_svg_string)

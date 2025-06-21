@@ -43,7 +43,9 @@ class SvgElement:
             element.set("class", self.css_class)
         return element
 
-    def set_position(self, x: int | None = None, y: int | None = None) -> None:
+    def set_position(
+        self, x: Optional[float] = None, y: Optional[float] = None
+    ) -> None:
 
         if self.tag == "circle":
             attr_x = "cx"

@@ -1,6 +1,7 @@
 import re
 
-from reportlab.pdfbase.pdfmetrics import getFont, stringWidth
+from reportlab.pdfbase.pdfmetrics import getFont
+from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from .svg_element import SvgElement
 
