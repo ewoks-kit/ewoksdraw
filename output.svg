@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+  <style><![CDATA[
+.background {
+    fill: #000000;
+}
+]]></style>
+  <style><![CDATA[
+.task_title {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_box {
+    fill: #00000000;
+    stroke: rgb(255, 255, 255);
+    stroke-width: 0.2%;
+    rx: 0.5%;
+    ry: 0.5%;
+}
+
+
+]]></style>
+  <style><![CDATA[
+.task_text_io {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_anchor_link {
+    fill: rgb(176, 147, 255);
+}
+
+]]></style>
+  <style><![CDATA[
+.task_line {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 1;
+}
+]]></style>
+  <rect width="500" height="500" class="background"/>
+  <g transform="translate(51,68)">
+    <text x="37.5" y="2" text-anchor="middle" dominant-baseline="hanging" font-size="6px" class="task_title">upon_sport</text>
+    <rect x="0" y="0" width="75" height="78.0" class="task_box"/>
+    <g transform="translate(0,13.0)">
+      <g transform="translate(0,0)">
+        <text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="5.0px" class="task_text_io">world_thousand_skin_sport</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="5.0px" class="task_text_io">everybody_relate_federal</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="5.0px" class="task_text_io">business_anyone</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="5.0px" class="task_text_io">difference_first</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(75.0,0) translate(0,48.0)">
+      <g transform="translate(0,0)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">six_party_hospital</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">vote_great_peace</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">Mrs_production_what</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">about_there_play_answer</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="8.0" x2="75.0" y2="8.0" class="task_line"/>
+  </g>
+  <g transform="translate(332,362)">
+    <text x="37.5" y="2" text-anchor="middle" dominant-baseline="hanging" font-size="6px" class="task_title">prevent_I_nor_collecti…</text>
+    <rect x="0" y="0" width="75" height="70.0" class="task_box"/>
+    <g transform="translate(0,13.0)">
+      <g transform="translate(0,0)">
+        <text x="5" y="0" text-anchor="start" dominant-baseline="middle" font-size="5.0px" class="task_text_io">writer_it_particular</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(75.0,0) translate(0,24.0)">
+      <g transform="translate(0,0)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">commercial_stage_thought</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">wear_break_tough</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">different_left_stop</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">resource_paper</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">deal</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-5" y="0" text-anchor="end" dominant-baseline="middle" font-size="5.0px" class="task_text_io">soldier_such</text>
+        <circle cx="0" cy="0" r="2.0" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="8.0" x2="75.0" y2="8.0" class="task_line"/>
+  </g>
+</svg>
