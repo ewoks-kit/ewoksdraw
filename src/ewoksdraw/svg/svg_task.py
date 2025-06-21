@@ -1,9 +1,4 @@
-from typing import Dict
-from typing import List
-
-from .svg_group import SvgElement
 from .svg_group import SvgGroup
-from .svg_task_anchor_link import SvgTaskAnchorLink
 from .svg_task_box import SvgTaskBox
 from .svg_task_io import SvgTaskIOGroup
 from .svg_task_line import SvgTaskLine

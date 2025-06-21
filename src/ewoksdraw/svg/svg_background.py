@@ -1,5 +1,3 @@
-from typing import Optional
-
 from .svg_element import SvgElement
 
 

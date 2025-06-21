@@ -1,8 +1,3 @@
-from typing import Any
-from typing import Dict
-from typing import List
-
-from .svg_group import SvgElement
 from .svg_group import SvgGroup
 from .svg_task_anchor_link import SvgTaskAnchorLink
 from .svg_text import SvgText
