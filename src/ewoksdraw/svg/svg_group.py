@@ -1,6 +1,5 @@
 import re
 from typing import Iterable
-from typing import List
 from typing import Union
 from xml.etree.ElementTree import Element
 
