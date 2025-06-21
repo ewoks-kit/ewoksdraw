@@ -83,9 +83,12 @@ class SvgTaskIOGroup(SvgGroup):
     @property
     def width(self) -> float:
         list_width = []
-        for element in self.elements:
-            list_width.append(element.width)
-        return max(list_width)
+        if self.elements:
+            for element in self.elements:
+                list_width.append(element.width)
+            return max(list_width)
+        else:
+            return 0.0
 
     @property
     def height(self) -> float:
@@ -93,25 +96,30 @@ class SvgTaskIOGroup(SvgGroup):
 
     @property
     def font_size(self) -> float:
-        return self.elements[0].font_size
+        if self.elements:
+            return self.elements[0].font_size
+        else:
+            return 0
 
     def _truncate_text_by_one(self):
-        max_width = -1
-        for element in self.elements:
-            if element.width > max_width:
-                max_width = element.width
-                max_width_elem = element
+        if self.elements:
+            max_width = -1
+            for element in self.elements:
+                if element.width > max_width:
+                    max_width = element.width
+                    max_width_elem = element
 
-        max_width_elem._truncate_text_by_one()
+            max_width_elem._truncate_text_by_one()
 
-    def modify_size_to_fit_width(self, target_width, min_font_size=6):
+    def modify_size_to_fit_width(self, target_width, min_font_size=4):
 
-        current_width = self.width
-
-        while (target_width < current_width) and (self.font_size >= min_font_size):
-            self.set_font_size(self.font_size - 1)
+        if self.elements:
             current_width = self.width
 
-        while target_width < current_width:
-            self._truncate_text_by_one()
-            current_width = self.width
+            while (target_width < current_width) and (self.font_size >= min_font_size):
+                self.set_font_size(self.font_size - 1)
+                current_width = self.width
+
+            while target_width < current_width:
+                self._truncate_text_by_one()
+                current_width = self.width

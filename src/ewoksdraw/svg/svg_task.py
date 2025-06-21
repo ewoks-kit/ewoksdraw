@@ -116,5 +116,3 @@ class SvgTask(SvgGroup):
         outputs.translate(y=pos)
 
         line_title.set_position(x1=0, y1=title.height, x2=box.width, y2=title.height)
-
-        print(total_height)

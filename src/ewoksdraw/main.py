@@ -1,6 +1,32 @@
+import random
 import sys
 
+from faker import Faker
+
 from .svg import SvgBackground, SvgCanvas, SvgTask
+
+
+def generate_random_names() -> list:
+    nb_names = abs(int(random.gauss(mu=4, sigma=3)))
+    nb_words = abs(int(random.gauss(mu=2, sigma=2)))
+    if nb_words < 1:
+        nb_words = 1
+
+    fake = Faker()
+    return [
+        f"{'_'.join(fake.word() for _ in range(nb_words))}" for _ in range(nb_names)
+    ]
+
+
+def generate_random_name() -> str:
+    nb_words = abs(int(random.gauss(mu=4, sigma=3)))
+    if nb_words < 1:
+        nb_words = 1
+    fake = Faker()
+    name = ""
+    for _ in range(nb_words):
+        name += fake.word() + "_"
+    return f"{'_'.join(fake.word() for _ in range(nb_words))}"
 
 
 def main():
@@ -9,78 +35,29 @@ def main():
     canvas_width = 500
     canvas_height = 500
 
-    svg_background = SvgBackground(canvas_width, canvas_height)
-
-    svg_task1 = SvgTask(
-        params={
-            "task_id": "My Task ID",
-            "inputs": [
-                "input_0",
-                "input_1",
-                "input_2",
-                "input_3",
-                "input_4",
-            ],
-            "outputs": [
-                "output_0",
-                "output_1",
-                "output_2",
-                "output_3",
-                "output_4",
-            ],
-        }
-    )
-    svg_task1.translate(x=40, y=40)
-
-    svg_task2 = SvgTask(
-        params={
-            "task_id": "My Task ID Again ",
-            "inputs": [
-                "input_0_TROOOOOPPPP_LLLLONNNNGGGG",
-                "input_1",
-            ],
-            "outputs": [
-                "output_0",
-            ],
-        }
-    )
-    svg_task2.translate(x=60, y=160)
-
-    svg_task3 = SvgTask(
-        params={
-            "task_id": "3",
-            "inputs": [
-                "1",
-                "2",
-                "1",
-                "2",
-                "1",
-                "2",
-                "1",
-                "2",
-                "1",
-                "2",
-                "1",
-                "2",
-                "1",
-                "2",
-                "1",
-                "2",
-                "1",
-                "2",
-            ],
-            "outputs": [
-                "1",
-            ],
-        }
-    )
-    svg_task3.translate(x=150, y=10)
-
     canvas = SvgCanvas(width=canvas_width, height=canvas_height)
+    svg_background = SvgBackground(canvas_width, canvas_height)
     canvas.add_element(svg_background)
-    canvas.add_element(svg_task1)
-    canvas.add_element(svg_task2)
-    canvas.add_element(svg_task3)
+
+    nb_tasks = random.randint(1, 7)
+    for i in range(nb_tasks):
+
+        task_name = generate_random_name()
+        task_inputs = generate_random_names()
+        task_outputs = generate_random_names()
+        print(task_inputs, task_outputs)
+        svg_task = SvgTask(
+            params={
+                "task_id": task_name,
+                "inputs": task_inputs,
+                "outputs": task_outputs,
+            }
+        )
+
+        svg_task.translate(x=random.randint(5, 400), y=random.randint(5, 400))
+
+        canvas.add_element(svg_task)
+
     canvas.generate_svg(filename)
 
 
