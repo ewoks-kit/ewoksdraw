@@ -1,3 +1,5 @@
+from typing import Optional
+
 from .svg_element import SvgElement
 
 
@@ -18,7 +20,9 @@ class SvgBackground(SvgElement):
 
         super().__init__(tag="rect", css_class="background", attr=attr)
 
-    def set_size(self, width: int | None = None, height: int | None = None) -> None:
+    def set_size(
+        self, width: Optional[int] = None, height: Optional[int] = None
+    ) -> None:
         """
         Sets the size of the box (updates width and height).
 

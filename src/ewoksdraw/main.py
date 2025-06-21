@@ -3,18 +3,17 @@ import sys
 
 from faker import Faker
 
-from .svg import SvgBackground, SvgCanvas, SvgTask
+from .svg import SvgBackground
+from .svg import SvgCanvas
+from .svg import SvgTask
 
 
 def generate_random_names() -> list:
     nb_names = abs(int(random.gauss(mu=4, sigma=3)))
-    nb_words = abs(int(random.gauss(mu=2, sigma=2)))
-    if nb_words < 1:
-        nb_words = 1
-
     fake = Faker()
     return [
-        f"{'_'.join(fake.word() for _ in range(nb_words))}" for _ in range(nb_names)
+        f"{'_'.join(fake.word() for _ in range(abs(int(random.gauss(mu=3, sigma=1)))))}"
+        for _ in range(nb_names)
     ]
 
 
@@ -39,19 +38,16 @@ def main():
     svg_background = SvgBackground(canvas_width, canvas_height)
     canvas.add_element(svg_background)
 
-    nb_tasks = random.randint(1, 7)
+    nb_tasks = random.randint(1, 5)
     for i in range(nb_tasks):
 
         task_name = generate_random_name()
         task_inputs = generate_random_names()
         task_outputs = generate_random_names()
-        print(task_inputs, task_outputs)
         svg_task = SvgTask(
-            params={
-                "task_id": task_name,
-                "inputs": task_inputs,
-                "outputs": task_outputs,
-            }
+            name_task=task_name,
+            list_inputs_names=task_inputs,
+            list_outputs_names=task_outputs,
         )
 
         svg_task.translate(x=random.randint(5, 400), y=random.randint(5, 400))
