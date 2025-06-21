@@ -33,19 +33,19 @@ class SvgTaskIO(SvgGroup):
         The text alignment and positioning depend on the IO type.
         """
 
-        txt = SvgText(
+        self.txt = SvgText(
             self.io_txt,
             x=self.anchor_text_spacing,
             y=0,
             css_class="task_text_io",
         )
-        anchor = SvgTaskAnchorLink(cx=0, cy=0, radius=2.0)
+        self.anchor = SvgTaskAnchorLink(cx=0, cy=0, radius=2.0)
 
         if self.io_type == "Output":
-            txt.set_text_anchor("end")
-            txt.set_position(x=-self.anchor_text_spacing)
+            self.txt.set_text_anchor("end")
+            self.txt.set_position(x=-self.anchor_text_spacing)
 
-        self.add_elements([txt, anchor])
+        self.add_elements([self.txt, self.anchor])
 
     def set_font_size(self, font_size: float):
         """
@@ -53,28 +53,28 @@ class SvgTaskIO(SvgGroup):
 
         :param font_size: The new font size to apply.
         """
-        self.elements[0].set_font_size(font_size)
+        self.txt.set_font_size(font_size)
 
     def _truncate_text_by_one(self):
         """
         Truncates the displayed text by one character. This is typically
         used to reduce width to fit constraints.
         """
-        self.elements[0]._truncate_text_by_one()
+        self.txt._truncate_text_by_one()
 
     @property
     def font_size(self) -> float:
         """
         Returns the current font size of the text element.
         """
-        return self.elements[0].font_size
+        return self.txt.font_size
 
     @property
     def width(self) -> float:
         """
         Returns the total width of this IO element, including text and spacing.
         """
-        width_txt = self.elements[0].width
+        width_txt = self.txt.width
         return width_txt + (self.anchor_text_spacing) * 2
 
     @property
@@ -82,7 +82,7 @@ class SvgTaskIO(SvgGroup):
         """
         Returns the height, max of diameter of anchor or txt.
         """
-        return max(self.elements[0].height, self.elements[1].attr["r"] * 2)
+        return max(self.txt.height, self.anchor.attr["r"] * 2)
 
 
 class SvgTaskIOGroup(SvgGroup):
