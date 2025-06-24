@@ -1,39 +1,29 @@
 from .svg_text import SvgText
-
+from .utils_tasks import get_task_config_param
 
 class SvgTaskTitle(SvgText):
     """
-    A class representing the title of a task in an SVG diagram.
+    Represents the title of a task in an SVG Task.
 
-    Inherits from:
-        SvgText: A base class for SVG text elements.
-
-    Attributes:
-        text (str): The text content of the task title.
-        x (int): The x-coordinate of the task title in the SVG canvas.
-        y (int): The y-coordinate of the task title in the SVG canvas.
-        css_class (str): The CSS class applied to the task title, defaulting to "task_title".
-
-    Methods:
-        Inherits all methods from the SvgText class.
+    :param text: The text content of the task title.
+    :param x: The x-coordinate of the task title in the SVG canvas.
+    :param y: The y-coordinate of the task title in the SVG canvas.
     """
 
     def __init__(self, text: str, x: int, y: int):
-        self.width_margin: int = 10
-        self.height_margin: int = 2
+        self.vertical_margin: int = get_task_config_param("title/vertical_margin")
+        self.horizontal_margin: int = get_task_config_param("title/horizontal_margin")
         super().__init__(text=text, x=x, y=y, css_class="task_title")
-        self.set_font_size(8)
         self.set_dominant_baseline("hanging")
         self.set_text_anchor("middle")
-        # self.set_position(x=int(self.width_margin / 2), y=int(self.height_margin / 2))
 
     def modify_text_to_fit_width(self, target_width):
         super().modify_text_to_fit_width(target_width, min_font_size=10)
 
     @property
     def width(self) -> float:
-        return super().width + self.width_margin
+        return super().width + self.horizontal_margin
 
     @property
     def height(self) -> float:
-        return super().height + self.height_margin
+        return super().height + self.vertical_margin

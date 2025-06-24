@@ -45,16 +45,18 @@ def main():
         task_inputs = generate_random_names()
         task_outputs = generate_random_names()
         svg_task = SvgTask(
-            name_task=task_name,
-            list_inputs_names=task_inputs,
-            list_outputs_names=task_outputs,
+            task_name=task_name,
+            list_input_names=task_inputs,
+            list_output_names=task_outputs,
         )
 
         svg_task.translate(x=random.randint(5, 400), y=random.randint(5, 400))
 
         canvas.add_element(svg_task)
 
-    canvas.generate_svg(filename)
+    canvas.draw(filename)
+    output_dict = canvas.dict
+    output_xml = canvas.xml
 
 
 if __name__ == "__main__":
