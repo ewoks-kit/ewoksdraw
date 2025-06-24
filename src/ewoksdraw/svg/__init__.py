@@ -9,3 +9,4 @@ from .svg_task_box import SvgTaskBox  # noqa: F401
 from .svg_task_io import SvgTaskIO  # noqa: F401
 from .svg_task_title import SvgTaskTitle  # noqa: F401
 from .svg_text import SvgText  # noqa: F401
+from .utils_tasks import get_task_config_param

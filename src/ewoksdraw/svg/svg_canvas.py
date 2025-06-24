@@ -6,35 +6,72 @@ from xml.dom import minidom
 from xml.etree.ElementTree import Element
 from xml.etree.ElementTree import tostring
 
+import xmltodict
+
 from .svg_element import SvgElement
 from .svg_group import SvgGroup
 
 
 class SvgCanvas:
     """
-    Class representing the SVG drawing canvas.
+    Represents the SVG drawing canvas.
+    It's the first element in the SVG file and contains all other elements.
+    SvgElement or SvgGroup can be added to the canvas.
+    The SvgCanvas compile every css styles and elements to generate the final
+    SVG XML file.
+
+    :param width: The width of the canvas.
+    :param height: The height of the canvas.
     """
 
     def __init__(self, width: int, height: int):
-        """
-        Initialize the SVG drawing canvas.
-
-        :param width: The width of the canvas.
-        :param height: The height of the canvas.
-        """
-        self.width = width
-        self.height = height
+        self.width: int = width
+        self.height: int = height
         self.elements: List[Union[SvgElement, SvgGroup]] = []
+        self._xml_svg = Element(
+            "svg",
+            xmlns="http://www.w3.org/2000/svg",
+            width=str(self.width),
+            height=str(self.height),
+        )
 
     def add_element(self, element: Union[SvgElement, SvgGroup]) -> None:
         """
-        Adds an element or group to the drawing.
+        Adds an SvgElement or SvgGroup to the drawing.
 
         :param element: The element or group to be added.
         """
         self.elements.append(element)
 
-    def gather_styles(
+    def draw(self, filename: Union[Path, str]) -> None:
+        """
+        Save the SVG canvas to a file.
+        :param filename: The name of the file to save the SVG content.
+        """
+        self._populate_xml_svg()
+        self._convert_xml_svg_to_string()
+        with open(filename, "w") as file:
+            file.write(self._convert_xml_svg_to_string())
+
+    @property
+    def xml(self) -> Element:
+        """
+        Returns the XML representation of the SVG canvas.
+        :return: The XML Element representing the SVG canvas.
+        """
+        self._populate_xml_svg()
+        return self._xml_svg
+
+    @property
+    def dict(self) -> dict:
+        """
+        Returns the SVG canvas as a dictionary.
+        :return: A dictionary representation of the SVG canvas.
+        """
+        xml_str = self._convert_xml_svg_to_string()
+        return xmltodict.parse(xml_str)
+
+    def _gather_styles_from_svg_group(
         self, element: Union[SvgElement, SvgGroup], style_list: List[Optional[Element]]
     ) -> List[Optional[Element]]:
         """
@@ -45,49 +82,55 @@ class SvgCanvas:
         :return: The list of gathered styles.
         """
         if isinstance(element, SvgElement):
-            style_list.append(element.get_style_element())
+            style_list.append(element.style_element)
         elif isinstance(element, SvgGroup):
             for child in element.elements:
-                style_list = self.gather_styles(child, style_list)
+                style_list = self._gather_styles_from_svg_group(child, style_list)
         return style_list
 
-    def generate_svg(self, filename: Union[Path, str]) -> None:
+    def _gather_all_styles(self) -> List[Optional[Element]]:
         """
-        Generates the SVG XML file with all elements and styles, and writes it to disk.
-
-        This method collects styles from all elements and groups, removes duplicate styles,
-        appends all elements to the root SVG element, and outputs a pretty-printed SVG file.
-
-        :param filename: The path or filename where the SVG file will be saved.
+        Gathers all styles from the elements and groups in the canvas.
+        :return: A list of style elements.
         """
-        svg = Element(
-            "svg",
-            xmlns="http://www.w3.org/2000/svg",
-            width=str(self.width),
-            height=str(self.height),
-        )
         style_elements: List[Optional[Element]] = []
         for element in self.elements:
             if isinstance(element, SvgElement):
-                style = element.get_style_element()
+                style = element.style_element
                 if style is not None:
                     style_elements.append(style)
             elif isinstance(element, SvgGroup):
-                style_elements = self.gather_styles(element, style_elements)
+                style_elements = self._gather_styles_from_svg_group(
+                    element, style_elements
+                )
+        return style_elements
 
-        list_style_str = set()
-        for style in style_elements:
-            if style is not None and (style.text not in list_style_str):
-                svg.append(style)
-                list_style_str.add(style.text)
+    def _convert_xml_svg_to_string(self) -> str:
+        """Converts the XML SVG element to a pretty-printed string."""
 
         for element in self.elements:
-            svg.append(element.get_xml_element())
-        svg_string = tostring(svg, encoding="unicode", method="xml")
+            self._xml_svg.append(element.xml_element)
+        svg_string = tostring(self._xml_svg, encoding="unicode", method="xml")
         svg_string = svg_string.replace("&lt;![CDATA[", "<![CDATA[").replace(
             "]]&gt;", "]]>"
         )
         dom = minidom.parseString(svg_string)
-        pretty_svg_string = dom.toprettyxml(indent="  ")
-        with open(filename, "w") as file:
-            file.write(pretty_svg_string)
+        return dom.toprettyxml(indent="  ")
+
+    def _populate_xml_svg(self) -> None:
+        """Populates the XML SVG element with styles and elements."""
+
+        if len(self._xml_svg) != 1:
+            self._xml_svg = Element(
+                "svg",
+                xmlns="http://www.w3.org/2000/svg",
+                width=str(self.width),
+                height=str(self.height),
+            )
+        style_elements = self._gather_all_styles()
+
+        list_style_str = set()
+        for style in style_elements:
+            if style is not None and (style.text not in list_style_str):
+                self._xml_svg.append(style)
+                list_style_str.add(style.text)

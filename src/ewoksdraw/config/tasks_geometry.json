@@ -1,0 +1,30 @@
+{
+    "anchor_links":{
+        "radius": 2.5
+        },
+
+    "box":{
+        "min_width": 20,
+        "max_width": 75
+        },
+
+    "title":{
+        "vertical_margin": 3,
+        "horizontal_margin": 4,
+        "target_font_size": 20,
+        "min_font_size": 10
+        },
+    "io":{
+        "min_font_size": 10,
+        "max_font_size": 20,
+        "vertical_margin": 10,
+        "horizontal_margin": 10,
+        "io_horizontal_margin": 10
+        },
+    "line":{
+        "title_vertical_margin": 10,
+        "input_horizontal_margin": 10
+
+    }
+
+}

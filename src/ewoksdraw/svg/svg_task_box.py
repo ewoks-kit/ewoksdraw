@@ -1,33 +1,24 @@
 from typing import Optional
 
 from .svg_element import SvgElement
+from .utils_tasks import get_task_config_param
 
 
 class SvgTaskBox(SvgElement):
     """
     Represents a box element in SVG.
-
     :param x: The x-coordinate of the box.
     :param y: The y-coordinate of the box.
     """
 
-    def __init__(self, x: float = 0, y: float = 0):
-        """
-        Initializes the SvgTaskBox with default min/max dimensions and position.
-
-        :param x: Initial x-coordinate of the box. Defaults to 0.
-        :param y: Initial y-coordinate of the box. Defaults to 0.
-        """
-        self._min_width = 20
-        self._min_height = 200
-        self._max_width = 75
-        self._max_height = 400
+    def __init__(self, x: float, y: float):
+        self._min_width = get_task_config_param("box/min_width")
+        self._max_width = get_task_config_param("box/max_width")
 
         attr = {
             "x": str(x),
             "y": str(y),
             "width": str(self._min_width),
-            "height": str(self._min_height),
         }
         super().__init__(tag="rect", css_class="task_box", attr=attr)
 
@@ -41,11 +32,10 @@ class SvgTaskBox(SvgElement):
         :param height: New height to set. If None, height remains unchanged.
         """
         if width is not None:
-            self.attr["width"] = str(width)
+            self.set_attr("width", str(width))
         if height is not None:
-            self.attr["height"] = str(height)
-        self.update_attribute()
+            self.set_attr("height", str(height))
 
     @property
     def width(self) -> float:
-        return float(self.attr["width"])
+        return float(self.get_attr("width"))

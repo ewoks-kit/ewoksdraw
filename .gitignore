@@ -17,5 +17,3 @@ __pycache__/
 *.egg-info/
 .eggs/
 /doc/_generated
-
-test.svg

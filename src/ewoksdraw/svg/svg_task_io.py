@@ -1,51 +1,28 @@
+from typing import Literal
+
 from .svg_group import SvgGroup
 from .svg_task_anchor_link import SvgTaskAnchorLink
 from .svg_text import SvgText
+from .utils_tasks import get_task_config_param
 
 
 class SvgTaskIO(SvgGroup):
     """
     Represents a single SVG task input or output element with text and an anchor link.
 
-    This class inherits from SvgGroup and contains a text element representing
-    the IO name and a circular anchor link. It supports positioning and styling
-    based on whether it is an input or output.
-
-    :param io_txt: The label text for the IO element.
-    :param io_type: The type of IO, typically "Input" or "Output".
+    :param _io_txt: The label text for the IO element.
+    :param _io_type: The type of IO, typically "Input" or "Output".
     """
 
     def __init__(self, io_txt: str, io_type: str):
-        """
-        Initializes the SvgTaskIO element with given text and type, then
-        creates and adds the SVG text and anchor elements.
-        """
         super().__init__()
-        self.io_txt = io_txt
-        self.io_type = io_type
-        self.anchor_text_spacing: int = 5
-        self.init_elements()
 
-    def init_elements(self) -> None:
-        """
-        Initializes and adds the internal SVG elements: text label and anchor link.
-
-        The text alignment and positioning depend on the IO type.
-        """
-
-        self.txt = SvgText(
-            self.io_txt,
-            x=self.anchor_text_spacing,
-            y=0,
-            css_class="task_text_io",
-        )
-        self.anchor = SvgTaskAnchorLink(cx=0, cy=0, radius=2.0)
-
-        if self.io_type == "Output":
-            self.txt.set_text_anchor("end")
-            self.txt.set_position(x=-self.anchor_text_spacing)
-
-        self.add_elements([self.txt, self.anchor])
+        if io_type not in ("input", "output"):
+            raise ValueError(f"io_type must be 'input' or 'output', got '{io_type}'")
+        self._io_type: Literal["input", "output"] = io_type
+        self._io_txt: str = io_txt
+        self._anchor_text_spacing: int = 5
+        self._init_elements()
 
     def set_font_size(self, font_size: float):
         """
@@ -54,13 +31,6 @@ class SvgTaskIO(SvgGroup):
         :param font_size: The new font size to apply.
         """
         self.txt.set_font_size(font_size)
-
-    def _truncate_text_by_one(self):
-        """
-        Truncates the displayed text by one character. This is typically
-        used to reduce width to fit constraints.
-        """
-        self.txt._truncate_text_by_one()
 
     @property
     def font_size(self) -> float:
@@ -75,7 +45,7 @@ class SvgTaskIO(SvgGroup):
         Returns the total width of this IO element, including text and spacing.
         """
         width_txt = self.txt.width
-        return width_txt + (self.anchor_text_spacing) * 2
+        return width_txt + (self._anchor_text_spacing) * 2
 
     @property
     def height(self) -> float:
@@ -84,13 +54,40 @@ class SvgTaskIO(SvgGroup):
         """
         return max(self.txt.height, self.anchor.attr["r"] * 2)
 
+    def _init_elements(self) -> None:
+        """
+        Initializes and adds the internal SVG elements: text label and anchor link.
+
+        The text alignment and positioning depend on the IO type.
+        """
+
+        self.txt = SvgText(
+            self._io_txt,
+            x=self._anchor_text_spacing,
+            y=0,
+            css_class="task_text_io",
+        )
+        self.anchor = SvgTaskAnchorLink(
+            cx=0, cy=0, radius=get_task_config_param("anchor_links/radius")
+        )
+
+        if self._io_type == "output":
+            self.txt.set_text_anchor("end")
+            self.txt.set_position(x=-self._anchor_text_spacing)
+
+        self.add_elements([self.txt, self.anchor])
+
+    def _truncate_text_by_one(self):
+        """
+        Truncates the displayed text by one character. This is typically
+        used to reduce width to fit constraints.
+        """
+        self.txt._truncate_text_by_one()
+
 
 class SvgTaskIOGroup(SvgGroup):
     """
     Represents a group of SVG task IO elements arranged vertically.
-
-    This class manages a list of SvgTaskIO objects, controlling layout,
-    font size, and vertical spacing.
 
     :param list_io: A list of strings representing IO labels.
     :param io_type: The IO type for all elements in the group ("Input" or "Output").
@@ -98,32 +95,18 @@ class SvgTaskIOGroup(SvgGroup):
     """
 
     def __init__(self, list_io: list, io_type: str, vertical_spacing: float = 10):
-        """
-        Initializes the SvgTaskIOGroup by creating SvgTaskIO elements
-        for each label and arranging them vertically.
-        """
         super().__init__()
-        self.io_type = io_type
-        self.list_io = list_io
-        self.vertical_spacing = vertical_spacing
-        self.init_elements()
 
-    def init_elements(self) -> None:
-        """
-        Creates SvgTaskIO elements from the list of IO labels and adds them
-        to the group. Sets vertical spacing between elements.
-        """
-
-        list_svg_io = []
-        for io in self.list_io:
-            list_svg_io.append(SvgTaskIO(io_txt=io, io_type=self.io_type))
-
-        self.add_elements(list_svg_io)
-        self.set_vertical_spacing(self.vertical_spacing)
+        if io_type not in ("input", "output"):
+            raise ValueError(f"io_type must be 'input' or 'output', got '{io_type}'")
+        self._io_type: Literal["input", "output"] = io_type
+        self._list_io: list[str] = list_io
+        self._vertical_spacing = vertical_spacing
+        self._init_elements()
 
     def set_font_size(self, font_size: float) -> None:
         """
-        Sets the font size for all contained SvgTaskIO elements.
+        Sets the font size for all contained SvgTaskIO text elements.
 
         :param font_size: The font size to set.
         """
@@ -136,59 +119,12 @@ class SvgTaskIOGroup(SvgGroup):
 
         :param vertical_spacing: The vertical distance between elements.
         """
-        self.vertical_spacing = vertical_spacing
+        self._vertical_spacing = vertical_spacing
         for i, element in enumerate(self.elements):
             pos = i * vertical_spacing
             element.set_translation(y=pos)
 
-    @property
-    def width(self) -> float:
-        """
-        Returns the maximum width among all contained IO elements,
-        or 0 if empty.
-        """
-        list_width = []
-        if self.elements:
-            for element in self.elements:
-                list_width.append(element.width)
-            return max(list_width)
-        else:
-            return 0.0
-
-    @property
-    def height(self) -> float:
-        """
-        Returns the total height of the group based on vertical spacing
-        and number of elements.
-        """
-
-        return len(self.elements) * self.vertical_spacing
-
-    @property
-    def font_size(self) -> float:
-        """
-        Returns the font size of the first IO element or 0 if empty.
-        """
-        if self.elements:
-            return self.elements[0].font_size
-        else:
-            return 0
-
-    def _truncate_text_by_one(self):
-        """
-        Finds the widest text element and truncates it by one character
-        to help fit layout constraints.
-        """
-        if self.elements:
-            max_width = -1
-            for element in self.elements:
-                if element.width > max_width:
-                    max_width = element.width
-                    max_width_elem = element
-
-            max_width_elem._truncate_text_by_one()
-
-    def modify_size_to_fit_width(self, target_width, min_font_size=5):
+    def decrease_size_to_fit_width(self, target_width, min_font_size=5):
         """
         Adjusts font size and truncates text as needed to fit the group
         within a target width.
@@ -208,3 +144,63 @@ class SvgTaskIOGroup(SvgGroup):
             while target_width < current_width:
                 self._truncate_text_by_one()
                 current_width = self.width
+
+    @property
+    def width(self) -> float:
+        """
+        Returns the maximum width among all contained IO elements,
+        or 0 if empty.
+        """
+        if not self.elements:
+            return 0.0
+
+        list_width = []
+        for element in self.elements:
+            list_width.append(element.width)
+        return max(list_width)
+
+    @property
+    def height(self) -> float:
+        """
+        Returns the total height of the group based on vertical spacing
+        and number of elements.
+        """
+
+        return len(self.elements) * self._vertical_spacing
+
+    @property
+    def font_size(self) -> float:
+        """
+        Returns the font size of the first IO element or 0 if empty.
+        """
+        if self.elements:
+            return self.elements[0].font_size
+        else:
+            return 0.0
+
+    def _init_elements(self) -> None:
+        """
+        Creates SvgTaskIO elements from the list of IO labels and adds them
+        to the group. Sets vertical spacing between elements.
+        """
+
+        list_svg_io = [
+            SvgTaskIO(io_txt=io, io_type=self._io_type) for io in self._list_io
+        ]
+
+        self.add_elements(list_svg_io)
+        self.set_vertical_spacing(self._vertical_spacing)
+
+    def _truncate_text_by_one(self):
+        """
+        Finds the widest text element and truncates it by one character
+        to help fit layout constraints.
+        """
+        if self.elements:
+            max_width = -1
+            for element in self.elements:
+                if element.width > max_width:
+                    max_width = element.width
+                    max_width_elem = element
+
+            max_width_elem._truncate_text_by_one()

@@ -9,126 +9,111 @@ class SvgTask(SvgGroup):
     """
     Represents a task as an SVG group containing title, input/output groups, box, and line.
 
-    The task includes a title, input/output labels, and a bounding box, with automatic
-    layout scaling and positioning.
+    The task includes a title, input/output labels, bounding box and and one
+    demarcation line, with automatic layout scaling and positioning.
 
-    :param name_task: The name of the task (displayed as title).
-    :param list_inputs_names: List of input names for the task.
-    :param list_outputs_names: List of output names for the task.
+    :param task_name: The name of the task (displayed as title).
+    :param list_input_names: List of input names for the task.
+    :param list_output_names: List of output names for the task.
     """
 
     def __init__(
         self,
-        name_task: str,
-        list_inputs_names: list[str],
-        list_outputs_names: list[str],
+        task_name: str,
+        list_input_names: list[str],
+        list_output_names: list[str],
     ):
-        """
-        Initializes the SvgTask instance, sets task name, inputs and outputs, and
-        initializes child elements.
-
-        Calls layout scaling functions to position and size elements.
-        """
         super().__init__()
-        self.name_task = name_task
-        self.list_inputs_names = list_inputs_names
-        self.list_outputs_names = list_outputs_names
+
+        self._interspace_title_input = 3
+        self._interspace_input_output = 3
+        self._title = SvgTaskTitle(text=task_name, x=0, y=0)
+        self._box = SvgTaskBox(x=0, y=0)
+        self._inputs = SvgTaskIOGroup(
+            list_io=list_input_names, io_type="input", vertical_spacing=8
+        )
+        self._outputs = SvgTaskIOGroup(
+            list_io=list_output_names, io_type="output", vertical_spacing=8
+        )
+        self._line_title = SvgTaskLine(x1=0, y1=0, x2=0, y2=0)
+
         self._init_elements()
 
     def _init_elements(self) -> None:
         """
-        Initializes internal SVG elements: title, box, input/output groups, and line.
-
-        Sets default font sizes and adds elements to the group.
+        Initializes the SVG task elements, setting their sizes and positions.
         """
-        self.spacer_title_input = 3
-        self.spacer_input_output = 3
+        self._title.set_font_size(6)
 
-        self.title = SvgTaskTitle(text=self.name_task, x=0, y=0)
-        self.title.set_font_size(6)
-
-        self.box = SvgTaskBox(x=0, y=0)
-        self.inputs = SvgTaskIOGroup(
-            list_io=self.list_inputs_names, io_type="Input", vertical_spacing=8
-        )
-
-        self.outputs = SvgTaskIOGroup(
-            list_io=self.list_outputs_names, io_type="Output", vertical_spacing=8
-        )
-        self.inputs.set_font_size(6)
-        self.outputs.set_font_size(6)
-
-        self.line_title = SvgTaskLine(x1=0, y1=0, x2=0, y2=0)
-
+        self._inputs.set_font_size(6)
+        self._outputs.set_font_size(6)
         self.add_elements(
-            [self.title, self.box, self.inputs, self.outputs, self.line_title]
+            [self._title, self._box, self._inputs, self._outputs, self._line_title]
         )
 
-        self._scale_horizontal_direction()
-        self._scale_vertical_direction()
+        self._scale_horizontal()
+        self._scale_vertical()
 
-    def _scale_horizontal_direction(self) -> None:
+    def _scale_horizontal(self) -> None:
         """
         Adjusts the widths of title, input/output groups, and box.
 
-        Ensures the box width respects minimum and maximum bounds,
-        modifying text or group sizes if necessary to fit the max width.
-
-        Also translates outputs and centers the title horizontally.
         """
-        target_width = max([self.title.width, self.inputs.width, self.outputs.width])
 
-        if (target_width >= self.box._min_width) and (
-            target_width <= self.box._max_width
+        target_width = max([self._title.width, self._inputs.width, self._outputs.width])
+        # If the box width is within the defined min and max bounds
+        if (target_width >= self._box._min_width) and (
+            target_width <= self._box._max_width
         ):
-            self.box.set_size(width=target_width)
+            self._box.set_size(width=target_width)
 
-        elif target_width > self.box._max_width:
+        elif target_width > self._box._max_width:
 
-            self.box.set_size(width=self.box._max_width)
+            self._box.set_size(width=self._box._max_width)
 
-            while target_width > self.box._max_width:
+            max_iterations = 50
+            iteration = 0
 
+            while target_width > self._box._max_width and iteration < max_iterations:
+                iteration += 1
                 target_width = max(
-                    [self.title.width, self.inputs.width, self.outputs.width]
+                    [self._title.width, self._inputs.width, self._outputs.width]
                 )
 
-                if target_width == self.title.width:
-                    self.title.modify_text_to_fit_width(self.box._max_width)
-                elif target_width == self.inputs.width:
-                    self.inputs.modify_size_to_fit_width(self.box._max_width)
-                    self.outputs.set_font_size(self.inputs.font_size)
-                elif target_width == self.outputs.width:
-                    self.outputs.modify_size_to_fit_width(self.box._max_width)
-                    self.inputs.set_font_size(self.outputs.font_size)
+                if target_width == self._title.width:
+                    self._title.modify_text_to_fit_width(self._box._max_width)
+                elif target_width == self._inputs.width:
+                    self._inputs.decrease_size_to_fit_width(self._box._max_width)
+                    self._outputs.set_font_size(self._inputs.font_size)
+                elif target_width == self._outputs.width:
+                    self._outputs.decrease_size_to_fit_width(self._box._max_width)
+                    self._inputs.set_font_size(self._outputs.font_size)
 
-        self.outputs.translate(x=self.box.width)
-        self.title.set_position(x=self.box.width / 2.0)
+        self._outputs.translate(x=self._box.width)
+        self._title.set_position(x=self._box.width / 2.0)
 
-    def _scale_vertical_direction(self):
+    def _scale_vertical(self):
         """
         Adjusts the vertical layout and sizes of elements within the task group.
-
-        Sets total height for the bounding box based on summed heights and spacings,
-        and positions title, inputs, outputs, and the connecting line vertically.
         """
 
         total_height = (
-            self.title.height
-            + self.inputs.height
-            + self.outputs.height
-            + self.spacer_title_input
-            + self.spacer_input_output
+            self._title.height
+            + self._inputs.height
+            + self._outputs.height
+            + self._interspace_input_output
+            + self._interspace_title_input
         )
-        self.box.set_size(height=total_height)
+        self._box.set_size(height=total_height)
 
-        pos = self.title.height_margin
-        self.title.set_position(y=pos)
-        pos += self.title.height + self.spacer_title_input
-        self.inputs.translate(y=pos)
-        pos += self.inputs.height + self.spacer_input_output
-        self.outputs.translate(y=pos)
 
-        self.line_title.set_coordinates(
-            x1=0, y1=self.title.height, x2=self.box.width, y2=self.title.height
+        self._title.set_position(y=self._title.vertical_margin)
+
+        pos = self._title.height + self._interspace_title_input
+        self._inputs.translate(y=pos)
+        pos += self._inputs.height + self._interspace_input_output
+        self._outputs.translate(y=pos)
+
+        self._line_title.set_coordinates(
+            x1=0, y1=self._title.height, x2=self._box.width, y2=self._title.height
         )
