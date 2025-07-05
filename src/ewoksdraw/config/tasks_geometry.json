@@ -20,11 +20,6 @@
         "anchor_text_margin": 10,
         "top_margin": 5,
         "inter_io_margin":3
-        },
-    "line":{
-        "title_vertical_margin": 10,
-        "input_horizontal_margin": 10
-
-    }
+        }
 
 }
