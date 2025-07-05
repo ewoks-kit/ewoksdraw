@@ -28,6 +28,9 @@ Repository = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/"
 Issues = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/issues/"
 Changelog = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/-/blob/main/CHANGELOG.md"
 
+[project.scripts]
+ewoksdraw = "ewoksdraw.main:main"
+
 [project.optional-dependencies]
 test = [
     "pytest >=7",
