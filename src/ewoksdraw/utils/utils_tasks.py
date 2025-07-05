@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from typing import Any
+from typing import Union
 
 PATH_TASK_CONFIG = Path(__file__).parents[1] / "config" / "tasks_geometry.json"
 
@@ -29,7 +30,7 @@ def get_task_config_param(json_url: str) -> Any:
     return config[key_element][key_property]
 
 
-def load_json_file(filepath: str | Path) -> dict:
+def load_json_file(filepath: Union[str, Path]) -> dict:
     """
     Loads a JSON file and returns its contents as a dictionary.
 

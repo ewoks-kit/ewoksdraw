@@ -125,5 +125,5 @@ class SvgText(SvgElement):
         """
         Truncate the text by removing the last character and adding an ellipsis.
         """
-        if self.text is not None : 
+        if self.text is not None:
             self.text = self.text.rstrip("…").rstrip()[:-1].rstrip() + "…"

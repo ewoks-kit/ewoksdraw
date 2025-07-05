@@ -75,4 +75,4 @@ module = "setuptools.*"
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--cov=lima2mxh5master --cov-report=term"
+addopts = "--cov=ewoksdraw --cov-report=term"
