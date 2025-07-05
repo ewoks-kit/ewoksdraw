@@ -1,3 +1,4 @@
+from ..utils.utils_tasks import get_task_config_param
 from .svg_group import SvgGroup
 from .svg_task_box import SvgTaskBox
 from .svg_task_io import SvgTaskIOGroup
@@ -7,10 +8,11 @@ from .svg_task_title import SvgTaskTitle
 
 class SvgTask(SvgGroup):
     """
-    Represents a task as an SVG group containing title, input/output groups, box, and line.
+    Represents a task as an SVG group containing title, input/output groups, box, and
+    line.
 
-    The task includes a title, input/output labels, bounding box and and one
-    demarcation line, with automatic layout scaling and positioning.
+    The task includes a title, input/output labels, bounding box and and one demarcation
+    line, with automatic layout scaling and positioning.
 
     :param task_name: The name of the task (displayed as title).
     :param list_input_names: List of input names for the task.
@@ -25,8 +27,8 @@ class SvgTask(SvgGroup):
     ):
         super().__init__()
 
-        self._interspace_title_input = 3
-        self._interspace_input_output = 3
+        self._interspace_title_input = get_task_config_param("io/top_margin")
+        self._interspace_input_output = get_task_config_param("io/inter_io_margin")
         self._title = SvgTaskTitle(text=task_name, x=0, y=0)
         self._box = SvgTaskBox(x=0, y=0)
         self._inputs = SvgTaskIOGroup(
@@ -43,10 +45,6 @@ class SvgTask(SvgGroup):
         """
         Initializes the SVG task elements, setting their sizes and positions.
         """
-        self._title.set_font_size(6)
-
-        self._inputs.set_font_size(6)
-        self._outputs.set_font_size(6)
         self.add_elements(
             [self._title, self._box, self._inputs, self._outputs, self._line_title]
         )
@@ -106,8 +104,7 @@ class SvgTask(SvgGroup):
         )
         self._box.set_size(height=total_height)
 
-
-        self._title.set_position(y=self._title.vertical_margin)
+        self._title.set_position(y=self._title.vertical_margin // 2)
 
         pos = self._title.height + self._interspace_title_input
         self._inputs.translate(y=pos)
@@ -115,5 +112,8 @@ class SvgTask(SvgGroup):
         self._outputs.translate(y=pos)
 
         self._line_title.set_coordinates(
-            x1=0, y1=self._title.height, x2=self._box.width, y2=self._title.height
+            x1=0,
+            y1=self._title.height - self._title.vertical_margin // 2,
+            x2=self._box.width,
+            y2=self._title.height - self._title.vertical_margin // 2,
         )

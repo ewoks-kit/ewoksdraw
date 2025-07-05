@@ -1,9 +1,9 @@
 from typing import Literal
 
+from ..utils.utils_tasks import get_task_config_param
 from .svg_group import SvgGroup
 from .svg_task_anchor_link import SvgTaskAnchorLink
 from .svg_text import SvgText
-from .utils_tasks import get_task_config_param
 
 
 class SvgTaskIO(SvgGroup):
@@ -21,7 +21,7 @@ class SvgTaskIO(SvgGroup):
             raise ValueError(f"io_type must be 'input' or 'output', got '{io_type}'")
         self._io_type: Literal["input", "output"] = io_type
         self._io_txt: str = io_txt
-        self._anchor_text_spacing: int = 5
+        self._anchor_text_spacing: int = get_task_config_param("io/anchor_text_margin")
         self._init_elements()
 
     def set_font_size(self, font_size: float):
@@ -52,7 +52,9 @@ class SvgTaskIO(SvgGroup):
         """
         Returns the height, max of diameter of anchor or txt.
         """
-        return max(self.txt.height, self.anchor.attr["r"] * 2)
+        radius_attr = float(self.anchor.get_attr("r") or "0")
+
+        return max(self.txt.height, radius_attr * 2)
 
     def _init_elements(self) -> None:
         """
@@ -76,6 +78,8 @@ class SvgTaskIO(SvgGroup):
             self.txt.set_position(x=-self._anchor_text_spacing)
 
         self.add_elements([self.txt, self.anchor])
+        font_size = get_task_config_param("io/target_font_size")
+        self.set_font_size(font_size)
 
     def _truncate_text_by_one(self):
         """
@@ -124,16 +128,17 @@ class SvgTaskIOGroup(SvgGroup):
             pos = i * vertical_spacing
             element.set_translation(y=pos)
 
-    def decrease_size_to_fit_width(self, target_width, min_font_size=5):
+    def decrease_size_to_fit_width(self, target_width):
         """
         Adjusts font size and truncates text as needed to fit the group
         within a target width.
 
         The font size will not be reduced below `min_font_size`.
-
         :param target_width: The maximum allowed width for the group.
-        :param min_font_size: The minimum font size allowed.
         """
+
+        min_font_size = get_task_config_param("io/min_font_size")
+
         if self.elements:
             current_width = self.width
 

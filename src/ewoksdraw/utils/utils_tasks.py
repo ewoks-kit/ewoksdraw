@@ -6,7 +6,12 @@ PATH_TASK_CONFIG = Path(__file__).parents[1] / "config" / "tasks_geometry.json"
 
 
 def get_task_config_param(json_url: str) -> Any:
-    """Retrieves a specific parameter from the task configuration JSON file."""
+    """Retrieves a specific parameter from the task configuration JSON file.
+
+    :param json_url: The path to the desired parameter, in the format
+        "key_element/key_property".
+    :return: The value of the requested configuration parameter.
+    """
 
     config = load_json_file(PATH_TASK_CONFIG)
     json_url = json_url.lstrip("/").rstrip("/")
@@ -18,7 +23,8 @@ def get_task_config_param(json_url: str) -> Any:
         raise KeyError(f"Element '{key_element}' not found in configuration.")
     if key_property not in config[key_element]:
         raise KeyError(
-            f"Property '{key_property}' not found for element '{key_element}' in configuration."
+            f"Property '{key_property}' not found for element '{key_element}' in"
+            " configuration."
         )
     return config[key_element][key_property]
 

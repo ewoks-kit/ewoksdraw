@@ -34,8 +34,8 @@ test = [
 ]
 dev = [
     "pytest >=7",
-    "black >=25",
-    "flake8 >=4",
+    "ruff", 
+    "mypy",
 ]
 doc = [
     "sphinx >=4.5",
@@ -52,13 +52,24 @@ where = ["src"]
 [tool.coverage.run]
 omit = ["*/tests/*"]
 
+[tool.ruff]
+
+src = ["."]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.mypy]
+
+files = "."
+
 [[tool.mypy.overrides]]
 module = "setuptools.*"
 ignore_missing_imports = true
 
-[project.scripts]
-ewoksdraw = "ewoksdraw.main:main"
-
-[tool.isort]
-profile = "black"
-force_single_line = true
+[tool.pytest.ini_options]
+addopts = "--cov=lima2mxh5master --cov-report=term"
