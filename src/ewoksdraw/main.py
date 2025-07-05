@@ -55,8 +55,8 @@ def main():
         canvas.add_element(svg_task)
 
     canvas.draw(filename)
-    output_dict = canvas.dict
-    output_xml = canvas.xml
+    print(canvas.dict)
+    print(canvas.xml)
 
 
 if __name__ == "__main__":
