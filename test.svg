@@ -1,0 +1,411 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+  <style><![CDATA[
+.background {
+    fill: #000000;
+}
+]]></style>
+  <style><![CDATA[
+.task_title {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_box {
+    fill: #00000000;
+    stroke: rgb(255, 255, 255);
+    stroke-width: 0.2%;
+    rx: 0.5%;
+    ry: 0.5%;
+}
+
+
+]]></style>
+  <style><![CDATA[
+.task_text_io {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_anchor_link {
+    fill: rgb(176, 147, 255);
+}
+
+]]></style>
+  <style><![CDATA[
+.task_line {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 1;
+}
+]]></style>
+  <rect width="500" height="500" class="background"/>
+  <g transform="translate(118,144)">
+    <text x="56.464" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">learn_leg_in_almost</text>
+    <rect x="0" y="0" width="112.928" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)"/>
+    <g transform="translate(112.928,0) translate(0,23.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">wind_imagine</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">get</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">yes_share_prepare_area</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">election_avoid</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">part_focus_necessary_life</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">chance_after</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">maintain_join</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="112.928" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(385,158)">
+    <text x="61.572" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">with_magazine_age_fight</text>
+    <rect x="0" y="0" width="123.144" height="103.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">the_site</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">daughter</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">effort</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">nor_meeting_all</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Democrat_voice_answer</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(123.144,0) translate(0,63.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">career_final_medical_society</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">phone_happen</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">drive_which</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">play_remember</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">thousand_blood</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="123.144" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(393,360)">
+    <text x="51.800000000000004" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">news_add_then_ok</text>
+    <rect x="0" y="0" width="103.60000000000001" height="119.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">pattern_upon_partner</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">area_then_name</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">fly_water_cost</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">heavy</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">none_else_hundred</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io"/>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(103.60000000000001,0) translate(0,71.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">down_travel_reason</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">worry_lose_detail_you</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">contain_stuff</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">north_throw</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">pass_manage_purpose</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">bank_floor</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="103.60000000000001" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(104,155)">
+    <text x="100.0" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="8.0px" class="task_title">face_us_piece_ready_magazine_paper_happen_think</text>
+    <rect x="0" y="0" width="200" height="86.0" class="task_box"/>
+    <g transform="translate(0,19.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">which_person_interview_ability</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">prepare_leg_camera_send</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">spend_determine</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">once_week</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">late_laugh_simple</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">first_particularly_learn</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(200.0,0) translate(0,70.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">fill_maintain</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">song_fact</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="11.0" x2="200.0" y2="11.0" class="task_line"/>
+  </g>
+  <rect width="500" height="500" class="background"/>
+  <g transform="translate(118,144)">
+    <text x="56.464" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">learn_leg_in_almost</text>
+    <rect x="0" y="0" width="112.928" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)"/>
+    <g transform="translate(112.928,0) translate(0,23.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">wind_imagine</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">get</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">yes_share_prepare_area</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">election_avoid</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">part_focus_necessary_life</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">chance_after</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">maintain_join</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="112.928" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(385,158)">
+    <text x="61.572" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">with_magazine_age_fight</text>
+    <rect x="0" y="0" width="123.144" height="103.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">the_site</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">daughter</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">effort</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">nor_meeting_all</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Democrat_voice_answer</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(123.144,0) translate(0,63.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">career_final_medical_society</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">phone_happen</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">drive_which</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">play_remember</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">thousand_blood</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="123.144" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(393,360)">
+    <text x="51.800000000000004" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">news_add_then_ok</text>
+    <rect x="0" y="0" width="103.60000000000001" height="119.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">pattern_upon_partner</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">area_then_name</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">fly_water_cost</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">heavy</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">none_else_hundred</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io"/>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(103.60000000000001,0) translate(0,71.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">down_travel_reason</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">worry_lose_detail_you</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">contain_stuff</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">north_throw</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">pass_manage_purpose</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">bank_floor</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="103.60000000000001" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(104,155)">
+    <text x="100.0" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="8.0px" class="task_title">face_us_piece_ready_magazine_paper_happen_think</text>
+    <rect x="0" y="0" width="200" height="86.0" class="task_box"/>
+    <g transform="translate(0,19.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">which_person_interview_ability</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">prepare_leg_camera_send</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">spend_determine</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">once_week</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">late_laugh_simple</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">first_particularly_learn</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(200.0,0) translate(0,70.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">fill_maintain</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">song_fact</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="11.0" x2="200.0" y2="11.0" class="task_line"/>
+  </g>
+</svg>

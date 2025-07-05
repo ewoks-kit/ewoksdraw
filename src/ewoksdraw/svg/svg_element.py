@@ -1,7 +1,7 @@
 from pathlib import Path
+from typing import Literal
 from typing import Optional
 from xml.etree.ElementTree import Element
-from typing import Literal
 
 
 class SvgElement:
@@ -24,7 +24,8 @@ class SvgElement:
 
         if tag not in ["rect", "circle", "text", "line"]:
             raise ValueError(
-                f"Invalid SVG tag: {tag}. Supported tags are 'rect', 'circle', 'text', 'line'."
+                f"Invalid SVG tag: {tag}. Supported tags are 'rect', 'circle', 'text',"
+                " 'line'."
             )
         self._tag = tag
 

@@ -51,7 +51,10 @@ class SvgText(SvgElement):
 
     @property
     def width(self) -> float:
-        return self._compute_text_width(self.text, self.font_size, self.font_name)
+        if self.text is not None:
+            return self._compute_text_width(self.text, self.font_size, self.font_name)
+        else:
+            return 0
 
     @property
     def height(self) -> float:
@@ -67,12 +70,16 @@ class SvgText(SvgElement):
 
     def _extract_font_size(self) -> float:
         """
-        Extracts the font size from the `style_element` attribute.
+        Extracts the font size from the 'style_element' attribute.
 
         :return: The extracted font size in pixels.
         """
-
-        return float(self.get_attr("font-size").rstrip("px"))
+        font_size_attr = self.get_attr("font-size")
+        if font_size_attr is not None:
+            font_size = float(font_size_attr.rstrip("px"))
+        else:
+            font_size = 0
+        return font_size
 
     def _extract_font_name(self) -> str:
         """
@@ -92,7 +99,8 @@ class SvgText(SvgElement):
 
     def _compute_text_width(self, text: str, font_size: float, font_name: str) -> float:
         """
-        Compute the width of a given text string based on the specified font size and font name.
+        Compute the width of a given text string based on the specified font size and
+        font name.
 
         :param text: The text string whose width is to be calculated.
         :param font_size: The size of the font to be used for the text.
@@ -117,4 +125,5 @@ class SvgText(SvgElement):
         """
         Truncate the text by removing the last character and adding an ellipsis.
         """
-        self.text = self.text.rstrip("…").rstrip()[:-1].rstrip() + "…"
+        if self.text is not None : 
+            self.text = self.text.rstrip("…").rstrip()[:-1].rstrip() + "…"

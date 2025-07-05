@@ -1,7 +1,7 @@
 from typing import Optional
 
+from ..utils.utils_tasks import get_task_config_param
 from .svg_element import SvgElement
-from .utils_tasks import get_task_config_param
 
 
 class SvgTaskBox(SvgElement):
@@ -38,4 +38,5 @@ class SvgTaskBox(SvgElement):
 
     @property
     def width(self) -> float:
-        return float(self.get_attr("width"))
+        width = float(self.get_attr("width") or "0")
+        return width
