@@ -49,6 +49,9 @@ doc = [
 [tool.setuptools]
 package-dir = {"" = "src"}
 
+[tool.setuptools.package-data]
+ewoksdraw = ["**/*.css", "**/*.json"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
