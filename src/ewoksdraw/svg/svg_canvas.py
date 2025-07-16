@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List
 from typing import Optional
+from typing import Sequence
 from typing import Union
 from xml.dom import minidom
 from xml.etree.ElementTree import Element
@@ -42,6 +43,16 @@ class SvgCanvas:
         :param element: The element or group to be added.
         """
         self.elements.append(element)
+
+    def add_elements(
+        self, list_elements: Sequence[Union[SvgElement, SvgGroup]]
+    ) -> None:
+        """
+        Adds a List of SvgElements or SvgGroups to the drawing.
+
+        :param element: Lists element or/and groups to be added.
+        """
+        self.elements += list_elements
 
     def draw(self, filename: Union[Path, str]) -> None:
         """

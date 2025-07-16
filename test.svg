@@ -1,0 +1,143 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+  <style><![CDATA[
+.background {
+    fill: #000000;
+}
+]]></style>
+  <style><![CDATA[
+.task_title {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_box {
+    fill: #00000000;
+    stroke: rgb(255, 255, 255);
+    stroke-width: 0.2%;
+    rx: 0.5%;
+    ry: 0.5%;
+}
+
+
+]]></style>
+  <style><![CDATA[
+.task_text_io {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_anchor_link {
+    fill: rgb(176, 147, 255);
+}
+
+]]></style>
+  <style><![CDATA[
+.task_line {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 1;
+}
+]]></style>
+  <rect width="500" height="500" class="background"/>
+  <g transform="translate(258,164)">
+    <text x="68.25200000000001" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">recognize_whole_quickly</text>
+    <rect x="0" y="0" width="136.50400000000002" height="103.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">assume_agree_painting_general</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">difference_set_term_perhaps</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">north_size</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">enjoy</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(136.50400000000002,0) translate(0,55.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">simply_reason_particular_check</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">any_appear_executive</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">yourself_whose_easy</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">feel_owner</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">pull_measure</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">knowledge_medical</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="136.50400000000002" y2="12.0" class="task_line"/>
+  </g>
+  <rect width="500" height="500" class="background"/>
+  <g transform="translate(258,164)">
+    <text x="68.25200000000001" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">recognize_whole_quickly</text>
+    <rect x="0" y="0" width="136.50400000000002" height="103.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">assume_agree_painting_general</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">difference_set_term_perhaps</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">north_size</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">enjoy</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(136.50400000000002,0) translate(0,55.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">simply_reason_particular_check</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">any_appear_executive</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">yourself_whose_easy</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">feel_owner</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">pull_measure</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">knowledge_medical</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="136.50400000000002" y2="12.0" class="task_line"/>
+  </g>
+</svg>

@@ -1,5 +1,6 @@
 import random
 import sys
+from typing import Sequence
 
 from faker import Faker
 
@@ -28,6 +29,32 @@ def generate_random_name() -> str:
     return f"{'_'.join(fake.word() for _ in range(nb_words))}"
 
 
+def generate_tasks(nb_tasks: int) -> Sequence[SvgTask]:
+
+    list_task: list[SvgTask] = []
+    for i in range(nb_tasks):
+        task_name = generate_random_name()
+        task_inputs = generate_random_names()
+        task_outputs = generate_random_names()
+        svg_task = SvgTask(
+            task_name=task_name,
+            list_input_names=task_inputs,
+            list_output_names=task_outputs,
+        )
+
+        svg_task.translate(x=random.randint(5, 400), y=random.randint(5, 400))
+        list_task.append(svg_task)
+
+    return list_task
+
+
+def generate_links_dict(list_tasks: list[SvgTask]) -> dict[str, str]:
+
+    list_ouputs = [outputs._io_txt for outputs in list_tasks[0]._outputs.elements]
+    list_inputs = 
+    print(list_ouputs)
+
+
 def main():
     filename = sys.argv[1]
 
@@ -39,24 +66,14 @@ def main():
     canvas.add_element(svg_background)
 
     nb_tasks = random.randint(1, 5)
-    for i in range(nb_tasks):
+    list_tasks = generate_tasks(nb_tasks)
+    dict_links = generate_links_dict(list_tasks)
 
-        task_name = generate_random_name()
-        task_inputs = generate_random_names()
-        task_outputs = generate_random_names()
-        svg_task = SvgTask(
-            task_name=task_name,
-            list_input_names=task_inputs,
-            list_output_names=task_outputs,
-        )
-
-        svg_task.translate(x=random.randint(5, 400), y=random.randint(5, 400))
-
-        canvas.add_element(svg_task)
+    canvas.add_elements(list_tasks)
 
     canvas.draw(filename)
-    print(canvas.dict)
-    print(canvas.xml)
+    # print(canvas.dict)
+    # print(canvas.xml)
 
 
 if __name__ == "__main__":
