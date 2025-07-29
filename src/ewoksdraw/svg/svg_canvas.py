@@ -12,6 +12,23 @@ from .svg_element import SvgElement
 from .svg_group import SvgGroup
 
 
+def pretty_print_xml(xml_svg: Element) -> str:
+    """
+    Converts an XML Element to a pretty-printed string.
+    :param xml_svg: Xml Element in the svg format
+
+    :return: string representation of the xml/svg element
+    """
+    svg_string = tostring(xml_svg, encoding="unicode", method="xml")
+
+    svg_string = svg_string.replace("&lt;![CDATA[", "<![CDATA[").replace(
+        "]]&gt;", "]]>"
+    )
+
+    dom = minidom.parseString(svg_string)
+    return dom.toprettyxml(indent="  ")
+
+
 class SvgCanvas:
     """
     Represents the SVG drawing canvas.
@@ -55,10 +72,8 @@ class SvgCanvas:
         Save the SVG canvas to a file.
         :param filename: The name of the file to save the SVG content.
         """
-        self._populate_xml_svg()
-        self._convert_xml_svg_to_string()
         with open(filename, "w") as file:
-            file.write(self._convert_xml_svg_to_string())
+            file.write(self._get_svg_string())
 
     @property
     def xml(self) -> Element:
@@ -73,9 +88,7 @@ class SvgCanvas:
         """
         Returns the SVG canvas as a dictionary.
         """
-        xml_str = self._convert_xml_svg_to_string()
-        return xmltodict.parse(xml_str)
-
+        return xmltodict.parse(self._get_svg_string())
 
     def _yield_styles(self, element: Union[SvgElement, SvgGroup]) -> Iterator[Element]:
         """
@@ -104,32 +117,30 @@ class SvgCanvas:
 
         return all_styles
 
-    def _convert_xml_svg_to_string(self) -> str:
-        """Converts the XML SVG element to a pretty-printed string."""
-
-        for element in self.elements:
-            self._xml_svg.append(element.xml_element)
-        svg_string = tostring(self._xml_svg, encoding="unicode", method="xml")
-        svg_string = svg_string.replace("&lt;![CDATA[", "<![CDATA[").replace(
-            "]]&gt;", "]]>"
-        )
-        dom = minidom.parseString(svg_string)
-        return dom.toprettyxml(indent="  ")
+    def _get_svg_string(self) -> str:
+        """
+        Helper method to get the final, pretty-printed SVG string.
+        """
+        self._populate_xml_svg()
+        return pretty_print_xml(self._xml_svg)
 
     def _populate_xml_svg(self) -> None:
-        """Populates the XML SVG element with styles and elements."""
+        """Populates the main SVG element with styles and shape elements."""
+        self._xml_svg = Element(
+            "svg",
+            xmlns="http://www.w3.org/2000/svg",
+            width=str(self.width),
+            height=str(self.height),
+        )
 
-        if len(self._xml_svg) != 1:
-            self._xml_svg = Element(
-                "svg",
-                xmlns="http://www.w3.org/2000/svg",
-                width=str(self.width),
-                height=str(self.height),
-            )
+        # Gather and add unique styles
         style_elements = self._gather_all_styles()
-
-        list_style_str = set()
+        seen_styles = set()
         for style in style_elements:
-            if style is not None and (style.text not in list_style_str):
+            if style.text not in seen_styles:
                 self._xml_svg.append(style)
-                list_style_str.add(style.text)
+                seen_styles.add(style.text)
+
+        # Add all the visual elements
+        for element in self.elements:
+            self._xml_svg.append(element.xml_element)
