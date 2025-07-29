@@ -9,7 +9,6 @@ class SvgBackground(SvgElement):
     """
 
     def __init__(self, width: float, height: float):
-
         attr = {
             "width": str(width),
             "height": str(height),

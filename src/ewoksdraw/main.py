@@ -40,7 +40,6 @@ def main():
 
     nb_tasks = random.randint(1, 5)
     for i in range(nb_tasks):
-
         task_name = generate_random_name()
         task_inputs = generate_random_names()
         task_outputs = generate_random_names()
