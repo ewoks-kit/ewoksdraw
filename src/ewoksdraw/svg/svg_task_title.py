@@ -1,4 +1,7 @@
-from ..utils.utils_tasks import get_task_config_param
+from ..config.constants import TITLE_HORIZONTAL_MARGIN
+from ..config.constants import TITLE_MIN_FONT_SIZE
+from ..config.constants import TITLE_TARGET_FONT_SIZE
+from ..config.constants import TITLE_VERTICAL_MARGIN
 from .svg_text import SvgText
 
 
@@ -13,12 +16,12 @@ class SvgTaskTitle(SvgText):
 
     def __init__(self, text: str, x: int, y: int):
 
-        self.vertical_margin: int = get_task_config_param("title/vertical_margin")
-        self.horizontal_margin: int = get_task_config_param("title/horizontal_margin")
+        self.vertical_margin: int = TITLE_VERTICAL_MARGIN
+        self.horizontal_margin: int = TITLE_HORIZONTAL_MARGIN
         super().__init__(text=text, x=x, y=y, css_class="task_title")
         self.set_dominant_baseline("hanging")
         self.set_text_anchor("middle")
-        self.set_font_size(get_task_config_param("title/target_font_size"))
+        self.set_font_size(TITLE_TARGET_FONT_SIZE)
 
     def modify_text_to_fit_width(self, target_width):
         """
@@ -27,7 +30,8 @@ class SvgTaskTitle(SvgText):
         :param target_width: The x-coordinate of the task title in the SVG canvas.
         """
 
-        min_font_size = get_task_config_param("title/min_font_size")
+        min_font_size = TITLE_MIN_FONT_SIZE
+
         super().modify_text_to_fit_width(target_width, min_font_size=min_font_size)
 
     @property

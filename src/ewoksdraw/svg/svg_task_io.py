@@ -1,6 +1,9 @@
 from typing import Literal
 
-from ..utils.utils_tasks import get_task_config_param
+from ..config.constants import ANCHOR_LINKS_RADIUS
+from ..config.constants import IO_ANCHOR_TEXT_MARGIN
+from ..config.constants import IO_MIN_FONT_SIZE
+from ..config.constants import IO_TARGET_FONT_SIZE
 from .svg_group import SvgGroup
 from .svg_task_anchor_link import SvgTaskAnchorLink
 from .svg_text import SvgText
@@ -21,7 +24,7 @@ class SvgTaskIO(SvgGroup):
             raise ValueError(f"io_type must be 'input' or 'output', got '{io_type}'")
         self._io_type: Literal["input", "output"] = io_type
         self._io_txt: str = io_txt
-        self._anchor_text_spacing: int = get_task_config_param("io/anchor_text_margin")
+        self._anchor_text_spacing: int = IO_ANCHOR_TEXT_MARGIN
         self._init_elements()
 
     def set_font_size(self, font_size: float):
@@ -69,16 +72,14 @@ class SvgTaskIO(SvgGroup):
             y=0,
             css_class="task_text_io",
         )
-        self.anchor = SvgTaskAnchorLink(
-            cx=0, cy=0, radius=get_task_config_param("anchor_links/radius")
-        )
+        self.anchor = SvgTaskAnchorLink(cx=0, cy=0, radius=ANCHOR_LINKS_RADIUS)
 
         if self._io_type == "output":
             self.txt.set_text_anchor("end")
             self.txt.set_position(x=-self._anchor_text_spacing)
 
         self.add_elements([self.txt, self.anchor])
-        font_size = get_task_config_param("io/target_font_size")
+        font_size = IO_TARGET_FONT_SIZE
         self.set_font_size(font_size)
 
     def _truncate_text_by_one(self):
@@ -137,7 +138,7 @@ class SvgTaskIOGroup(SvgGroup):
         :param target_width: The maximum allowed width for the group.
         """
 
-        min_font_size = get_task_config_param("io/min_font_size")
+        min_font_size = IO_MIN_FONT_SIZE
 
         if self.elements:
             current_width = self.width

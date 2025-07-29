@@ -1,4 +1,5 @@
-from ..utils.utils_tasks import get_task_config_param
+from ..config.constants import IO_INTER_IO_MARGIN
+from ..config.constants import IO_TOP_MARGIN
 from .svg_group import SvgGroup
 from .svg_task_box import SvgTaskBox
 from .svg_task_io import SvgTaskIOGroup
@@ -27,8 +28,8 @@ class SvgTask(SvgGroup):
     ):
         super().__init__()
 
-        self._interspace_title_input = get_task_config_param("io/top_margin")
-        self._interspace_input_output = get_task_config_param("io/inter_io_margin")
+        self._interspace_title_input = IO_TOP_MARGIN
+        self._interspace_input_output = IO_INTER_IO_MARGIN
         self._title = SvgTaskTitle(text=task_name, x=0, y=0)
         self._box = SvgTaskBox(x=0, y=0)
         self._inputs = SvgTaskIOGroup(

@@ -26,8 +26,8 @@ class SvgCanvas:
     """
 
     def __init__(self, width: int, height: int):
-        self.width: int = width
-        self.height: int = height
+        self.width = width
+        self.height = height
         self.elements: List[Union[SvgElement, SvgGroup]] = []
         self._xml_svg = Element(
             "svg",
@@ -68,7 +68,6 @@ class SvgCanvas:
     def xml(self) -> Element:
         """
         Returns the XML representation of the SVG canvas.
-        :return: The XML Element representing the SVG canvas.
         """
         self._populate_xml_svg()
         return self._xml_svg
@@ -77,7 +76,6 @@ class SvgCanvas:
     def dict(self) -> dict:
         """
         Returns the SVG canvas as a dictionary.
-        :return: A dictionary representation of the SVG canvas.
         """
         xml_str = self._convert_xml_svg_to_string()
         return xmltodict.parse(xml_str)
