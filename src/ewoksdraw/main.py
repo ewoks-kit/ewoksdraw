@@ -1,7 +1,5 @@
 import random
 import sys
-from typing import Sequence
-from typing import Sequence
 
 from faker import Faker
 
@@ -28,15 +26,6 @@ def generate_random_name() -> str:
     for _ in range(nb_words):
         name += fake.word() + "_"
     return f"{'_'.join(fake.word() for _ in range(nb_words))}"
-
-
-
-
-def generate_links_dict(list_tasks: list[SvgTask]) -> dict[str, str]:
-
-    list_ouputs = [outputs._io_txt for outputs in list_tasks[0]._outputs.elements]
-    list_inputs = 
-    print(list_ouputs)
 
 
 def generate_tasks(nb_tasks: int) -> Sequence[SvgTask]:
@@ -82,8 +71,8 @@ def main():
     canvas.add_elements(list_tasks)
 
     canvas.draw(filename)
-    # print(canvas.dict)
-    # print(canvas.xml)
+    print(canvas.dict)
+    print(canvas.xml)
 
 
 if __name__ == "__main__":

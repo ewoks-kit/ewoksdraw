@@ -51,16 +51,6 @@ class SvgCanvas:
         """
         self.elements.append(element)
 
-    def add_elements(
-        self, list_elements: Sequence[Union[SvgElement, SvgGroup]]
-    ) -> None:
-        """
-        Adds a List of SvgElements or SvgGroups to the drawing.
-
-        :param element: Lists element or/and groups to be added.
-        """
-        self.elements += list_elements
-
     def draw(self, filename: Union[Path, str]) -> None:
         """
         Save the SVG canvas to a file.
