@@ -1,6 +1,7 @@
 from typing import Optional
 
-from ..utils.utils_tasks import get_task_config_param
+from ..config.constants import BOX_MAX_WIDTH
+from ..config.constants import BOX_MIN_WIDTH
 from .svg_element import SvgElement
 
 
@@ -12,8 +13,8 @@ class SvgTaskBox(SvgElement):
     """
 
     def __init__(self, x: float, y: float):
-        self._min_width = get_task_config_param("box/min_width")
-        self._max_width = get_task_config_param("box/max_width")
+        self._min_width = BOX_MIN_WIDTH
+        self._max_width = BOX_MAX_WIDTH
 
         attr = {
             "x": str(x),
