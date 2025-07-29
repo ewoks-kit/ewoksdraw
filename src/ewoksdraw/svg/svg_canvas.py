@@ -1,6 +1,6 @@
 from pathlib import Path
+from typing import Iterator
 from typing import List
-from typing import Optional
 from typing import Union
 from xml.dom import minidom
 from xml.etree.ElementTree import Element
@@ -66,39 +66,33 @@ class SvgCanvas:
         xml_str = self._convert_xml_svg_to_string()
         return xmltodict.parse(xml_str)
 
-    def _gather_styles_from_svg_group(
-        self, element: Union[SvgElement, SvgGroup], style_list: List[Optional[Element]]
-    ) -> List[Optional[Element]]:
-        """
-        Recursively gathers styles from elements and groups.
 
-        :param element: The element or group to gather styles from.
-        :param style_list: The list to store gathered styles.
-        :return: The list of gathered styles.
+    def _yield_styles(self, element: Union[SvgElement, SvgGroup]) -> Iterator[Element]:
+        """
+        Recursively walks through elements and yields their styles.
+        This is a generator function.
+
+        :param element: The root element or group to start from.
         """
         if isinstance(element, SvgElement):
-            style_list.append(element.style_element)
+            if element.style_element is not None:
+                yield element.style_element
         elif isinstance(element, SvgGroup):
             for child in element.elements:
-                style_list = self._gather_styles_from_svg_group(child, style_list)
-        return style_list
+                yield from self._yield_styles(child)
 
-    def _gather_all_styles(self) -> List[Optional[Element]]:
+    def _gather_all_styles(self) -> List[Element]:
         """
-        Gathers all styles from the elements and groups in the canvas.
-        :return: A list of style elements.
+        Gathers all unique styles from the canvas elements.
+        Uses the `_yield_styles` generator to walk the element tree.
+
+        :return: A list of unique style elements.
         """
-        style_elements: List[Optional[Element]] = []
+        all_styles: List[Element] = []
         for element in self.elements:
-            if isinstance(element, SvgElement):
-                style = element.style_element
-                if style is not None:
-                    style_elements.append(style)
-            elif isinstance(element, SvgGroup):
-                style_elements = self._gather_styles_from_svg_group(
-                    element, style_elements
-                )
-        return style_elements
+            all_styles.extend(self._yield_styles(element))
+
+        return all_styles
 
     def _convert_xml_svg_to_string(self) -> str:
         """Converts the XML SVG element to a pretty-printed string."""
