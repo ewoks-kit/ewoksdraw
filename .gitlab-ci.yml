@@ -5,6 +5,13 @@ include:
 variables:
   PYTEST_WARNINGS: "-W error"
 
+ruff:
+  extends: .ruff
+  script:
+    - ruff check .
+    - ruff format --check .
+
+
 test-3.9:
   extends: .test-3.9
   variables:

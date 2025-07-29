@@ -1,29 +1,45 @@
-from .svg_element import SvgElement
+from typing import Optional
+
+from ..config.constants import TITLE_HORIZONTAL_MARGIN
+from ..config.constants import TITLE_MIN_FONT_SIZE
+from ..config.constants import TITLE_TARGET_FONT_SIZE
+from ..config.constants import TITLE_VERTICAL_MARGIN
+from .svg_text import SvgText
 
 
-class SvgTaskTitle(SvgElement):
+class SvgTaskTitle(SvgText):
     """
-    Class representing a text element in SVG.
+    Represents the title of a task in an SVG Task.
+
+    :param text: The text content of the task title.
+    :param x: The x-coordinate of the task title in the SVG canvas.
+    :param y: The y-coordinate of the task title in the SVG canvas.
     """
 
     def __init__(self, text: str, x: int, y: int):
-        """
-        Initialize a text element with specific content and position.
+        self.vertical_margin: int = TITLE_VERTICAL_MARGIN
+        self.horizontal_margin: int = TITLE_HORIZONTAL_MARGIN
+        super().__init__(text=text, x=x, y=y, css_class="task_title")
+        self.set_dominant_baseline("hanging")
+        self.set_text_anchor("middle")
+        self.set_font_size(TITLE_TARGET_FONT_SIZE)
 
-        :param text: The text content.
-        :param x: The x-coordinate of the text.
-        :param y: The y-coordinate of the text.
+    def modify_text_to_fit_width(
+        self, target_width: float, *, min_font_size: Optional[float] = None
+    ) -> None:
         """
-        attr = {"x": str(x), "y": str(y)}
-        super().__init__(tag="text", css_class="task_title", attr=attr, text=text)
+        Change the text font size to fit task box width.
+        Will crop the title string if min_font_size is reach
+        :param target_width: The x-coordinate of the task title in the SVG canvas.
+        """
 
-    def set_position(self, x: int, y: int) -> None:
-        """
-        Sets the position of the text element (updates x and y).
+        min_font_size = TITLE_MIN_FONT_SIZE
+        super().modify_text_to_fit_width(target_width, min_font_size=min_font_size)
 
-        :param x: The new x-coordinate of the text.
-        :param y: The new y-coordinate of the text.
-        """
-        self.attr["x"] = str(x)
-        self.attr["y"] = str(y)
-        self.update_attribute()
+    @property
+    def width(self) -> float:
+        return super().width + self.horizontal_margin
+
+    @property
+    def height(self) -> float:
+        return super().height + self.vertical_margin

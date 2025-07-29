@@ -1,4 +1,6 @@
-from typing import List, Optional, Union
+import re
+from typing import Iterable
+from typing import Union
 from xml.etree.ElementTree import Element
 
 from .svg_element import SvgElement
@@ -6,49 +8,62 @@ from .svg_element import SvgElement
 
 class SvgGroup:
     """
-    Class representing a group of SVG elements.
+    Represents a group of SVG elements.
     """
 
-    def __init__(self, elements: Optional[List[Union[SvgElement, "SvgGroup"]]] = None):
-        """
-        Initialize a group to hold multiple elements or other groups.
+    _TRANSLATE_PATTERN = re.compile(
+        r"translate\(\s*[-+]?\d*\.?\d+(?:[,\s]+[-+]?\d*\.?\d+)?\s*\)"
+    )
 
-        :param elements: A list of elements or groups to be included in the group.
-        """
-        self.elements = elements or []
-        self.xml_element = Element("g")
-        self.populate_group()
+    def __init__(self):
+        self.elements = []
+        self._transform = ""
 
-    def populate_group(self) -> None:
-        """
-        Populates the group with child elements or other groups.
-        """
-        for element in self.elements:
-            self.xml_element.append(element.get_xml_element())
-
-    def add_elements(self, elements: Union[SvgElement, "SvgGroup"]) -> None:
+    def add_elements(self, elements: Iterable[Union[SvgElement, "SvgGroup"]]) -> None:
         """
         Adds elements (SvgElement or SvgGroup) to the group.
 
         :param elements: The elements to be added.
         """
-        self.elements.append(elements)
-        self.populate_group()
+        self.elements.extend(elements)
 
-    def set_position(self, x: int, y: int) -> None:
+    def translate(self, x: float = 0, y: float = 0) -> None:
         """
-        Sets the position of the group by applying a transformation.
+        Adds a translation transform by appending it to the existing transform state.
 
-        :param x: The x-coordinate for the translation.
-        :param y: The y-coordinate for the translation.
+        :param x: The translation distance along the x-axis (default is 0).
+        :param y: The translation distance along the y-axis (default is 0).
         """
-        transform = f"translate({x},{y})"
-        self.xml_element.set("transform", transform)
+        new_transform = f"translate({x},{y})"
+        if self._transform:
+            self._transform += f" {new_transform}"
+        else:
+            self._transform = new_transform
+        self._transform = self._transform.strip()
 
-    def get_xml_element(self) -> Element:
+    def set_translation(self, x: float = 0, y: float = 0) -> None:
         """
-        Returns the XML element for the group.
+        Sets the translation transform
 
-        :return: The XML element.
+        :param x: The translation distance along the x-axis (default is 0).
+        :param y: The translation distance along the y-axis (default is 0).
         """
-        return self.xml_element
+        new_translate = f"translate({x},{y})"
+        current_transform = self._transform or ""
+
+        cleaned_transform = self._TRANSLATE_PATTERN.sub("", current_transform).strip()
+
+        if cleaned_transform:
+            self._transform = f"{cleaned_transform} {new_translate}".strip()
+        else:
+            self._transform = new_translate
+
+    @property
+    def xml_element(self) -> Element:
+        """Returns the XML representation of the group element."""
+        group_el = Element("g")
+        if self._transform:
+            group_el.set("transform", self._transform)
+        for element in self.elements:
+            group_el.append(element.xml_element)
+        return group_el

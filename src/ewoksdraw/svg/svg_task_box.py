@@ -1,28 +1,33 @@
+from ..config.constants import BOX_MAX_WIDTH
+from ..config.constants import BOX_MIN_WIDTH
 from .svg_element import SvgElement
 
 
 class SvgTaskBox(SvgElement):
     """
-    Class representing a box element in SVG.
+    Represents a box element in SVG.
+    :param x: The x-coordinate of the box.
+    :param y: The y-coordinate of the box.
     """
 
-    def __init__(self, x: int, y: int):
-        """
-        Initialize a box element with a specific position.
+    def __init__(self, x: float, y: float):
+        self._min_width = BOX_MIN_WIDTH
+        self._max_width = BOX_MAX_WIDTH
 
-        :param x: The x-coordinate of the box.
-        :param y: The y-coordinate of the box.
-        """
-        attr = {"x": str(x), "y": str(y)}
+        attr = {
+            "x": str(x),
+            "y": str(y),
+            "width": str(self._min_width),
+        }
         super().__init__(tag="rect", css_class="task_box", attr=attr)
 
-    def set_position(self, x: int, y: int) -> None:
-        """
-        Sets the position of the box (updates x and y).
+    def set_width(self, width: float) -> None:
+        self.set_attr("width", str(width))
 
-        :param x: The new x-coordinate of the box.
-        :param y: The new y-coordinate of the box.
-        """
-        self.attr["x"] = str(x)
-        self.attr["y"] = str(y)
-        self.update_attribute()
+    def set_height(self, height: float) -> None:
+        self.set_attr("height", str(height))
+
+    @property
+    def width(self) -> float:
+        width = self.get_attr("width") or "0"
+        return float(width)
