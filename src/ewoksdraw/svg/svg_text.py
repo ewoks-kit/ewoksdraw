@@ -14,7 +14,7 @@ class SvgText(SvgElement):
     :param css_class: The CSS class to apply to the text element.
     """
 
-    def __init__(self, text: str, x: int, y: int, css_class):
+    def __init__(self, text: str, x: int, y: int, css_class: str):
         attr = {
             "x": str(x),
             "y": str(y),
@@ -51,10 +51,9 @@ class SvgText(SvgElement):
 
     @property
     def width(self) -> float:
-        if self.text is not None:
-            return self._compute_text_width(self.text, self.font_size, self.font_name)
-        else:
+        if self.text is None:
             return 0
+        return self._compute_text_width(self.text, self.font_size, self.font_name)
 
     @property
     def height(self) -> float:
@@ -76,10 +75,9 @@ class SvgText(SvgElement):
         """
         font_size_attr = self.get_attr("font-size")
         if font_size_attr is not None:
-            font_size = float(font_size_attr.rstrip("px"))
+            return float(font_size_attr.rstrip("px"))
         else:
-            font_size = 0
-        return font_size
+            return 0
 
     def _extract_font_name(self) -> str:
         """
@@ -94,8 +92,9 @@ class SvgText(SvgElement):
         css_content = self.style_element.text
         match = re.search(r"font-family:\s*([\w\s-]+)", css_content or "")
         if match:
-            font_name = match.group(1).strip()
-        return font_name
+            return match.group(1).strip()
+        else:
+            return "Helvetica"
 
     def _compute_text_width(self, text: str, font_size: float, font_name: str) -> float:
         """

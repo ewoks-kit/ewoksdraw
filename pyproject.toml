@@ -70,7 +70,6 @@ select = ["E", "F", "I"]
 force-single-line = true
 
 [tool.mypy]
-
 files = "."
 
 [[tool.mypy.overrides]]

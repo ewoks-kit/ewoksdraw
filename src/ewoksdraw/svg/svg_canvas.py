@@ -19,9 +19,6 @@ class SvgCanvas:
     SvgElement or SvgGroup can be added to the canvas.
     The SvgCanvas compile every css styles and elements to generate the final
     SVG XML file.
-
-    :param width: The width of the canvas.
-    :param height: The height of the canvas.
     """
 
     def __init__(self, width: int, height: int):
