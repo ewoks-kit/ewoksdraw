@@ -25,7 +25,9 @@ class SvgText(SvgElement):
 
         super().__init__(tag="text", css_class=css_class, attr=attr, text=text)
 
-    def modify_text_to_fit_width(self, target_width, min_font_size=6):
+    def modify_text_to_fit_width(
+        self, target_width: float, min_font_size: int = 6
+    ) -> None:
         """
         Adjusts the font size and truncates the text to fit within a target width.
         """
@@ -37,7 +39,7 @@ class SvgText(SvgElement):
             current_width = self.width
 
         while target_width < current_width:
-            self._truncate_text_by_one()
+            self.truncate_text_by_one()
             current_width = self.width
 
     def set_font_size(self, font_size: float) -> None:
@@ -120,7 +122,7 @@ class SvgText(SvgElement):
         """
         return font_size
 
-    def _truncate_text_by_one(self):
+    def truncate_text_by_one(self) -> None:
         """
         Truncate the text by removing the last character and adding an ellipsis.
         """

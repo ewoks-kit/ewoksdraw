@@ -22,7 +22,7 @@ class SvgElement:
         text: Optional[str] = None,
     ):
 
-        if tag not in ["rect", "circle", "text", "line"]:
+        if tag not in ("rect", "circle", "text", "line"):
             raise ValueError(
                 f"Invalid SVG tag: {tag}. Supported tags are 'rect', 'circle', 'text',"
                 " 'line'."

@@ -13,11 +13,11 @@ class SvgTaskIO(SvgGroup):
     """
     Represents a single SVG task input or output element with text and an anchor link.
 
-    :param _io_txt: The label text for the IO element.
-    :param _io_type: The type of IO, typically "Input" or "Output".
+    :param io_txt: The label text for the IO element.
+    :param io_type: The type of IO, typically "input" or "output".
     """
 
-    def __init__(self, io_txt: str, io_type: str):
+    def __init__(self, io_txt: str, io_type: Literal["input", "output"]):
         super().__init__()
 
         if io_type not in ("input", "output"):
@@ -27,7 +27,7 @@ class SvgTaskIO(SvgGroup):
         self._anchor_text_spacing: int = IO_ANCHOR_TEXT_MARGIN
         self._init_elements()
 
-    def set_font_size(self, font_size: float):
+    def set_font_size(self, font_size: float) -> None:
         """
         Sets the font size of the text element inside this IO.
 
@@ -82,12 +82,12 @@ class SvgTaskIO(SvgGroup):
         font_size = IO_TARGET_FONT_SIZE
         self.set_font_size(font_size)
 
-    def _truncate_text_by_one(self):
+    def truncate_text_by_one(self) -> None:
         """
         Truncates the displayed text by one character. This is typically
         used to reduce width to fit constraints.
         """
-        self.txt._truncate_text_by_one()
+        self.txt.truncate_text_by_one()
 
 
 class SvgTaskIOGroup(SvgGroup):
@@ -118,7 +118,7 @@ class SvgTaskIOGroup(SvgGroup):
         for element in self.elements:
             element.set_font_size(font_size)
 
-    def set_vertical_spacing(self, vertical_spacing):
+    def set_vertical_spacing(self, vertical_spacing) -> None:
         """
         Adjusts the vertical spacing between the IO elements.
 
@@ -129,7 +129,7 @@ class SvgTaskIOGroup(SvgGroup):
             pos = i * vertical_spacing
             element.set_translation(y=pos)
 
-    def decrease_size_to_fit_width(self, target_width):
+    def decrease_size_to_fit_width(self, target_width) -> None:
         """
         Adjusts font size and truncates text as needed to fit the group
         within a target width.
@@ -148,7 +148,7 @@ class SvgTaskIOGroup(SvgGroup):
                 current_width = self.width
 
             while target_width < current_width:
-                self._truncate_text_by_one()
+                self.truncate_text_by_one()
                 current_width = self.width
 
     @property
@@ -197,16 +197,18 @@ class SvgTaskIOGroup(SvgGroup):
         self.add_elements(list_svg_io)
         self.set_vertical_spacing(self._vertical_spacing)
 
-    def _truncate_text_by_one(self):
+    def truncate_text_by_one(self) -> None:
         """
         Finds the widest text element and truncates it by one character
         to help fit layout constraints.
         """
-        if self.elements:
-            max_width = -1
-            for element in self.elements:
-                if element.width > max_width:
-                    max_width = element.width
-                    max_width_elem = element
+        if not self.elements:
+            return
 
-            max_width_elem._truncate_text_by_one()
+        max_width = -1
+        for element in self.elements:
+            if element.width > max_width:
+                max_width = element.width
+                max_width_elem = element
+
+        max_width_elem.truncate_text_by_one()
