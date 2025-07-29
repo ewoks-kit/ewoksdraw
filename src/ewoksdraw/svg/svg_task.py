@@ -67,7 +67,6 @@ class SvgTask(SvgGroup):
             self._box.set_width(target_width)
 
         elif target_width > self._box._max_width:
-
             self._box.set_width(self._box._max_width)
 
             max_iterations = 50

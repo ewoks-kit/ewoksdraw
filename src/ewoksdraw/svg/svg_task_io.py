@@ -99,13 +99,18 @@ class SvgTaskIOGroup(SvgGroup):
     :param vertical_spacing: Vertical space between elements (default is 10).
     """
 
-    def __init__(self, list_io: list, io_type: str, vertical_spacing: float = 10):
+    def __init__(
+        self,
+        list_io: list[str],
+        io_type: Literal["input", "output"],
+        vertical_spacing: float = 10,
+    ):
         super().__init__()
 
         if io_type not in ("input", "output"):
             raise ValueError(f"io_type must be 'input' or 'output', got '{io_type}'")
-        self._io_type: Literal["input", "output"] = io_type
-        self._list_io: list[str] = list_io
+        self._io_type = io_type
+        self._list_io = list_io
         self._vertical_spacing = vertical_spacing
         self._init_elements()
 
