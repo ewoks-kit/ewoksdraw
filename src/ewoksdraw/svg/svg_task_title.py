@@ -23,7 +23,7 @@ class SvgTaskTitle(SvgText):
         self.set_text_anchor("middle")
         self.set_font_size(TITLE_TARGET_FONT_SIZE)
 
-    def modify_text_to_fit_width(self, target_width: float):
+    def modify_text_to_fit_width(self, target_width: float) -> None:
         """
         Change the text font size to fit task box width.
         Will crop the title string if min_font_size is reach

@@ -23,8 +23,8 @@ class SvgTask(SvgGroup):
     def __init__(
         self,
         task_name: str,
-        list_input_names: list[str],
-        list_output_names: list[str],
+        input_names: list[str],
+        output_names: list[str],
     ):
         super().__init__()
 
@@ -33,10 +33,10 @@ class SvgTask(SvgGroup):
         self._title = SvgTaskTitle(text=task_name, x=0, y=0)
         self._box = SvgTaskBox(x=0, y=0)
         self._inputs = SvgTaskIOGroup(
-            list_io=list_input_names, io_type="input", vertical_spacing=8
+            list_io=input_names, io_type="input", vertical_spacing=8
         )
         self._outputs = SvgTaskIOGroup(
-            list_io=list_output_names, io_type="output", vertical_spacing=8
+            list_io=output_names, io_type="output", vertical_spacing=8
         )
         self._line_title = SvgTaskLine(x1=0, y1=0, x2=0, y2=0)
 
@@ -64,11 +64,11 @@ class SvgTask(SvgGroup):
         if (target_width >= self._box._min_width) and (
             target_width <= self._box._max_width
         ):
-            self._box.set_size(width=target_width)
+            self._box.set_width(target_width)
 
         elif target_width > self._box._max_width:
 
-            self._box.set_size(width=self._box._max_width)
+            self._box.set_width(self._box._max_width)
 
             max_iterations = 50
             iteration = 0
@@ -91,7 +91,7 @@ class SvgTask(SvgGroup):
         self._outputs.translate(x=self._box.width)
         self._title.set_position(x=self._box.width / 2.0)
 
-    def _scale_vertical(self):
+    def _scale_vertical(self) -> None:
         """
         Adjusts the vertical layout and sizes of elements within the task group.
         """
@@ -103,7 +103,7 @@ class SvgTask(SvgGroup):
             + self._interspace_input_output
             + self._interspace_title_input
         )
-        self._box.set_size(height=total_height)
+        self._box.set_height(total_height)
 
         self._title.set_position(y=self._title.vertical_margin // 2)
 

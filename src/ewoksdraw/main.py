@@ -38,8 +38,8 @@ def generate_tasks(nb_tasks: int) -> Sequence[SvgTask]:
         task_outputs = generate_random_names()
         svg_task = SvgTask(
             task_name=task_name,
-            list_input_names=task_inputs,
-            list_output_names=task_outputs,
+            input_names=task_inputs,
+            output_names=task_outputs,
         )
 
         svg_task.translate(x=random.randint(5, 400), y=random.randint(5, 400))
