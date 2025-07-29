@@ -1,3 +1,5 @@
+from typing import Optional
+
 from ..config.constants import TITLE_HORIZONTAL_MARGIN
 from ..config.constants import TITLE_MIN_FONT_SIZE
 from ..config.constants import TITLE_TARGET_FONT_SIZE
@@ -15,7 +17,6 @@ class SvgTaskTitle(SvgText):
     """
 
     def __init__(self, text: str, x: int, y: int):
-
         self.vertical_margin: int = TITLE_VERTICAL_MARGIN
         self.horizontal_margin: int = TITLE_HORIZONTAL_MARGIN
         super().__init__(text=text, x=x, y=y, css_class="task_title")
@@ -23,7 +24,9 @@ class SvgTaskTitle(SvgText):
         self.set_text_anchor("middle")
         self.set_font_size(TITLE_TARGET_FONT_SIZE)
 
-    def modify_text_to_fit_width(self, target_width: float) -> None:
+    def modify_text_to_fit_width(
+        self, target_width: float, *, min_font_size: Optional[float] = None
+    ) -> None:
         """
         Change the text font size to fit task box width.
         Will crop the title string if min_font_size is reach
@@ -31,7 +34,6 @@ class SvgTaskTitle(SvgText):
         """
 
         min_font_size = TITLE_MIN_FONT_SIZE
-
         super().modify_text_to_fit_width(target_width, min_font_size=min_font_size)
 
     @property

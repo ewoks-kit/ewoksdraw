@@ -66,10 +66,19 @@ def main():
     canvas.add_element(svg_background)
 
     nb_tasks = random.randint(1, 5)
-    list_tasks = generate_tasks(nb_tasks)
-    dict_links = generate_links_dict(list_tasks)
+    for i in range(nb_tasks):
+        task_name = generate_random_name()
+        task_inputs = generate_random_names()
+        task_outputs = generate_random_names()
+        svg_task = SvgTask(
+            task_name=task_name,
+            input_names=task_inputs,
+            output_names=task_outputs,
+        )
 
-    canvas.add_elements(list_tasks)
+        svg_task.translate(x=random.randint(5, 400), y=random.randint(5, 400))
+
+        canvas.add_element(svg_task)
 
     canvas.draw(filename)
     # print(canvas.dict)

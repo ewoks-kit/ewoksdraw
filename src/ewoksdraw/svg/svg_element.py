@@ -21,7 +21,6 @@ class SvgElement:
         attr: Optional[dict] = None,
         text: Optional[str] = None,
     ):
-
         if tag not in ("rect", "circle", "text", "line"):
             raise ValueError(
                 f"Invalid SVG tag: {tag}. Supported tags are 'rect', 'circle', 'text',"
@@ -75,16 +74,16 @@ class SvgElement:
         return self._attr.get(key)
 
     @property
-    def text(self) -> Optional[str]:
-        return self._text
-
-    @property
     def xml_element(self) -> Element:
         return self._create_xml_element()
 
     @property
     def style_element(self) -> Optional[Element]:
         return self._style_element
+
+    @property
+    def text(self) -> Optional[str]:
+        return self._text
 
     @text.setter
     def text(self, value: str) -> None:
@@ -96,7 +95,9 @@ class SvgElement:
 
         :return: The XML element.
         """
-        element = Element(self._tag, self._attr)
+        tag: str = self._tag
+        element = Element(tag, self._attr)
+
         if self.text is not None:
             element.text = self.text
         if self._css_class:
@@ -109,11 +110,15 @@ class SvgElement:
 
         :return: The XML <style> element containing the CSS content.
         """
-        if self._css_class:
-            css_file_path = Path(f"src/ewoksdraw/css_styles/css_{self._css_class}.css")
-            if css_file_path.exists():
-                with open(css_file_path, "r") as css_file:
-                    css_content = css_file.read()
-                style = Element("style")
-                style.text = f"<![CDATA[\n{css_content}\n]]>"
-                return style
+        if not self._css_class:
+            return None
+
+        css_file_path = Path(f"src/ewoksdraw/css_styles/css_{self._css_class}.css")
+        if not css_file_path.exists():
+            return None
+
+        with open(css_file_path, "r") as css_file:
+            css_content = css_file.read()
+        style = Element("style")
+        style.text = f"<![CDATA[\n{css_content}\n]]>"
+        return style
