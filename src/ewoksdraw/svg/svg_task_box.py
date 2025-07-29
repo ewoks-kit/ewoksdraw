@@ -1,5 +1,3 @@
-from typing import Optional
-
 from ..config.constants import BOX_MAX_WIDTH
 from ..config.constants import BOX_MIN_WIDTH
 from .svg_element import SvgElement
@@ -23,21 +21,13 @@ class SvgTaskBox(SvgElement):
         }
         super().__init__(tag="rect", css_class="task_box", attr=attr)
 
-    def set_size(
-        self, width: Optional[float] = None, height: Optional[float] = None
-    ) -> None:
-        """
-        Set the width and/or height of the box.
+    def set_width(self, width: float) -> None:
+        self.set_attr("width", str(width))
 
-        :param width: New width to set. If None, width remains unchanged.
-        :param height: New height to set. If None, height remains unchanged.
-        """
-        if width is not None:
-            self.set_attr("width", str(width))
-        if height is not None:
-            self.set_attr("height", str(height))
+    def set_height(self, height: float) -> None:
+        self.set_attr("height", str(height))
 
     @property
     def width(self) -> float:
-        width = float(self.get_attr("width") or "0")
-        return width
+        width = self.get_attr("width") or "0"
+        return float(width)

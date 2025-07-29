@@ -11,7 +11,7 @@ class SvgTaskLine(SvgElement):
     :param y2: The y-coordinate of the end point of the line.
     """
 
-    def __init__(self, x1: int, y1: int, x2: int, y2: int) -> None:
+    def __init__(self, x1: int, y1: int, x2: int, y2: int):
         attr = {"x1": str(x1), "y1": str(y1), "x2": str(x2), "y2": str(y2)}
         super().__init__(tag="line", css_class="task_line", attr=attr)
 

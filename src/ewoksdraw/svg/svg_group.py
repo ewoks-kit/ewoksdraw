@@ -11,6 +11,10 @@ class SvgGroup:
     Represents a group of SVG elements.
     """
 
+    _TRANSLATE_PATTERN = re.compile(
+        r"translate\(\s*[-+]?\d*\.?\d+(?:[,\s]+[-+]?\d*\.?\d+)?\s*\)"
+    )
+
     def __init__(self):
         self.elements = []
         self._transform = ""
@@ -21,8 +25,7 @@ class SvgGroup:
 
         :param elements: The elements to be added.
         """
-        for element in elements:
-            self.elements.append(element)
+        self.elements.extend(elements)
 
     def translate(self, x: float = 0, y: float = 0) -> None:
         """
@@ -48,10 +51,7 @@ class SvgGroup:
         new_translate = f"translate({x},{y})"
         current_transform = self._transform or ""
 
-        translate_pattern = (
-            r"translate\(\s*[-+]?\d*\.?\d+(?:[,\s]+[-+]?\d*\.?\d+)?\s*\)"
-        )
-        cleaned_transform = re.sub(translate_pattern, "", current_transform).strip()
+        cleaned_transform = self._TRANSLATE_PATTERN.sub("", current_transform).strip()
 
         if cleaned_transform:
             self._transform = f"{cleaned_transform} {new_translate}".strip()
