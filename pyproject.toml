@@ -17,11 +17,11 @@ classifiers = [
 requires-python = ">=3.9"
 
 [project.urls]
-Homepage = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/"
+Homepage = "https://github.com/ewoks-kit/ewoksdraw/"
 Documentation = "https://ewoksdraw.readthedocs.io/"
-Repository = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/"
-Issues = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/issues/"
-Changelog = "https://gitlab.esrf.fr/workflow/ewoks/ewoksdraw/-/blob/main/CHANGELOG.md"
+Repository = "https://github.com/ewoks-kit/ewoksdraw/"
+Issues = "https://github.com/ewoks-kit/ewoksdraw/issues/"
+Changelog = "https://github.com/ewoks-kit/ewoksdraw/-/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 test = [
