@@ -1,80 +1,130 @@
-from typing import List, Optional, Union
-from xml.etree.ElementTree import Element, tostring
 from pathlib import Path
+from typing import Iterator
+from typing import List
+from typing import Union
+from xml.dom import minidom
+from xml.etree.ElementTree import Element
+from xml.etree.ElementTree import tostring
+
+import xmltodict
 
 from .svg_element import SvgElement
 from .svg_group import SvgGroup
 
 
+def pretty_print_xml(xml_svg: Element) -> str:
+    """
+    Converts an XML Element to a pretty-printed string.
+    :param xml_svg: Xml Element in the svg format
+
+    :return: string representation of the xml/svg element
+    """
+    svg_string = tostring(xml_svg, encoding="unicode", method="xml")
+
+    svg_string = svg_string.replace("&lt;![CDATA[", "<![CDATA[").replace(
+        "]]&gt;", "]]>"
+    )
+
+    dom = minidom.parseString(svg_string)
+    return dom.toprettyxml(indent="  ")
+
+
 class SvgCanvas:
     """
-    Class representing the SVG drawing canvas.
+    Represents the SVG drawing canvas.
+    It's the first element in the SVG file and contains all other elements.
+    SvgElement or SvgGroup can be added to the canvas.
+    The SvgCanvas compile every css styles and elements to generate the final
+    SVG XML file.
     """
 
     def __init__(self, width: int, height: int):
-        """
-        Initialize the SVG drawing canvas.
-
-        :param width: The width of the canvas.
-        :param height: The height of the canvas.
-        """
         self.width = width
         self.height = height
         self.elements: List[Union[SvgElement, SvgGroup]] = []
 
     def add_element(self, element: Union[SvgElement, SvgGroup]) -> None:
         """
-        Adds an element or group to the drawing.
+        Adds an SvgElement or SvgGroup to the drawing.
 
         :param element: The element or group to be added.
         """
         self.elements.append(element)
 
-    def gather_styles(
-        self, element: Union[SvgElement, SvgGroup], style_list: List[Optional[Element]]
-    ) -> List[Optional[Element]]:
+    def draw(self, filename: Union[Path, str]) -> None:
         """
-        Recursively gathers styles from elements and groups.
+        Save the SVG canvas to a file.
+        :param filename: The name of the file to save the SVG content.
+        """
+        with open(filename, "w") as file:
+            file.write(self._get_svg_string())
 
-        :param element: The element or group to gather styles from.
-        :param style_list: The list to store gathered styles.
-        :return: The list of gathered styles.
+    @property
+    def xml(self) -> Element:
         """
-        if isinstance(element, SvgElement):
-            style_list.append(element.get_style_element())
-        elif isinstance(element, SvgGroup):
-            for child in element.elements:
-                style_list = self.gather_styles(child, style_list)
-        return style_list
+        Returns the XML representation of the SVG canvas.
+        """
+        return self._generate_xml_svg()
 
-    def generate_svg(self, filename: Union[Path, str]) -> None:
+    @property
+    def dict(self) -> dict:
         """
-        Generates the SVG XML file.
+        Returns the SVG canvas as a dictionary.
+        """
+        return xmltodict.parse(self._get_svg_string())
 
-        :param filename: The name of the output file.
+    def _get_svg_string(self) -> str:
         """
-        svg = Element(
+        Helper method to get the final, pretty-printed SVG string.
+        """
+        return pretty_print_xml(self.xml)
+
+    def _generate_xml_svg(self) -> Element:
+        """
+        Generates a fresh SVG Element from the current canvas state.
+        """
+        xml_svg = Element(
             "svg",
             xmlns="http://www.w3.org/2000/svg",
             width=str(self.width),
             height=str(self.height),
         )
-        style_elements: List[Optional[Element]] = []
-        for element in self.elements:
-            if isinstance(element, SvgElement):
-                style = element.get_style_element()
-                if style is not None:
-                    style_elements.append(style)
-            elif isinstance(element, SvgGroup):
-                style_elements = self.gather_styles(element, style_elements)
+
+        style_elements = self._gather_all_styles()
+        seen_styles = set()
         for style in style_elements:
-            if style is not None:
-                svg.append(style)
+            if style.text not in seen_styles:
+                xml_svg.append(style)
+                seen_styles.add(style.text)
+
         for element in self.elements:
-            svg.append(element.get_xml_element())
-        svg_string = tostring(svg, encoding="unicode", method="xml")
-        svg_string = svg_string.replace("&lt;![CDATA[", "<![CDATA[").replace(
-            "]]&gt;", "]]>"
-        )
-        with open(filename, "w") as file:
-            file.write(svg_string)
+            xml_svg.append(element.xml_element)
+
+        return xml_svg
+
+    def _yield_styles(self, element: Union[SvgElement, SvgGroup]) -> Iterator[Element]:
+        """
+        Recursively walks through elements and yields their styles.
+        This is a generator function.
+
+        :param element: The root element or group to start from.
+        """
+        if isinstance(element, SvgElement):
+            if element.style_element is not None:
+                yield element.style_element
+        elif isinstance(element, SvgGroup):
+            for child in element.elements:
+                yield from self._yield_styles(child)
+
+    def _gather_all_styles(self) -> List[Element]:
+        """
+        Gathers all unique styles from the canvas elements.
+        Uses the `_yield_styles` generator to walk the element tree.
+
+        :return: A list of unique style elements.
+        """
+        all_styles: List[Element] = []
+        for element in self.elements:
+            all_styles.extend(self._yield_styles(element))
+
+        return all_styles

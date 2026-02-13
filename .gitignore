@@ -16,6 +16,4 @@ __pycache__/
 *.egg-info/
 .eggs/
 /doc/_generated
-
-# Script output
-output.svg
+.svg

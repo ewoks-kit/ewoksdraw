@@ -15,6 +15,11 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.9"
+dependencies = [
+    "reportlab",
+    "faker",
+    "xmltodict"
+]
 
 [project.urls]
 Homepage = "https://github.com/ewoks-kit/ewoksdraw/"
@@ -23,14 +28,17 @@ Repository = "https://github.com/ewoks-kit/ewoksdraw/"
 Issues = "https://github.com/ewoks-kit/ewoksdraw/issues/"
 Changelog = "https://github.com/ewoks-kit/ewoksdraw/-/blob/main/CHANGELOG.md"
 
+[project.scripts]
+ewoksdraw = "ewoksdraw.main:main"
+
 [project.optional-dependencies]
 test = [
     "pytest >=7",
 ]
 dev = [
     "pytest >=7",
-    "black >=25",
-    "flake8 >=4",
+    "ruff", 
+    "mypy",
 ]
 doc = [
     "sphinx >=4.5",
@@ -41,15 +49,34 @@ doc = [
 [tool.setuptools]
 package-dir = {"" = "src"}
 
+[tool.setuptools.package-data]
+ewoksdraw = ["**/*.css", "**/*.json"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.coverage.run]
 omit = ["*/tests/*"]
 
+[tool.ruff]
+
+src = ["."]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.mypy]
+files = "."
+exclude = "build/"
+ignore_missing_imports = true
+
 [[tool.mypy.overrides]]
 module = "setuptools.*"
 ignore_missing_imports = true
 
-[project.scripts]
-ewoksdraw = "ewoksdraw.main:main"
+[tool.pytest.ini_options]
+addopts = "--cov=ewoksdraw --cov-report=term"
