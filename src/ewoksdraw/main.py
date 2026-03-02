@@ -3,9 +3,7 @@ import sys
 
 from faker import Faker
 
-from .svg import SvgBackground
-from .svg import SvgCanvas
-from .svg import SvgTask
+from .svg import SvgBackground, SvgCanvas, SvgTask
 
 
 def generate_random_names() -> list:
