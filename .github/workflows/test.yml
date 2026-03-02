@@ -49,8 +49,3 @@ jobs:
   # Run linter / checks
   checks:
     uses: ewoks-kit/.github/.github/workflows/python-check.yml@main
-
-  # Build documentation
-  docs:
-    needs: build
-    uses: ewoks-kit/.github/.github/workflows/python-docs.yml@main
