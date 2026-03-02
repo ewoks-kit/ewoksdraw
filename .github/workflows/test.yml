@@ -49,3 +49,5 @@ jobs:
   # Run linter / checks
   checks:
     uses: ewoks-kit/.github/.github/workflows/python-check.yml@main
+    with:
+      enable-isort: "false"

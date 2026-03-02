@@ -38,7 +38,7 @@ test = [
 dev = [
     "pytest >=7",
     "ruff",
-    "isort",
+    "black",
     "mypy",
 ]
 doc = [
