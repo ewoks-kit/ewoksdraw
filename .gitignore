@@ -4,6 +4,7 @@
 !.readthedocs.yaml
 !.flake8
 !.flake8_nb
+!.github
 
 # Byte / compiled / optimized
 *.py[cod]

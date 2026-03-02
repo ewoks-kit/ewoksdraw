@@ -1,0 +1,56 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  # Build Python package
+  build:
+    uses: ewoks-kit/.github/.github/workflows/python-build.yml@main
+
+  # Run tests
+  tests:
+    needs: build
+    uses: ewoks-kit/.github/.github/workflows/python-tests.yml@main
+    secrets:
+      codecov_token: ${{ secrets.CODECOV_TOKEN }}
+    with:
+      os: ${{ matrix.os }}
+      python-version: ${{ matrix.python-version }}
+      enable-coverage: ${{ matrix.enable-coverage }}
+      jupyter-platform-dirs: "1"
+      codecov-flags: "unit"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python-version: "3.9"
+            enable-coverage: "false"
+            # https://github.com/networkx/networkx/issues/7372
+            extra-pytest-warnings: "-W ignore::RuntimeWarning:networkx.utils.backends"
+
+          - os: ubuntu-latest
+            python-version: "3.12"
+            enable-coverage: "true"
+            extra-pytest-warnings: ""
+            
+
+          - os: windows-latest
+            python-version: "3.12"
+            enable-coverage: "false"
+            extra-pytest-warnings: ""
+
+  # Run linter / checks
+  checks:
+    uses: ewoks-kit/.github/.github/workflows/python-check.yml@main
+
+  # Build documentation
+  docs:
+    needs: build
+    uses: ewoks-kit/.github/.github/workflows/python-docs.yml@main
