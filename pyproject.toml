@@ -37,7 +37,8 @@ test = [
 ]
 dev = [
     "pytest >=7",
-    "ruff", 
+    "ruff",
+    "black",
     "mypy",
 ]
 doc = [
@@ -77,6 +78,3 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "setuptools.*"
 ignore_missing_imports = true
-
-[tool.pytest.ini_options]
-addopts = "--cov=ewoksdraw --cov-report=term"

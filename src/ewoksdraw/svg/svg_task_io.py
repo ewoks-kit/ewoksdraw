@@ -1,9 +1,11 @@
 from typing import Literal
 
-from ..config.constants import ANCHOR_LINKS_RADIUS
-from ..config.constants import IO_ANCHOR_TEXT_MARGIN
-from ..config.constants import IO_MIN_FONT_SIZE
-from ..config.constants import IO_TARGET_FONT_SIZE
+from ..config.constants import (
+    ANCHOR_LINKS_RADIUS,
+    IO_ANCHOR_TEXT_MARGIN,
+    IO_MIN_FONT_SIZE,
+    IO_TARGET_FONT_SIZE,
+)
 from .svg_group import SvgGroup
 from .svg_task_anchor_link import SvgTaskAnchorLink
 from .svg_text import SvgText

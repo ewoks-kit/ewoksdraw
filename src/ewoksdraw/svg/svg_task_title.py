@@ -1,9 +1,11 @@
 from typing import Optional
 
-from ..config.constants import TITLE_HORIZONTAL_MARGIN
-from ..config.constants import TITLE_MIN_FONT_SIZE
-from ..config.constants import TITLE_TARGET_FONT_SIZE
-from ..config.constants import TITLE_VERTICAL_MARGIN
+from ..config.constants import (
+    TITLE_HORIZONTAL_MARGIN,
+    TITLE_MIN_FONT_SIZE,
+    TITLE_TARGET_FONT_SIZE,
+    TITLE_VERTICAL_MARGIN,
+)
 from .svg_text import SvgText
 
 
