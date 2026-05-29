@@ -5,11 +5,21 @@
 [![License](https://img.shields.io/github/license/ewoks-kit/ewoksdraw)](https://github.com/ewoks-kit/ewoksdraw/blob/main/LICENSE.md)
 [![Coverage](https://codecov.io/gh/ewoks-kit/ewoksdraw/branch/main/graph/badge.svg)](https://codecov.io/gh/ewoks-kit/ewoksdraw)
 
-A project to generate SVG mock-ups out of Ewoks workflows.
+A library to generate SVG mock-ups out of Ewoks workflows.
 
 ## Quick start
 
 ```bash
 pip install "git+https://github.com/ewoks-kit/ewoksdraw.git"
-ewoksdraw <name_of_output_file>
+```
+
+```python
+from ewoks import load_graph
+from ewoksdraw import graph_to_svg
+
+# Load a graph with `ewoks.load_graph`
+graph = load_graph(...)
+
+# Generate the SVG 
+graph_to_svg(graph, output='my_workflow.svg')
 ```
