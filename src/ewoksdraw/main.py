@@ -1,33 +1,29 @@
+import argparse
 import random
-import sys
 
-from faker import Faker
+from ewokscore import load_graph
+from ewokscore.graph.inputs import _get_all_node_inputs
+from ewokscore.graph.inputs import _get_all_task_output_names
 
-from .svg import SvgBackground, SvgCanvas, SvgTask
-
-
-def generate_random_names() -> list:
-    nb_names = abs(int(random.gauss(mu=4, sigma=3)))
-    fake = Faker()
-    return [
-        f"{'_'.join(fake.word() for _ in range(abs(int(random.gauss(mu=3, sigma=1)))))}"
-        for _ in range(nb_names)
-    ]
-
-
-def generate_random_name() -> str:
-    nb_words = abs(int(random.gauss(mu=4, sigma=3)))
-    if nb_words < 1:
-        nb_words = 1
-    fake = Faker()
-    name = ""
-    for _ in range(nb_words):
-        name += fake.word() + "_"
-    return f"{'_'.join(fake.word() for _ in range(nb_words))}"
+from .svg import SvgBackground
+from .svg import SvgCanvas
+from .svg import SvgTask
 
 
 def main():
-    filename = sys.argv[1]
+    parser = argparse.ArgumentParser(description="Saves a worfklow as SVG")
+
+    parser.add_argument("workflow", type=str, help="Workflow to save to SVG")
+    parser.add_argument(
+        "--test",
+        help="The 'workflow' argument refers to the name of a test graph.",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--output_svg", type=str, required=True, help="Output SVG file path"
+    )
+
+    args = parser.parse_args()
 
     canvas_width = 500
     canvas_height = 500
@@ -36,24 +32,28 @@ def main():
     svg_background = SvgBackground(canvas_width, canvas_height)
     canvas.add_element(svg_background)
 
-    nb_tasks = random.randint(1, 5)
-    for i in range(nb_tasks):
-        task_name = generate_random_name()
-        task_inputs = generate_random_names()
-        task_outputs = generate_random_names()
+    if args.test:
+        representation = "test_core"
+    else:
+        representation = None
+    graph = load_graph(args.workflow, representation=representation).graph
+
+    for node_id, node_attrs in graph.nodes.items():
+        node_inputs = _get_all_node_inputs(node_id, node_attrs)
+        node_outputs = _get_all_task_output_names(
+            node_attrs["task_type"], node_attrs["task_identifier"]
+        )
         svg_task = SvgTask(
-            task_name=task_name,
-            input_names=task_inputs,
-            output_names=task_outputs,
+            task_name=node_id,
+            input_names=[n.name for n in node_inputs],
+            output_names=node_outputs,
         )
 
         svg_task.translate(x=random.randint(5, 400), y=random.randint(5, 400))
 
         canvas.add_element(svg_task)
 
-    canvas.draw(filename)
-    print(canvas.dict)
-    print(canvas.xml)
+    canvas.draw(args.output_svg)
 
 
 if __name__ == "__main__":

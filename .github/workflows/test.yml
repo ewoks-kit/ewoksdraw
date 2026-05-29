@@ -30,16 +30,14 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            python-version: "3.9"
+            python-version: "3.10"
             enable-coverage: "false"
-            # https://github.com/networkx/networkx/issues/7372
-            extra-pytest-warnings: "-W ignore::RuntimeWarning:networkx.utils.backends"
+            extra-pytest-warnings: ""
 
           - os: ubuntu-latest
             python-version: "3.12"
             enable-coverage: "true"
             extra-pytest-warnings: ""
-            
 
           - os: windows-latest
             python-version: "3.12"

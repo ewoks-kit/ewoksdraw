@@ -5,20 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ewoksdraw"
 version = "0.0.1"
-authors = [{name = "ESRF", email = "dau-pydev@esrf.fr"}]
-description = "Ewoks workflow drawing"
-readme = {file = "README.md", content-type = "text/markdown"}
-license = {file = "LICENSE.md"}
+authors = [{ name = "ESRF", email = "dau-pydev@esrf.fr" }]
+description = "Render Ewoks workflows as SVG"
+readme = { file = "README.md", content-type = "text/markdown" }
+license = { file = "LICENSE.md" }
 classifiers = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
+    "ewokscore<5",
     "reportlab",
-    "faker",
-    "xmltodict"
+    "xmltodict",
 ]
 
 [project.urls]
@@ -48,7 +48,7 @@ doc = [
 ]
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = { "" = "src" }
 
 [tool.setuptools.package-data]
 ewoksdraw = ["**/*.css", "**/*.json"]
@@ -71,8 +71,6 @@ select = ["E", "F", "I"]
 force-single-line = true
 
 [tool.mypy]
-files = "."
-exclude = "build/"
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
