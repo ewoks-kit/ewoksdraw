@@ -17,7 +17,7 @@ def _get_svg_groups(output_path: Path):
 
 @pytest.mark.parametrize("graph_name", graph_names())
 def test_groups_are_matching_nodes(graph_name, tmp_path: Path):
-    output_path = tmp_path / "test.svg"
+    output_path = tmp_path / f"{graph_name}.svg"
 
     graph, _ = get_graph(graph_name)
     ewoksgraph = load_graph(graph)
