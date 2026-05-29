@@ -1,7 +1,10 @@
 from pathlib import Path
-from typing import Iterator, List, Union
+from typing import Iterator
+from typing import List
+from typing import Union
 from xml.dom import minidom
-from xml.etree.ElementTree import Element, tostring
+from xml.etree.ElementTree import Element
+from xml.etree.ElementTree import tostring
 
 import xmltodict
 

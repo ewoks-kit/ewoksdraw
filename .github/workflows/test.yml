@@ -35,12 +35,12 @@ jobs:
             extra-pytest-warnings: ""
 
           - os: ubuntu-latest
-            python-version: "3.12"
+            python-version: "3.14"
             enable-coverage: "true"
             extra-pytest-warnings: ""
 
           - os: windows-latest
-            python-version: "3.12"
+            python-version: "3.14"
             enable-coverage: "false"
             extra-pytest-warnings: ""
 
@@ -48,4 +48,7 @@ jobs:
   checks:
     uses: ewoks-kit/.github/.github/workflows/python-check.yml@main
     with:
+      enable-black: "false"
+      enable-flake8: "false"
       enable-isort: "false"
+      enable-ruff: "true"
