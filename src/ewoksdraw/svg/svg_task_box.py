@@ -1,4 +1,5 @@
-from ..config.constants import BOX_MAX_WIDTH, BOX_MIN_WIDTH
+from ..config.constants import BOX_MAX_WIDTH
+from ..config.constants import BOX_MIN_WIDTH
 from .svg_element import SvgElement
 
 

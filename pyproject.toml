@@ -38,7 +38,6 @@ test = [
 dev = [
     "pytest >=7",
     "ruff",
-    "black",
     "mypy",
 ]
 doc = [
@@ -60,7 +59,6 @@ where = ["src"]
 omit = ["*/tests/*"]
 
 [tool.ruff]
-
 src = ["."]
 line-length = 88
 

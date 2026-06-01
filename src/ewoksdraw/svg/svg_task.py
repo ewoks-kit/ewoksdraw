@@ -1,4 +1,5 @@
-from ..config.constants import IO_INTER_IO_MARGIN, IO_TOP_MARGIN
+from ..config.constants import IO_INTER_IO_MARGIN
+from ..config.constants import IO_TOP_MARGIN
 from .svg_group import SvgGroup
 from .svg_task_box import SvgTaskBox
 from .svg_task_io import SvgTaskIOGroup

@@ -1,5 +1,6 @@
 import re
-from typing import Iterable, Union
+from typing import Iterable
+from typing import Union
 from xml.etree.ElementTree import Element
 
 from .svg_element import SvgElement
