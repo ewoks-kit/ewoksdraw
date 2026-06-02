@@ -95,14 +95,7 @@ class SvgTask(SvgGroup):
         Adjusts the vertical layout and sizes of elements within the task group.
         """
 
-        total_height = (
-            self._title.height
-            + self._inputs.height
-            + self._outputs.height
-            + self._interspace_input_output
-            + self._interspace_title_input
-        )
-        self._box.set_height(total_height)
+        self._box.set_height(self.height)
 
         self._title.set_position(y=self._title.vertical_margin // 2)
 
@@ -116,4 +109,18 @@ class SvgTask(SvgGroup):
             y1=self._title.height - self._title.vertical_margin // 2,
             x2=self._box.width,
             y2=self._title.height - self._title.vertical_margin // 2,
+        )
+
+    @property
+    def width(self) -> float:
+        return self._box.width
+
+    @property
+    def height(self) -> float:
+        return (
+            self._title.height
+            + self._inputs.height
+            + self._outputs.height
+            + self._interspace_input_output
+            + self._interspace_title_input
         )

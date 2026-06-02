@@ -8,6 +8,7 @@ from xml.etree.ElementTree import tostring
 
 import xmltodict
 
+from .svg_background import SvgBackground
 from .svg_element import SvgElement
 from .svg_group import SvgGroup
 
@@ -42,6 +43,9 @@ class SvgCanvas:
         self.width = width
         self.height = height
         self.elements: List[Union[SvgElement, SvgGroup]] = []
+
+    def add_background(self):
+        self.add_element(SvgBackground(self.width, self.height))
 
     def add_element(self, element: Union[SvgElement, SvgGroup]) -> None:
         """
