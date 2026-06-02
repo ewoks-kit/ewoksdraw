@@ -1,9 +1,9 @@
 from ..config.constants import IO_INTER_IO_MARGIN
 from ..config.constants import IO_TOP_MARGIN
 from .svg_group import SvgGroup
+from .svg_line import SvgLine
 from .svg_task_box import SvgTaskBox
 from .svg_task_io import SvgTaskIOGroup
-from .svg_task_line import SvgTaskLine
 from .svg_task_title import SvgTaskTitle
 
 
@@ -38,7 +38,7 @@ class SvgTask(SvgGroup):
         self._outputs = SvgTaskIOGroup(
             list_io=output_names, io_type="output", vertical_spacing=8
         )
-        self._line_title = SvgTaskLine(x1=0, y1=0, x2=0, y2=0)
+        self._line_title = SvgLine(x1=0, y1=0, x2=0, y2=0)
 
         self._init_elements()
 
@@ -124,3 +124,21 @@ class SvgTask(SvgGroup):
             + self._interspace_input_output
             + self._interspace_title_input
         )
+
+    def get_input_pos(self, input_name: str):
+        x, y = self.get_translation()
+        xig, yig = self._inputs.get_translation()
+        input = self._inputs._list_svg_io[input_name]
+        xi, yi = input.get_translation()
+        xt, yt = input.txt.get_position()
+
+        return x + xig + xi + xt, y + yig + yi + yt
+
+    def get_output_pos(self, output_name: str):
+        x, y = self.get_translation()
+        xog, yog = self._outputs.get_translation()
+        output = self._outputs._list_svg_io[output_name]
+        xo, yo = output.get_translation()
+        xt, yt = output.txt.get_position()
+
+        return x + xog + xo + xt, y + yog + yo + yt

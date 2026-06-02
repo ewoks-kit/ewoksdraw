@@ -11,12 +11,10 @@ class SvgGroup:
     Represents a group of SVG elements.
     """
 
-    _TRANSLATE_PATTERN = re.compile(
-        r"translate\(\s*[-+]?\d*\.?\d+(?:[,\s]+[-+]?\d*\.?\d+)?\s*\)"
-    )
+    _TRANSLATE_PATTERN = re.compile(r"translate\((\d+(?:.\d+)?),(\d+(?:.\d+)?)\)")
 
     def __init__(self):
-        self.elements = []
+        self.elements: list[Union[SvgElement, "SvgGroup"]] = []
         self._transform = ""
 
     def add_elements(self, elements: Iterable[Union[SvgElement, "SvgGroup"]]) -> None:
@@ -36,27 +34,23 @@ class SvgGroup:
         """
         new_transform = f"translate({x},{y})"
         if self._transform:
-            self._transform += f" {new_transform}"
+            match = self._TRANSLATE_PATTERN.match(self._transform)
+            if match:
+                self._transform = self._transform.replace(
+                    match[0], f"translate({x + float(match[1])},{y + float(match[2])})"
+                )
+            else:
+                self._transform += f" {new_transform}"
         else:
             self._transform = new_transform
         self._transform = self._transform.strip()
 
-    def set_translation(self, x: float = 0, y: float = 0) -> None:
-        """
-        Sets the translation transform
+    def get_translation(self) -> tuple[float, float]:
+        match = self._TRANSLATE_PATTERN.match(self._transform)
+        if match is None:
+            return 0, 0
 
-        :param x: The translation distance along the x-axis (default is 0).
-        :param y: The translation distance along the y-axis (default is 0).
-        """
-        new_translate = f"translate({x},{y})"
-        current_transform = self._transform or ""
-
-        cleaned_transform = self._TRANSLATE_PATTERN.sub("", current_transform).strip()
-
-        if cleaned_transform:
-            self._transform = f"{cleaned_transform} {new_translate}".strip()
-        else:
-            self._transform = new_translate
+        return float(match.group(1)), float(match.group(2))
 
     @property
     def xml_element(self) -> Element:

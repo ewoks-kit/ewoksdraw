@@ -33,6 +33,11 @@ class SvgElement:
         self._text = text
         self._style_element = self._load_css_style()
 
+    def _get_pos_names(self) -> tuple[str, str]:
+        if self._tag == "circle":
+            return "cx", "cy"
+        return "x", "y"
+
     def set_position(
         self, x: Optional[float] = None, y: Optional[float] = None
     ) -> None:
@@ -41,17 +46,17 @@ class SvgElement:
         :param x: The x-coordinate to set. If None, the x attribute is not changed.
         :param y: The y-coordinate to set. If None, the y attribute is not changed.
         """
-        if self._tag == "circle":
-            attr_x = "cx"
-            attr_y = "cy"
-        else:
-            attr_x = "x"
-            attr_y = "y"
+        attr_x, attr_y = self._get_pos_names()
 
         if x is not None:
             self.set_attr(attr_x, str(x))
         if y is not None:
             self.set_attr(attr_y, str(y))
+
+    def get_position(self) -> tuple[float, float]:
+        attr_x, attr_y = self._get_pos_names()
+
+        return float(self._attr.get(attr_x, 0)), float(self._attr.get(attr_y, 0))
 
     def set_attr(self, key: str, value: str) -> None:
         """
@@ -70,7 +75,6 @@ class SvgElement:
         """
         if key not in self._attr:
             return None
-
         return self._attr.get(key)
 
     @property

@@ -110,9 +110,13 @@ class SvgTaskIOGroup(SvgGroup):
         if io_type not in ("input", "output"):
             raise ValueError(f"io_type must be 'input' or 'output', got '{io_type}'")
         self._io_type = io_type
-        self._list_io = list_io
         self._vertical_spacing = vertical_spacing
-        self._init_elements()
+        self._list_svg_io = {
+            io: SvgTaskIO(io_txt=io, io_type=self._io_type) for io in list_io
+        }
+
+        self.add_elements(self._list_svg_io.values())
+        self.set_vertical_spacing(self._vertical_spacing)
 
     def set_font_size(self, font_size: float) -> None:
         """
@@ -132,7 +136,7 @@ class SvgTaskIOGroup(SvgGroup):
         self._vertical_spacing = vertical_spacing
         for i, element in enumerate(self.elements):
             pos = i * vertical_spacing
-            element.set_translation(y=pos)
+            element.translate(y=pos)
 
     def decrease_size_to_fit_width(self, target_width) -> None:
         """
@@ -188,19 +192,6 @@ class SvgTaskIOGroup(SvgGroup):
             return self.elements[0].font_size
         else:
             return 0.0
-
-    def _init_elements(self) -> None:
-        """
-        Creates SvgTaskIO elements from the list of IO labels and adds them
-        to the group. Sets vertical spacing between elements.
-        """
-
-        list_svg_io = [
-            SvgTaskIO(io_txt=io, io_type=self._io_type) for io in self._list_io
-        ]
-
-        self.add_elements(list_svg_io)
-        self.set_vertical_spacing(self._vertical_spacing)
 
     def truncate_text_by_one(self) -> None:
         """
