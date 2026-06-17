@@ -1,0 +1,445 @@
+{
+  "graph": {
+    "id": "workflow_optimize_geometry_loop",
+    "schema_version": "1.1",
+    "requirements": [
+      "amqp==5.3.1",
+      "annotated-doc==0.0.4",
+      "annotated-types==0.7.0",
+      "anyio==4.12.1",
+      "beartype==0.21.0",
+      "bidict==0.23.1",
+      "billiard==4.2.1",
+      "black==26.1.0",
+      "blissdata==2.0.1",
+      "celery==5.5.3",
+      "certifi==2025.4.26",
+      "cffi==1.17.1",
+      "charset-normalizer==3.4.2",
+      "click==8.2.0",
+      "click-didyoumean==0.3.1",
+      "click-plugins==1.1.1",
+      "click-repl==0.3.0",
+      "contourpy @ file:///home/conda/feedstock_root/build_artifacts/contourpy_1744743065687/work",
+      "coverage==7.13.4",
+      "cryptography==45.0.3",
+      "cycler @ file:///home/conda/feedstock_root/build_artifacts/cycler_1733332471406/work",
+      "ewoks==4.0.0",
+      "ewokscore==4.0.1",
+      "-e git+https://gitlab.esrf.fr/workflow/ewoksapps/ewoksid29.git@d31c7026d38d4c71499a225536efe594e8f79da4#egg=ewoksid29",
+      "ewoksjob==1.4.1",
+      "ewoksppf==2.0.2",
+      "ewoksserver==2.1.2",
+      "ewoksutils==1.9.1",
+      "ewoksweb==4.0.1",
+      "fabio==2024.9.0",
+      "fastapi==0.135.1",
+      "fonttools @ file:///home/conda/feedstock_root/build_artifacts/fonttools_1746913583525/work",
+      "gevent==25.5.1",
+      "greenlet==3.2.2",
+      "h11==0.16.0",
+      "h5py==3.13.0",
+      "hdf5plugin==5.1.0",
+      "hiredis==3.2.1",
+      "httptools==0.7.1",
+      "idna==3.10",
+      "imageio==2.37.0",
+      "importlib==1.0.4",
+      "iniconfig==2.1.0",
+      "isort==7.0.0",
+      "kiwisolver @ file:///home/conda/feedstock_root/build_artifacts/kiwisolver_1725459255340/work",
+      "kombu==5.5.4",
+      "lazy_loader==0.4",
+      "lxml==5.4.0",
+      "markdown-it-py==4.0.0",
+      "matplotlib==3.10.3",
+      "mdurl==0.1.2",
+      "more-itertools==10.7.0",
+      "msgpack==1.1.0",
+      "munkres==1.1.4",
+      "mypy_extensions==1.1.0",
+      "networkx==3.4.2",
+      "numpy==2.2.6",
+      "packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1745345660/work",
+      "pathspec==1.0.4",
+      "pillow @ file:///home/conda/feedstock_root/build_artifacts/pillow_1746646213722/work",
+      "platformdirs==4.3.8",
+      "pluggy==1.6.0",
+      "prompt_toolkit==3.0.51",
+      "pycparser==2.22",
+      "pydantic==2.11.4",
+      "pydantic-settings==2.13.1",
+      "pydantic_core==2.33.2",
+      "Pygments==2.19.2",
+      "PyJWT==2.9.0",
+      "pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1743089729650/work",
+      "pypushflow==1.3.0",
+      "PySide6==6.9.0",
+      "pyslurmutils==1.0.0",
+      "pytest==8.3.5",
+      "pytest-cov==7.0.0",
+      "python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1733215673016/work",
+      "python-dotenv==1.2.2",
+      "python-engineio==4.13.1",
+      "python-socketio==5.16.1",
+      "python-ulid==1.1.0",
+      "pytokens==0.4.1",
+      "PyYAML==6.0.2",
+      "redis==5.3.0",
+      "redis-om==0.3.5",
+      "requests==2.32.3",
+      "rich==14.3.3",
+      "ruff==0.15.0",
+      "scikit-image==0.25.2",
+      "scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy-split_1739790645292/work/dist/scipy-1.15.2-cp313-cp313-linux_x86_64.whl#sha256=9233a1b3513262c15ef8696233b9abd49f691223e9dcc32da39377a3a0d4e7fe",
+      "setuptools==80.9.0",
+      "shiboken6==6.9.0",
+      "silx==2.2.2",
+      "simple-websocket==1.1.0",
+      "six @ file:///home/conda/feedstock_root/build_artifacts/six_1733380938961/work",
+      "SQLAlchemy==2.0.48",
+      "starlette==0.52.1",
+      "tabulate==0.9.0",
+      "tblib==3.1.0",
+      "tifffile==2025.5.10",
+      "tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1747384461250/work",
+      "types-cffi==1.17.0.20250523",
+      "types-pyOpenSSL==24.1.0.20240722",
+      "types-redis==4.6.0.20241004",
+      "types-setuptools==80.9.0.20250529",
+      "typing-inspection==0.4.2",
+      "typing_extensions==4.13.2",
+      "tzdata==2025.2",
+      "urllib3==2.4.0",
+      "uvicorn==0.41.0",
+      "uvloop==0.22.1",
+      "vine==5.1.0",
+      "watchfiles==1.1.1",
+      "wcwidth==0.2.13",
+      "websockets==16.0",
+      "wsproto==1.3.2",
+      "zope.event==5.0",
+      "zope.interface==7.2"
+    ]
+  },
+  "nodes": [
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.shared.setup_workdir_task.SetupWorkdirID29Task",
+      "default_inputs": [
+        {
+          "name": "work_dir_prefix",
+          "value": "geom_opt_fast"
+        },
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        }
+      ],
+      "id": "setup_workdir"
+    },
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.shared.find_sample_data_task.FindH5DataID29Task",
+      "default_inputs": [
+        {
+          "name": "only_hits",
+          "value": true
+        },
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        },
+        {
+          "name": "h5_list_file_name",
+          "value": "selected_events.lst"
+        },
+        {
+          "name": "N_sample",
+          "value": 10000
+        },
+        {
+          "name": "h5_name_pattern",
+          "value": ".*_[0-3]_\\d{5}\\.h5$",
+          "id": "sample_h5_data"
+        }
+      ],
+      "id": "sample_h5_data"
+    },
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.geometry_optimization_tasks.read_metadata_task.ReadMetadataID29Task",
+      "default_inputs": [
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        }
+      ],
+      "id": "read_metadata"
+    },
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.geometry_optimization_tasks.prepare_start_geom_task.PrepareStartGeomID29Task",
+      "default_inputs": [
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        }
+      ],
+      "id": "prepare_start_geom"
+    },
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.geometry_optimization_tasks.setup_subdir_task.SetupSubdirID9Task",
+      "default_inputs": [
+        {
+          "name": "start_index",
+          "value": 0
+        },
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        }
+      ],
+      "id": "setup_subdir"
+    },
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.geometry_optimization_tasks.run_indexamajig_loop_task.RunIndexamajigLoopID29Task",
+      "default_inputs": [
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        },
+        {
+          "name": "Nframes_per_thread",
+          "value": 100
+        }
+      ],
+      "id": "run_indexamajig"
+    },
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.geometry_optimization_tasks.run_align_detector_loop_task.RunAlignDetectorLoopID29Task",
+      "default_inputs": [
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        }
+      ],
+      "id": "run_align_detector"
+    },
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.geometry_optimization_tasks.interation_control_task.GeometryIterationControllerID29Task",
+      "default_inputs": [
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        }
+      ],
+      "id": "iteration_controller"
+    },
+    {
+      "task_type": "class",
+      "task_identifier": "ewoksid29.tasks.geometry_optimization_tasks.plot_statistics_loop_task.PlotGeomOptimizationStatsID29Task",
+      "default_inputs": [
+        {
+          "name": "log_filename",
+          "value": "ewoks_geom_opt.log"
+        }
+      ],
+      "id": "plot_stats"
+    }
+  ],
+  "links": [
+    {
+      "data_mapping": [
+        {
+          "source_output": "work_dir_path",
+          "target_input": "work_dir_path"
+        }
+      ],
+      "source": "setup_workdir",
+      "target": "sample_h5_data"
+    },
+    {
+      "data_mapping": [
+        {
+          "source_output": "work_dir_path",
+          "target_input": "work_dir_path"
+        }
+      ],
+      "source": "setup_workdir",
+      "target": "read_metadata"
+    },
+    {
+      "data_mapping": [
+        {
+          "source_output": "work_dir_path",
+          "target_input": "work_dir_path"
+        },
+        {
+          "source_output": "h5_list_file_path",
+          "target_input": "h5_list_file_path"
+        }
+      ],
+      "required": true,
+      "source": "sample_h5_data",
+      "target": "setup_subdir"
+    },
+    {
+      "data_mapping": [
+        {
+          "source_output": "work_dir_path",
+          "target_input": "work_dir_path"
+        },
+        {
+          "source_output": "geometry_params",
+          "target_input": "geometry_params"
+        }
+      ],
+      "source": "read_metadata",
+      "target": "prepare_start_geom"
+    },
+    {
+      "data_mapping": [
+        {
+          "source_output": "geometry_file",
+          "target_input": "geometry_file"
+        }
+      ],
+      "required": true,
+      "source": "prepare_start_geom",
+      "target": "setup_subdir"
+    },
+    {
+      "data_mapping": [
+        {
+          "source_output": "current_index",
+          "target_input": "current_index"
+        },
+        {
+          "source_output": "end_index",
+          "target_input": "end_index"
+        },
+        {
+          "source_output": "work_dir_path",
+          "target_input": "work_dir_path"
+        },
+        {
+          "source_output": "indexamajig",
+          "target_input": "indexamajig"
+        },
+        {
+          "source_output": "h5_list_file_path",
+          "target_input": "h5_list_file_path"
+        },
+        {
+          "source_output": "subdir",
+          "target_input": "subdir"
+        },
+        {
+          "source_output": "input_geom_file",
+          "target_input": "input_geom_file"
+        },
+        {
+          "source_output": "output_geom_file",
+          "target_input": "output_geom_file"
+        }
+      ],
+      "source": "setup_subdir",
+      "target": "run_indexamajig"
+    },
+    {
+      "data_mapping": [
+        {
+          "source_output": "current_index",
+          "target_input": "current_index"
+        },
+        {
+          "source_output": "end_index",
+          "target_input": "end_index"
+        },
+        {
+          "source_output": "subdir",
+          "target_input": "subdir"
+        },
+        {
+          "source_output": "work_dir_path",
+          "target_input": "work_dir_path"
+        },
+        {
+          "source_output": "input_geom_file",
+          "target_input": "input_geom_file"
+        },
+        {
+          "source_output": "output_geom_file",
+          "target_input": "output_geom_file"
+        }
+      ],
+      "source": "run_indexamajig",
+      "target": "run_align_detector"
+    },
+    {
+      "data_mapping": [
+        {
+          "source_output": "work_dir_path",
+          "target_input": "work_dir_path"
+        },
+        {
+          "source_output": "current_index",
+          "target_input": "current_index"
+        },
+        {
+          "source_output": "end_index",
+          "target_input": "end_index"
+        },
+        {
+          "source_output": "input_geom_file",
+          "target_input": "input_geom_file"
+        },
+        {
+          "source_output": "output_geom_file",
+          "target_input": "output_geom_file"
+        }
+      ],
+      "required": true,
+      "source": "run_align_detector",
+      "target": "iteration_controller"
+    },
+    {
+      "conditions": [
+        {
+          "source_output": "finish_loop",
+          "value": true
+        }
+      ],
+      "required": true,
+      "data_mapping": [
+        {
+          "source_output": "work_dir_path",
+          "target_input": "work_dir_path"
+        }
+      ],
+      "source": "iteration_controller",
+      "target": "plot_stats"
+    },
+    {
+      "conditions": [
+        {
+          "source_output": "finish_loop",
+          "value": false
+        }
+      ],
+      "data_mapping": [
+        {
+          "source_output": "current_index",
+          "target_input": "current_index"
+        }
+      ],
+      "source": "iteration_controller",
+      "target": "setup_subdir"
+    }
+  ]
+}

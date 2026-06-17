@@ -18,3 +18,7 @@ __pycache__/
 .eggs/
 /doc/_generated
 .svg
+/external/pyelk/
+# pixi environments
+.pixi/*
+!.pixi/config.toml

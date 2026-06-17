@@ -1,0 +1,568 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="491.664" height="670.0">
+  <style><![CDATA[
+.background {
+    fill: #000000;
+}
+]]></style>
+  <style><![CDATA[
+.task_title {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_box {
+    fill: #00000000;
+    stroke: rgb(255, 255, 255);
+    stroke-width: 0.2%;
+    rx: 0.5%;
+    ry: 0.5%;
+}
+
+
+]]></style>
+  <style><![CDATA[
+.task_text_io {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_anchor_link {
+    fill: rgb(176, 147, 255);
+}
+
+]]></style>
+  <style><![CDATA[
+.task_line {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 1;
+}
+]]></style>
+  <style><![CDATA[
+.link {
+    fill: none;
+    stroke: #4a5568;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+]]></style>
+  <rect width="491.664" height="670.0" class="background"/>
+  <g transform="translate(12.0,507.0)">
+    <text x="57.132" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">corr_data</text>
+    <rect x="0" y="0" width="114.264" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">frame_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_scan</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">accumulated_folder_name</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(114.264,0) translate(0,47.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">dict_input_paths</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">gif_gallery_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_output_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">static_image_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="114.264" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(206.264,413.0)">
+    <text x="43.348" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">corr_acc_sum</text>
+    <rect x="0" y="0" width="86.696" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">accumulation_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">dict_input_paths</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">frame_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_output_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">input_h5_url</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">output_h5_url</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(86.696,0) translate(0,71.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">url_output_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="86.696" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(12.0,98.0)">
+    <text x="57.132" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">ishit_data</text>
+    <rect x="0" y="0" width="114.264" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">frame_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_scan</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">accumulated_folder_name</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(114.264,0) translate(0,47.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">dict_input_paths</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">gif_gallery_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_output_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">static_image_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="114.264" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(206.264,12.0)">
+    <text x="43.348" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">ishit_acc_max</text>
+    <rect x="0" y="0" width="86.696" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">accumulation_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">dict_input_paths</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">frame_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_output_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">input_h5_url</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">output_h5_url</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(86.696,0) translate(0,71.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">url_output_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="86.696" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(12.0,368.0)">
+    <text x="57.132" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">nohit_data</text>
+    <rect x="0" y="0" width="114.264" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">frame_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_scan</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">accumulated_folder_name</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(114.264,0) translate(0,47.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">dict_input_paths</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">gif_gallery_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_output_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">static_image_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="114.264" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(206.264,274.0)">
+    <text x="43.348" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">nohit_acc_max</text>
+    <rect x="0" y="0" width="86.696" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">accumulation_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">dict_input_paths</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">frame_type</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_output_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">input_h5_url</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">output_h5_url</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(86.696,0) translate(0,71.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">url_output_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="86.696" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(379.192,34.0)">
+    <text x="46.236000000000004" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">gif_ishit</text>
+    <rect x="0" y="0" width="92.47200000000001" height="103.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_gif</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">url_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">colormap</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">gif_duration</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">histogram_cut_off</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">par_resolution_rings</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">par_spots_enhance</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,64)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">target_frames_num</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,72)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">zoom_factor</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(92.47200000000001,0) translate(0,103.0)"/>
+    <line x1="0" y1="12.0" x2="92.47200000000001" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(379.192,197.0)">
+    <text x="46.236000000000004" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">static_ishit</text>
+    <rect x="0" y="0" width="92.47200000000001" height="111.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_image</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">url_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">colormap</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">histogram_cut_off</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">par_resolution_rings</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">par_spots_enhance</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,64)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">zoom_factor</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(92.47200000000001,0) translate(0,95.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">drac_dataset_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">list_file_patterns</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="92.47200000000001" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(379.192,368.0)">
+    <text x="46.236000000000004" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">static_nohit</text>
+    <rect x="0" y="0" width="92.47200000000001" height="111.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_image</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">url_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">colormap</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">histogram_cut_off</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">par_resolution_rings</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">par_spots_enhance</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,64)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">zoom_factor</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(92.47200000000001,0) translate(0,95.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">drac_dataset_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">list_file_patterns</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="92.47200000000001" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(12.0,237.0)">
+    <text x="54.016" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">max_peak_master</text>
+    <rect x="0" y="0" width="108.032" height="71.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_scan</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">master_file_folder_name</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">url_npeaks_master_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(108.032,0) translate(0,47.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_master_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">static_image_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="108.032" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(379.192,539.0)">
+    <text x="46.236000000000004" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">static_max_peak</text>
+    <rect x="0" y="0" width="92.47200000000001" height="111.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">path_image</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">url_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">colormap</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">histogram_cut_off</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">par_resolution_rings</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">par_spots_enhance</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,64)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">zoom_factor</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(92.47200000000001,0) translate(0,95.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">drac_dataset_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">list_file_patterns</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="92.47200000000001" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(206.264,151.0)">
+    <text x="46.464" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">retrieve_setup_par</text>
+    <rect x="0" y="0" width="92.928" height="63.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_master_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">dict_par_names</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">url_beam_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">url_detector_info_h5</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(92.928,0) translate(0,55.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">setup_par</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="92.928" y2="12.0" class="task_line"/>
+  </g>
+  <path d="M 126.264 554.0 L 131.264 554.0 C 134.59733333333335 554.0 142.93066666666667 554.0 156.264 554.0 L 172.264 554.0 C 185.59733333333335 554.0 192.264 547.3333333333334 192.264 534.0 L 192.264 461.0 C 192.264 447.6666666666667 192.93066666666667 441.0 194.264 441.0 L 194.264 441.0 C 195.59733333333335 441.0 197.93066666666667 441.0 201.264 441.0 L 206.264 441.0" style="stroke: hsl(66, 75%, 65%);" class="link"/>
+  <path d="M 126.264 570.0 L 131.264 570.0 C 134.59733333333335 570.0 142.93066666666667 570.0 156.264 570.0 L 176.264 570.0 C 189.59733333333335 570.0 196.264 563.3333333333334 196.264 550.0 L 196.264 477.0 C 196.264 463.6666666666667 197.93066666666667 457.0 201.264 457.0 L 206.264 457.0" style="stroke: hsl(60, 75%, 65%);" class="link"/>
+  <path d="M 126.264 145.0 L 131.264 145.0 C 134.59733333333335 145.0 136.264 138.33333333333334 136.264 125.0 L 136.264 60.0 C 136.264 46.666666666666664 142.93066666666667 40.0 156.264 40.0 L 176.264 40.0 C 189.59733333333335 40.0 197.93066666666667 40.0 201.264 40.0 L 206.264 40.0" style="stroke: hsl(185, 75%, 65%);" class="link"/>
+  <path d="M 126.264 161.0 L 131.264 161.0 C 134.59733333333335 161.0 137.59733333333335 161.0 140.264 161.0 L 140.264 161.0 C 142.93066666666667 161.0 144.264 154.33333333333334 144.264 141.0 L 144.264 76.0 C 144.264 62.666666666666664 150.93066666666667 56.0 164.264 56.0 L 176.264 56.0 C 189.59733333333335 56.0 197.93066666666667 56.0 201.264 56.0 L 206.264 56.0" style="stroke: hsl(1, 75%, 65%);" class="link"/>
+  <path d="M 126.264 161.0 L 131.264 161.0 C 134.59733333333335 161.0 138.264 161.0 142.264 161.0 L 142.264 161.0 C 146.264 161.0 148.264 154.33333333333334 148.264 141.0 L 148.264 131.5 C 148.264 118.16666666666667 154.93066666666667 111.5 168.264 111.5 L 297.192 111.5 C 310.5253333333333 111.5 317.192 104.83333333333333 317.192 91.5 L 317.192 82.0 C 317.192 68.66666666666667 323.8586666666667 62.0 337.192 62.0 L 349.192 62.0 C 362.5253333333333 62.0 370.8586666666667 62.0 374.192 62.0 L 379.192 62.0" style="stroke: hsl(277, 75%, 65%);" class="link"/>
+  <path d="M 126.264 153.0 L 131.264 153.0 C 134.59733333333335 153.0 136.93066666666667 153.0 138.264 153.0 L 138.264 153.0 C 139.59733333333335 153.0 140.264 146.33333333333334 140.264 133.0 L 140.264 123.5 C 140.264 110.16666666666667 146.93066666666667 103.5 160.264 103.5 L 293.192 103.5 C 306.5253333333333 103.5 313.192 96.83333333333333 313.192 83.5 L 313.192 74.0 C 313.192 60.666666666666664 319.8586666666667 54.0 333.192 54.0 L 349.192 54.0 C 362.5253333333333 54.0 370.8586666666667 54.0 374.192 54.0 L 379.192 54.0" style="stroke: hsl(155, 75%, 65%);" class="link"/>
+  <path d="M 126.264 161.0 L 131.264 161.0 C 134.59733333333335 161.0 138.93066666666667 161.0 144.264 161.0 L 144.264 161.0 C 149.59733333333335 161.0 152.264 167.66666666666666 152.264 181.0 L 152.264 197.0 C 152.264 210.33333333333334 158.93066666666667 217.0 172.264 217.0 L 309.192 217.0 C 322.5253333333333 217.0 335.8586666666667 217.0 349.192 217.0 L 349.192 217.0 C 362.5253333333333 217.0 370.8586666666667 217.0 374.192 217.0 L 379.192 217.0" style="stroke: hsl(0, 75%, 65%);" class="link"/>
+  <path d="M 126.264 169.0 L 131.264 169.0 C 134.59733333333335 169.0 139.59733333333335 169.0 146.264 169.0 L 146.264 169.0 C 152.93066666666667 169.0 156.264 175.66666666666666 156.264 189.0 L 156.264 205.0 C 156.264 218.33333333333334 162.93066666666667 225.0 176.264 225.0 L 313.192 225.0 C 326.5253333333333 225.0 339.192 225.0 351.192 225.0 L 351.192 225.0 C 363.192 225.0 370.8586666666667 225.0 374.192 225.0 L 379.192 225.0" style="stroke: hsl(291, 75%, 65%);" class="link"/>
+  <path d="M 292.96000000000004 83.0 L 297.96000000000004 83.0 C 301.29333333333335 83.0 303.9986666666667 83.0 306.076 83.0 L 306.076 83.0 C 308.15333333333336 83.0 309.192 80.83333333333333 309.192 76.5 L 309.192 76.5 C 309.192 72.16666666666667 315.8586666666667 70.0 329.192 70.0 L 349.192 70.0 C 362.5253333333333 70.0 370.8586666666667 70.0 374.192 70.0 L 379.192 70.0" style="stroke: hsl(311, 75%, 65%);" class="link"/>
+  <path d="M 292.96000000000004 83.0 L 297.96000000000004 83.0 C 301.29333333333335 83.0 306.66533333333336 83.0 314.076 83.0 L 314.076 83.0 C 321.4866666666667 83.0 325.192 89.66666666666667 325.192 103.0 L 325.192 213.0 C 325.192 226.33333333333334 331.8586666666667 233.0 345.192 233.0 L 349.192 233.0 C 362.5253333333333 233.0 370.8586666666667 233.0 374.192 233.0 L 379.192 233.0" style="stroke: hsl(67, 75%, 65%);" class="link"/>
+  <path d="M 126.264 415.0 L 131.264 415.0 C 134.59733333333335 415.0 140.93066666666667 415.0 150.264 415.0 L 150.264 415.0 C 159.59733333333335 415.0 164.264 408.3333333333333 164.264 395.0 L 164.264 322.0 C 164.264 308.6666666666667 169.59733333333335 302.0 180.264 302.0 L 180.264 302.0 C 190.93066666666667 302.0 197.93066666666667 302.0 201.264 302.0 L 206.264 302.0" style="stroke: hsl(9, 75%, 65%);" class="link"/>
+  <path d="M 126.264 431.0 L 131.264 431.0 C 134.59733333333335 431.0 141.59733333333335 431.0 152.264 431.0 L 152.264 431.0 C 162.93066666666667 431.0 168.264 424.3333333333333 168.264 411.0 L 168.264 338.0 C 168.264 324.6666666666667 172.93066666666667 318.0 182.264 318.0 L 182.264 318.0 C 191.59733333333335 318.0 197.93066666666667 318.0 201.264 318.0 L 206.264 318.0" style="stroke: hsl(111, 75%, 65%);" class="link"/>
+  <path d="M 126.264 431.0 L 131.264 431.0 C 134.59733333333335 431.0 142.264 431.0 154.264 431.0 L 154.264 431.0 C 166.264 431.0 172.264 424.3333333333333 172.264 411.0 L 172.264 408.0 C 172.264 394.6666666666667 178.93066666666667 388.0 192.264 388.0 L 333.192 388.0 C 346.5253333333333 388.0 355.8586666666667 388.0 361.192 388.0 L 361.192 388.0 C 366.5253333333333 388.0 370.8586666666667 388.0 374.192 388.0 L 379.192 388.0" style="stroke: hsl(95, 75%, 65%);" class="link"/>
+  <path d="M 126.264 439.0 L 131.264 439.0 C 134.59733333333335 439.0 142.93066666666667 439.0 156.264 439.0 L 156.264 439.0 C 169.59733333333335 439.0 176.264 432.3333333333333 176.264 419.0 L 176.264 416.0 C 176.264 402.6666666666667 182.93066666666667 396.0 196.264 396.0 L 337.192 396.0 C 350.5253333333333 396.0 359.192 396.0 363.192 396.0 L 363.192 396.0 C 367.192 396.0 370.8586666666667 396.0 374.192 396.0 L 379.192 396.0" style="stroke: hsl(286, 75%, 65%);" class="link"/>
+  <path d="M 292.96000000000004 345.0 L 297.96000000000004 345.0 C 301.29333333333335 345.0 309.6266666666667 345.0 322.96000000000004 345.0 L 325.192 345.0 C 338.5253333333333 345.0 345.192 351.6666666666667 345.192 365.0 L 345.192 384.0 C 345.192 397.3333333333333 349.192 404.0 357.192 404.0 L 357.192 404.0 C 365.192 404.0 370.8586666666667 404.0 374.192 404.0 L 379.192 404.0" style="stroke: hsl(243, 75%, 65%);" class="link"/>
+  <path d="M 120.032 284.0 L 125.03199999999998 284.0 C 128.36533333333333 284.0 136.69866666666664 284.0 150.03199999999998 284.0 L 160.264 284.0 C 173.59733333333335 284.0 180.264 290.6666666666667 180.264 304.0 L 180.264 539.0 C 180.264 552.3333333333334 186.93066666666667 559.0 200.264 559.0 L 341.192 559.0 C 354.5253333333333 559.0 362.5253333333333 559.0 365.192 559.0 L 365.192 559.0 C 367.8586666666667 559.0 370.8586666666667 559.0 374.192 559.0 L 379.192 559.0" style="stroke: hsl(191, 75%, 65%);" class="link"/>
+  <path d="M 120.032 300.0 L 125.03199999999998 300.0 C 128.36533333333333 300.0 136.69866666666664 300.0 150.03199999999998 300.0 L 164.264 300.0 C 177.59733333333335 300.0 184.264 306.6666666666667 184.264 320.0 L 184.264 547.0 C 184.264 560.3333333333334 190.93066666666667 567.0 204.264 567.0 L 345.192 567.0 C 358.5253333333333 567.0 365.8586666666667 567.0 367.192 567.0 L 367.192 567.0 C 368.5253333333333 567.0 370.8586666666667 567.0 374.192 567.0 L 379.192 567.0" style="stroke: hsl(323, 75%, 65%);" class="link"/>
+  <path d="M 120.032 292.0 L 125.03199999999998 292.0 C 128.36533333333333 292.0 136.69866666666664 292.0 150.03199999999998 292.0 L 168.264 292.0 C 181.59733333333335 292.0 188.264 298.6666666666667 188.264 312.0 L 188.264 579.0 C 188.264 592.3333333333334 194.93066666666667 599.0 208.264 599.0 L 349.192 599.0 C 362.5253333333333 599.0 370.8586666666667 599.0 374.192 599.0 L 379.192 599.0" style="stroke: hsl(60, 75%, 65%);" class="link"/>
+  <path d="M 120.032 284.0 L 125.03199999999998 284.0 C 128.36533333333333 284.0 135.07066666666665 284.0 145.148 284.0 L 145.148 284.0 C 155.22533333333334 284.0 160.264 277.3333333333333 160.264 264.0 L 160.264 191.0 C 160.264 177.66666666666666 166.264 171.0 178.264 171.0 L 178.264 171.0 C 190.264 171.0 197.93066666666667 171.0 201.264 171.0 L 206.264 171.0" style="stroke: hsl(359, 75%, 65%);" class="link"/>
+  <path d="M 299.192 206.0 L 304.192 206.0 C 307.5253333333333 206.0 313.8586666666667 206.0 323.192 206.0 L 323.192 206.0 C 332.5253333333333 206.0 337.192 212.66666666666666 337.192 226.0 L 337.192 245.0 C 337.192 258.3333333333333 342.5253333333333 265.0 353.192 265.0 L 353.192 265.0 C 363.8586666666667 265.0 370.8586666666667 265.0 374.192 265.0 L 379.192 265.0" style="stroke: hsl(274, 75%, 65%);" class="link"/>
+  <path d="M 299.192 206.0 L 304.192 206.0 C 307.5253333333333 206.0 314.5253333333333 206.0 325.192 206.0 L 325.192 206.0 C 335.8586666666667 206.0 341.192 212.66666666666666 341.192 226.0 L 341.192 416.0 C 341.192 429.3333333333333 345.8586666666667 436.0 355.192 436.0 L 355.192 436.0 C 364.5253333333333 436.0 370.8586666666667 436.0 374.192 436.0 L 379.192 436.0" style="stroke: hsl(0, 75%, 65%);" class="link"/>
+  <path d="M 299.192 206.0 L 304.192 206.0 C 307.5253333333333 206.0 315.8586666666667 206.0 329.192 206.0 L 329.192 206.0 C 342.5253333333333 206.0 349.192 212.66666666666666 349.192 226.0 L 349.192 587.0 C 349.192 600.3333333333334 352.5253333333333 607.0 359.192 607.0 L 359.192 607.0 C 365.8586666666667 607.0 370.8586666666667 607.0 374.192 607.0 L 379.192 607.0" style="stroke: hsl(40, 75%, 65%);" class="link"/>
+  <path d="M 299.192 206.0 L 304.192 206.0 C 307.5253333333333 206.0 311.192 206.0 315.192 206.0 L 315.192 206.0 C 319.192 206.0 321.192 199.33333333333334 321.192 186.0 L 321.192 122.0 C 321.192 108.66666666666667 327.8586666666667 102.0 341.192 102.0 L 349.192 102.0 C 362.5253333333333 102.0 370.8586666666667 102.0 374.192 102.0 L 379.192 102.0" style="stroke: hsl(160, 75%, 65%);" class="link"/>
+</svg>

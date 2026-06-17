@@ -1,4 +1,5 @@
 from ..config.constants import BOX_MAX_WIDTH
+from ..config.constants import BOX_MIN_HEIGHT
 from ..config.constants import BOX_MIN_WIDTH
 from .svg_element import SvgElement
 
@@ -12,12 +13,14 @@ class SvgTaskBox(SvgElement):
 
     def __init__(self, x: float, y: float):
         self._min_width = BOX_MIN_WIDTH
+        self._min_height = BOX_MIN_HEIGHT
         self._max_width = BOX_MAX_WIDTH
 
         attr = {
             "x": str(x),
             "y": str(y),
             "width": str(self._min_width),
+            "height": str(self._min_height),
         }
         super().__init__(tag="rect", css_class="task_box", attr=attr)
 
@@ -31,3 +34,8 @@ class SvgTaskBox(SvgElement):
     def width(self) -> float:
         width = self.get_attr("width") or "0"
         return float(width)
+
+    @property
+    def height(self) -> float:
+        height = self.get_attr("height") or "0"
+        return float(height)

@@ -16,15 +16,15 @@ class SvgElement:
 
     def __init__(
         self,
-        tag: Literal["rect", "circle", "text", "line"],
+        tag: Literal["rect", "circle", "text", "line", "path"],
         css_class: Optional[str] = None,
         attr: Optional[dict] = None,
         text: Optional[str] = None,
     ):
-        if tag not in ("rect", "circle", "text", "line"):
+        if tag not in ("rect", "circle", "text", "line", "path"):
             raise ValueError(
                 f"Invalid SVG tag: {tag}. Supported tags are 'rect', 'circle', 'text',"
-                " 'line'."
+                " 'line', 'path'."
             )
         self._tag = tag
 

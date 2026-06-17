@@ -1,0 +1,803 @@
+{
+  "graph": {
+    "id": "MXDataReductionPipelines_ID30A-1",
+    "label": "Reprocess",
+    "keywords": {
+      "cardinality": "1",
+      "definition": "*",
+      "instrumentName": "ID30A-1",
+      "scanType": [
+        "datacollection",
+        "integration",
+        "Helical"
+      ]
+    },
+    "input_schema": {
+      "description": "Automatic processing of X-Ray diffraction images.",
+      "properties": {
+        "anomalous": {
+          "description": "",
+          "title": "Anomalous",
+          "type": "boolean",
+          "default": false,
+          "populate": [
+            {
+              "type": "parameter",
+              "value": "MXAutoprocIntegration_anomalous"
+            }
+          ]
+        },
+        "exclude_range": {
+          "title": "Exclude data range",
+          "description": "Excluded images will not be processed by XDS.",
+          "type": "string"
+        },
+        "forced_spacegroup": {
+          "title": "Forced spacegroup",
+          "type": "string",
+          "enum": [
+            "P1",
+            "P121",
+            "P1211",
+            "C121",
+            "P222",
+            "P2221",
+            "P21212",
+            "P212121",
+            "C2221",
+            "C222",
+            "F222",
+            "I222",
+            "I212121",
+            "P4",
+            "P41",
+            "P42",
+            "P43",
+            "I4",
+            "I41",
+            "P422",
+            "P4212",
+            "P4122",
+            "P41212",
+            "P4222",
+            "P42212",
+            "P4322",
+            "P43212",
+            "I422",
+            "I4122",
+            "P3",
+            "P31",
+            "P32",
+            "H3",
+            "R3",
+            "P312",
+            "P321",
+            "P3112",
+            "P3121",
+            "P3212",
+            "P3221",
+            "H32",
+            "R32",
+            "P6",
+            "P61",
+            "P65",
+            "P62",
+            "P64",
+            "P63",
+            "P622",
+            "P6122",
+            "P6522",
+            "P6222",
+            "P6422",
+            "P6322",
+            "P23",
+            "F23",
+            "I23",
+            "P213",
+            "I213",
+            "P432",
+            "P4232",
+            "F432",
+            "F4132",
+            "I432",
+            "P4332",
+            "P4132",
+            "I4132"
+          ],
+          "populate": [
+            {
+              "type": "parameter",
+              "value": "MXAutoprocIntegration_space_group"
+            }
+          ]
+        },
+        "high_res_limit": {
+          "title": "High resolution limit",
+          "type": "string",
+          "populate": [
+            {
+              "type": "parameter",
+              "value": "MXAutoprocIntegrationScaling_overall_resolution_limit_high"
+            }
+          ]
+        },
+        "low_res_limit": {
+          "title": "Low resolution limit",
+          "type": "string",
+          "populate": [
+            {
+              "type": "parameter",
+              "value": "MXAutoprocIntegrationScaling_overall_resolution_limit_low"
+            }
+          ]
+        },
+        "mx_pipeline_name": {
+          "default": [
+            "grenades_fastproc"
+          ],
+          "items": {
+            "enum": [
+              "EDNA_proc",
+              "autoPROC",
+              "XIA2_DIALS",
+              "grenades_fastproc"
+            ],
+            "type": "string"
+          },
+          "title": "Pipeline",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "title": "Reprocessing",
+      "type": "object"
+    },
+    "ui_schema": {
+      "mx_pipeline_name": {
+        "ui:widget": "checkboxes"
+      },
+      "exclude_range": {
+        "ui:widget": "dozorExcludeRange"
+      },
+      "forced_spacegroup": {
+        "ui:widget": "select"
+      },
+      "ui:order": [
+        "mx_pipeline_name",
+        "exclude_range",
+        "low_res_limit",
+        "high_res_limit",
+        "forced_spacegroup",
+        "anomalous",
+        "*"
+      ]
+    },
+    "execute_arguments": {
+      "slurm_arguments": {
+        "parameters": {
+          "current_working_directory": "/tmp_14_days/opid30",
+          "environment": {
+            "EDNA_SITE": "ESRF_ID30A1",
+            "USER": "opid30"
+          },
+          "partition": "nice",
+          "time_limit": 360
+        },
+        "pre_script": "ORG_PATH=$PATH;module load mxworkflows;PATH=$PATH"
+      },
+      "engine": "ppf"
+    },
+    "worker_options": {
+      "queue": "id30a1"
+    },
+    "submit_arguments": {
+      "queue": "id30a1"
+    },
+    "category": "MX"
+  },
+  "nodes": [
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished3",
+      "label": "grenades_fastproc Wait For Finished",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 1065,
+          "y": 45
+        },
+        "nodeWidth": 249
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted3",
+      "label": "grenades_fastproc Wait For Started",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 780,
+          "y": 45
+        },
+        "nodeWidth": 233
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit3",
+      "label": "grenades_fastproc Slurm Submit",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 510,
+          "y": 45
+        },
+        "nodeWidth": 218
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.mx_pipeline_synchronize.MXPipelineSynchronize0",
+      "label": "MXPipelineSynchronize",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.mx_pipeline_synchronize.MXPipelineSynchronize",
+      "uiProps": {
+        "icon": "graphOutput.svg",
+        "position": {
+          "x": 1725,
+          "y": -120
+        },
+        "nodeWidth": 191
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted2",
+      "label": "XIA2_DIALS Wait For Started",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 780,
+          "y": -90
+        },
+        "nodeWidth": 209
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished2",
+      "label": "XIA2_DIALS Wait For Finished",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 1065,
+          "y": -90
+        },
+        "nodeWidth": 199
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished1",
+      "label": "autoPROC Wait For Finished",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 1065,
+          "y": -210
+        },
+        "nodeWidth": 204
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted1",
+      "label": "autoPROC Wait For Started",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 780,
+          "y": -210
+        },
+        "nodeWidth": 203
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit2",
+      "label": "XIA2_DIALS Slurm Submit",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 510,
+          "y": -90
+        },
+        "nodeWidth": 202
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit1",
+      "label": "autoPROC Slurm Submit",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 510,
+          "y": -210
+        },
+        "nodeWidth": 200
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished0",
+      "label": "EDNA_proc Wait For Finished",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 1065,
+          "y": -405
+        },
+        "nodeWidth": 222
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted0",
+      "label": "EDNA_proc Wait For Started\n",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 780,
+          "y": -405
+        },
+        "nodeWidth": 194
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit0",
+      "label": "EDNA_proc Slurm Submit",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 465,
+          "y": -405
+        },
+        "nodeWidth": 210
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.grenades_fastproc_pipeline.Grenades_fastproc_pipeline0",
+      "label": "Grenades_fastproc_pipeline",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.grenades_fastproc_pipeline.Grenades_fastproc_pipeline",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 195,
+          "y": 45
+        },
+        "nodeWidth": 198
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.xia2_dials_pipeline.XIA2_DIALS_pipeline0",
+      "label": "XIA2_DIALS_pipeline",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.xia2_dials_pipeline.XIA2_DIALS_pipeline",
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 210,
+          "y": -90
+        },
+        "nodeWidth": 176
+      }
+    },
+    {
+      "id": "ewoksmx.tasks.mx_pipelines.autoproc_pipeline.AutoPROC_pipeline0",
+      "label": "AutoPROC_pipeline",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.autoproc_pipeline.AutoPROC_pipeline",
+      "inputs_complete": false,
+      "default_error_node": false,
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 210,
+          "y": -210
+        },
+        "moreHandles": false,
+        "withImage": true,
+        "withLabel": true,
+        "nodeWidth": 165
+      }
+    },
+    {
+      "id": "EDNA_proc_pipeline0",
+      "label": "EDNA_proc_pipeline",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.edna_proc_pipeline.EDNA_proc_pipeline",
+      "inputs_complete": false,
+      "default_error_node": false,
+      "uiProps": {
+        "icon": "default.png",
+        "position": {
+          "x": 210,
+          "y": -405
+        },
+        "moreHandles": false,
+        "withImage": true,
+        "withLabel": true,
+        "nodeWidth": 142
+      }
+    },
+    {
+      "id": "MXPipelineInput0",
+      "label": "MXPipelineInput",
+      "task_type": "class",
+      "task_identifier": "ewoksmx.tasks.mx_pipelines.mx_pipeline_input.MXPipelineInput",
+      "inputs_complete": false,
+      "default_error_node": false,
+      "uiProps": {
+        "icon": "graphInput.svg",
+        "position": {
+          "x": -540,
+          "y": -75
+        },
+        "moreHandles": false,
+        "withImage": true,
+        "withLabel": true,
+        "nodeWidth": 138
+      }
+    }
+  ],
+  "links": [
+    {
+      "source": "MXPipelineInput0",
+      "target": "EDNA_proc_pipeline0",
+      "data_mapping": [
+        {
+          "source_output": "metadata",
+          "target_input": "metadata"
+        },
+        {
+          "source_output": "EDNA_proc",
+          "target_input": "EDNA_proc"
+        },
+        {
+          "source_output": "autoPROC",
+          "target_input": "autoPROC"
+        },
+        {
+          "source_output": "XIA2_DIALS",
+          "target_input": "XIA2_DIALS"
+        }
+      ],
+      "conditions": [
+        {
+          "source_output": "EDNA_proc",
+          "value": true
+        }
+      ],
+      "on_error": false,
+      "required": false,
+      "map_all_data": false,
+      "uiProps": {
+        "label": "EDNA_proc: \"true\"",
+        "type": "default",
+        "animated": false
+      }
+    },
+    {
+      "source": "MXPipelineInput0",
+      "target": "ewoksmx.tasks.mx_pipelines.autoproc_pipeline.AutoPROC_pipeline0",
+      "data_mapping": [
+        {
+          "source_output": "metadata",
+          "target_input": "metadata"
+        },
+        {
+          "source_output": "EDNA_proc",
+          "target_input": "EDNA_proc"
+        },
+        {
+          "source_output": "autoPROC",
+          "target_input": "autoPROC"
+        },
+        {
+          "source_output": "XIA2_DIALS",
+          "target_input": "XIA2_DIALS"
+        }
+      ],
+      "conditions": [
+        {
+          "source_output": "autoPROC",
+          "value": true
+        }
+      ],
+      "on_error": false,
+      "required": false,
+      "map_all_data": false,
+      "uiProps": {
+        "label": "autoPROC: \"true\"",
+        "type": "default",
+        "animated": false
+      }
+    },
+    {
+      "source": "MXPipelineInput0",
+      "target": "ewoksmx.tasks.mx_pipelines.xia2_dials_pipeline.XIA2_DIALS_pipeline0",
+      "data_mapping": [
+        {
+          "source_output": "metadata",
+          "target_input": "metadata"
+        },
+        {
+          "source_output": "EDNA_proc",
+          "target_input": "EDNA_proc"
+        },
+        {
+          "source_output": "autoPROC",
+          "target_input": "autoPROC"
+        },
+        {
+          "source_output": "XIA2_DIALS",
+          "target_input": "XIA2_DIALS"
+        }
+      ],
+      "conditions": [
+        {
+          "source_output": "XIA2_DIALS",
+          "value": true
+        }
+      ],
+      "on_error": false,
+      "map_all_data": false,
+      "uiProps": {
+        "label": "XIA2_DIALS: \"true\""
+      }
+    },
+    {
+      "source": "EDNA_proc_pipeline0",
+      "target": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit0",
+      "data_mapping": [
+        {
+          "source_output": "pipeline_name",
+          "target_input": "pipeline_name"
+        },
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit0",
+      "target": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted0",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted0",
+      "target": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished0",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.autoproc_pipeline.AutoPROC_pipeline0",
+      "target": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit1",
+      "data_mapping": [
+        {
+          "source_output": "pipeline_name",
+          "target_input": "pipeline_name"
+        },
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.xia2_dials_pipeline.XIA2_DIALS_pipeline0",
+      "target": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit2",
+      "data_mapping": [
+        {
+          "source_output": "pipeline_name",
+          "target_input": "pipeline_name"
+        },
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit1",
+      "target": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted1",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted1",
+      "target": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished1",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit2",
+      "target": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted2",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted2",
+      "target": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished2",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished0",
+      "target": "ewoksmx.tasks.mx_pipelines.mx_pipeline_synchronize.MXPipelineSynchronize0",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished1",
+      "target": "ewoksmx.tasks.mx_pipelines.mx_pipeline_synchronize.MXPipelineSynchronize0",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished2",
+      "target": "ewoksmx.tasks.mx_pipelines.mx_pipeline_synchronize.MXPipelineSynchronize0",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "MXPipelineInput0",
+      "target": "ewoksmx.tasks.mx_pipelines.grenades_fastproc_pipeline.Grenades_fastproc_pipeline0",
+      "data_mapping": [
+        {
+          "source_output": "metadata",
+          "target_input": "metadata"
+        },
+        {
+          "source_output": "grenades_fastproc",
+          "target_input": "grenades_fastproc"
+        },
+        {
+          "source_output": "EDNA_proc",
+          "target_input": "EDNA_proc"
+        },
+        {
+          "source_output": "autoPROC",
+          "target_input": "autoPROC"
+        },
+        {
+          "source_output": "XIA2_DIALS",
+          "target_input": "XIA2_DIALS"
+        }
+      ],
+      "conditions": [
+        {
+          "source_output": "grenades_fastproc",
+          "value": true
+        }
+      ],
+      "on_error": false,
+      "map_all_data": false,
+      "uiProps": {
+        "label": "grenades_fastproc: \"true\""
+      }
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit3",
+      "target": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted3",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.wait_for_started.WaitForStarted3",
+      "target": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished3",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.grenades_fastproc_pipeline.Grenades_fastproc_pipeline0",
+      "target": "ewoksmx.tasks.mx_pipelines.slurm_submit.SlurmSubmit3",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        },
+        {
+          "source_output": "pipeline_name",
+          "target_input": "pipeline_name"
+        }
+      ],
+      "map_all_data": false
+    },
+    {
+      "source": "ewoksmx.tasks.mx_pipelines.wait_for_finished.WaitForFinished3",
+      "target": "ewoksmx.tasks.mx_pipelines.mx_pipeline_synchronize.MXPipelineSynchronize0",
+      "data_mapping": [
+        {
+          "source_output": "slurm_params",
+          "target_input": "slurm_params"
+        }
+      ],
+      "map_all_data": false
+    }
+  ]
+}

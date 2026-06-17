@@ -28,6 +28,9 @@ class SvgTask(SvgGroup):
     ):
         super().__init__()
 
+        self._task_name = task_name
+        self._input_names = input_names
+        self._output_names = output_names
         self._interspace_title_input = IO_TOP_MARGIN
         self._interspace_input_output = IO_INTER_IO_MARGIN
         self._title = SvgTaskTitle(text=task_name, x=0, y=0)
@@ -107,8 +110,10 @@ class SvgTask(SvgGroup):
         self._title.set_position(y=self._title.vertical_margin // 2)
 
         pos = self._title.height + self._interspace_title_input
+        self._inputs_y = pos
         self._inputs.translate(y=pos)
         pos += self._inputs.height + self._interspace_input_output
+        self._outputs_y = pos
         self._outputs.translate(y=pos)
 
         self._line_title.set_coordinates(
@@ -117,3 +122,71 @@ class SvgTask(SvgGroup):
             x2=self._box.width,
             y2=self._title.height - self._title.vertical_margin // 2,
         )
+
+    @property
+    def width(self) -> float:
+        return self._box.width
+
+    @property
+    def height(self) -> float:
+        return self._box.height
+
+    def input_port_id(self, input_name: str) -> str:
+        return f"{self._task_name}.inputs.{input_name}"
+
+    def output_port_id(self, output_name: str) -> str:
+        return f"{self._task_name}.outputs.{output_name}"
+
+    def input_port_position(self, input_name: str) -> dict:
+        index = self._input_names.index(input_name)
+        return {
+            "x": 0,
+            "y": self._inputs_y + index * self._inputs._vertical_spacing,
+        }
+
+    def output_port_position(self, output_name: str) -> dict:
+        index = self._output_names.index(output_name)
+        return {
+            "x": self.width,
+            "y": self._outputs_y + index * self._outputs._vertical_spacing,
+        }
+
+    def elk_ports(self) -> list[dict]:
+        ports = []
+        port_size = 0
+
+        for index, input_name in enumerate(self._input_names):
+            position = self.input_port_position(input_name)
+            ports.append(
+                {
+                    "id": self.input_port_id(input_name),
+                    "x": position["x"],
+                    "y": position["y"],
+                    "width": port_size,
+                    "height": port_size,
+                    "layoutOptions": {
+                        "org.eclipse.elk.port.side": "WEST",
+                        "org.eclipse.elk.port.index": index,
+                        "org.eclipse.elk.port.borderOffset": 0,
+                    },
+                }
+            )
+
+        for index, output_name in enumerate(self._output_names):
+            position = self.output_port_position(output_name)
+            ports.append(
+                {
+                    "id": self.output_port_id(output_name),
+                    "x": position["x"],
+                    "y": position["y"],
+                    "width": port_size,
+                    "height": port_size,
+                    "layoutOptions": {
+                        "org.eclipse.elk.port.side": "EAST",
+                        "org.eclipse.elk.port.index": index,
+                        "org.eclipse.elk.port.borderOffset": 0,
+                    },
+                }
+            )
+
+        return ports

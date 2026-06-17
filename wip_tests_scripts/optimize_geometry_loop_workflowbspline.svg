@@ -1,0 +1,575 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1259.4679999999998" height="290.0">
+  <style><![CDATA[
+.background {
+    fill: #000000;
+}
+]]></style>
+  <style><![CDATA[
+.task_title {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_box {
+    fill: #00000000;
+    stroke: rgb(255, 255, 255);
+    stroke-width: 0.2%;
+    rx: 0.5%;
+    ry: 0.5%;
+}
+
+
+]]></style>
+  <style><![CDATA[
+.task_text_io {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_anchor_link {
+    fill: rgb(176, 147, 255);
+}
+
+]]></style>
+  <style><![CDATA[
+.task_line {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 1;
+}
+]]></style>
+  <style><![CDATA[
+.link {
+    fill: none;
+    stroke: #4a5568;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+]]></style>
+  <rect width="1259.4679999999998" height="290.0" class="background"/>
+  <g transform="translate(12.0,105.5)">
+    <text x="37.34" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">setup_workdir</text>
+    <rect x="0" y="0" width="74.68" height="71.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">data_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_prefix</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_name</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(74.68,0) translate(0,63.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="74.68" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(166.68,151.0)">
+    <text x="41.352000000000004" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">sample_h5_data</text>
+    <rect x="0" y="0" width="82.70400000000001" height="119.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">data_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_list_file_name</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">only_hits</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">N_sample</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">random_seed</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_name_pattern</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(82.70400000000001,0) translate(0,87.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_events_list</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_files_list</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_list_file_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="82.70400000000001" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(166.68,12.0)">
+    <text x="46.244" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">read_metadata</text>
+    <rect x="0" y="0" width="92.488" height="79.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">data_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">geometry_params</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">metadata_json_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(92.488,0) translate(0,63.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">geometry_params</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="92.488" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(339.168,89.5)">
+    <text x="42.518" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">prepare_start_geom</text>
+    <rect x="0" y="0" width="85.036" height="63.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">geometry_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">geometry_params</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(85.036,0) translate(0,55.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">geometry_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="85.036" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(504.204,65.5)">
+    <text x="40.684" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">setup_subdir</text>
+    <rect x="0" y="0" width="81.368" height="151.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">indexamajig</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">start_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">end_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">current_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_list_file_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">geometry_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(81.368,0) translate(0,87.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">current_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">end_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_list_file_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">indexamajig</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">input_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">output_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">subdir</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="81.368" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(665.572,27.5)">
+    <text x="46.68" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">run_indexamajig</text>
+    <rect x="0" y="0" width="93.36" height="207.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">indexamajig</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">partition</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">h5_list_file_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Nthreads</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">Nframes_per_thread</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">dry_run</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,64)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">geometry_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,72)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">write_dir</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,80)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">subdir</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,88)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">current_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,96)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">end_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,104)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">input_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,112)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">output_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(93.36,0) translate(0,143.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">current_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">end_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">input_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">output_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">stderror_log_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">stream_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">subdir</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="93.36" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(838.932,47.5)">
+    <text x="40.684" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">run_align_detector</text>
+    <rect x="0" y="0" width="81.368" height="167.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">align_detector</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">partition</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">input_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">output_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,48)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">mille_files</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,56)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">dry_run</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,64)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">write_dir</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,72)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">subdir</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,80)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">current_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,88)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">end_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(81.368,0) translate(0,119.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">current_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">end_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">input_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">output_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">subdir</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="81.368" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(1000.3,85.5)">
+    <text x="40.684" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">iteration_controller</text>
+    <rect x="0" y="0" width="81.368" height="111.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">end_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">current_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">input_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">output_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(81.368,0) translate(0,71.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">current_index</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">finish_loop</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">input_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,24)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">output_geom_file</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,32)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="81.368" y2="12.0" class="task_line"/>
+  </g>
+  <g transform="translate(1161.668,109.5)">
+    <text x="38.900000000000006" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">plot_stats</text>
+    <rect x="0" y="0" width="77.80000000000001" height="63.0" class="task_box"/>
+    <g transform="translate(0,20.0)">
+      <g transform="translate(0,0)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">log_filename</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,16)">
+        <text x="10" y="0" text-anchor="start" dominant-baseline="middle" font-size="8px" class="task_text_io">dry_run</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <g transform="translate(77.80000000000001,0) translate(0,47.0)">
+      <g transform="translate(0,0)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">list_file_patterns</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+      <g transform="translate(0,8)">
+        <text x="-10" y="0" text-anchor="end" dominant-baseline="middle" font-size="8px" class="task_text_io">work_dir_path</text>
+        <circle cx="0" cy="0" r="2.5" class="task_anchor_link"/>
+      </g>
+    </g>
+    <line x1="0" y1="12.0" x2="77.80000000000001" y2="12.0" class="task_line"/>
+  </g>
+  <path d="M 86.68 168.5 L 91.68 168.5 C 95.01333333333334 168.5 103.34666666666668 168.5 116.68 168.5 L 116.68 168.5 C 130.01333333333335 168.5 136.68 170.25 136.68 173.75 L 136.68 173.75 C 136.68 177.25 140.01333333333335 179.0 146.68 179.0 L 146.68 179.0 C 153.34666666666666 179.0 158.34666666666666 179.0 161.68 179.0 L 166.68 179.0" style="stroke: hsl(303, 75%, 65%);" class="link"/>
+  <path d="M 86.68 168.5 L 91.68 168.5 C 95.01333333333334 168.5 100.01333333333334 168.5 106.68 168.5 L 106.68 168.5 C 113.34666666666668 168.5 116.68 161.83333333333334 116.68 148.5 L 116.68 60.0 C 116.68 46.666666666666664 123.34666666666668 40.0 136.68 40.0 L 136.68 40.0 C 150.01333333333335 40.0 158.34666666666666 40.0 161.68 40.0 L 166.68 40.0" style="stroke: hsl(356, 75%, 65%);" class="link"/>
+  <path d="M 249.38400000000001 262.0 L 254.38400000000001 262.0 C 257.71733333333333 262.0 266.0506666666667 262.0 279.384 262.0 L 289.168 262.0 C 302.5013333333333 262.0 315.8346666666667 262.0 329.168 262.0 L 444.204 262.0 C 457.5373333333333 262.0 464.204 255.33333333333334 464.204 242.0 L 464.204 113.5 C 464.204 100.16666666666667 469.204 93.5 479.204 93.5 L 479.204 93.5 C 489.204 93.5 495.8706666666667 93.5 499.204 93.5 L 504.204 93.5" style="stroke: hsl(120, 75%, 65%);" class="link"/>
+  <path d="M 249.38400000000001 254.0 L 254.38400000000001 254.0 C 257.71733333333333 254.0 266.0506666666667 254.0 279.384 254.0 L 309.168 254.0 C 322.5013333333333 254.0 335.8346666666667 254.0 349.168 254.0 L 464.204 254.0 C 477.5373333333333 254.0 484.204 247.33333333333334 484.204 234.0 L 484.204 153.5 C 484.204 140.16666666666666 485.8706666666667 133.5 489.204 133.5 L 489.204 133.5 C 492.5373333333333 133.5 495.8706666666667 133.5 499.204 133.5 L 504.204 133.5" style="stroke: hsl(120, 75%, 65%);" class="link"/>
+  <path d="M 259.168 83.0 L 264.168 83.0 C 267.5013333333333 83.0 269.168 87.41666666666667 269.168 96.25 L 269.168 96.25 C 269.168 105.08333333333333 275.8346666666667 109.5 289.168 109.5 L 309.168 109.5 C 322.5013333333333 109.5 330.8346666666667 109.5 334.168 109.5 L 339.168 109.5" style="stroke: hsl(57, 75%, 65%);" class="link"/>
+  <path d="M 259.168 75.0 L 264.168 75.0 C 267.5013333333333 75.0 272.5013333333333 75.0 279.168 75.0 L 279.168 75.0 C 285.8346666666667 75.0 289.168 81.66666666666667 289.168 95.0 L 289.168 113.5 C 289.168 126.83333333333333 295.8346666666667 133.5 309.168 133.5 L 309.168 133.5 C 322.5013333333333 133.5 330.8346666666667 133.5 334.168 133.5 L 339.168 133.5" style="stroke: hsl(122, 75%, 65%);" class="link"/>
+  <path d="M 424.204 144.5 L 429.204 144.5 C 432.5373333333333 144.5 435.8706666666667 144.5 439.204 144.5 L 439.204 144.5 C 442.5373333333333 144.5 444.204 144.0 444.204 143.0 L 444.204 143.0 C 444.204 142.0 450.8706666666667 141.5 464.204 141.5 L 474.204 141.5 C 487.5373333333333 141.5 495.8706666666667 141.5 499.204 141.5 L 504.204 141.5" style="stroke: hsl(344, 75%, 65%);" class="link"/>
+  <path d="M 585.572 152.5 L 590.572 152.5 C 593.9053333333334 152.5 600.572 152.5 610.572 152.5 L 610.572 152.5 C 620.572 152.5 625.572 149.66666666666666 625.572 144.0 L 625.572 144.0 C 625.572 138.33333333333334 630.572 135.5 640.572 135.5 L 640.572 135.5 C 650.572 135.5 657.2386666666666 135.5 660.572 135.5 L 665.572 135.5" style="stroke: hsl(115, 75%, 65%);" class="link"/>
+  <path d="M 585.572 160.5 L 590.572 160.5 C 593.9053333333334 160.5 601.822 160.5 614.322 160.5 L 614.322 160.5 C 626.822 160.5 633.072 157.66666666666666 633.072 152.0 L 633.072 152.0 C 633.072 146.33333333333334 636.822 143.5 644.322 143.5 L 644.322 143.5 C 651.822 143.5 657.2386666666666 143.5 660.572 143.5 L 665.572 143.5" style="stroke: hsl(132, 75%, 65%);" class="link"/>
+  <path d="M 585.572 208.5 L 590.572 208.5 C 593.9053333333334 208.5 598.072 208.5 603.072 208.5 L 603.072 208.5 C 608.072 208.5 610.572 201.83333333333334 610.572 188.5 L 610.572 75.5 C 610.572 62.166666666666664 617.2386666666666 55.5 630.572 55.5 L 635.572 55.5 C 648.9053333333334 55.5 657.2386666666666 55.5 660.572 55.5 L 665.572 55.5" style="stroke: hsl(112, 75%, 65%);" class="link"/>
+  <path d="M 585.572 176.5 L 590.572 176.5 C 593.9053333333334 176.5 595.572 169.83333333333334 595.572 156.5 L 595.572 67.5 C 595.572 54.166666666666664 602.2386666666666 47.5 615.572 47.5 L 635.572 47.5 C 648.9053333333334 47.5 657.2386666666666 47.5 660.572 47.5 L 665.572 47.5" style="stroke: hsl(310, 75%, 65%);" class="link"/>
+  <path d="M 585.572 168.5 L 590.572 168.5 C 593.9053333333334 168.5 596.822 168.5 599.322 168.5 L 599.322 168.5 C 601.822 168.5 603.072 161.83333333333334 603.072 148.5 L 603.072 99.5 C 603.072 86.16666666666667 609.7386666666666 79.5 623.072 79.5 L 635.572 79.5 C 648.9053333333334 79.5 657.2386666666666 79.5 660.572 79.5 L 665.572 79.5" style="stroke: hsl(97, 75%, 65%);" class="link"/>
+  <path d="M 585.572 200.5 L 590.572 200.5 C 593.9053333333334 200.5 602.2386666666666 200.5 615.572 200.5 L 620.572 200.5 C 633.9053333333334 200.5 640.572 193.83333333333334 640.572 180.5 L 640.572 147.5 C 640.572 134.16666666666666 643.072 127.5 648.072 127.5 L 648.072 127.5 C 653.072 127.5 657.2386666666666 127.5 660.572 127.5 L 665.572 127.5" style="stroke: hsl(91, 75%, 65%);" class="link"/>
+  <path d="M 585.572 184.5 L 590.572 184.5 C 593.9053333333334 184.5 602.2386666666666 184.5 615.572 184.5 L 628.072 184.5 C 641.4053333333334 184.5 648.072 179.0 648.072 168.0 L 648.072 168.0 C 648.072 157.0 649.322 151.5 651.822 151.5 L 651.822 151.5 C 654.322 151.5 657.2386666666666 151.5 660.572 151.5 L 665.572 151.5" style="stroke: hsl(53, 75%, 65%);" class="link"/>
+  <path d="M 585.572 192.5 L 590.572 192.5 C 593.9053333333334 192.5 602.2386666666666 192.5 615.572 192.5 L 635.572 192.5 C 648.9053333333334 192.5 655.572 187.0 655.572 176.0 L 655.572 176.0 C 655.572 165.0 657.2386666666666 159.5 660.572 159.5 L 665.572 159.5" style="stroke: hsl(209, 75%, 65%);" class="link"/>
+  <path d="M 758.932 170.5 L 763.932 170.5 C 767.2653333333334 170.5 775.5986666666666 170.5 788.932 170.5 L 788.932 170.5 C 802.2653333333334 170.5 808.932 166.66666666666666 808.932 159.0 L 808.932 159.0 C 808.932 151.33333333333334 812.2653333333334 147.5 818.932 147.5 L 818.932 147.5 C 825.5986666666666 147.5 830.5986666666666 147.5 833.932 147.5 L 838.932 147.5" style="stroke: hsl(43, 75%, 65%);" class="link"/>
+  <path d="M 758.932 178.5 L 763.932 178.5 C 767.2653333333334 178.5 775.5986666666666 178.5 788.932 178.5 L 798.932 178.5 C 812.2653333333334 178.5 818.932 174.66666666666666 818.932 167.0 L 818.932 167.0 C 818.932 159.33333333333334 820.5986666666666 155.5 823.932 155.5 L 823.932 155.5 C 827.2653333333334 155.5 830.5986666666666 155.5 833.932 155.5 L 838.932 155.5" style="stroke: hsl(79, 75%, 65%);" class="link"/>
+  <path d="M 758.932 218.5 L 763.932 218.5 C 767.2653333333334 218.5 775.5986666666666 218.5 788.932 218.5 L 808.932 218.5 C 822.2653333333334 218.5 828.932 211.83333333333334 828.932 198.5 L 828.932 159.5 C 828.932 146.16666666666666 830.5986666666666 139.5 833.932 139.5 L 838.932 139.5" style="stroke: hsl(14, 75%, 65%);" class="link"/>
+  <path d="M 758.932 226.5 L 763.932 226.5 C 767.2653333333334 226.5 772.2653333333334 226.5 778.932 226.5 L 778.932 226.5 C 785.5986666666666 226.5 788.932 219.83333333333334 788.932 206.5 L 788.932 95.5 C 788.932 82.16666666666667 795.5986666666666 75.5 808.932 75.5 L 808.932 75.5 C 822.2653333333334 75.5 830.5986666666666 75.5 833.932 75.5 L 838.932 75.5" style="stroke: hsl(299, 75%, 65%);" class="link"/>
+  <path d="M 758.932 186.5 L 763.932 186.5 C 767.2653333333334 186.5 770.5986666666666 186.5 773.932 186.5 L 773.932 186.5 C 777.2653333333334 186.5 778.932 179.83333333333334 778.932 166.5 L 778.932 119.5 C 778.932 106.16666666666667 785.5986666666666 99.5 798.932 99.5 L 808.932 99.5 C 822.2653333333334 99.5 830.5986666666666 99.5 833.932 99.5 L 838.932 99.5" style="stroke: hsl(208, 75%, 65%);" class="link"/>
+  <path d="M 758.932 194.5 L 763.932 194.5 C 767.2653333333334 194.5 773.932 194.5 783.932 194.5 L 783.932 194.5 C 793.932 194.5 798.932 187.83333333333334 798.932 174.5 L 798.932 127.5 C 798.932 114.16666666666667 803.932 107.5 813.932 107.5 L 813.932 107.5 C 823.932 107.5 830.5986666666666 107.5 833.932 107.5 L 838.932 107.5" style="stroke: hsl(31, 75%, 65%);" class="link"/>
+  <path d="M 920.3 206.5 L 925.3 206.5 C 928.6333333333333 206.5 936.3 206.5 948.3 206.5 L 948.3 206.5 C 960.3 206.5 966.3 199.83333333333334 966.3 186.5 L 966.3 125.5 C 966.3 112.16666666666667 970.3 105.5 978.3 105.5 L 978.3 105.5 C 986.3 105.5 991.9666666666666 105.5 995.3 105.5 L 1000.3 105.5" style="stroke: hsl(138, 75%, 65%);" class="link"/>
+  <path d="M 920.3 166.5 L 925.3 166.5 C 928.6333333333333 166.5 932.3 166.5 936.3 166.5 L 936.3 166.5 C 940.3 166.5 942.3 160.33333333333334 942.3 148.0 L 942.3 148.0 C 942.3 135.66666666666666 948.9666666666666 129.5 962.3 129.5 L 970.3 129.5 C 983.6333333333333 129.5 991.9666666666666 129.5 995.3 129.5 L 1000.3 129.5" style="stroke: hsl(19, 75%, 65%);" class="link"/>
+  <path d="M 920.3 174.5 L 925.3 174.5 C 928.6333333333333 174.5 934.3 174.5 942.3 174.5 L 942.3 174.5 C 950.3 174.5 954.3 167.83333333333334 954.3 154.5 L 954.3 141.5 C 954.3 128.16666666666666 960.3 121.5 972.3 121.5 L 972.3 121.5 C 984.3 121.5 991.9666666666666 121.5 995.3 121.5 L 1000.3 121.5" style="stroke: hsl(138, 75%, 65%);" class="link"/>
+  <path d="M 920.3 182.5 L 925.3 182.5 C 928.6333333333333 182.5 936.9666666666666 182.5 950.3 182.5 L 958.3 182.5 C 971.6333333333333 182.5 978.3 175.83333333333334 978.3 162.5 L 978.3 157.5 C 978.3 144.16666666666666 980.3 137.5 984.3 137.5 L 984.3 137.5 C 988.3 137.5 991.9666666666666 137.5 995.3 137.5 L 1000.3 137.5" style="stroke: hsl(77, 75%, 65%);" class="link"/>
+  <path d="M 920.3 190.5 L 925.3 190.5 C 928.6333333333333 190.5 936.9666666666666 190.5 950.3 190.5 L 970.3 190.5 C 983.6333333333333 190.5 990.3 183.83333333333334 990.3 170.5 L 990.3 165.5 C 990.3 152.16666666666666 991.9666666666666 145.5 995.3 145.5 L 1000.3 145.5" style="stroke: hsl(236, 75%, 65%);" class="link"/>
+  <path d="M 1081.668 188.5 L 1086.668 188.5 C 1090.0013333333332 188.5 1096.668 188.5 1106.668 188.5 L 1106.668 188.5 C 1116.668 188.5 1121.668 181.83333333333334 1121.668 168.5 L 1121.668 157.5 C 1121.668 144.16666666666666 1126.668 137.5 1136.668 137.5 L 1136.668 137.5 C 1146.668 137.5 1153.3346666666666 137.5 1156.668 137.5 L 1161.668 137.5" style="stroke: hsl(229, 75%, 65%);" class="link"/>
+  <path d="M 1081.668 156.5 L 1086.668 156.5 C 1090.0013333333332 156.5 1091.668 163.16666666666666 1091.668 176.5 L 1091.668 224.5 C 1091.668 237.83333333333334 1085.0013333333332 244.5 1071.668 244.5 L 514.204 244.5 C 500.87066666666664 244.5 494.204 237.83333333333334 494.204 224.5 L 494.204 145.5 C 494.204 132.16666666666666 495.8706666666667 125.5 499.204 125.5 L 504.204 125.5" style="stroke: hsl(79, 75%, 65%);" class="link"/>
+</svg>

@@ -19,6 +19,8 @@ dependencies = [
     "ewokscore<5",
     "reportlab",
     "xmltodict",
+    "ewoks>=5.0.0,<6",
+    "pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications",
 ]
 
 [project.urls]
@@ -71,3 +73,19 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "setuptools.*"
 ignore_missing_imports = true
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+preview = ["pixi-build"]
+
+[tool.pixi.pypi-dependencies]
+ewoksdraw = { path = ".", editable = true }
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+doc = { features = ["doc"], solve-group = "default" }
+test = { features = ["test"], solve-group = "default" }
+
+[tool.pixi.tasks]
