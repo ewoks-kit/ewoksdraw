@@ -83,6 +83,7 @@ links_group.add_elements(
             stroke_dash="1 5",
         ),
         SvgLinkCubicBezier(letter_k, color="#7c5cff", stroke_width=4),
+        SvgLinkCubicBezier(letter_s, color="#54a068", stroke_width=10),
         SvgLinkCubicBezier(
             underline,
             color="#ff00aa",
