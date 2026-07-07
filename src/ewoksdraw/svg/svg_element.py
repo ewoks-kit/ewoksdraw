@@ -41,6 +41,10 @@ class SvgElement:
         :param x: The x-coordinate to set. If None, the x attribute is not changed.
         :param y: The y-coordinate to set. If None, the y attribute is not changed.
         """
+
+        if self._tag == "path":
+            return
+
         if self._tag == "circle":
             attr_x = "cx"
             attr_y = "cy"
