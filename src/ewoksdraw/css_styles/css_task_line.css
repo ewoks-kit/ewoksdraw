@@ -1,4 +1,5 @@
 .task_line {
-  stroke: rgb(255, 255, 255);
+  stroke: #ffffffff;
   stroke-width: 1;
+  stroke-dasharray: none;
 }
