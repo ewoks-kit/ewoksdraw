@@ -12,7 +12,8 @@ from ewoksdraw import graph_to_svg
 def _get_svg_groups(output_path: Path):
     tree = ElementTree.parse(output_path)
     root = tree.getroot()
-    return [child for child in root if child.tag.endswith("g")]
+    task_group = next(child for child in root if child.tag.endswith("g"))
+    return [child for child in task_group if child.tag.endswith("g")]
 
 
 @pytest.mark.parametrize("graph_name", graph_names())

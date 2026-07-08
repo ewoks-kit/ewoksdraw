@@ -16,7 +16,8 @@ __pycache__/
 .eggs/
 /doc/_generated
 .svg
-
-# Pixi
+# pixi environments
+.pixi/*
+!.pixi/config.toml
 pixi.toml
 pixi.lock
