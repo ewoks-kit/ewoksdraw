@@ -21,6 +21,7 @@ dependencies = [
     "reportlab",
     "typing-extensions; python_version < '3.11'",
     "xmltodict",
+    "pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications",
 ]
 
 [project.urls]

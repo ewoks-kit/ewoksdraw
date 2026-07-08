@@ -2,6 +2,7 @@ import pytest
 from ewokscore import load_graph
 from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
+from pyelk.graph import validate_graph
 
 from ewoksdraw.layout.elk_converter import LAYOUT_OPTIONS
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
@@ -129,3 +130,16 @@ def test_task_sizes_with_extra_task_id_raises():
 
     with pytest.raises(ValueError):
         convert_ewoks_to_elk_graph(graph, task_sizes)
+
+
+@pytest.mark.parametrize("graph_name", graph_names())
+def test_output_is_a_valid_pyelk_graph(graph_name):
+    """Check graph validation from pyelk"""
+
+    graph_description, _ = get_graph(graph_name)
+    graph = load_graph(graph_description)
+    task_sizes = _task_sizes(graph)
+
+    elk_graph = convert_ewoks_to_elk_graph(graph, task_sizes)
+
+    validate_graph(elk_graph)
