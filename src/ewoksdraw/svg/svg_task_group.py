@@ -1,7 +1,15 @@
+from typing import NamedTuple
+
 from .svg_group import SvgGroup
 from .svg_task import SvgTask
 
-TaskSizes = dict[str, tuple[float, float]]
+
+class TaskSize(NamedTuple):
+    width: float
+    height: float
+
+
+TaskSizes = dict[str, TaskSize]
 
 
 class SvgTaskGroup(SvgGroup):
@@ -39,6 +47,6 @@ class SvgTaskGroup(SvgGroup):
 
     def extract_task_sizes(self) -> TaskSizes:
         return {
-            task_id: (svg_task.width, svg_task.height)
+            task_id: TaskSize(width=svg_task.width, height=svg_task.height)
             for task_id, svg_task in self._svg_tasks.items()
         }

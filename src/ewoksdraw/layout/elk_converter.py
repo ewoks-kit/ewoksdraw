@@ -1,26 +1,29 @@
 from typing import Any
+from typing import TypedDict
 
 from ewokscore.graph import TaskGraph
 
-from ..config.constants import ELK_ALGORITHM
-from ..config.constants import ELK_DIRECTION
-from ..config.constants import ELK_ROUTING_MODE
-from ..config.constants import ELK_SPACING_LINK
-from ..config.constants import ELK_SPACING_TASK_LAYERS
-from ..config.constants import ELK_SPACING_TASKS
+from ..config.constants import ELK_LAYOUT_OPTION
 from ..svg import TaskSizes
 
-ElkGraph = dict[str, Any]
 
-LAYOUT_OPTIONS = {
-    "org.eclipse.elk.algorithm": ELK_ALGORITHM,
-    "org.eclipse.elk.direction": ELK_DIRECTION,
-    "org.eclipse.elk.spacing.nodeNode": ELK_SPACING_TASKS,
-    "org.eclipse.elk.layered.spacing.nodeNodeBetweenLayers": ELK_SPACING_TASK_LAYERS,
-    "org.eclipse.elk.spacing.edgeEdge": ELK_SPACING_LINK,
-    "org.eclipse.elk.edgeRouting": "SPLINES",
-    "elk.layered.edgeRouting.splines.mode": ELK_ROUTING_MODE,
-}
+class ElkChild(TypedDict):
+    id: str
+    width: float
+    height: float
+
+
+class ElkEdge(TypedDict):
+    id: str
+    sources: list[str]
+    targets: list[str]
+
+
+class ElkGraph(TypedDict):
+    id: str
+    layoutOptions: dict[str, Any]
+    children: list[ElkChild]
+    edges: list[ElkEdge]
 
 
 def convert_ewoks_to_elk_graph(
@@ -31,10 +34,7 @@ def convert_ewoks_to_elk_graph(
     :param ewoks_graph: the task graph to convert, e.g. from ``ewokscore.load_graph``.
     :param task_sizes: ``(width, height)`` per task in ``ewoks_graph``, and no
         other task id, e.g. ``{"task1": (39.56, 55.0), ...}``.
-    :returns: an ELK graph, i.e.
-        ``{"id": str, "layoutOptions": dict,
-        "children": [{"id", "width", "height"}, ...],
-        "edges": [{"id", "sources": [str], "targets": [str]}, ...]}``.
+    :returns: an ELK graph, see ``ElkGraph``.
     """
     node_ids = set(ewoks_graph.graph.nodes)
     if node_ids != task_sizes.keys():
@@ -43,14 +43,14 @@ def convert_ewoks_to_elk_graph(
             f"{sorted(node_ids)}"
         )
 
-    children = []
+    children: list[ElkChild] = []
     for task_id in ewoks_graph.graph.nodes:
         width, height = task_sizes[task_id]
         children.append({"id": task_id, "width": width, "height": height})
 
-    edges = []
+    edges: list[ElkEdge] = []
     for source, target, link_attrs in ewoks_graph.graph.edges(data=True):
-        n_mappings = len(link_attrs.get("data_mapping") or []) or 1
+        n_mappings = len(link_attrs.get("data_mapping", [])) or 1
         for index in range(n_mappings):
             edges.append(
                 {
@@ -62,7 +62,7 @@ def convert_ewoks_to_elk_graph(
 
     return {
         "id": "root",
-        "layoutOptions": LAYOUT_OPTIONS,
+        "layoutOptions": ELK_LAYOUT_OPTION,
         "children": children,
         "edges": edges,
     }
