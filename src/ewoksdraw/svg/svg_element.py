@@ -1,7 +1,13 @@
+import warnings
 from pathlib import Path
+from typing import Final
 from typing import Literal
 from typing import Optional
+from typing import get_args
 from xml.etree.ElementTree import Element
+
+SvgTag = Literal["rect", "circle", "text", "line", "path"]
+SUPPORTED_TAGS: Final[tuple[SvgTag, ...]] = get_args(SvgTag)
 
 
 class SvgElement:
@@ -16,16 +22,14 @@ class SvgElement:
 
     def __init__(
         self,
-        tag: Literal["rect", "circle", "text", "line", "path"],
+        tag: SvgTag,
         css_class: Optional[str] = None,
         attr: Optional[dict] = None,
         text: Optional[str] = None,
     ):
-        if tag not in ("rect", "circle", "text", "line", "path"):
-            raise ValueError(
-                f"Invalid SVG tag: {tag}. Supported tags are 'rect', 'circle', 'text',"
-                " 'line'."
-            )
+        if tag not in SUPPORTED_TAGS:
+            supported = ", ".join(SUPPORTED_TAGS)
+            raise ValueError(f"Invalid SVG tag: {tag}. Supported tags are {supported}.")
         self._tag = tag
 
         self._css_class = css_class
@@ -43,6 +47,11 @@ class SvgElement:
         """
 
         if self._tag == "path":
+            warnings.warn(
+                "set_position() has no effect on 'path' elements; position is "
+                "defined by the path data instead.",
+                stacklevel=2,
+            )
             return
 
         if self._tag == "circle":

@@ -34,31 +34,33 @@ def test_raises_when_path_has_no_segments():
         SvgLinkCubicBezier(empty_path)
 
 
-@pytest.mark.parametrize(
-    "color, stroke_width, stroke_dash, expected_style",
-    [
-        ("#ff0000", None, None, "stroke:#ff0000"),
-        (None, 4, None, "stroke-width:4"),
-        (None, None, "5 10", "stroke-dasharray:5 10"),
-        (
-            "#ff0000",
-            4,
-            "5 10",
-            "stroke:#ff0000;stroke-width:4;stroke-dasharray:5 10",
-        ),
-        (None, None, None, None),
-    ],
-)
-def test_style_attribute_combinations(color, stroke_width, stroke_dash, expected_style):
-    link = SvgLinkCubicBezier(
-        SIMPLE_PATH, color=color, stroke_width=stroke_width, stroke_dash=stroke_dash
-    )
-    assert link.get_attr("style") == expected_style
+def test_style_attribute_has_only_color():
+    link = SvgLinkCubicBezier(SIMPLE_PATH, color="#ff0000")
+    assert link.get_attr("style") == "stroke:#ff0000"
 
 
-def test_stroke_width_formatted_without_trailing_zero():
+def test_style_attribute_has_only_stroke_width():
     link = SvgLinkCubicBezier(SIMPLE_PATH, stroke_width=4.0)
     assert link.get_attr("style") == "stroke-width:4"
+
+
+def test_style_attribute_has_only_stroke_dash():
+    link = SvgLinkCubicBezier(SIMPLE_PATH, stroke_dash="5 10")
+    assert link.get_attr("style") == "stroke-dasharray:5 10"
+
+
+def test_style_attribute_combines_color_stroke_width_and_stroke_dash():
+    link = SvgLinkCubicBezier(
+        SIMPLE_PATH, color="#ff0000", stroke_width=4, stroke_dash="5 10"
+    )
+    assert (
+        link.get_attr("style") == "stroke:#ff0000;stroke-width:4;stroke-dasharray:5 10"
+    )
+
+
+def test_style_attribute_is_none_without_color_stroke_width_or_stroke_dash():
+    link = SvgLinkCubicBezier(SIMPLE_PATH)
+    assert link.get_attr("style") is None
 
 
 def test_xml_element_is_a_path_with_link_class():

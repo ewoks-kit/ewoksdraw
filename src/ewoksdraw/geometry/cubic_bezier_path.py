@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Self
 from typing import Sequence
 
 Point = tuple[float, float]
@@ -18,7 +19,7 @@ class CubicBezierPath:
     segments: Sequence[CubicBezierSegment]
 
     @classmethod
-    def from_points(cls, points: Sequence[Point], radius: float) -> "CubicBezierPath":
+    def from_points(cls, points: Sequence[Point], radius: float) -> Self:
         """
         Create a rounded cubic Bezier path from horizontal and vertical points.
 

@@ -39,7 +39,7 @@ class SvgCanvas:
     SVG XML file.
     """
 
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int | float, height: int | float):
         self.width = width
         self.height = height
         self.elements: List[Union[SvgElement, SvgGroup]] = []

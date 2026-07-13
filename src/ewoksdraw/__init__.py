@@ -4,10 +4,10 @@ from ewokscore.graph import TaskGraph
 from ewokscore.graph.inputs import _get_all_node_inputs
 from ewokscore.graph.inputs import _get_all_task_output_names
 
-from .svg import SvgCanvas
-from .svg import SvgTask
+from .svg.svg_canvas import SvgCanvas
+from .svg.svg_task import SvgTask
 
-GAP = 10
+GAP = 10.0
 DEFAULT_HEIGHT = 500
 
 
