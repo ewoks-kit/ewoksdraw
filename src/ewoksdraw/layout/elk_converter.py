@@ -4,7 +4,7 @@ from typing import TypedDict
 from ewokscore.graph import TaskGraph
 
 from ..config.constants import ELK_LAYOUT_OPTION
-from ..svg import TaskSizes
+from ..svg.svg_task_group import TaskSizes
 
 
 class ElkChild(TypedDict):

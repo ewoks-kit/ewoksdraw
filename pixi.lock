@@ -88,6 +88,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/81/e6/cd9575ac904136b3cbf7aa7ee819ef86eedb7274e46f230e94ea4342e729/platformdirs-4.10.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/7b/122376b1fd3c62c1ed9dc80c931ace4844b3c55407b6fb2d199377c9736f/pydantic-2.13.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/89/1d/8eff589b45bb8190a9d12c49cfad0f176a5cbd1534908a6b5125e2886239/pydantic_core-2.46.4-cp314-cp314-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+      - pypi: git+https://github.com/LudoBroche/pyelk.git#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/91/89/678270f29dea96df8945f14bebd8a8b807b994829a051a32fe6d36d33230/pyicat_plus-2.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/10/5e/1aa9a93198c6b64513c9d7752de7422c06402de6600a8767da1524f9570b/pyparsing-3.2.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl
@@ -422,12 +423,13 @@ packages:
 - pypi: ./
   name: ewoksdraw
   version: 0.0.1
-  sha256: 22326da94bf4ce4d87784d81ea0d167c7d8785c195885476cfda9b0ca96adf6c
+  sha256: 41ecb757b2a4b8efc568e9d25f4eb899b68e48cba783ef285494de151595a5fb
   requires_dist:
   - ewokscore<5
   - reportlab
   - typing-extensions ; python_full_version < '3.11'
   - xmltodict
+  - pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications
   - pytest>=7 ; extra == 'test'
   - pytest>=7 ; extra == 'dev'
   - ruff ; extra == 'dev'
@@ -1165,6 +1167,12 @@ packages:
   requires_dist:
   - typing-extensions>=4.14.1
   requires_python: '>=3.9'
+- pypi: git+https://github.com/LudoBroche/pyelk.git#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
+  name: pyelk
+  version: 0.3.0
+  requires_dist:
+  - pytest>=7.0 ; extra == 'dev'
+  requires_python: '>=3.8'
 - conda: https://conda.anaconda.org/conda-forge/noarch/pygments-2.20.0-pyhd8ed1ab_0.conda
   sha256: cf70b2f5ad9ae472b71235e5c8a736c9316df3705746de419b59d442e8348e86
   md5: 16c18772b340887160c79a6acc022db0

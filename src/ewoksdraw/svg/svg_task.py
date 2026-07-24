@@ -1,3 +1,5 @@
+from typing import NamedTuple
+
 from ..config.constants import IO_INTER_IO_MARGIN
 from ..config.constants import IO_TOP_MARGIN
 from .svg_group import SvgGroup
@@ -5,6 +7,11 @@ from .svg_task_box import SvgTaskBox
 from .svg_task_io import SvgTaskIOGroup
 from .svg_task_line import SvgTaskLine
 from .svg_task_title import SvgTaskTitle
+
+
+class TaskSize(NamedTuple):
+    width: float
+    height: float
 
 
 class SvgTask(SvgGroup):

@@ -1,13 +1,6 @@
-from typing import NamedTuple
-
 from .svg_group import SvgGroup
 from .svg_task import SvgTask
-
-
-class TaskSize(NamedTuple):
-    width: float
-    height: float
-
+from .svg_task import TaskSize
 
 TaskSizes = dict[str, TaskSize]
 
