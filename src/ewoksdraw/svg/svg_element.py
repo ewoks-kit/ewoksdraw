@@ -1,13 +1,12 @@
 import warnings
 from pathlib import Path
-from typing import Final
 from typing import Literal
 from typing import Optional
 from typing import get_args
 from xml.etree.ElementTree import Element
 
 SvgTag = Literal["rect", "circle", "text", "line", "path"]
-SUPPORTED_TAGS: Final[tuple[SvgTag, ...]] = get_args(SvgTag)
+SUPPORTED_TAGS: tuple[SvgTag, ...] = get_args(SvgTag)
 
 
 class SvgElement:

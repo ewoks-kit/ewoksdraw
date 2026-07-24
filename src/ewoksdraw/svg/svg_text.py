@@ -1,4 +1,5 @@
 import re
+from numbers import Number
 from typing import Optional
 
 from reportlab.pdfbase.pdfmetrics import stringWidth
@@ -15,7 +16,7 @@ class SvgText(SvgElement):
     :param css_class: The CSS class to apply to the text element.
     """
 
-    def __init__(self, text: str, x: int, y: int, css_class: str):
+    def __init__(self, text: str, x: Number, y: Number, css_class: str):
         attr = {
             "x": str(x),
             "y": str(y),

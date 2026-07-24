@@ -1,6 +1,11 @@
+import sys
 from dataclasses import dataclass
-from typing import Self
 from typing import Sequence
+
+if sys.version_info < (3, 11):
+    from typing_extensions import Self
+else:
+    from typing import Self
 
 Point = tuple[float, float]
 Vector = tuple[float, float]
@@ -41,8 +46,8 @@ class CubicBezierPath:
             # we might not have the space to turn if distance is too small
             turn_radius = min(
                 radius,
-                _distance(previous_point, corner_point) / 2,
-                _distance(corner_point, next_point) / 2,
+                _l1_distance(previous_point, corner_point) / 2,
+                _l1_distance(corner_point, next_point) / 2,
             )
 
             corner_start = _move(corner_point, previous_direction, -turn_radius)
@@ -89,7 +94,7 @@ def _direction(start: Point, end: Point) -> Vector:
     return (1 if end[0] > start[0] else -1, 0)
 
 
-def _distance(start: Point, end: Point) -> float:
+def _l1_distance(start: Point, end: Point) -> float:
     return abs(end[0] - start[0]) + abs(end[1] - start[1])
 
 

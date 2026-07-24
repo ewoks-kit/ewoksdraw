@@ -9,7 +9,7 @@ class SvgLinkCubicBezier(SvgElement):
     :param path: The cubic Bezier path coordinates.
     :param color: The stroke color of the link.
     :param stroke_width: The stroke width of the link.
-    :param stroke_dash: The SVG stroke-dasharray value of the link.
+    :param stroke_dasharray: The SVG stroke-dasharray value of the link.
     """
 
     def __init__(
@@ -17,7 +17,7 @@ class SvgLinkCubicBezier(SvgElement):
         path: CubicBezierPath,
         color: str | None = None,
         stroke_width: float | None = None,
-        stroke_dash: str | None = None,
+        stroke_dasharray: str | None = None,
     ):
         string_svg = self._convert_path_data_to_svg_attribute(path)
 
@@ -30,8 +30,8 @@ class SvgLinkCubicBezier(SvgElement):
         if stroke_width is not None:
             styles.append(f"stroke-width:{stroke_width:g}")
 
-        if stroke_dash is not None:
-            styles.append(f"stroke-dasharray:{stroke_dash}")
+        if stroke_dasharray is not None:
+            styles.append(f"stroke-dasharray:{stroke_dasharray}")
 
         if styles:
             attr["style"] = ";".join(styles)

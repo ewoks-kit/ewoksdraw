@@ -1,3 +1,4 @@
+from numbers import Number
 from pathlib import Path
 from typing import Iterator
 from typing import List
@@ -39,7 +40,7 @@ class SvgCanvas:
     SVG XML file.
     """
 
-    def __init__(self, width: int | float, height: int | float):
+    def __init__(self, width: Number, height: Number):
         self.width = width
         self.height = height
         self.elements: List[Union[SvgElement, SvgGroup]] = []
