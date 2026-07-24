@@ -12,6 +12,8 @@ from .svg_background import SvgBackground
 from .svg_element import SvgElement
 from .svg_group import SvgGroup
 
+Number = Union[int, float]
+
 
 def pretty_print_xml(xml_svg: Element) -> str:
     """
@@ -39,7 +41,7 @@ class SvgCanvas:
     SVG XML file.
     """
 
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: Number, height: Number):
         self.width = width
         self.height = height
         self.elements: List[Union[SvgElement, SvgGroup]] = []

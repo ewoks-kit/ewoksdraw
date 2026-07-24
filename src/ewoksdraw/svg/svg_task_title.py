@@ -1,10 +1,13 @@
 from typing import Optional
+from typing import Union
 
 from ..config.constants import TITLE_HORIZONTAL_MARGIN
 from ..config.constants import TITLE_MIN_FONT_SIZE
 from ..config.constants import TITLE_TARGET_FONT_SIZE
 from ..config.constants import TITLE_VERTICAL_MARGIN
 from .svg_text import SvgText
+
+Number = Union[int, float]
 
 
 class SvgTaskTitle(SvgText):
@@ -16,7 +19,7 @@ class SvgTaskTitle(SvgText):
     :param y: The y-coordinate of the task title in the SVG canvas.
     """
 
-    def __init__(self, text: str, x: int, y: int):
+    def __init__(self, text: str, x: Number, y: Number):
         self.vertical_margin: int = TITLE_VERTICAL_MARGIN
         self.horizontal_margin: int = TITLE_HORIZONTAL_MARGIN
         super().__init__(text=text, x=x, y=y, css_class="task_title")
