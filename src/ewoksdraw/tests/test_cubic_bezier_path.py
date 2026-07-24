@@ -2,7 +2,7 @@ import pytest
 
 from ewoksdraw.geometry.cubic_bezier_path import CubicBezierPath
 from ewoksdraw.geometry.cubic_bezier_path import _direction
-from ewoksdraw.geometry.cubic_bezier_path import _distance
+from ewoksdraw.geometry.cubic_bezier_path import _l1_distance
 from ewoksdraw.geometry.cubic_bezier_path import _move
 from ewoksdraw.geometry.cubic_bezier_path import _straight_segment
 
@@ -36,7 +36,7 @@ def test_direction(start, end, expected):
     ],
 )
 def test_distance(start, end, expected):
-    assert _distance(start, end) == expected
+    assert _l1_distance(start, end) == expected
 
 
 @pytest.mark.parametrize(

@@ -1,4 +1,3 @@
-from numbers import Number
 from pathlib import Path
 from typing import Iterator
 from typing import List
@@ -12,6 +11,8 @@ import xmltodict
 from .svg_background import SvgBackground
 from .svg_element import SvgElement
 from .svg_group import SvgGroup
+
+Number = Union[int, float]
 
 
 def pretty_print_xml(xml_svg: Element) -> str:

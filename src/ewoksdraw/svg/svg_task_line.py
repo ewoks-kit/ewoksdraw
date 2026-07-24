@@ -1,6 +1,8 @@
-from numbers import Number
+from typing import Union
 
 from .svg_element import SvgElement
+
+Number = Union[int, float]
 
 
 class SvgTaskLine(SvgElement):

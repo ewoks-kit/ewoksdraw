@@ -1,10 +1,12 @@
 import re
-from numbers import Number
 from typing import Optional
+from typing import Union
 
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from .svg_element import SvgElement
+
+Number = Union[int, float]
 
 
 class SvgText(SvgElement):

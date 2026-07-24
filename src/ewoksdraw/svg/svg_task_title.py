@@ -1,11 +1,13 @@
-from numbers import Number
 from typing import Optional
+from typing import Union
 
 from ..config.constants import TITLE_HORIZONTAL_MARGIN
 from ..config.constants import TITLE_MIN_FONT_SIZE
 from ..config.constants import TITLE_TARGET_FONT_SIZE
 from ..config.constants import TITLE_VERTICAL_MARGIN
 from .svg_text import SvgText
+
+Number = Union[int, float]
 
 
 class SvgTaskTitle(SvgText):

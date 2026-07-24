@@ -20,6 +20,6 @@ from ewoksdraw import graph_to_svg
 # Load a graph with `ewoks.load_graph`
 graph = load_graph(...)
 
-# Generate the SVG 
-graph_to_svg(graph, output_path='my_workflow.svg')
+# Generate the SVG
+graph_to_svg(graph, output_path="my_workflow.svg")
 ```
