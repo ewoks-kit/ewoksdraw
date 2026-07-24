@@ -15,6 +15,12 @@ SvgElementType = TypeVar("SvgElementType", bound=SvgElementLike)
 
 
 class SvgGroup(Generic[SvgElementType]):
+class Translation(NamedTuple):
+    x: float
+    y: float
+
+
+class SvgGroup:
     """
     Represents a group of SVG elements.
     """
@@ -27,6 +33,12 @@ class SvgGroup(Generic[SvgElementType]):
         self.elements: list[SvgElementType] = []
         self._group_id = group_id
         self._transform = ""
+        self._translation = Translation(x=0.0, y=0.0)
+
+    @property
+    def translation(self) -> Translation:
+        """Returns the current translation as an ``(x, y)`` tuple."""
+        return self._translation
 
     def add_elements(self, elements: Iterable[SvgElementType]) -> None:
         """
@@ -49,6 +61,8 @@ class SvgGroup(Generic[SvgElementType]):
         else:
             self._transform = new_transform
         self._transform = self._transform.strip()
+        current_x, current_y = self._translation
+        self._translation = Translation(x=current_x + x, y=current_y + y)
 
     def set_translation(self, x: float = 0, y: float = 0) -> None:
         """
@@ -66,6 +80,7 @@ class SvgGroup(Generic[SvgElementType]):
             self._transform = f"{cleaned_transform} {new_translate}".strip()
         else:
             self._transform = new_translate
+        self._translation = Translation(x=x, y=y)
 
     @property
     def xml_element(self) -> Element:

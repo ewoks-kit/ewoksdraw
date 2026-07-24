@@ -1,8 +1,10 @@
 from .svg_group import SvgGroup
+from .svg_task import PortPosition
 from .svg_task import SvgTask
 from .svg_task import TaskSize
 
 TaskSizes = dict[str, TaskSize]
+TaskPortPositions = dict[str, list[PortPosition]]
 
 
 class SvgTaskGroup(SvgGroup[SvgTask]):
@@ -51,5 +53,11 @@ class SvgTaskGroup(SvgGroup[SvgTask]):
     def extract_task_sizes(self) -> TaskSizes:
         return {
             task_id: TaskSize(width=svg_task.width, height=svg_task.height)
+            for task_id, svg_task in self._svg_tasks.items()
+        }
+
+    def extract_port_positions(self) -> TaskPortPositions:
+        return {
+            task_id: svg_task.get_port_positions()
             for task_id, svg_task in self._svg_tasks.items()
         }
