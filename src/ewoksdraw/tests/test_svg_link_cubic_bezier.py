@@ -45,13 +45,13 @@ def test_style_attribute_has_only_stroke_width():
 
 
 def test_style_attribute_has_only_stroke_dash():
-    link = SvgLinkCubicBezier(SIMPLE_PATH, stroke_dash="5 10")
+    link = SvgLinkCubicBezier(SIMPLE_PATH, stroke_dasharray="5 10")
     assert link.get_attr("style") == "stroke-dasharray:5 10"
 
 
 def test_style_attribute_combines_color_stroke_width_and_stroke_dash():
     link = SvgLinkCubicBezier(
-        SIMPLE_PATH, color="#ff0000", stroke_width=4, stroke_dash="5 10"
+        SIMPLE_PATH, color="#ff0000", stroke_width=4, stroke_dasharray="5 10"
     )
     assert (
         link.get_attr("style") == "stroke:#ff0000;stroke-width:4;stroke-dasharray:5 10"
