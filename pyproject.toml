@@ -16,6 +16,7 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+    "defusedxml",
     "ewokscore<5",
     "reportlab",
     "typing-extensions; python_version < '3.11'",
@@ -35,7 +36,7 @@ test = [
 ]
 dev = [
     "pytest >=7",
-    "ruff",
+    "ruff>=0.16.0",
     "mypy",
 ]
 doc = [
@@ -61,10 +62,21 @@ src = ["."]
 line-length = 88
 
 [tool.ruff.lint]
-select = ["E", "F", "I"]
+select = [
+    "E", # pycodestyle errors
+    "F", # pyflakes
+    "I", # isort
+    "S", # flake8-bandit
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/ewoksdraw/tests/*.py" = [
+    "S101"  # allow asserts
+]
 
 [tool.ruff.lint.isort]
 force-single-line = true
+known-first-party = ["ewoksdraw"]
 
 [tool.mypy]
 ignore_missing_imports = true

@@ -1,5 +1,6 @@
 from pathlib import Path
-from xml.etree import ElementTree
+
+from defusedxml import ElementTree
 
 from ewoksdraw.geometry.cubic_bezier_path import CubicBezierPath
 from ewoksdraw.geometry.cubic_bezier_path import CubicBezierSegment
