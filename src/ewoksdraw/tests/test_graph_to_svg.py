@@ -1,7 +1,7 @@
 from pathlib import Path
-from xml.etree import ElementTree
 
 import pytest
+from defusedxml import ElementTree
 from ewokscore import load_graph
 from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names

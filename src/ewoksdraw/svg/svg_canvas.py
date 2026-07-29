@@ -2,11 +2,11 @@ from pathlib import Path
 from typing import Iterator
 from typing import List
 from typing import Union
-from xml.dom import minidom
 from xml.etree.ElementTree import Element
 from xml.etree.ElementTree import tostring
 
 import xmltodict
+from defusedxml import minidom
 
 from .svg_background import SvgBackground
 from .svg_element import SvgElement
