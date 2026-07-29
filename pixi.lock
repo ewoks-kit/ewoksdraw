@@ -44,6 +44,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/47/5c/032c2d5a07fe4d4855fea851209cca2b6f03ebeb6d4e3afdb3358386a684/charset_normalizer-3.4.7-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+      - pypi: https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/06/04/0efe339b14b339c10802a99723a693750bd9961e0e6166e8e4d3143140bd/ewokscore-4.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/24/33/c53395d32fd82cf81ed257e61a7ccf5e1cfda3ec97371555171057cf1257/ewoksutils-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7a/0a/d39ab66fb8be334524dc29b18f08b64ba2efe3190f8997d7266d748afd1f/fabio-2025.10.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
@@ -120,6 +121,11 @@ packages:
   - pkg:pypi/colorama?source=hash-mapping
   size: 27011
   timestamp: 1733218222191
+- pypi: https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl
+  name: defusedxml
+  version: 0.7.1
+  sha256: a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61
+  requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*'
 - pypi: https://files.pythonhosted.org/packages/06/04/0efe339b14b339c10802a99723a693750bd9961e0e6166e8e4d3143140bd/ewokscore-4.0.2-py3-none-any.whl
   name: ewokscore
   version: 4.0.2
@@ -157,8 +163,9 @@ packages:
 - pypi: ./
   name: ewoksdraw
   version: 0.0.1
-  sha256: 41ecb757b2a4b8efc568e9d25f4eb899b68e48cba783ef285494de151595a5fb
+  sha256: 22603674789afe573d88a8f31ee5b03b3c4c08be4e943586737d5804838ef91d
   requires_dist:
+  - defusedxml
   - ewokscore<5
   - reportlab
   - typing-extensions ; python_full_version < '3.11'
@@ -166,7 +173,7 @@ packages:
   - pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications
   - pytest>=7 ; extra == 'test'
   - pytest>=7 ; extra == 'dev'
-  - ruff ; extra == 'dev'
+  - ruff>=0.16.0 ; extra == 'dev'
   - mypy ; extra == 'dev'
   - sphinx>=4.5 ; extra == 'doc'
   - sphinx-autodoc-typehints>=1.16 ; extra == 'doc'

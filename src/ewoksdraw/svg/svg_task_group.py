@@ -32,7 +32,7 @@ class SvgTaskGroup(SvgGroup):
         for svg_task in self._svg_tasks.values():
             svg_task.translate(x=x, y=gap)
             x += svg_task.width + gap
-            
+
         self._width = x
 
     @property

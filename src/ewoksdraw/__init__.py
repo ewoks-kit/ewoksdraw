@@ -24,9 +24,7 @@ def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
             input_names=[n.name for n in node_inputs],
             output_names=node_outputs,
         )
-    return SvgTaskGroup(
-        svg_tasks, horizontal_gap=GAP, group_id=str(graph.graph_id)
-    )
+    return SvgTaskGroup(svg_tasks, horizontal_gap=GAP, group_id=str(graph.graph_id))
 
 
 def graph_to_svg(graph: TaskGraph, output_path: str | Path):

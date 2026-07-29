@@ -2,6 +2,7 @@ from pprint import pprint
 
 from ewokscore import load_graph
 from ewokscore.tests.examples.graphs import get_graph
+
 from ewoksdraw import build_svg_task_group
 from ewoksdraw.layout.elk_converter import ElkGraph
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
