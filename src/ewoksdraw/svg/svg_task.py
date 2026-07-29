@@ -149,9 +149,7 @@ class SvgTask(SvgGroup):
                 x = group._translation.x + io._translation.x
                 y = group._translation.y + io._translation.y
 
-                io_positions.append(
-                    PortPosition(id=port_id, x=x, y=y)
-                )
+                io_positions.append(PortPosition(id=port_id, x=x, y=y))
 
         return io_positions
 
