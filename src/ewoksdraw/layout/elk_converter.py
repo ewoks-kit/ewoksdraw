@@ -34,7 +34,6 @@ def convert_ewoks_to_elk_graph(
     :param ewoks_graph: the task graph to convert, e.g. from ``ewokscore.load_graph``.
     :param task_sizes: ``(width, height)`` per task in ``ewoks_graph``, and no
         other task id, e.g. ``{"task1": (39.56, 55.0), ...}``.
-    :returns: an ELK graph, see ``ElkGraph``.
     """
     node_ids = set(ewoks_graph.graph.nodes)
     if node_ids != task_sizes.keys():
@@ -43,10 +42,14 @@ def convert_ewoks_to_elk_graph(
             f"{sorted(node_ids)}"
         )
 
-    children: list[ElkChild] = []
-    for task_id in ewoks_graph.graph.nodes:
-        width, height = task_sizes[task_id]
-        children.append({"id": task_id, "width": width, "height": height})
+    children: list[ElkChild] = [
+        {
+            "id": task_id,
+            "width": task_sizes[task_id].width,
+            "height": task_sizes[task_id].height,
+        }
+        for task_id in ewoks_graph.graph.nodes
+    ]
 
     edges: list[ElkEdge] = []
     for source, target, link_attrs in ewoks_graph.graph.edges(data=True):

@@ -15,8 +15,9 @@ class SvgGroup:
         r"translate\(\s*[-+]?\d*\.?\d+(?:[,\s]+[-+]?\d*\.?\d+)?\s*\)"
     )
 
-    def __init__(self):
+    def __init__(self, group_id: str | None = None):
         self.elements = []
+        self._group_id = group_id
         self._transform = ""
 
     def add_elements(self, elements: Iterable[Union[SvgElement, "SvgGroup"]]) -> None:
@@ -62,6 +63,8 @@ class SvgGroup:
     def xml_element(self) -> Element:
         """Returns the XML representation of the group element."""
         group_el = Element("g")
+        if self._group_id is not None:
+            group_el.set("id", self._group_id)
         if self._transform:
             group_el.set("transform", self._transform)
         for element in self.elements:

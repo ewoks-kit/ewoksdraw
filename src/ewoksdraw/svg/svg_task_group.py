@@ -10,13 +10,19 @@ class SvgTaskGroup(SvgGroup):
     Represents a positioned collection of SvgTask elements.
     """
 
-    def __init__(self, svg_tasks: dict[str, SvgTask]):
-        super().__init__()
+    def __init__(
+        self,
+        svg_tasks: dict[str, SvgTask],
+        horizontal_gap: float = 5.0,
+        group_id: str | None = None,
+    ) -> None:
+        super().__init__(group_id=group_id)
         self._svg_tasks = svg_tasks
         self._width = 0.0
         self.add_elements(svg_tasks.values())
+        self._arrange_horizontally(gap=horizontal_gap)
 
-    def arrange_horizontally(self, gap: float) -> None:
+    def _arrange_horizontally(self, gap: float) -> None:
         """
         Lays out the tasks left to right, each separated by `gap`.
 
@@ -26,6 +32,7 @@ class SvgTaskGroup(SvgGroup):
         for svg_task in self._svg_tasks.values():
             svg_task.translate(x=x, y=gap)
             x += svg_task.width + gap
+            
         self._width = x
 
     @property

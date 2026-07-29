@@ -33,7 +33,7 @@ class SvgTask(SvgGroup):
         input_names: list[str],
         output_names: list[str],
     ):
-        super().__init__()
+        super().__init__(group_id=task_name)
 
         self._interspace_title_input = IO_TOP_MARGIN
         self._interspace_input_output = IO_INTER_IO_MARGIN

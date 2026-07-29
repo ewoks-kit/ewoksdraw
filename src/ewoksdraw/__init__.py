@@ -24,13 +24,13 @@ def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
             input_names=[n.name for n in node_inputs],
             output_names=node_outputs,
         )
-    return SvgTaskGroup(svg_tasks)
+    return SvgTaskGroup(
+        svg_tasks, horizontal_gap=GAP, group_id=str(graph.graph_id)
+    )
 
 
 def graph_to_svg(graph: TaskGraph, output_path: str | Path):
     task_group = build_svg_task_group(graph)
-    task_group.arrange_horizontally(GAP)
-
     canvas = SvgCanvas(width=task_group.width, height=task_group.height + 2 * GAP)
     canvas.add_background()
     canvas.add_element(task_group)
