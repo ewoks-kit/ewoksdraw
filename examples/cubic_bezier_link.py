@@ -66,7 +66,7 @@ underline = CubicBezierPath.from_points(
     ],
     radius=30,
 )
-links_group = SvgGroup()
+links_group: SvgGroup[SvgLinkCubicBezier] = SvgGroup()
 links_group.add_elements(
     [
         SvgLinkCubicBezier(letter_e),

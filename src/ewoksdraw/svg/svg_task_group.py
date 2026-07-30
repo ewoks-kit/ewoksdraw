@@ -5,7 +5,7 @@ from .svg_task import TaskSize
 TaskSizes = dict[str, TaskSize]
 
 
-class SvgTaskGroup(SvgGroup):
+class SvgTaskGroup(SvgGroup[SvgTask]):
     """
     Represents a positioned collection of SvgTask elements.
     """

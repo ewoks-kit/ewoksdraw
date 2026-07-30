@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Any
 from typing import Iterator
 from typing import List
 from typing import Union
@@ -44,12 +45,12 @@ class SvgCanvas:
     def __init__(self, width: Number, height: Number):
         self.width = width
         self.height = height
-        self.elements: List[Union[SvgElement, SvgGroup]] = []
+        self.elements: List[Union[SvgElement, SvgGroup[Any]]] = []
 
     def add_background(self):
         self.add_element(SvgBackground(self.width, self.height))
 
-    def add_element(self, element: Union[SvgElement, SvgGroup]) -> None:
+    def add_element(self, element: Union[SvgElement, SvgGroup[Any]]) -> None:
         """
         Adds an SvgElement or SvgGroup to the drawing.
 
@@ -108,7 +109,9 @@ class SvgCanvas:
 
         return xml_svg
 
-    def _yield_styles(self, element: Union[SvgElement, SvgGroup]) -> Iterator[Element]:
+    def _yield_styles(
+        self, element: Union[SvgElement, SvgGroup[Any]]
+    ) -> Iterator[Element]:
         """
         Recursively walks through elements and yields their styles.
         This is a generator function.
