@@ -28,11 +28,14 @@ class SvgTaskGroup(SvgGroup):
 
         :param gap: The spacing before, between, and after the tasks.
         """
+        if not self._svg_tasks:
+            self._width = 0.0
+            return
+
         x = gap
         for svg_task in self._svg_tasks.values():
             svg_task.translate(x=x, y=gap)
             x += svg_task.width + gap
-
         self._width = x
 
     @property
