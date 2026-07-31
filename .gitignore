@@ -18,4 +18,3 @@ __pycache__/
 .svg
 # pixi environments
 .pixi/*
-!.pixi/config.toml
