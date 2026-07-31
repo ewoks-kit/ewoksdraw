@@ -14,7 +14,7 @@ PATH = CubicBezierPath(
 )
 
 
-def test_group_translate_moves_path_via_transform_not_d_attribute():
+def test_group_translate_moves_path_via_transform_not_d_attribute() -> None:
     link = SvgLinkCubicBezier(PATH)
     group: SvgGroup[SvgLinkCubicBezier] = SvgGroup()
     group.add_elements([link])
@@ -28,7 +28,7 @@ def test_group_translate_moves_path_via_transform_not_d_attribute():
     assert path_element.get("d") == "M 0,0 C 1,1 2,2 3,3"
 
 
-def test_canvas_draw_writes_valid_svg_with_path_element(tmp_path: Path):
+def test_canvas_draw_writes_valid_svg_with_path_element(tmp_path: Path) -> None:
     output_path = tmp_path / "path.svg"
 
     link = SvgLinkCubicBezier(PATH, color="#ff0000")

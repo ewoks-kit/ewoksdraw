@@ -1,5 +1,6 @@
 import pytest
 from ewokscore import load_graph
+from ewokscore.graph import TaskGraph
 from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
 from pyelk.graph import validate_graph
@@ -16,14 +17,14 @@ def _node(node_id: str) -> dict:
     return {"id": node_id, "task_type": "class", "task_identifier": _TASK_TYPE}
 
 
-def _task_sizes(graph) -> TaskSizes:
+def _task_sizes(graph: TaskGraph) -> TaskSizes:
     return {
         node_id: TaskSize(width=10.0 * i, height=20.0 * i)
         for i, node_id in enumerate(graph.graph.nodes, start=1)
     }
 
 
-def test_top_level_structure():
+def test_top_level_structure() -> None:
     graph_description, _ = get_graph("acyclic1")
     graph = load_graph(graph_description)
 
@@ -35,7 +36,7 @@ def test_top_level_structure():
     assert "edges" in elk_graph
 
 
-def test_children_match_task_sizes():
+def test_children_match_task_sizes() -> None:
     graph_description, _ = get_graph("acyclic1")
     graph = load_graph(graph_description)
     task_sizes = _task_sizes(graph)
@@ -49,7 +50,7 @@ def test_children_match_task_sizes():
         assert child["height"] == height
 
 
-def test_link_without_data_mapping_produces_one_elk_edge():
+def test_link_without_data_mapping_produces_one_elk_edge() -> None:
     graph_description = {
         "graph": {"id": "g", "label": "g", "schema_version": "1.1"},
         "nodes": [_node("a"), _node("b")],
@@ -65,7 +66,7 @@ def test_link_without_data_mapping_produces_one_elk_edge():
     ]
 
 
-def test_link_with_multiple_data_mappings_produces_one_elk_edge_per_mapping():
+def test_link_with_multiple_data_mappings_produces_one_elk_edge_per_mapping() -> None:
     graph_description = {
         "graph": {"id": "g", "label": "g", "schema_version": "1.1"},
         "nodes": [_node("a"), _node("b")],
@@ -91,7 +92,7 @@ def test_link_with_multiple_data_mappings_produces_one_elk_edge_per_mapping():
     ]
 
 
-def test_graph_without_link():
+def test_graph_without_link() -> None:
     graph_description, _ = get_graph("empty")
     graph = load_graph(graph_description)
 
@@ -102,7 +103,7 @@ def test_graph_without_link():
 
 
 @pytest.mark.parametrize("graph_name", graph_names())
-def test_children_and_edges_count_across_example_graphs(graph_name):
+def test_children_and_edges_count_across_example_graphs(graph_name: str) -> None:
     graph_description, _ = get_graph(graph_name)
     graph = load_graph(graph_description)
     task_sizes = _task_sizes(graph)
@@ -118,7 +119,7 @@ def test_children_and_edges_count_across_example_graphs(graph_name):
     assert len(elk_graph["edges"]) == expected_edge_count
 
 
-def test_task_sizes_missing_a_node_raises():
+def test_task_sizes_missing_a_node_raises() -> None:
     graph_description, _ = get_graph("acyclic1")
     graph = load_graph(graph_description)
 
@@ -126,7 +127,7 @@ def test_task_sizes_missing_a_node_raises():
         convert_ewoks_to_elk_graph(graph, {"task1": TaskSize(width=10.0, height=20.0)})
 
 
-def test_task_sizes_with_extra_task_id_raises():
+def test_task_sizes_with_extra_task_id_raises() -> None:
     graph_description, _ = get_graph("acyclic1")
     graph = load_graph(graph_description)
     task_sizes = _task_sizes(graph)
@@ -137,7 +138,7 @@ def test_task_sizes_with_extra_task_id_raises():
 
 
 @pytest.mark.parametrize("graph_name", graph_names())
-def test_output_is_a_valid_pyelk_graph(graph_name):
+def test_output_is_a_valid_pyelk_graph(graph_name: str) -> None:
     """Check graph validation from pyelk"""
 
     graph_description, _ = get_graph(graph_name)

@@ -1,4 +1,5 @@
 from pathlib import Path
+from xml.etree.ElementTree import Element
 
 import pytest
 from defusedxml import ElementTree
@@ -9,7 +10,7 @@ from ewokscore.tests.examples.graphs import graph_names
 from ewoksdraw import graph_to_svg
 
 
-def _find_svg_group(parent, group_id: str):
+def _find_svg_group(parent: Element, group_id: str) -> Element:
     return next(
         child
         for child in parent
@@ -18,7 +19,7 @@ def _find_svg_group(parent, group_id: str):
 
 
 @pytest.mark.parametrize("graph_name", graph_names())
-def test_groups_are_matching_nodes(graph_name, tmp_path: Path):
+def test_groups_are_matching_nodes(graph_name: str, tmp_path: Path) -> None:
     output_path = tmp_path / f"{graph_name}.svg"
 
     graph, _ = get_graph(graph_name)

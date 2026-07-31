@@ -124,7 +124,7 @@ class SvgTaskIOGroup(SvgGroup[SvgTaskIO]):
         for element in self.elements:
             element.set_font_size(font_size)
 
-    def set_vertical_spacing(self, vertical_spacing) -> None:
+    def set_vertical_spacing(self, vertical_spacing: float) -> None:
         """
         Adjusts the vertical spacing between the IO elements.
 
@@ -135,7 +135,7 @@ class SvgTaskIOGroup(SvgGroup[SvgTaskIO]):
             pos = i * vertical_spacing
             element.set_translation(y=pos)
 
-    def decrease_size_to_fit_width(self, target_width) -> None:
+    def decrease_size_to_fit_width(self, target_width: float) -> None:
         """
         Adjusts font size and truncates text as needed to fit the group
         within a target width.

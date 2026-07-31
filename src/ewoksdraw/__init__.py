@@ -27,7 +27,7 @@ def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
     return SvgTaskGroup(svg_tasks, horizontal_gap=GAP, group_id=str(graph.graph_id))
 
 
-def graph_to_svg(graph: TaskGraph, output_path: str | Path):
+def graph_to_svg(graph: TaskGraph, output_path: str | Path) -> None:
     task_group = build_svg_task_group(graph)
     canvas = SvgCanvas(width=task_group.width, height=task_group.height + 2 * GAP)
     canvas.add_background()

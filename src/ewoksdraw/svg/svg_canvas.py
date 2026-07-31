@@ -47,7 +47,7 @@ class SvgCanvas:
         self.height = height
         self.elements: List[Union[SvgElement, SvgGroup[Any]]] = []
 
-    def add_background(self):
+    def add_background(self) -> None:
         self.add_element(SvgBackground(self.width, self.height))
 
     def add_element(self, element: Union[SvgElement, SvgGroup[Any]]) -> None:
