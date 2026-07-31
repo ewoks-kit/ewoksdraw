@@ -11,7 +11,7 @@ IO_ANCHOR_TEXT_MARGIN = 10
 IO_TOP_MARGIN = 5
 IO_INTER_IO_MARGIN = 3
 
-ELK_LAYOUT_OPTION = {
+ELK_LAYOUT_OPTIONS = {
     "org.eclipse.elk.algorithm": "layered",
     "org.eclipse.elk.direction": "RIGHT",
     "org.eclipse.elk.spacing.nodeNode": 60,
