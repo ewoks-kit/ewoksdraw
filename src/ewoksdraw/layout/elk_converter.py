@@ -3,7 +3,8 @@ from typing import TypedDict
 
 from ewokscore.graph import TaskGraph
 
-from ..config.constants import ELK_LAYOUT_OPTION
+from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
+
 from ..svg.svg_task_group import TaskSizes
 
 
@@ -65,7 +66,7 @@ def convert_ewoks_to_elk_graph(
 
     return {
         "id": "root",
-        "layoutOptions": ELK_LAYOUT_OPTION,
+        "layoutOptions": ELK_LAYOUT_OPTIONS,
         "children": children,
         "edges": edges,
     }

@@ -9,22 +9,14 @@ A library to generate SVG mock-ups out of Ewoks workflows.
 
 ## Quick start
 
+Using pip:
 ```bash
 pip install "git+https://github.com/ewoks-kit/ewoksdraw.git"
 ```
-
-### Pixi
-
+Using pixi:
 ```bash
-pixi install
-pixi run test
-pixi run test-lowest
-pixi run lint
-pixi run typecheck
-pixi run full-ci
-pixi run graph-to-svg acyclic1
+pixi add --pypi "ewoksdraw @ git+https://github.com/ewoks-kit/ewoksdraw.git"
 ```
-
 ### Python
 
 ```python

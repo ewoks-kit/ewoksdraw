@@ -4,7 +4,7 @@ from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
 from pyelk.graph import validate_graph
 
-from ewoksdraw.config.constants import ELK_LAYOUT_OPTION
+from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
 from ewoksdraw.svg.svg_task_group import TaskSize
 from ewoksdraw.svg.svg_task_group import TaskSizes
@@ -30,7 +30,7 @@ def test_top_level_structure():
     elk_graph = convert_ewoks_to_elk_graph(graph, _task_sizes(graph))
 
     assert elk_graph["id"] == "root"
-    assert elk_graph["layoutOptions"] == ELK_LAYOUT_OPTION
+    assert elk_graph["layoutOptions"] == ELK_LAYOUT_OPTIONS
     assert "children" in elk_graph
     assert "edges" in elk_graph
 

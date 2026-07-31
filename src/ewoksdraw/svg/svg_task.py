@@ -2,7 +2,6 @@ from typing import NamedTuple
 
 from ..config.constants import IO_INTER_IO_MARGIN
 from ..config.constants import IO_TOP_MARGIN
-from .svg_group import SvgElementLike
 from .svg_group import SvgGroup
 from .svg_task_box import SvgTaskBox
 from .svg_task_io import SvgTaskIOGroup
@@ -15,7 +14,7 @@ class TaskSize(NamedTuple):
     height: float
 
 
-class SvgTask(SvgGroup[SvgElementLike]):
+class SvgTask(SvgGroup):
     """
     Represents a task as an SVG group containing title, input/output groups, box, and
     line.
