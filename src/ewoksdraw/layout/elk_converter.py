@@ -5,6 +5,8 @@ from ewokscore.graph import TaskGraph
 
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 
+from ..svg.svg_task import PortPosition
+from ..svg.svg_task_group import TaskPortPositions
 from ..svg.svg_task_group import TaskSizes
 
 

@@ -1,6 +1,7 @@
 import re
 from typing import Generic
 from typing import Iterable
+from typing import NamedTuple
 from typing import Protocol
 from typing import TypeVar
 from xml.etree.ElementTree import Element
@@ -14,13 +15,12 @@ class SvgElementLike(Protocol):
 SvgElementType = TypeVar("SvgElementType", bound=SvgElementLike)
 
 
-class SvgGroup(Generic[SvgElementType]):
 class Translation(NamedTuple):
     x: float
     y: float
 
 
-class SvgGroup:
+class SvgGroup(Generic[SvgElementType]):
     """
     Represents a group of SVG elements.
     """
