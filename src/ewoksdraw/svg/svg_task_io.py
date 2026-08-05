@@ -4,12 +4,13 @@ from ..config.constants import ANCHOR_LINKS_RADIUS
 from ..config.constants import IO_ANCHOR_TEXT_MARGIN
 from ..config.constants import IO_MIN_FONT_SIZE
 from ..config.constants import IO_TARGET_FONT_SIZE
+from .svg_element import SvgElement
 from .svg_group import SvgGroup
 from .svg_task_anchor_link import SvgTaskAnchorLink
 from .svg_text import SvgText
 
 
-class SvgTaskIO(SvgGroup):
+class SvgTaskIO(SvgGroup[SvgElement]):
     """
     Represents a single SVG task input or output element with text and an anchor link.
 
@@ -90,7 +91,7 @@ class SvgTaskIO(SvgGroup):
         self.txt.truncate_text_by_one()
 
 
-class SvgTaskIOGroup(SvgGroup):
+class SvgTaskIOGroup(SvgGroup[SvgTaskIO]):
     """
     Represents a group of SVG task IO elements arranged vertically.
 
@@ -123,7 +124,7 @@ class SvgTaskIOGroup(SvgGroup):
         for element in self.elements:
             element.set_font_size(font_size)
 
-    def set_vertical_spacing(self, vertical_spacing) -> None:
+    def set_vertical_spacing(self, vertical_spacing: float) -> None:
         """
         Adjusts the vertical spacing between the IO elements.
 
@@ -134,7 +135,7 @@ class SvgTaskIOGroup(SvgGroup):
             pos = i * vertical_spacing
             element.set_translation(y=pos)
 
-    def decrease_size_to_fit_width(self, target_width) -> None:
+    def decrease_size_to_fit_width(self, target_width: float) -> None:
         """
         Adjusts font size and truncates text as needed to fit the group
         within a target width.
@@ -210,7 +211,7 @@ class SvgTaskIOGroup(SvgGroup):
         if not self.elements:
             return
 
-        max_width = -1
+        max_width = -1.0
         for element in self.elements:
             if element.width > max_width:
                 max_width = element.width

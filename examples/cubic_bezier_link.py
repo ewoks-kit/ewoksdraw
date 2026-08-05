@@ -66,7 +66,7 @@ underline = CubicBezierPath.from_points(
     ],
     radius=30,
 )
-links_group = SvgGroup()
+links_group: SvgGroup[SvgLinkCubicBezier] = SvgGroup()
 links_group.add_elements(
     [
         SvgLinkCubicBezier(letter_e),
@@ -74,13 +74,13 @@ links_group.add_elements(
             letter_w,
             color="#00c2a8",
             stroke_width=4,
-            stroke_dash="5 10",
+            stroke_dasharray="5 10",
         ),
         SvgLinkCubicBezier(
             letter_o,
             color="#ffcc00",
             stroke_width=6,
-            stroke_dash="1 5",
+            stroke_dasharray="1 5",
         ),
         SvgLinkCubicBezier(letter_k, color="#7c5cff", stroke_width=4),
         SvgLinkCubicBezier(letter_s, color="#54a068", stroke_width=10),
@@ -88,7 +88,7 @@ links_group.add_elements(
             underline,
             color="#ff00aa",
             stroke_width=3,
-            stroke_dash="12 6",
+            stroke_dasharray="12 6",
         ),
     ]
 )

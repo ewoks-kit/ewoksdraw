@@ -1,12 +1,20 @@
 import re
+from typing import Generic
 from typing import Iterable
-from typing import Union
+from typing import Protocol
+from typing import TypeVar
 from xml.etree.ElementTree import Element
 
-from .svg_element import SvgElement
+
+class SvgElementLike(Protocol):
+    @property
+    def xml_element(self) -> Element: ...
 
 
-class SvgGroup:
+SvgElementType = TypeVar("SvgElementType", bound=SvgElementLike)
+
+
+class SvgGroup(Generic[SvgElementType]):
     """
     Represents a group of SVG elements.
     """
@@ -15,11 +23,12 @@ class SvgGroup:
         r"translate\(\s*[-+]?\d*\.?\d+(?:[,\s]+[-+]?\d*\.?\d+)?\s*\)"
     )
 
-    def __init__(self):
-        self.elements = []
+    def __init__(self, group_id: str | None = None):
+        self.elements: list[SvgElementType] = []
+        self._group_id = group_id
         self._transform = ""
 
-    def add_elements(self, elements: Iterable[Union[SvgElement, "SvgGroup"]]) -> None:
+    def add_elements(self, elements: Iterable[SvgElementType]) -> None:
         """
         Adds elements (SvgElement or SvgGroup) to the group.
 
@@ -62,6 +71,8 @@ class SvgGroup:
     def xml_element(self) -> Element:
         """Returns the XML representation of the group element."""
         group_el = Element("g")
+        if self._group_id is not None:
+            group_el.set("id", self._group_id)
         if self._transform:
             group_el.set("transform", self._transform)
         for element in self.elements:

@@ -21,6 +21,7 @@ dependencies = [
     "reportlab",
     "typing-extensions; python_version < '3.11'",
     "xmltodict",
+    "pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications",
 ]
 
 [project.urls]
@@ -35,7 +36,7 @@ test = [
     "pytest >=7",
 ]
 dev = [
-    "pytest >=7",
+    "ewoksdraw[test]",
     "ruff>=0.16.0",
     "mypy",
 ]
@@ -80,7 +81,35 @@ known-first-party = ["ewoksdraw"]
 
 [tool.mypy]
 ignore_missing_imports = true
+disallow_untyped_defs = true
 
 [[tool.mypy.overrides]]
 module = "setuptools.*"
 ignore_missing_imports = true
+
+
+########
+# pixi #
+########
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[tool.pixi.pypi-dependencies]
+ewoksdraw = { path = ".", editable = true }
+
+[tool.pixi.feature.pylow.dependencies]
+python = "3.10.*"
+
+[tool.pixi.environments]
+default = ["dev"]
+test-lowest = ["test", "pylow"]
+
+[tool.pixi.tasks]
+test = "pytest"
+test-lowest = "pixi run -e test-lowest test"
+lint = "ruff check --fix . && ruff format ."
+typecheck = "mypy src" 
+full-ci = "pixi run lint && pixi run typecheck &&  pixi run test && pixi run test-lowest"
+graph-to-svg = "python examples/graph_to_svg.py"
