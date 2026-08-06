@@ -23,5 +23,5 @@ elk_graph: ElkGraph = convert_ewoks_to_elk_graph(
 pprint(dict(ewoks_graph.graph.nodes(data=True)))
 pprint(list(ewoks_graph.graph.edges(data=True)))
 pprint(task_sizes)
-print("-----ELK-----GRAPH----")
+pprint(task_io_positions)
 pprint(elk_graph)
