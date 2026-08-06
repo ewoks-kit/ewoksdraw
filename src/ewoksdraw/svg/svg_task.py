@@ -1,3 +1,4 @@
+from typing import Literal
 from typing import NamedTuple
 
 from ..config.constants import IO_INTER_IO_MARGIN
@@ -14,8 +15,9 @@ class TaskSize(NamedTuple):
     height: float
 
 
-class PortPosition(NamedTuple):
-    id: str
+class TaskIOPosition(NamedTuple):
+    name: str
+    io_type: Literal["input", "output"]
     x: float
     y: float
 
@@ -139,76 +141,22 @@ class SvgTask(SvgGroup):
             + self._interspace_title_input
         )
 
-    def get_port_positions(self) -> list[PortPosition]:
-        """Return task-relative ports position as ``[PortPosition(id, x, y), ...]``."""
-        io_positions: list[PortPosition] = []
+    def get_io_positions(self) -> list[TaskIOPosition]:
+        """Return the task-relative positions of the task inputs and outputs."""
+        io_positions: list[TaskIOPosition] = []
 
         for group in (self._inputs, self._outputs):
             for io in group.elements:
-                port_id = f"{self._task_name}.{io._io_type}.{io.txt._text}"
                 x = group._translation.x + io._translation.x
                 y = group._translation.y + io._translation.y
 
-                io_positions.append(PortPosition(id=port_id, x=x, y=y))
+                io_positions.append(
+                    TaskIOPosition(
+                        name=io.name,
+                        io_type=io.io_type,
+                        x=x,
+                        y=y,
+                    )
+                )
 
         return io_positions
-
-    # def input_port_id(self, input_name: str) -> str:
-    #     return f"{self._task_name}.inputs.{input_name}"
-
-    # def output_port_id(self, output_name: str) -> str:
-    #     return f"{self._task_name}.outputs.{output_name}"
-
-    # def input_port_position(self, input_name: str) -> dict:
-    #     index = self._input_names.index(input_name)
-    #     return {
-    #         "x": 0,
-    #         "y": self._inputs_y + index * self._inputs._vertical_spacing,
-    #     }
-
-    # def output_port_position(self, output_name: str) -> dict:
-    #     index = self._output_names.index(output_name)
-    #     return {
-    #         "x": self.width,
-    #         "y": self._outputs_y + index * self._outputs._vertical_spacing,
-    #     }
-
-    # def elk_ports(self) -> list[dict]:
-    #     ports = []
-    #     port_size = 0
-
-    #     for index, input_name in enumerate(self._input_names):
-    #         position = self.input_port_position(input_name)
-    #         ports.append(
-    #             {
-    #                 "id": self.input_port_id(input_name),
-    #                 "x": position["x"],
-    #                 "y": position["y"],
-    #                 "width": port_size,
-    #                 "height": port_size,
-    #                 "layoutOptions": {
-    #                     "org.eclipse.elk.port.side": "WEST",
-    #                     "org.eclipse.elk.port.index": index,
-    #                     "org.eclipse.elk.port.borderOffset": 0,
-    #                 },
-    #             }
-    #         )
-
-    #     for index, output_name in enumerate(self._output_names):
-    #         position = self.output_port_position(output_name)
-    #         ports.append(
-    #             {
-    #                 "id": self.output_port_id(output_name),
-    #                 "x": position["x"],
-    #                 "y": position["y"],
-    #                 "width": port_size,
-    #                 "height": port_size,
-    #                 "layoutOptions": {
-    #                     "org.eclipse.elk.port.side": "EAST",
-    #                     "org.eclipse.elk.port.index": index,
-    #                     "org.eclipse.elk.port.borderOffset": 0,
-    #                 },
-    #             }
-    #         )
-
-    #     return ports
