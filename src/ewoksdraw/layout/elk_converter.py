@@ -49,10 +49,8 @@ def convert_ewoks_to_elk_graph(
     """Convert an Ewoks task graph into an ELK layout graph.
 
     :param ewoks_graph: the task graph to convert, e.g. from ``ewokscore.load_graph``.
-    :param task_sizes: ``(width, height)`` per task in ``ewoks_graph``, and no
-        other task id, e.g. ``{"task1": (39.56, 55.0), ...}``.
-    :param task_io_positions: input and output positions per task in
-        ``ewoks_graph``, and no other task id.
+    :param task_sizes: width and height of each task.
+    :param task_io_positions: input and output positions of each task.
     """
     node_ids = set(ewoks_graph.graph.nodes)
     if node_ids != task_sizes.keys():

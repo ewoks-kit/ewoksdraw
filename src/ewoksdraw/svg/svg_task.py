@@ -147,8 +147,8 @@ class SvgTask(SvgGroup):
 
         for group in (self._inputs, self._outputs):
             for io in group.elements:
-                x = group._translation.x + io._translation.x
-                y = group._translation.y + io._translation.y
+                x = group.translation.x + io.translation.x
+                y = group.translation.y + io.translation.y
 
                 io_positions.append(
                     TaskIOPosition(
