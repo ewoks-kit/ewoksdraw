@@ -6,6 +6,7 @@ from ewokscore.graph import TaskGraph
 
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 
+from ..svg.svg_task import IOPositions
 from ..svg.svg_task import TaskIOPosition
 from ..svg.svg_task_group import TaskIOPositions
 from ..svg.svg_task_group import TaskSizes
@@ -131,34 +132,45 @@ def convert_ewoks_to_elk_graph(
 
 
 def _convert_io_positions_to_elk_ports(
-    task_id: str, io_positions: list[TaskIOPosition]
+    task_id: str, io_positions: IOPositions
+) -> list[ElkPort]:
+    ports = _convert_positions_to_elk_ports(
+        io_positions.inputs,
+        id_prefix=f"{task_id}.input",
+        elk_port_side="WEST",
+    )
+    ports.extend(
+        _convert_positions_to_elk_ports(
+            io_positions.outputs,
+            id_prefix=f"{task_id}.output",
+            elk_port_side="EAST",
+        )
+    )
+    return ports
+
+
+def _convert_positions_to_elk_ports(
+    positions: list[TaskIOPosition], id_prefix: str, elk_port_side: str
 ) -> list[ElkPort]:
     ports: list[ElkPort] = []
-    side_indices = {"input": 0, "output": 0}
-    elk_port_sides = {"input": "WEST", "output": "EAST"}
 
-    for position in io_positions:
+    for index, position in enumerate(positions):
         ports.append(
             {
-                "id": _elk_port_id(task_id, position),
+                "id": f"{id_prefix}.{position.name}",
                 "x": position.x,
                 "y": position.y,
                 "width": 0,
                 "height": 0,
                 "layoutOptions": {
-                    "org.eclipse.elk.port.side": elk_port_sides[position.io_type],
-                    "org.eclipse.elk.port.index": side_indices[position.io_type],
+                    "org.eclipse.elk.port.side": elk_port_side,
+                    "org.eclipse.elk.port.index": index,
                     "org.eclipse.elk.port.borderOffset": 0,
                 },
             }
         )
-        side_indices[position.io_type] += 1
 
     return ports
-
-
-def _elk_port_id(task_id: str, position: TaskIOPosition) -> str:
-    return f"{task_id}.{position.io_type}.{position.name}"
 
 
 def _available_elk_id(preferred_id: str, used_ids: set[str]) -> str:

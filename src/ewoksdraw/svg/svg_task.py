@@ -1,4 +1,3 @@
-from typing import Literal
 from typing import NamedTuple
 
 from ..config.constants import IO_INTER_IO_MARGIN
@@ -17,9 +16,13 @@ class TaskSize(NamedTuple):
 
 class TaskIOPosition(NamedTuple):
     name: str
-    io_type: Literal["input", "output"]
     x: float
     y: float
+
+
+class IOPositions(NamedTuple):
+    inputs: list[TaskIOPosition]
+    outputs: list[TaskIOPosition]
 
 
 class SvgTask(SvgGroup):
@@ -141,22 +144,18 @@ class SvgTask(SvgGroup):
             + self._interspace_title_input
         )
 
-    def get_io_positions(self) -> list[TaskIOPosition]:
+    def get_io_positions(self) -> IOPositions:
         """Return the task-relative positions of the task inputs and outputs."""
-        io_positions: list[TaskIOPosition] = []
+        return IOPositions(
+            inputs=self._get_group_io_positions(self._inputs),
+            outputs=self._get_group_io_positions(self._outputs),
+        )
 
-        for group in (self._inputs, self._outputs):
-            for io in group.elements:
-                x = group.translation.x + io.translation.x
-                y = group.translation.y + io.translation.y
-
-                io_positions.append(
-                    TaskIOPosition(
-                        name=io.name,
-                        io_type=io.io_type,
-                        x=x,
-                        y=y,
-                    )
-                )
-
-        return io_positions
+    @staticmethod
+    def _get_group_io_positions(group: SvgTaskIOGroup) -> list[TaskIOPosition]:
+        positions: list[TaskIOPosition] = []
+        for io in group.elements:
+            x = group.translation.x + io.translation.x
+            y = group.translation.y + io.translation.y
+            positions.append(TaskIOPosition(name=io.name, x=x, y=y))
+        return positions

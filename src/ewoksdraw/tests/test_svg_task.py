@@ -11,7 +11,5 @@ def test_io_positions_keep_original_names() -> None:
 
     positions = task.get_io_positions()
 
-    assert [(position.name, position.io_type) for position in positions] == [
-        (long_input_name, "input"),
-        ("result", "output"),
-    ]
+    assert [position.name for position in positions.inputs] == [long_input_name]
+    assert [position.name for position in positions.outputs] == ["result"]

@@ -1,10 +1,10 @@
 from .svg_group import SvgGroup
+from .svg_task import IOPositions
 from .svg_task import SvgTask
-from .svg_task import TaskIOPosition
 from .svg_task import TaskSize
 
 TaskSizes = dict[str, TaskSize]
-TaskIOPositions = dict[str, list[TaskIOPosition]]
+TaskIOPositions = dict[str, IOPositions]
 
 
 class SvgTaskGroup(SvgGroup[SvgTask]):
