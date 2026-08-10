@@ -91,7 +91,7 @@ def convert_ewoks_to_elk_graph(
 
     edges: list[ElkEdge] = []
     for source, target, link_attrs in ewoks_graph.graph.edges(data=True):
-        if link_attrs.get("map_all_data"):
+        if link_attrs.get("map_all_data", False):
             warnings.warn(
                 f"Ewoks link {source!r} -> {target!r} uses 'map_all_data', which "
                 "is not yet supported.",
