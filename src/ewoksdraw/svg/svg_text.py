@@ -1,9 +1,113 @@
 import re
 from typing import Optional
 
-from reportlab.pdfbase.pdfmetrics import stringWidth
-
 from .svg_element import SvgElement
+
+# Widths from the standard Helvetica AFM, expressed in 1/1000 em units. SVG task
+# labels only use Helvetica today. Keeping these metrics here makes the SVG
+# renderer pure Python and avoids shipping ReportLab solely for string sizing.
+_HELVETICA_WIDTHS = {
+    **dict.fromkeys("0123456789", 556),
+    **dict(
+        zip(
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            (
+                667,
+                667,
+                722,
+                722,
+                667,
+                611,
+                778,
+                722,
+                278,
+                500,
+                667,
+                556,
+                833,
+                722,
+                778,
+                667,
+                778,
+                722,
+                667,
+                611,
+                722,
+                667,
+                944,
+                667,
+                667,
+                611,
+            ),
+        )
+    ),
+    **dict(
+        zip(
+            "abcdefghijklmnopqrstuvwxyz",
+            (
+                556,
+                556,
+                500,
+                556,
+                556,
+                278,
+                556,
+                556,
+                222,
+                222,
+                500,
+                222,
+                833,
+                556,
+                556,
+                556,
+                556,
+                333,
+                500,
+                278,
+                556,
+                500,
+                722,
+                500,
+                500,
+                500,
+            ),
+        )
+    ),
+    " ": 278,
+    "!": 278,
+    '"': 355,
+    "#": 556,
+    "$": 556,
+    "%": 889,
+    "&": 667,
+    "'": 191,
+    "(": 333,
+    ")": 333,
+    "*": 389,
+    "+": 584,
+    ",": 278,
+    "-": 333,
+    ".": 278,
+    "/": 278,
+    ":": 278,
+    ";": 278,
+    "<": 584,
+    "=": 584,
+    ">": 584,
+    "?": 556,
+    "@": 1015,
+    "[": 278,
+    "\\": 278,
+    "]": 278,
+    "^": 469,
+    "_": 556,
+    "`": 333,
+    "{": 334,
+    "|": 260,
+    "}": 334,
+    "~": 584,
+}
 
 
 class SvgText(SvgElement):
@@ -109,7 +213,10 @@ class SvgText(SvgElement):
         :return: The computed width of the text in the specified font and size.
         """
 
-        return stringWidth(text, font_name, font_size)
+        if font_name.casefold() != "helvetica":
+            return len(text) * font_size * 0.556
+        units = sum(_HELVETICA_WIDTHS.get(character, 556) for character in text)
+        return units * font_size / 1000
 
     def _compute_text_height(self, font_size: float) -> float:
         """

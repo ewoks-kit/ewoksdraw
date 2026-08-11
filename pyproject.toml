@@ -17,7 +17,6 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "ewokscore>=5.1.0rc2,<6",
-    "reportlab",
     "xmltodict",
     "pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications",
 ]
