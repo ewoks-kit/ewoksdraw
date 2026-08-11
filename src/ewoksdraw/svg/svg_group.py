@@ -1,4 +1,5 @@
 import re
+from typing import Any
 from typing import Iterable
 from typing import Union
 from xml.etree.ElementTree import Element
@@ -15,9 +16,22 @@ class SvgGroup:
         r"translate\(\s*[-+]?\d*\.?\d+(?:[,\s]+[-+]?\d*\.?\d+)?\s*\)"
     )
 
-    def __init__(self):
-        self.elements = []
+    def __init__(
+        self,
+        group_id: str | None = None,
+        css_class: str | None = None,
+        attr: dict[str, str] | None = None,
+    ):
+        self.elements: list[Any] = []
+        self._group_id = group_id
+        self._css_class = css_class
+        self._attr = dict(attr or {})
         self._transform = ""
+
+    def set_attr(self, key: str, value: str) -> None:
+        """Set an attribute on the generated SVG group."""
+
+        self._attr[key] = value
 
     def add_elements(self, elements: Iterable[Union[SvgElement, "SvgGroup"]]) -> None:
         """
@@ -61,7 +75,11 @@ class SvgGroup:
     @property
     def xml_element(self) -> Element:
         """Returns the XML representation of the group element."""
-        group_el = Element("g")
+        group_el = Element("g", self._attr)
+        if self._group_id is not None:
+            group_el.set("id", self._group_id)
+        if self._css_class is not None:
+            group_el.set("class", self._css_class)
         if self._transform:
             group_el.set("transform", self._transform)
         for element in self.elements:

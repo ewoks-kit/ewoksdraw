@@ -14,12 +14,15 @@ pip install "git+https://github.com/ewoks-kit/ewoksdraw.git"
 ```
 
 ```python
-from ewoks import load_graph
+from ewokscore import load_graph
 from ewoksdraw import graph_to_svg
 
-# Load a graph with `ewoks.load_graph`
+# Load a graph with Ewokscore 5.1
 graph = load_graph(...)
 
-# Generate the SVG 
-graph_to_svg(graph, output='my_workflow.svg')
+# Generate the SVG document
+svg = graph_to_svg(graph)
+
+with open("my_workflow.svg", "w", encoding="utf-8") as stream:
+    stream.write(svg)
 ```

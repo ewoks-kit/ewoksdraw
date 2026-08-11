@@ -16,10 +16,9 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "ewokscore<5",
+    "ewokscore>=5.1.0rc2,<6",
     "reportlab",
     "xmltodict",
-    "ewoks>=5.0.0,<6",
     "pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications",
 ]
 
@@ -57,6 +56,9 @@ where = ["src"]
 [tool.coverage.run]
 omit = ["*/tests/*"]
 
+[tool.pytest.ini_options]
+testpaths = ["src/ewoksdraw/tests"]
+
 [tool.ruff]
 src = ["."]
 line-length = 88
@@ -81,6 +83,7 @@ preview = ["pixi-build"]
 
 [tool.pixi.pypi-dependencies]
 ewoksdraw = { path = ".", editable = true }
+ewokscore = { path = "../ewokscore", editable = true }
 
 [tool.pixi.environments]
 default = { solve-group = "default" }

@@ -17,11 +17,22 @@ class SvgTaskIO(SvgGroup):
     :param io_type: The type of IO, typically "input" or "output".
     """
 
-    def __init__(self, io_txt: str, io_type: Literal["input", "output"]):
-        super().__init__()
-
+    def __init__(
+        self,
+        node_id: str,
+        io_txt: str,
+        io_type: Literal["input", "output"],
+    ):
         if io_type not in ("input", "output"):
             raise ValueError(f"io_type must be 'input' or 'output', got '{io_type}'")
+        super().__init__(
+            css_class="ewoks-port",
+            attr={
+                "data-ewoks-node-id": node_id,
+                "data-ewoks-port-kind": io_type,
+                "data-ewoks-port-name": io_txt,
+            },
+        )
         self._io_type: Literal["input", "output"] = io_type
         self._io_txt: str = io_txt
         self._anchor_text_spacing: int = IO_ANCHOR_TEXT_MARGIN
@@ -101,6 +112,7 @@ class SvgTaskIOGroup(SvgGroup):
 
     def __init__(
         self,
+        node_id: str,
         list_io: list[str],
         io_type: Literal["input", "output"],
         vertical_spacing: float = 10,
@@ -110,6 +122,7 @@ class SvgTaskIOGroup(SvgGroup):
         if io_type not in ("input", "output"):
             raise ValueError(f"io_type must be 'input' or 'output', got '{io_type}'")
         self._io_type = io_type
+        self._node_id = node_id
         self._list_io = list_io
         self._vertical_spacing = vertical_spacing
         self._init_elements()
@@ -196,7 +209,12 @@ class SvgTaskIOGroup(SvgGroup):
         """
 
         list_svg_io = [
-            SvgTaskIO(io_txt=io, io_type=self._io_type) for io in self._list_io
+            SvgTaskIO(
+                node_id=self._node_id,
+                io_txt=io,
+                io_type=self._io_type,
+            )
+            for io in self._list_io
         ]
 
         self.add_elements(list_svg_io)

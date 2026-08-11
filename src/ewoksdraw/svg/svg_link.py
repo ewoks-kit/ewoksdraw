@@ -11,10 +11,32 @@ class SvgLink(SvgElement):
         points: list[dict],
         routing: str | None = None,
         color: str | None = None,
+        link_id: str | None = None,
+        source_node_id: str | None = None,
+        source_output: str | None = None,
+        target_node_id: str | None = None,
+        target_input: str | None = None,
+        map_all_data: bool = False,
     ):
         attr = {"d": self._path_data(points, routing)}
         if color:
             attr["style"] = f"stroke: {color};"
+        semantic_attributes = {
+            "data-ewoks-link-id": link_id,
+            "data-ewoks-source-node-id": source_node_id,
+            "data-ewoks-source-output": source_output,
+            "data-ewoks-target-node-id": target_node_id,
+            "data-ewoks-target-input": target_input,
+        }
+        attr.update(
+            {
+                name: value
+                for name, value in semantic_attributes.items()
+                if value is not None
+            }
+        )
+        if map_all_data:
+            attr["data-ewoks-map-all-data"] = "true"
         super().__init__(tag="path", css_class="link", attr=attr)
 
     def _path_data(self, points: list[dict], routing: str | None = None) -> str:
@@ -68,7 +90,4 @@ class SvgLink(SvgElement):
             "x": end["x"] + (control["x"] - end["x"]) * 2 / 3,
             "y": end["y"] + (control["y"] - end["y"]) * 2 / 3,
         }
-        return (
-            f"C {c1['x']} {c1['y']} {c2['x']} {c2['y']} "
-            f"{end['x']} {end['y']}"
-        )
+        return f"C {c1['x']} {c1['y']} {c2['x']} {c2['y']} {end['x']} {end['y']}"

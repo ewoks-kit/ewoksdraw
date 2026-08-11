@@ -26,7 +26,11 @@ class SvgTask(SvgGroup):
         input_names: list[str],
         output_names: list[str],
     ):
-        super().__init__()
+        super().__init__(
+            group_id=task_name,
+            css_class="ewoks-task",
+            attr={"data-ewoks-node-id": task_name},
+        )
 
         self._task_name = task_name
         self._input_names = input_names
@@ -36,10 +40,16 @@ class SvgTask(SvgGroup):
         self._title = SvgTaskTitle(text=task_name, x=0, y=0)
         self._box = SvgTaskBox(x=0, y=0)
         self._inputs = SvgTaskIOGroup(
-            list_io=input_names, io_type="input", vertical_spacing=8
+            node_id=task_name,
+            list_io=input_names,
+            io_type="input",
+            vertical_spacing=8,
         )
         self._outputs = SvgTaskIOGroup(
-            list_io=output_names, io_type="output", vertical_spacing=8
+            node_id=task_name,
+            list_io=output_names,
+            io_type="output",
+            vertical_spacing=8,
         )
         self._line_title = SvgTaskLine(x1=0, y1=0, x2=0, y2=0)
 

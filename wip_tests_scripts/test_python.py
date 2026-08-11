@@ -1,5 +1,6 @@
+from pathlib import Path
 
-from ewoks import load_graph
+from ewokscore import load_graph
 from ewoksdraw import graph_to_svg
 
 EDGE_MODE = "bspline"  # "orthogonal", "polyline", or "bspline"
@@ -18,7 +19,7 @@ graph_path = "./wip_tests_scripts/optimize_geometry_loop_workflow.json"
 output_svg = f"./wip_tests_scripts/optimize_geometry_loop_workflow{EDGE_MODE}.svg"
 graph = load_graph(graph_path)
 
-elk_graph = graph_to_svg(
+svg = graph_to_svg(
     graph,
     {
         "elk.algorithm": "layered",
@@ -28,7 +29,5 @@ elk_graph = graph_to_svg(
         "elk.layered.spacing.edgeEdgeBetweenLayers": 20,
         **EDGE_ROUTING_OPTIONS[EDGE_MODE],
     },
-    output_svg,
 )
-
-
+Path(output_svg).write_text(svg, encoding="utf-8")

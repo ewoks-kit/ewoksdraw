@@ -1,4 +1,4 @@
-from pathlib import Path
+from importlib.resources import files
 from typing import Literal
 from typing import Optional
 from xml.etree.ElementTree import Element
@@ -113,12 +113,13 @@ class SvgElement:
         if not self._css_class:
             return None
 
-        css_file_path = Path(f"src/ewoksdraw/css_styles/css_{self._css_class}.css")
-        if not css_file_path.exists():
+        css_file = files("ewoksdraw").joinpath(
+            "css_styles", f"css_{self._css_class}.css"
+        )
+        if not css_file.is_file():
             return None
 
-        with open(css_file_path, "r") as css_file:
-            css_content = css_file.read()
+        css_content = css_file.read_text(encoding="utf-8")
         style = Element("style")
         style.text = f"<![CDATA[\n{css_content}\n]]>"
         return style

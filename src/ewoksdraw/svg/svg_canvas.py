@@ -57,7 +57,12 @@ class SvgCanvas:
         :param filename: The name of the file to save the SVG content.
         """
         with open(filename, "w") as file:
-            file.write(self._get_svg_string())
+            file.write(self.to_string())
+
+    def to_string(self) -> str:
+        """Return the complete SVG document as a string."""
+
+        return pretty_print_xml(self.xml)
 
     @property
     def xml(self) -> Element:
@@ -71,13 +76,7 @@ class SvgCanvas:
         """
         Returns the SVG canvas as a dictionary.
         """
-        return xmltodict.parse(self._get_svg_string())
-
-    def _get_svg_string(self) -> str:
-        """
-        Helper method to get the final, pretty-printed SVG string.
-        """
-        return pretty_print_xml(self.xml)
+        return xmltodict.parse(self.to_string())
 
     def _generate_xml_svg(self) -> Element:
         """
@@ -88,6 +87,7 @@ class SvgCanvas:
             xmlns="http://www.w3.org/2000/svg",
             width=str(self.width),
             height=str(self.height),
+            viewBox=f"0 0 {self.width} {self.height}",
         )
 
         style_elements = self._gather_all_styles()
