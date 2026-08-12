@@ -198,12 +198,6 @@ def graph_to_svg(
     svg_background = SvgBackground(canvas_width, canvas_height)
     canvas.add_element(svg_background)
 
-    for child in children:
-        svg_task = svg_tasks_by_id[child["id"]]
-        svg_task.set_translation(x=child["x"], y=child["y"])
-
-        canvas.add_element(svg_task)
-
     for link in link_coordinates:
         link_metadata = link_metadata_by_id.get(link["id"], {})
         for section in link["sections"]:
@@ -217,5 +211,11 @@ def graph_to_svg(
                         **link_metadata,
                     )
                 )
+
+    for child in children:
+        svg_task = svg_tasks_by_id[child["id"]]
+        svg_task.set_translation(x=child["x"], y=child["y"])
+
+        canvas.add_element(svg_task)
 
     return canvas.to_string()
