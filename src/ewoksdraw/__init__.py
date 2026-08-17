@@ -93,6 +93,7 @@ def graph_to_svg(
         "edges": [],
     }
 
+    node_ports_by_id: dict[str, dict[str, list[str]]] = {}
     for node_id, node_attrs in graph.graph.nodes.items():
         port_override = (node_ports or {}).get(node_id, {})
         if "inputs" in port_override:
@@ -107,6 +108,7 @@ def graph_to_svg(
             node_outputs = get_all_task_output_names(
                 node_attrs["task_type"], node_attrs["task_identifier"]
             )
+        node_ports_by_id[node_id] = {"inputs": node_inputs, "outputs": node_outputs}
         svg_task = SvgTask(
             task_name=node_id,
             input_names=node_inputs,
@@ -157,20 +159,47 @@ def graph_to_svg(
                     "map_all_data": False,
                 }
         else:
-            edge_id = f"edge_{source}_{target}"
-            edge_desc = {
-                "id": edge_id,
-                "sources": [source],
-                "targets": [target],
-            }
-            elk_graph["edges"].append(edge_desc)
-            link_metadata_by_id[edge_id] = {
-                "source_node_id": str(source),
-                "source_output": None,
-                "target_node_id": str(target),
-                "target_input": None,
-                "map_all_data": bool(link_attrs.get("map_all_data")),
-            }
+            map_all_data = bool(link_attrs.get("map_all_data"))
+            matched_names = []
+            if map_all_data:
+                source_outputs = node_ports_by_id.get(source, {}).get("outputs", [])
+                target_inputs = node_ports_by_id.get(target, {}).get("inputs", [])
+                matched_names = [
+                    name for name in source_outputs if name in target_inputs
+                ]
+            if matched_names:
+                for index, name in enumerate(matched_names):
+                    edge_id = f"edge_{source}_{target}_{index}"
+                    source_endpoint = svg_tasks_by_id[source].output_port_id(name)
+                    target_endpoint = svg_tasks_by_id[target].input_port_id(name)
+                    edge_desc = {
+                        "id": edge_id,
+                        "sources": [source_endpoint],
+                        "targets": [target_endpoint],
+                    }
+                    elk_graph["edges"].append(edge_desc)
+                    link_metadata_by_id[edge_id] = {
+                        "source_node_id": str(source),
+                        "source_output": str(name),
+                        "target_node_id": str(target),
+                        "target_input": str(name),
+                        "map_all_data": True,
+                    }
+            else:
+                edge_id = f"edge_{source}_{target}"
+                edge_desc = {
+                    "id": edge_id,
+                    "sources": [source],
+                    "targets": [target],
+                }
+                elk_graph["edges"].append(edge_desc)
+                link_metadata_by_id[edge_id] = {
+                    "source_node_id": str(source),
+                    "source_output": None,
+                    "target_node_id": str(target),
+                    "target_input": None,
+                    "map_all_data": map_all_data,
+                }
 
     elk = ELK()
     result = elk.layout(elk_graph)
