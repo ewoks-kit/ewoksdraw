@@ -6,9 +6,9 @@ from ewokscore.graph import TaskGraph
 
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 
-from ..svg.svg_task import IOPositions
 from ..svg.svg_task import TaskIOPosition
-from ..svg.svg_task_group import TaskIOPositions
+from ..svg.svg_task_group import TaskInputPositions
+from ..svg.svg_task_group import TaskOutputPositions
 from ..svg.svg_task_group import TaskSizes
 
 
@@ -18,7 +18,7 @@ class ElkPort(TypedDict):
     y: float
     width: float
     height: float
-    layout_options: dict[str, Any]
+    layoutOptions: dict[str, Any]
 
 
 class ElkChild(TypedDict):
@@ -45,13 +45,15 @@ class ElkGraph(TypedDict):
 def convert_ewoks_to_elk_graph(
     ewoks_graph: TaskGraph,
     task_sizes: TaskSizes,
-    task_io_positions: TaskIOPositions,
+    task_input_positions: TaskInputPositions,
+    task_output_positions: TaskOutputPositions,
 ) -> ElkGraph:
     """Convert an Ewoks task graph into an ELK layout graph.
 
     :param ewoks_graph: the task graph to convert, e.g. from ``ewokscore.load_graph``.
     :param task_sizes: width and height of each task.
-    :param task_io_positions: input and output positions of each task.
+    :param task_input_positions: input positions of each task.
+    :param task_output_positions: output positions of each task.
     """
     node_ids = set(ewoks_graph.graph.nodes)
     if node_ids != task_sizes.keys():
@@ -60,23 +62,33 @@ def convert_ewoks_to_elk_graph(
             f"{sorted(node_ids)}"
         )
 
-    if node_ids != task_io_positions.keys():
+    if node_ids != task_input_positions.keys():
         raise ValueError(
-            "task_io_positions "
-            f"{sorted(task_io_positions)} do not match ewoks_graph task ids "
+            "task_input_positions "
+            f"{sorted(task_input_positions)} do not match ewoks_graph task ids "
+            f"{sorted(node_ids)}"
+        )
+
+    if node_ids != task_output_positions.keys():
+        raise ValueError(
+            "task_output_positions "
+            f"{sorted(task_output_positions)} do not match ewoks_graph task ids "
             f"{sorted(node_ids)}"
         )
 
     children: list[ElkChild] = []
     used_ids: set[str] = set()
     for task_id in ewoks_graph.graph.nodes:
-        width, height = task_sizes[task_id]
-        ports = _convert_io_positions_to_elk_ports(task_id, task_io_positions[task_id])
+        ports = _convert_io_positions_to_elk_ports(
+            task_id,
+            task_input_positions[task_id],
+            task_output_positions[task_id],
+        )
         children.append(
             {
                 "id": task_id,
-                "width": width,
-                "height": height,
+                "width": task_sizes[task_id].width,
+                "height": task_sizes[task_id].height,
                 "layoutOptions": {
                     "org.eclipse.elk.portConstraints": "FIXED_POS",
                 },
@@ -101,7 +113,7 @@ def convert_ewoks_to_elk_graph(
 
         for mapping in link_attrs.get("data_mapping", []):
             source_output = mapping.get("source_output")
-            if not source_output:
+            if source_output is None:
                 warnings.warn(
                     f"Data mapping on Ewoks link {source!r} -> {target!r} has no "
                     "'source_output', which is not yet supported.",
@@ -132,16 +144,18 @@ def convert_ewoks_to_elk_graph(
 
 
 def _convert_io_positions_to_elk_ports(
-    task_id: str, io_positions: IOPositions
+    task_id: str,
+    input_positions: list[TaskIOPosition],
+    output_positions: list[TaskIOPosition],
 ) -> list[ElkPort]:
     ports = _convert_positions_to_elk_ports(
-        io_positions.inputs,
+        input_positions,
         id_prefix=f"{task_id}.input",
         elk_port_side="WEST",
     )
     ports.extend(
         _convert_positions_to_elk_ports(
-            io_positions.outputs,
+            output_positions,
             id_prefix=f"{task_id}.output",
             elk_port_side="EAST",
         )

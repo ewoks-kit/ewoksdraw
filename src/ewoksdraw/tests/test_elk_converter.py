@@ -8,9 +8,9 @@ from pyelk.graph import validate_graph
 from ewoksdraw import build_svg_task_group
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
-from ewoksdraw.svg.svg_task import IOPositions
 from ewoksdraw.svg.svg_task import TaskIOPosition
-from ewoksdraw.svg.svg_task_group import TaskIOPositions
+from ewoksdraw.svg.svg_task_group import TaskInputPositions
+from ewoksdraw.svg.svg_task_group import TaskOutputPositions
 from ewoksdraw.svg.svg_task_group import TaskSize
 from ewoksdraw.svg.svg_task_group import TaskSizes
 
@@ -28,10 +28,12 @@ def _task_sizes(graph: TaskGraph) -> TaskSizes:
     }
 
 
-def _task_io_positions(graph: TaskGraph) -> TaskIOPositions:
-    return {
-        node_id: IOPositions(inputs=[], outputs=[]) for node_id in graph.graph.nodes
-    }
+def _task_input_positions(graph: TaskGraph) -> TaskInputPositions:
+    return {node_id: [] for node_id in graph.graph.nodes}
+
+
+def _task_output_positions(graph: TaskGraph) -> TaskOutputPositions:
+    return {node_id: [] for node_id in graph.graph.nodes}
 
 
 def test_top_level_structure() -> None:
@@ -39,7 +41,10 @@ def test_top_level_structure() -> None:
     graph = load_graph(graph_description)
 
     elk_graph = convert_ewoks_to_elk_graph(
-        graph, _task_sizes(graph), _task_io_positions(graph)
+        graph,
+        _task_sizes(graph),
+        _task_input_positions(graph),
+        _task_output_positions(graph),
     )
 
     assert elk_graph["id"] == "__ewoksdraw_root__"
@@ -60,7 +65,8 @@ def test_root_id_does_not_collide_with_task_ids() -> None:
     elk_graph = convert_ewoks_to_elk_graph(
         graph,
         {task_id: TaskSize(width=1.0, height=1.0)},
-        {task_id: IOPositions(inputs=[], outputs=[])},
+        {task_id: []},
+        {task_id: []},
     )
 
     assert elk_graph["id"] == "__ewoksdraw_root___1"
@@ -72,7 +78,12 @@ def test_children_match_task_sizes() -> None:
     graph = load_graph(graph_description)
     task_sizes = _task_sizes(graph)
 
-    elk_graph = convert_ewoks_to_elk_graph(graph, task_sizes, _task_io_positions(graph))
+    elk_graph = convert_ewoks_to_elk_graph(
+        graph,
+        task_sizes,
+        _task_input_positions(graph),
+        _task_output_positions(graph),
+    )
 
     assert len(elk_graph["children"]) == len(task_sizes)
     for child in elk_graph["children"]:
@@ -88,15 +99,14 @@ def test_children_include_io_positions_as_elk_ports() -> None:
         "links": [],
     }
     graph = load_graph(graph_description)
-    positions = {
-        "task": IOPositions(
-            inputs=[TaskIOPosition(name="value", x=0.0, y=10.0)],
-            outputs=[TaskIOPosition(name="result", x=20.0, y=15.0)],
-        )
-    }
+    input_positions = {"task": [TaskIOPosition(name="value", x=0.0, y=10.0)]}
+    output_positions = {"task": [TaskIOPosition(name="result", x=20.0, y=15.0)]}
 
     elk_graph = convert_ewoks_to_elk_graph(
-        graph, {"task": TaskSize(width=20.0, height=30.0)}, positions
+        graph,
+        {"task": TaskSize(width=20.0, height=30.0)},
+        input_positions,
+        output_positions,
     )
 
     assert elk_graph["children"][0]["ports"] == [
@@ -139,10 +149,8 @@ def test_link_without_data_mapping_produces_no_elk_edge() -> None:
     elk_graph = convert_ewoks_to_elk_graph(
         graph,
         {"a": size, "b": size},
-        {
-            "a": IOPositions(inputs=[], outputs=[]),
-            "b": IOPositions(inputs=[], outputs=[]),
-        },
+        {"a": [], "b": []},
+        {"a": [], "b": []},
     )
 
     assert elk_graph["edges"] == []
@@ -166,10 +174,8 @@ def test_link_with_map_all_data_produces_no_elk_edge() -> None:
         elk_graph = convert_ewoks_to_elk_graph(
             graph,
             {"a": size, "b": size},
-            {
-                "a": IOPositions(inputs=[], outputs=[]),
-                "b": IOPositions(inputs=[], outputs=[]),
-            },
+            {"a": [], "b": []},
+            {"a": [], "b": []},
         )
 
     assert elk_graph["edges"] == []
@@ -192,18 +198,16 @@ def test_data_mapping_without_source_output_is_not_drawn() -> None:
     }
     graph = load_graph(graph_description)
     size = TaskSize(width=1.0, height=1.0)
-    positions = {
-        "a": IOPositions(
-            inputs=[],
-            outputs=[TaskIOPosition(name="result", x=1.0, y=0.5)],
-        ),
-        "b": IOPositions(
-            inputs=[
-                TaskIOPosition(name="all_results", x=0.0, y=0.25),
-                TaskIOPosition(name="value", x=0.0, y=0.75),
-            ],
-            outputs=[],
-        ),
+    input_positions = {
+        "a": [],
+        "b": [
+            TaskIOPosition(name="all_results", x=0.0, y=0.25),
+            TaskIOPosition(name="value", x=0.0, y=0.75),
+        ],
+    }
+    output_positions = {
+        "a": [TaskIOPosition(name="result", x=1.0, y=0.5)],
+        "b": [],
     }
 
     with pytest.warns(
@@ -213,7 +217,12 @@ def test_data_mapping_without_source_output_is_not_drawn() -> None:
             r"which is not yet supported\."
         ),
     ):
-        elk_graph = convert_ewoks_to_elk_graph(graph, {"a": size, "b": size}, positions)
+        elk_graph = convert_ewoks_to_elk_graph(
+            graph,
+            {"a": size, "b": size},
+            input_positions,
+            output_positions,
+        )
 
     assert elk_graph["edges"] == [
         {
@@ -242,20 +251,23 @@ def test_link_with_multiple_data_mappings_produces_one_elk_edge_per_mapping() ->
     graph = load_graph(graph_description)
 
     size = TaskSize(width=1.0, height=1.0)
-    positions = {
-        "a": IOPositions(
-            inputs=[],
-            outputs=[TaskIOPosition(name="result", x=1.0, y=0.5)],
-        ),
-        "b": IOPositions(
-            inputs=[
-                TaskIOPosition(name="a", x=0.0, y=0.25),
-                TaskIOPosition(name="b", x=0.0, y=0.75),
-            ],
-            outputs=[],
-        ),
+    input_positions = {
+        "a": [],
+        "b": [
+            TaskIOPosition(name="a", x=0.0, y=0.25),
+            TaskIOPosition(name="b", x=0.0, y=0.75),
+        ],
     }
-    elk_graph = convert_ewoks_to_elk_graph(graph, {"a": size, "b": size}, positions)
+    output_positions = {
+        "a": [TaskIOPosition(name="result", x=1.0, y=0.5)],
+        "b": [],
+    }
+    elk_graph = convert_ewoks_to_elk_graph(
+        graph,
+        {"a": size, "b": size},
+        input_positions,
+        output_positions,
+    )
 
     assert elk_graph["edges"] == [
         {
@@ -286,22 +298,22 @@ def test_edge_id_does_not_collide_with_task_ids() -> None:
     }
     graph = load_graph(graph_description)
     size = TaskSize(width=1.0, height=1.0)
-    positions = {
-        "a": IOPositions(
-            inputs=[],
-            outputs=[TaskIOPosition(name="result", x=1.0, y=0.5)],
-        ),
-        "b": IOPositions(
-            inputs=[TaskIOPosition(name="value", x=0.0, y=0.5)],
-            outputs=[],
-        ),
-        colliding_task_id: IOPositions(inputs=[], outputs=[]),
+    input_positions = {
+        "a": [],
+        "b": [TaskIOPosition(name="value", x=0.0, y=0.5)],
+        colliding_task_id: [],
+    }
+    output_positions = {
+        "a": [TaskIOPosition(name="result", x=1.0, y=0.5)],
+        "b": [],
+        colliding_task_id: [],
     }
 
     elk_graph = convert_ewoks_to_elk_graph(
         graph,
         {"a": size, "b": size, colliding_task_id: size},
-        positions,
+        input_positions,
+        output_positions,
     )
 
     assert elk_graph["edges"][0]["id"] == "edge_0_a_b_1"
@@ -311,7 +323,7 @@ def test_graph_without_link() -> None:
     graph_description, _ = get_graph("empty")
     graph = load_graph(graph_description)
 
-    elk_graph = convert_ewoks_to_elk_graph(graph, {}, {})
+    elk_graph = convert_ewoks_to_elk_graph(graph, {}, {}, {})
 
     assert elk_graph["children"] == []
     assert elk_graph["edges"] == []
@@ -324,7 +336,12 @@ def test_children_and_edges_count_across_example_graphs(graph_name: str) -> None
     graph = load_graph(graph_description)
     task_sizes = _task_sizes(graph)
 
-    elk_graph = convert_ewoks_to_elk_graph(graph, task_sizes, _task_io_positions(graph))
+    elk_graph = convert_ewoks_to_elk_graph(
+        graph,
+        task_sizes,
+        _task_input_positions(graph),
+        _task_output_positions(graph),
+    )
 
     assert len(elk_graph["children"]) == graph.graph.number_of_nodes()
 
@@ -343,7 +360,8 @@ def test_task_sizes_missing_a_node_raises() -> None:
         convert_ewoks_to_elk_graph(
             graph,
             {"task1": TaskSize(width=10.0, height=20.0)},
-            _task_io_positions(graph),
+            _task_input_positions(graph),
+            _task_output_positions(graph),
         )
 
 
@@ -354,18 +372,37 @@ def test_task_sizes_with_extra_task_id_raises() -> None:
     task_sizes["not_a_node"] = TaskSize(width=1.0, height=1.0)
 
     with pytest.raises(ValueError):
-        convert_ewoks_to_elk_graph(graph, task_sizes, _task_io_positions(graph))
+        convert_ewoks_to_elk_graph(
+            graph,
+            task_sizes,
+            _task_input_positions(graph),
+            _task_output_positions(graph),
+        )
 
 
-def test_task_io_positions_missing_a_node_raises() -> None:
+def test_task_input_positions_missing_a_node_raises() -> None:
     graph_description, _ = get_graph("acyclic1")
     graph = load_graph(graph_description)
 
-    with pytest.raises(ValueError, match="task_io_positions"):
+    with pytest.raises(ValueError, match="task_input_positions"):
         convert_ewoks_to_elk_graph(
             graph,
             _task_sizes(graph),
-            {"task1": IOPositions(inputs=[], outputs=[])},
+            {"task1": []},
+            _task_output_positions(graph),
+        )
+
+
+def test_task_output_positions_missing_a_node_raises() -> None:
+    graph_description, _ = get_graph("acyclic1")
+    graph = load_graph(graph_description)
+
+    with pytest.raises(ValueError, match="task_output_positions"):
+        convert_ewoks_to_elk_graph(
+            graph,
+            _task_sizes(graph),
+            _task_input_positions(graph),
+            {"task1": []},
         )
 
 
@@ -379,7 +416,10 @@ def test_output_is_a_valid_pyelk_graph(graph_name: str) -> None:
     task_group = build_svg_task_group(graph)
 
     elk_graph = convert_ewoks_to_elk_graph(
-        graph, task_group.extract_task_sizes(), task_group.extract_io_positions()
+        graph,
+        task_group.extract_task_sizes(),
+        task_group.extract_input_positions(),
+        task_group.extract_output_positions(),
     )
 
     validate_graph(elk_graph)

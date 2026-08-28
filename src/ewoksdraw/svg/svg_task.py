@@ -20,11 +20,6 @@ class TaskIOPosition(NamedTuple):
     y: float
 
 
-class IOPositions(NamedTuple):
-    inputs: list[TaskIOPosition]
-    outputs: list[TaskIOPosition]
-
-
 class SvgTask(SvgGroup):
     """
     Represents a task as an SVG group containing title, input/output groups, box, and
@@ -144,12 +139,13 @@ class SvgTask(SvgGroup):
             + self._interspace_title_input
         )
 
-    def get_io_positions(self) -> IOPositions:
-        """Return the task-relative positions of the task inputs and outputs."""
-        return IOPositions(
-            inputs=self._get_group_io_positions(self._inputs),
-            outputs=self._get_group_io_positions(self._outputs),
-        )
+    def get_input_positions(self) -> list[TaskIOPosition]:
+        """Return the task-relative positions of the task inputs."""
+        return self._get_group_io_positions(self._inputs)
+
+    def get_output_positions(self) -> list[TaskIOPosition]:
+        """Return the task-relative positions of the task outputs."""
+        return self._get_group_io_positions(self._outputs)
 
     @staticmethod
     def _get_group_io_positions(group: SvgTaskIOGroup) -> list[TaskIOPosition]:

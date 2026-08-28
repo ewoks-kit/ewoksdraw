@@ -9,7 +9,8 @@ def test_io_positions_keep_original_names() -> None:
         output_names=["result"],
     )
 
-    positions = task.get_io_positions()
+    input_positions = task.get_input_positions()
+    output_positions = task.get_output_positions()
 
-    assert [position.name for position in positions.inputs] == [long_input_name]
-    assert [position.name for position in positions.outputs] == ["result"]
+    assert [position.name for position in input_positions] == [long_input_name]
+    assert [position.name for position in output_positions] == ["result"]
