@@ -2,10 +2,9 @@ from ewokscore.graph import TaskGraph
 from ewokscore.graph.inputs import _get_all_node_inputs
 from ewokscore.graph.inputs import _get_all_task_output_names
 
+from ..config.constants import TASK_GROUP_HORIZONTAL_GAP
 from ..svg.svg_task import SvgTask
 from ..svg.svg_task_group import SvgTaskGroup
-
-TASK_GROUP_HORIZONTAL_GAP = 10.0
 
 
 def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:

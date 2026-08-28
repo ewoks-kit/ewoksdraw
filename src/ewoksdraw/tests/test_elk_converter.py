@@ -7,7 +7,7 @@ from pyelk.graph import validate_graph
 
 from ewoksdraw import build_svg_task_group
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
-from ewoksdraw.layout.elk_converter import ElkGraph
+from ewoksdraw.layout.elk_converter import LaidOutElkGraph
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
 from ewoksdraw.layout.elk_converter import extract_task_positions_from_elk_graph
 from ewoksdraw.svg.svg_task import TaskIOPosition
@@ -40,7 +40,7 @@ def _task_output_positions(graph: TaskGraph) -> TaskOutputPositions:
 
 
 def test_extract_task_positions_from_elk_graph() -> None:
-    laid_out_graph: ElkGraph = {
+    laid_out_graph: LaidOutElkGraph = {
         "id": "root",
         "width": 100.0,
         "height": 100.0,

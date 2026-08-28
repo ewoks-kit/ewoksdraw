@@ -3,7 +3,6 @@ from typing import Any
 from typing import TypedDict
 
 from ewokscore.graph import TaskGraph
-from typing_extensions import NotRequired
 
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 
@@ -24,34 +23,77 @@ class ElkPort(TypedDict):
     layoutOptions: dict[str, Any]
 
 
-class ElkChild(TypedDict):
+class ElkChildBase(TypedDict):
     id: str
     width: float
     height: float
-    x: NotRequired[float]
-    y: NotRequired[float]
     layoutOptions: dict[str, Any]
     ports: list[ElkPort]
 
 
-class ElkEdge(TypedDict):
+class ElkChild(ElkChildBase):
+    """An ELK child before layout."""
+
+
+class LaidOutElkChild(ElkChildBase):
+    """An ELK child with coordinates computed by ELK."""
+
+    x: float
+    y: float
+
+
+class ElkPoint(TypedDict):
+    x: float
+    y: float
+
+
+class ElkSection(TypedDict):
+    id: str
+    startPoint: ElkPoint
+    bendPoints: list[ElkPoint]
+    endPoint: ElkPoint
+    routing: str
+
+
+class ElkEdgeBase(TypedDict):
     id: str
     sources: list[str]
     targets: list[str]
-    sections: NotRequired[list[dict[str, Any]]]
 
 
-class ElkGraph(TypedDict):
+class ElkEdge(ElkEdgeBase):
+    """An ELK edge before layout."""
+
+
+class LaidOutElkEdge(ElkEdgeBase):
+    """An ELK edge with routing sections computed by ELK."""
+
+    sections: list[ElkSection]
+
+
+class ElkGraphBase(TypedDict):
     id: str
-    width: NotRequired[float]
-    height: NotRequired[float]
     layoutOptions: dict[str, Any]
+
+
+class ElkGraph(ElkGraphBase):
+    """An ELK graph before layout."""
+
     children: list[ElkChild]
     edges: list[ElkEdge]
 
 
+class LaidOutElkGraph(ElkGraphBase):
+    """An ELK graph with coordinates and routing computed by ELK."""
+
+    width: float
+    height: float
+    children: list[LaidOutElkChild]
+    edges: list[LaidOutElkEdge]
+
+
 def extract_task_positions_from_elk_graph(
-    laid_out_graph: ElkGraph,
+    laid_out_graph: LaidOutElkGraph,
 ) -> TaskPositions:
     """Extract SVG task positions from a laid-out ELK graph."""
     return [

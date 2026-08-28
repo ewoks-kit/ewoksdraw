@@ -4,6 +4,7 @@ from ewokscore.graph import TaskGraph
 from pyelk import ELK
 
 from .layout.elk_converter import ElkGraph
+from .layout.elk_converter import LaidOutElkGraph
 from .layout.elk_converter import convert_ewoks_to_elk_graph
 from .layout.elk_converter import extract_task_positions_from_elk_graph
 from .layout.elk_link_group_builder import build_svg_link_group
@@ -19,7 +20,7 @@ def graph_to_svg(graph: TaskGraph, output_path: str | Path) -> None:
         task_group.extract_input_positions(),
         task_group.extract_output_positions(),
     )
-    laid_out_graph: ElkGraph = ELK().layout(elk_graph)
+    laid_out_graph: LaidOutElkGraph = ELK().layout(elk_graph)
 
     task_positions = extract_task_positions_from_elk_graph(laid_out_graph)
     task_group.set_task_positions(task_positions)
