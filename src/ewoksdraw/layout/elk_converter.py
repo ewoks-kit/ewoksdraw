@@ -18,7 +18,7 @@ class ElkPort(TypedDict):
     y: float
     width: float
     height: float
-    layoutOptions: dict[str, Any]
+    layout_options: dict[str, Any]
 
 
 class ElkChild(TypedDict):
