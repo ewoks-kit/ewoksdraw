@@ -4,10 +4,19 @@ from xml.etree.ElementTree import Element
 import pytest
 from defusedxml import ElementTree
 from ewokscore import load_graph
+from ewokscore.graph import TaskGraph
 from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
 
 from ewoksdraw import graph_to_svg
+
+pytestmark = pytest.mark.filterwarnings("ignore:.*uses 'map_all_data'.*:UserWarning")
+
+
+@pytest.fixture(params=graph_names(), ids=graph_names())
+def ewoks_graph(request: pytest.FixtureRequest) -> TaskGraph:
+    graph_description, _ = get_graph(request.param)
+    return load_graph(graph_description)
 
 
 def _find_svg_group(parent: Element, group_id: str) -> Element:
@@ -25,57 +34,63 @@ def _translation(group: Element) -> tuple[float, float]:
     return float(coordinates[0]), float(coordinates[1])
 
 
-@pytest.mark.parametrize("graph_name", graph_names())
-@pytest.mark.filterwarnings("ignore:.*uses 'map_all_data'.*:UserWarning")
-def test_groups_are_matching_nodes(graph_name: str, tmp_path: Path) -> None:
-    output_path = tmp_path / f"{graph_name}.svg"
-
-    graph, _ = get_graph(graph_name)
-    ewoksgraph = load_graph(graph)
-
-    graph_to_svg(ewoksgraph, output_path)
+def test_groups_are_matching_nodes(ewoks_graph: TaskGraph, tmp_path: Path) -> None:
+    output_path = tmp_path / f"{ewoks_graph.graph_id}.svg"
+    graph_to_svg(ewoks_graph, output_path)
 
     assert output_path.is_file()
 
     tree = ElementTree.parse(output_path)
-    task_group = _find_svg_group(tree.getroot(), str(ewoksgraph.graph_id))
-    for node_name in ewoksgraph.graph.nodes:
+    task_group = _find_svg_group(tree.getroot(), str(ewoks_graph.graph_id))
+    for node_name in ewoks_graph.graph.nodes:
         svg_task = _find_svg_group(task_group, str(node_name))
         assert svg_task[0].text == node_name
 
 
-def test_elk_positions_connected_tasks(tmp_path: Path) -> None:
+def test_elk_positions_data_mapped_tasks(
+    ewoks_graph: TaskGraph, tmp_path: Path
+) -> None:
     """Testing Elk computed layout give left->right connected tasks position"""
-    output_path = tmp_path / "acyclic1.svg"
-    graph_description, _ = get_graph("acyclic1")
-    graph = load_graph(graph_description)
+    if ewoks_graph.is_cyclic:
+        pytest.skip("Left-to-right edge ordering does not apply to cyclic workflows")
 
-    graph_to_svg(graph, output_path)
+    output_path = tmp_path / f"{ewoks_graph.graph_id}.svg"
+    graph_to_svg(ewoks_graph, output_path)
 
+    # SVG
     root = ElementTree.parse(output_path).getroot()
-    task_group = _find_svg_group(root, str(graph.graph_id))
-    positions = {
-        task_id: _translation(_find_svg_group(task_group, task_id))
-        for task_id in graph.graph.nodes
-    }
-    for source, target in graph.graph.edges:
+    task_group = _find_svg_group(root, str(ewoks_graph.graph_id))
+    positions: dict[str, tuple[float, float]] = {}
+
+    # Ewoks Graph
+    for task_id in ewoks_graph.graph.nodes:
+        svg_task = _find_svg_group(task_group, task_id)
+        task_position = _translation(svg_task)
+        positions[task_id] = task_position
+
+    for source, target, attributes in ewoks_graph.graph.edges(data=True):
+        if not attributes.get("data_mapping"):
+            continue
+
+        # Going through the source/target couples in ewoks graph edges
+        # checking for each the computed ELK positions
+        # gives source on the left of target
         assert positions[source][0] < positions[target][0]
 
 
-def test_elk_links_are_rendered(tmp_path: Path) -> None:
-    output_path = tmp_path / "acyclic1.svg"
-    graph_description, _ = get_graph("acyclic1")
-    graph = load_graph(graph_description)
+def test_elk_links_are_rendered(ewoks_graph: TaskGraph, tmp_path: Path) -> None:
+    output_path = tmp_path / f"{ewoks_graph.graph_id}.svg"
+    graph_to_svg(ewoks_graph, output_path)
 
-    graph_to_svg(graph, output_path)
-
+    # SVG
     root = ElementTree.parse(output_path).getroot()
-    link_group = _find_svg_group(root, f"{graph.graph_id}-links")
+    link_group = _find_svg_group(root, f"{ewoks_graph.graph_id}-links")
     links = [element for element in link_group if element.tag.endswith("path")]
 
+    # Ewoks Graph
     expected_link_count = sum(
         len(attributes.get("data_mapping", []))
-        for _, _, attributes in graph.graph.edges(data=True)
+        for _, _, attributes in ewoks_graph.graph.edges(data=True)
     )
     assert len(links) == expected_link_count
     assert all(link.get("class") == "link_cubic_bezier" for link in links)
