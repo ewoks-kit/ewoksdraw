@@ -3,12 +3,15 @@ from typing import Any
 from typing import TypedDict
 
 from ewokscore.graph import TaskGraph
+from typing_extensions import NotRequired
 
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 
 from ..svg.svg_task import TaskIOPosition
+from ..svg.svg_task import TaskPosition
 from ..svg.svg_task_group import TaskInputPositions
 from ..svg.svg_task_group import TaskOutputPositions
+from ..svg.svg_task_group import TaskPositions
 from ..svg.svg_task_group import TaskSizes
 
 
@@ -25,6 +28,8 @@ class ElkChild(TypedDict):
     id: str
     width: float
     height: float
+    x: NotRequired[float]
+    y: NotRequired[float]
     layoutOptions: dict[str, Any]
     ports: list[ElkPort]
 
@@ -33,13 +38,26 @@ class ElkEdge(TypedDict):
     id: str
     sources: list[str]
     targets: list[str]
+    sections: NotRequired[list[dict[str, Any]]]
 
 
 class ElkGraph(TypedDict):
     id: str
+    width: NotRequired[float]
+    height: NotRequired[float]
     layoutOptions: dict[str, Any]
     children: list[ElkChild]
     edges: list[ElkEdge]
+
+
+def extract_task_positions_from_elk_graph(
+    laid_out_graph: ElkGraph,
+) -> TaskPositions:
+    """Extract SVG task positions from a laid-out ELK graph."""
+    return [
+        TaskPosition(name=child["id"], x=child["x"], y=child["y"])
+        for child in laid_out_graph["children"]
+    ]
 
 
 def convert_ewoks_to_elk_graph(

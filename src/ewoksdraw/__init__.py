@@ -1,35 +1,33 @@
 from pathlib import Path
 
 from ewokscore.graph import TaskGraph
-from ewokscore.graph.inputs import _get_all_node_inputs
-from ewokscore.graph.inputs import _get_all_task_output_names
+from pyelk import ELK
 
+from .layout.elk_converter import ElkGraph
+from .layout.elk_converter import convert_ewoks_to_elk_graph
+from .layout.elk_converter import extract_task_positions_from_elk_graph
+from .layout.elk_link_group_builder import build_svg_link_group
+from .layout.ewoks_task_group_builder import build_svg_task_group
 from .svg.svg_canvas import SvgCanvas
-from .svg.svg_task import SvgTask
-from .svg.svg_task_group import SvgTaskGroup
-
-GAP = 10.0
-DEFAULT_HEIGHT = 500
-
-
-def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
-    svg_tasks = {}
-    for node_id, node_attrs in graph.graph.nodes.items():
-        node_inputs = _get_all_node_inputs(node_id, node_attrs)
-        node_outputs = _get_all_task_output_names(
-            node_attrs["task_type"], node_attrs["task_identifier"]
-        )
-        svg_tasks[node_id] = SvgTask(
-            task_name=node_id,
-            input_names=[n.name for n in node_inputs],
-            output_names=node_outputs,
-        )
-    return SvgTaskGroup(svg_tasks, horizontal_gap=GAP, group_id=str(graph.graph_id))
 
 
 def graph_to_svg(graph: TaskGraph, output_path: str | Path) -> None:
     task_group = build_svg_task_group(graph)
-    canvas = SvgCanvas(width=task_group.width, height=task_group.height + 2 * GAP)
+    elk_graph: ElkGraph = convert_ewoks_to_elk_graph(
+        graph,
+        task_group.extract_task_sizes(),
+        task_group.extract_input_positions(),
+        task_group.extract_output_positions(),
+    )
+    laid_out_graph: ElkGraph = ELK().layout(elk_graph)
+
+    task_positions = extract_task_positions_from_elk_graph(laid_out_graph)
+    task_group.set_task_positions(task_positions)
+
+    canvas = SvgCanvas(width=laid_out_graph["width"], height=laid_out_graph["height"])
     canvas.add_background()
+    canvas.add_element(
+        build_svg_link_group(laid_out_graph, group_id=f"{graph.graph_id}-links")
+    )
     canvas.add_element(task_group)
     canvas.draw(output_path)

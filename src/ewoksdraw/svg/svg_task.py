@@ -20,6 +20,12 @@ class TaskIOPosition(NamedTuple):
     y: float
 
 
+class TaskPosition(NamedTuple):
+    name: str
+    x: float
+    y: float
+
+
 class SvgTask(SvgGroup):
     """
     Represents a task as an SVG group containing title, input/output groups, box, and
