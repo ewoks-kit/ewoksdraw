@@ -1,9 +1,10 @@
 import warnings
-from pathlib import Path
 from typing import Literal
 from typing import Optional
 from typing import get_args
 from xml.etree.ElementTree import Element
+
+from .utils import generate_style_element
 
 SvgTag = Literal["rect", "circle", "text", "line", "path"]
 SUPPORTED_TAGS: tuple[SvgTag, ...] = get_args(SvgTag)
@@ -125,12 +126,4 @@ class SvgElement:
         if not self._css_class:
             return None
 
-        css_file_path = Path(f"src/ewoksdraw/css_styles/css_{self._css_class}.css")
-        if not css_file_path.exists():
-            return None
-
-        with open(css_file_path, "r") as css_file:
-            css_content = css_file.read()
-        style = Element("style")
-        style.text = f"<![CDATA[\n{css_content}\n]]>"
-        return style
+        return generate_style_element(css_file_name=f"css_{self._css_class}.css")
