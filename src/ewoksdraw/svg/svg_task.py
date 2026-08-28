@@ -53,7 +53,6 @@ class SvgTask(SvgGroup):
             list_io=output_names, io_type="output", vertical_spacing=8
         )
         self._line_title = SvgTaskLine(x1=0, y1=0, x2=0, y2=0)
-
         self._init_elements()
 
     def _init_elements(self) -> None:

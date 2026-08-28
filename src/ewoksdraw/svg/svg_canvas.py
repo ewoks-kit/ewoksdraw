@@ -12,6 +12,7 @@ from defusedxml import minidom
 from .svg_background import SvgBackground
 from .svg_element import SvgElement
 from .svg_group import SvgGroup
+from .utils import generate_style_element
 
 Number = Union[int, float]
 
@@ -96,6 +97,7 @@ class SvgCanvas:
             width=str(self.width),
             height=str(self.height),
         )
+        xml_svg.set("class", "ewoksdraw")
 
         style_elements = self._gather_all_styles()
         seen_styles = set()
@@ -136,4 +138,7 @@ class SvgCanvas:
         for element in self.elements:
             all_styles.extend(self._yield_styles(element))
 
-        return all_styles
+        root_element = generate_style_element("root.css")
+        if root_element is None:
+            return all_styles
+        return [root_element, *all_styles]

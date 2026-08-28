@@ -1,8 +1,7 @@
 .task_box {
-    fill: #00000000;
-    stroke: rgb(255, 255, 255);
-    stroke-width: 0.2%;
+    fill: var(--transparent);
+    stroke: var(--stroke-color);
+    stroke-width: var(--stroke-width);
     rx: 0.5%;
     ry: 0.5%;
 }
-
