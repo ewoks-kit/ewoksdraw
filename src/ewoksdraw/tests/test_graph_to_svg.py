@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from xml.etree.ElementTree import Element
 
@@ -91,3 +92,21 @@ def test_elk_links_are_rendered(ewoks_graph: TaskGraph, tmp_path: Path) -> None:
     assert len(links) == expected_link_count
     assert all(link.get("class") == "link_cubic_bezier" for link in links)
     assert all((link.get("d") or "").startswith("M ") for link in links)
+
+
+def test_workflow_with_non_importable_task(tmp_path: Path, caplog) -> None:
+    output_path = tmp_path / "workflow1.svg"
+
+    ewoksgraph = load_graph(Path(__file__).parent / "resources" / "workflow1.json")
+
+    with caplog.at_level(logging.WARNING):
+        graph_to_svg(ewoksgraph, output_path)
+
+    assert "Cannot import 'not.a.task': No module named 'not'" in caplog.text
+    assert output_path.is_file()
+
+    tree = ElementTree.parse(output_path)
+    task_group = _find_svg_group(tree.getroot(), str(ewoksgraph.graph_id))
+    for node_name in ewoksgraph.graph.nodes:
+        svg_task = _find_svg_group(task_group, str(node_name))
+        assert svg_task[0].text == node_name

@@ -5,3 +5,7 @@
   rx: 0.5%;
   ry: 0.5%;
 }
+
+.task_box[data-import-error=''] {
+  stroke: var(--error);
+}

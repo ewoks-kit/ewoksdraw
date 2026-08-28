@@ -44,6 +44,7 @@ class SvgTask(SvgGroup):
         task_name: str,
         input_names: list[str],
         output_names: list[str],
+        import_error: bool = False,
     ):
         super().__init__(group_id=task_name)
 
@@ -52,6 +53,8 @@ class SvgTask(SvgGroup):
         self._interspace_input_output = IO_INTER_IO_MARGIN
         self._title = SvgTaskTitle(text=task_name, x=0, y=0)
         self._box = SvgTaskBox(x=0, y=0)
+        if import_error:
+            self._box.set_attr("data-import-error", "")
         self._inputs = SvgTaskIOGroup(
             list_io=input_names, io_type="input", vertical_spacing=8
         )
@@ -59,6 +62,8 @@ class SvgTask(SvgGroup):
             list_io=output_names, io_type="output", vertical_spacing=8
         )
         self._line_title = SvgTaskLine(x1=0, y1=0, x2=0, y2=0)
+        if import_error:
+            self._line_title.set_attr("data-import-error", "")
         self._init_elements()
 
     def _init_elements(self) -> None:

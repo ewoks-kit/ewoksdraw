@@ -2,3 +2,7 @@
   stroke: var(--stroke-color);
   stroke-width: var(--stroke-width);
 }
+
+.task_line[data-import-error=''] {
+  stroke: var(--error);
+}
