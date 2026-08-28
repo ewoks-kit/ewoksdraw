@@ -1,8 +1,11 @@
 from .svg_group import SvgGroup
 from .svg_task import SvgTask
+from .svg_task import TaskIOPosition
 from .svg_task import TaskSize
 
 TaskSizes = dict[str, TaskSize]
+TaskInputPositions = dict[str, list[TaskIOPosition]]
+TaskOutputPositions = dict[str, list[TaskIOPosition]]
 
 
 class SvgTaskGroup(SvgGroup[SvgTask]):
@@ -51,5 +54,17 @@ class SvgTaskGroup(SvgGroup[SvgTask]):
     def extract_task_sizes(self) -> TaskSizes:
         return {
             task_id: TaskSize(width=svg_task.width, height=svg_task.height)
+            for task_id, svg_task in self._svg_tasks.items()
+        }
+
+    def extract_input_positions(self) -> TaskInputPositions:
+        return {
+            task_id: svg_task.get_input_positions()
+            for task_id, svg_task in self._svg_tasks.items()
+        }
+
+    def extract_output_positions(self) -> TaskOutputPositions:
+        return {
+            task_id: svg_task.get_output_positions()
             for task_id, svg_task in self._svg_tasks.items()
         }

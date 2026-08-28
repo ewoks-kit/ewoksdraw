@@ -37,6 +37,15 @@ class SvgTaskIO(SvgGroup[SvgElement]):
         self.txt.set_font_size(font_size)
 
     @property
+    def name(self) -> str:
+        """Return the original, untruncated task input or output name."""
+        return self._io_txt
+
+    @property
+    def io_type(self) -> Literal["input", "output"]:
+        return self._io_type
+
+    @property
     def font_size(self) -> float:
         """
         Returns the current font size of the text element.

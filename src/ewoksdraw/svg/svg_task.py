@@ -14,6 +14,12 @@ class TaskSize(NamedTuple):
     height: float
 
 
+class TaskIOPosition(NamedTuple):
+    name: str
+    x: float
+    y: float
+
+
 class SvgTask(SvgGroup):
     """
     Represents a task as an SVG group containing title, input/output groups, box, and
@@ -35,6 +41,7 @@ class SvgTask(SvgGroup):
     ):
         super().__init__(group_id=task_name)
 
+        self._task_name = task_name
         self._interspace_title_input = IO_TOP_MARGIN
         self._interspace_input_output = IO_INTER_IO_MARGIN
         self._title = SvgTaskTitle(text=task_name, x=0, y=0)
@@ -131,3 +138,20 @@ class SvgTask(SvgGroup):
             + self._interspace_input_output
             + self._interspace_title_input
         )
+
+    def get_input_positions(self) -> list[TaskIOPosition]:
+        """Return the task-relative positions of the task inputs."""
+        return self._get_group_io_positions(self._inputs)
+
+    def get_output_positions(self) -> list[TaskIOPosition]:
+        """Return the task-relative positions of the task outputs."""
+        return self._get_group_io_positions(self._outputs)
+
+    @staticmethod
+    def _get_group_io_positions(group: SvgTaskIOGroup) -> list[TaskIOPosition]:
+        positions: list[TaskIOPosition] = []
+        for io in group.elements:
+            x = group.translation.x + io.translation.x
+            y = group.translation.y + io.translation.y
+            positions.append(TaskIOPosition(name=io.name, x=x, y=y))
+        return positions
