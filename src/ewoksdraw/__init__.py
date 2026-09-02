@@ -2,9 +2,36 @@ import random
 from typing import Any
 
 from ewokscore.graph import TaskGraph
-from ewokscore.graph.inputs import get_all_node_inputs
-from ewokscore.graph.inputs import get_all_task_output_names
 from pyelk import ELK
+
+try:
+    # Current ewokscore: a node's inputs come back as a NodeInputs wrapper
+    # around bare NodeInput items, and get_all_task_output_names is no
+    # longer public at all.
+    from ewokscore.graph.inputs import node_inputs as _node_inputs
+    from ewoksutils import import_utils as _import_utils
+
+    def get_all_node_inputs(node_id: Any, node_attrs: dict) -> list[Any]:
+        return _node_inputs(node_id, node_attrs).inputs
+
+    def get_all_task_output_names(task_type: str, task_identifier: str) -> list[str]:
+        """Mirrors ewokscore's now-private ``_get_all_task_output_names``."""
+
+        if task_type == "class":
+            try:
+                task_cls = _import_utils.import_qualname(task_identifier)
+            except Exception:
+                return []
+            return sorted(task_cls.output_names())
+        if task_type == "method":
+            return ["return_value"]
+        return []
+
+except ImportError:
+    from ewokscore.graph.inputs import get_all_node_inputs  # type: ignore[no-redef]
+    from ewokscore.graph.inputs import (  # type: ignore[no-redef]
+        get_all_task_output_names,
+    )
 
 from .svg import SvgBackground
 from .svg import SvgCanvas
