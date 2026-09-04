@@ -6,6 +6,7 @@ from ewokscore.graph import TaskGraph
 
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 
+from ..geometry.cubic_bezier_path import Point
 from ..svg.svg_task import TaskIOPosition
 from ..svg.svg_task import TaskPosition
 from ..svg.svg_task_group import TaskInputPositions
@@ -42,9 +43,8 @@ class LaidOutElkChild(ElkChildBase):
     y: float
 
 
-class ElkPoint(TypedDict):
-    x: float
-    y: float
+class ElkPoint(Point):
+    """A point in an ELK layout."""
 
 
 class ElkSection(TypedDict):

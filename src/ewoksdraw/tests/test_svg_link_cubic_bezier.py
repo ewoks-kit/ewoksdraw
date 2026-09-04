@@ -5,15 +5,29 @@ from ewoksdraw.geometry.cubic_bezier_path import CubicBezierSegment
 from ewoksdraw.svg.svg_link_cubic_bezier import SvgLinkCubicBezier
 
 SIMPLE_PATH = CubicBezierPath(
-    start=(0, 0),
-    segments=[CubicBezierSegment(control1=(1, 1), control2=(2, 2), end=(3, 3))],
+    start={"x": 0, "y": 0},
+    segments=[
+        CubicBezierSegment(
+            control1={"x": 1, "y": 1},
+            control2={"x": 2, "y": 2},
+            end={"x": 3, "y": 3},
+        )
+    ],
 )
 
 TWO_SEGMENT_PATH = CubicBezierPath(
-    start=(0, 0),
+    start={"x": 0, "y": 0},
     segments=[
-        CubicBezierSegment(control1=(1, 1), control2=(2, 2), end=(3, 3)),
-        CubicBezierSegment(control1=(4, 4), control2=(5, 5), end=(6, 6)),
+        CubicBezierSegment(
+            control1={"x": 1, "y": 1},
+            control2={"x": 2, "y": 2},
+            end={"x": 3, "y": 3},
+        ),
+        CubicBezierSegment(
+            control1={"x": 4, "y": 4},
+            control2={"x": 5, "y": 5},
+            end={"x": 6, "y": 6},
+        ),
     ],
 )
 
@@ -29,7 +43,7 @@ def test_d_attribute_has_one_curve_command_per_segment() -> None:
 
 
 def test_raises_when_path_has_no_segments() -> None:
-    empty_path = CubicBezierPath(start=(0, 0), segments=[])
+    empty_path = CubicBezierPath(start={"x": 0, "y": 0}, segments=[])
     with pytest.raises(ValueError):
         SvgLinkCubicBezier(empty_path)
 

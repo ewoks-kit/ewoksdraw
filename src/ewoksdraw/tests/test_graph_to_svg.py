@@ -28,8 +28,7 @@ def _find_svg_group(parent: Element, group_id: str) -> Element:
 
 
 def _translation(group: Element) -> tuple[float, float]:
-    transform = group.get("transform")
-    assert transform is not None
+    transform = group.attrib["transform"]
     coordinates = transform.removeprefix("translate(").removesuffix(")").split(",")
     return float(coordinates[0]), float(coordinates[1])
 
