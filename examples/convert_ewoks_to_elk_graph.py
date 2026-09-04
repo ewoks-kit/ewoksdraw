@@ -3,7 +3,7 @@ from pprint import pprint
 from ewokscore import load_graph
 from ewokscore.tests.examples.graphs import get_graph
 
-from ewoksdraw.layout.elk_converter import ElkGraph
+from ewoksdraw.layout.elk_converter import ElkGraphBeforeLayout
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
 from ewoksdraw.layout.ewoks_task_group_builder import build_svg_task_group
 from ewoksdraw.svg.svg_task_group import SvgTaskGroup
@@ -18,7 +18,7 @@ svg_task_group: SvgTaskGroup = build_svg_task_group(ewoks_graph)
 task_sizes: TaskSizes = svg_task_group.extract_task_sizes()
 task_input_positions: TaskInputPositions = svg_task_group.extract_input_positions()
 task_output_positions: TaskOutputPositions = svg_task_group.extract_output_positions()
-elk_graph: ElkGraph = convert_ewoks_to_elk_graph(
+elk_graph: ElkGraphBeforeLayout = convert_ewoks_to_elk_graph(
     ewoks_graph, task_sizes, task_input_positions, task_output_positions
 )
 

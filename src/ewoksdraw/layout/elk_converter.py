@@ -24,7 +24,9 @@ class ElkPort(TypedDict):
     layoutOptions: dict[str, Any]
 
 
-class ElkChildBase(TypedDict):
+class ElkChildBeforeLayout(TypedDict):
+    """An ELK child before layout."""
+
     id: str
     width: float
     height: float
@@ -32,11 +34,7 @@ class ElkChildBase(TypedDict):
     ports: list[ElkPort]
 
 
-class ElkChild(ElkChildBase):
-    """An ELK child before layout."""
-
-
-class LaidOutElkChild(ElkChildBase):
+class ElkChild(ElkChildBeforeLayout):
     """An ELK child with coordinates computed by ELK."""
 
     x: float
@@ -55,17 +53,15 @@ class ElkSection(TypedDict):
     routing: str
 
 
-class ElkEdgeBase(TypedDict):
+class ElkEdgeBeforeLayout(TypedDict):
+    """An ELK edge before layout."""
+
     id: str
     sources: list[str]
     targets: list[str]
 
 
-class ElkEdge(ElkEdgeBase):
-    """An ELK edge before layout."""
-
-
-class LaidOutElkEdge(ElkEdgeBase):
+class ElkEdge(ElkEdgeBeforeLayout):
     """An ELK edge with routing sections computed by ELK."""
 
     sections: list[ElkSection]
@@ -76,29 +72,29 @@ class ElkGraphBase(TypedDict):
     layoutOptions: dict[str, Any]
 
 
-class ElkGraph(ElkGraphBase):
+class ElkGraphBeforeLayout(ElkGraphBase):
     """An ELK graph before layout."""
 
-    children: list[ElkChild]
-    edges: list[ElkEdge]
+    children: list[ElkChildBeforeLayout]
+    edges: list[ElkEdgeBeforeLayout]
 
 
-class LaidOutElkGraph(ElkGraphBase):
+class ElkGraph(ElkGraphBase):
     """An ELK graph with coordinates and routing computed by ELK."""
 
     width: float
     height: float
-    children: list[LaidOutElkChild]
-    edges: list[LaidOutElkEdge]
+    children: list[ElkChild]
+    edges: list[ElkEdge]
 
 
 def extract_task_positions_from_elk_graph(
-    laid_out_graph: LaidOutElkGraph,
+    elk_graph: ElkGraph,
 ) -> TaskPositions:
     """Extract SVG task positions from a laid-out ELK graph."""
     return {
         child["id"]: TaskPosition(name=child["id"], x=child["x"], y=child["y"])
-        for child in laid_out_graph["children"]
+        for child in elk_graph["children"]
     }
 
 
@@ -107,7 +103,7 @@ def convert_ewoks_to_elk_graph(
     task_sizes: TaskSizes,
     task_input_positions: TaskInputPositions,
     task_output_positions: TaskOutputPositions,
-) -> ElkGraph:
+) -> ElkGraphBeforeLayout:
     """Convert an Ewoks task graph into an ELK layout graph.
 
     :param ewoks_graph: the task graph to convert, e.g. from ``ewokscore.load_graph``.
@@ -136,7 +132,7 @@ def convert_ewoks_to_elk_graph(
             f"{sorted(node_ids)}"
         )
 
-    children: list[ElkChild] = []
+    children: list[ElkChildBeforeLayout] = []
     used_ids: set[str] = set()
     for task_id in ewoks_graph.graph.nodes:
         ports = _convert_io_positions_to_elk_ports(
@@ -161,7 +157,7 @@ def convert_ewoks_to_elk_graph(
     root_id = _available_elk_id("__ewoksdraw_root__", used_ids)
     used_ids.add(root_id)
 
-    edges: list[ElkEdge] = []
+    edges: list[ElkEdgeBeforeLayout] = []
     for source, target, link_attrs in ewoks_graph.graph.edges(data=True):
         if link_attrs.get("map_all_data", False):
             warnings.warn(

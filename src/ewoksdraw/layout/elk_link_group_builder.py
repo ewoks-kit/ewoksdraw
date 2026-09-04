@@ -3,18 +3,18 @@ from ..geometry.cubic_bezier_path import CubicBezierPath
 from ..geometry.cubic_bezier_path import Point
 from ..svg.svg_group import SvgGroup
 from ..svg.svg_link_cubic_bezier import SvgLinkCubicBezier
+from .elk_converter import ElkGraph
 from .elk_converter import ElkSection
-from .elk_converter import LaidOutElkGraph
 
 
 def build_svg_link_group(
-    laid_out_graph: LaidOutElkGraph, group_id: str | None = None
+    elk_graph: ElkGraph, group_id: str | None = None
 ) -> SvgGroup[SvgLinkCubicBezier]:
     """Build an SVG link group from the routed edges of an ELK graph."""
     link_group: SvgGroup[SvgLinkCubicBezier] = SvgGroup(group_id=group_id)
     svg_links: list[SvgLinkCubicBezier] = []
 
-    for edge in laid_out_graph["edges"]:
+    for edge in elk_graph["edges"]:
         for section in edge["sections"]:
             points = _section_points(section)
             cubic_bezier_path = CubicBezierPath.from_points(
