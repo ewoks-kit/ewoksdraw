@@ -1,5 +1,4 @@
-from .config.constants import LINK_TURN_RADIUS
-
+from ..config.constants import LINK_TURN_RADIUS
 from ..geometry.cubic_bezier_path import CubicBezierPath
 from ..svg.svg_group import SvgGroup
 from ..svg.svg_link_cubic_bezier import SvgLinkCubicBezier

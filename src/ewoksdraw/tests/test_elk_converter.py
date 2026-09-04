@@ -59,9 +59,9 @@ def test_extract_task_positions_from_elk_graph() -> None:
         "edges": [],
     }
 
-    assert extract_task_positions_from_elk_graph(laid_out_graph) == [
-        TaskPosition(name="task", x=12.0, y=34.0)
-    ]
+    assert extract_task_positions_from_elk_graph(laid_out_graph) == {
+        "task": TaskPosition(name="task", x=12.0, y=34.0)
+    }
 
 
 def test_top_level_structure() -> None:

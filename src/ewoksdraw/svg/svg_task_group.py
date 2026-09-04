@@ -5,7 +5,7 @@ from .svg_task import TaskPosition
 from .svg_task import TaskSize
 
 TaskSizes = dict[str, TaskSize]
-TaskPositions = list[TaskPosition]
+TaskPositions = dict[str, TaskPosition]
 TaskInputPositions = dict[str, list[TaskIOPosition]]
 TaskOutputPositions = dict[str, list[TaskIOPosition]]
 
@@ -75,15 +75,24 @@ class SvgTaskGroup(SvgGroup[SvgTask]):
         """Set each task's translation from absolute layout coordinates."""
 
         svg_task_ids = set(self._svg_tasks)
-        positioned_task_ids = [position.name for position in task_positions]
-        if svg_task_ids != set(positioned_task_ids) or len(positioned_task_ids) != len(
-            svg_task_ids
-        ):
+        positioned_task_ids = set(task_positions)
+        if svg_task_ids != positioned_task_ids:
             raise ValueError(
                 f"task_positions {sorted(positioned_task_ids)} do not match SVG task "
                 "ids "
                 f"{sorted(svg_task_ids)}"
             )
 
-        for position in task_positions:
-            self._svg_tasks[position.name].set_translation(x=position.x, y=position.y)
+        inconsistent_task_ids = {
+            task_id: position.name
+            for task_id, position in task_positions.items()
+            if task_id != position.name
+        }
+        if inconsistent_task_ids:
+            raise ValueError(
+                "task_positions keys do not match their position names: "
+                f"{inconsistent_task_ids}"
+            )
+
+        for task_id, position in task_positions.items():
+            self._svg_tasks[task_id].set_translation(x=position.x, y=position.y)

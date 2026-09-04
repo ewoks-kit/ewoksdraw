@@ -96,10 +96,10 @@ def extract_task_positions_from_elk_graph(
     laid_out_graph: LaidOutElkGraph,
 ) -> TaskPositions:
     """Extract SVG task positions from a laid-out ELK graph."""
-    return [
-        TaskPosition(name=child["id"], x=child["x"], y=child["y"])
+    return {
+        child["id"]: TaskPosition(name=child["id"], x=child["x"], y=child["y"])
         for child in laid_out_graph["children"]
-    ]
+    }
 
 
 def convert_ewoks_to_elk_graph(
