@@ -72,9 +72,6 @@ def test_elk_positions_data_mapped_tasks(
         if not attributes.get("data_mapping"):
             continue
 
-        # Going through the source/target couples in ewoks graph edges
-        # checking for each the computed ELK positions
-        # gives source on the left of target
         assert positions[source][0] < positions[target][0]
 
 
