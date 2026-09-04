@@ -5,11 +5,11 @@ from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
 from pyelk.graph import validate_graph
 
-from ewoksdraw import build_svg_task_group
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 from ewoksdraw.layout.elk_converter import LaidOutElkGraph
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
 from ewoksdraw.layout.elk_converter import extract_task_positions_from_elk_graph
+from ewoksdraw.layout.ewoks_task_group_builder import build_svg_task_group
 from ewoksdraw.svg.svg_task import TaskIOPosition
 from ewoksdraw.svg.svg_task import TaskPosition
 from ewoksdraw.svg.svg_task_group import TaskInputPositions
