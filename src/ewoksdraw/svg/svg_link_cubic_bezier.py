@@ -42,15 +42,13 @@ class SvgLinkCubicBezier(SvgElement):
         if not path.segments:
             raise ValueError("A cubic Bezier path needs at least one segment.")
 
-        start_x, start_y = path.start
-        commands = [f"M {start_x},{start_y}"]
+        commands = [f"M {path.start['x']},{path.start['y']}"]
 
         for segment in path.segments:
-            control1_x, control1_y = segment.control1
-            control2_x, control2_y = segment.control2
-            end_x, end_y = segment.end
             commands.append(
-                f"C {control1_x},{control1_y} {control2_x},{control2_y} {end_x},{end_y}"
+                f"C {segment.control1['x']},{segment.control1['y']} "
+                f"{segment.control2['x']},{segment.control2['y']} "
+                f"{segment.end['x']},{segment.end['y']}"
             )
 
         return " ".join(commands)

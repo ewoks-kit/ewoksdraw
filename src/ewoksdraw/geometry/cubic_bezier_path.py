@@ -1,13 +1,19 @@
 import sys
 from dataclasses import dataclass
 from typing import Sequence
+from typing import TypedDict
 
 if sys.version_info < (3, 11):
     from typing_extensions import Self
 else:
     from typing import Self
 
-Point = tuple[float, float]
+
+class Point(TypedDict):
+    x: float
+    y: float
+
+
 Vector = tuple[float, float]
 
 
@@ -69,17 +75,17 @@ class CubicBezierPath:
 
 def _straight_segment(start: Point, end: Point) -> CubicBezierSegment:
     """Create a cubic Bezier segment that renders as a straight line."""
-    start_x, start_y = start
-    end_x, end_y = end
-
     # Control points are set to 1/2; 2/3 arbitrarly so they are not combine with
     # start and end points.
     return CubicBezierSegment(
-        control1=(start_x + (end_x - start_x) / 3, start_y + (end_y - start_y) / 3),
-        control2=(
-            start_x + 2 * (end_x - start_x) / 3,
-            start_y + 2 * (end_y - start_y) / 3,
-        ),
+        control1={
+            "x": start["x"] + (end["x"] - start["x"]) / 3,
+            "y": start["y"] + (end["y"] - start["y"]) / 3,
+        },
+        control2={
+            "x": start["x"] + 2 * (end["x"] - start["x"]) / 3,
+            "y": start["y"] + 2 * (end["y"] - start["y"]) / 3,
+        },
         end=end,
     )
 
@@ -89,15 +95,18 @@ def _direction(start: Point, end: Point) -> Vector:
     Return the horizontal or vertical direction from start to end.
     Example : (1, 0) right; (-1, 0) left ...
     """
-    if start[0] == end[0]:
-        return (0, 1 if end[1] > start[1] else -1)
-    return (1 if end[0] > start[0] else -1, 0)
+    if start["x"] == end["x"]:
+        return (0, 1 if end["y"] > start["y"] else -1)
+    return (1 if end["x"] > start["x"] else -1, 0)
 
 
 def _l1_distance(start: Point, end: Point) -> float:
-    return abs(end[0] - start[0]) + abs(end[1] - start[1])
+    return abs(end["x"] - start["x"]) + abs(end["y"] - start["y"])
 
 
 def _move(point: Point, direction: Vector, distance: float) -> Point:
     """Move a point along a direction by a distance."""
-    return (point[0] + direction[0] * distance, point[1] + direction[1] * distance)
+    return {
+        "x": point["x"] + direction[0] * distance,
+        "y": point["y"] + direction[1] * distance,
+    }

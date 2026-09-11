@@ -5,10 +5,13 @@ from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
 from pyelk.graph import validate_graph
 
-from ewoksdraw import build_svg_task_group
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
+from ewoksdraw.layout.elk_converter import ElkGraph
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
+from ewoksdraw.layout.elk_converter import extract_task_positions_from_elk_graph
+from ewoksdraw.layout.ewoks_task_group_builder import build_svg_task_group
 from ewoksdraw.svg.svg_task import TaskIOPosition
+from ewoksdraw.svg.svg_task import TaskPosition
 from ewoksdraw.svg.svg_task_group import TaskInputPositions
 from ewoksdraw.svg.svg_task_group import TaskOutputPositions
 from ewoksdraw.svg.svg_task_group import TaskSize
@@ -34,6 +37,31 @@ def _task_input_positions(graph: TaskGraph) -> TaskInputPositions:
 
 def _task_output_positions(graph: TaskGraph) -> TaskOutputPositions:
     return {node_id: [] for node_id in graph.graph.nodes}
+
+
+def test_extract_task_positions_from_elk_graph() -> None:
+    elk_graph: ElkGraph = {
+        "id": "root",
+        "width": 100.0,
+        "height": 100.0,
+        "layoutOptions": {},
+        "children": [
+            {
+                "id": "task",
+                "width": 20.0,
+                "height": 30.0,
+                "x": 12.0,
+                "y": 34.0,
+                "layoutOptions": {},
+                "ports": [],
+            }
+        ],
+        "edges": [],
+    }
+
+    assert extract_task_positions_from_elk_graph(elk_graph) == {
+        "task": TaskPosition(name="task", x=12.0, y=34.0)
+    }
 
 
 def test_top_level_structure() -> None:

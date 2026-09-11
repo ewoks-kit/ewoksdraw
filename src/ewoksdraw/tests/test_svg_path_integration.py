@@ -9,8 +9,14 @@ from ewoksdraw.svg.svg_group import SvgGroup
 from ewoksdraw.svg.svg_link_cubic_bezier import SvgLinkCubicBezier
 
 PATH = CubicBezierPath(
-    start=(0, 0),
-    segments=[CubicBezierSegment(control1=(1, 1), control2=(2, 2), end=(3, 3))],
+    start={"x": 0, "y": 0},
+    segments=[
+        CubicBezierSegment(
+            control1={"x": 1, "y": 1},
+            control2={"x": 2, "y": 2},
+            end={"x": 3, "y": 3},
+        )
+    ],
 )
 
 
