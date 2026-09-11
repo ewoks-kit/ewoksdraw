@@ -1,8 +1,9 @@
 .ewoksdraw {
-    --bg-color: rgb(0, 0, 0);
-    --link-color: rgb(176, 147, 255);
-    --stroke-color: rgb(255, 255, 255);
-    --stroke-width: 1;
-    --text-color: rgb(255, 255, 255);
-    --transparent: rgba(0, 0, 0, 0)
+  --bg-color: rgb(0, 0, 0);
+  --link-color: rgb(176, 147, 255);
+  --error: rgb(255, 0, 0);
+  --stroke-color: rgb(255, 255, 255);
+  --stroke-width: 1;
+  --text-color: rgb(255, 255, 255);
+  --transparent: rgba(0, 0, 0, 0);
 }

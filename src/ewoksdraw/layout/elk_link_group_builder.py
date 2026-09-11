@@ -15,7 +15,7 @@ def build_svg_link_group(
     svg_links: list[SvgLinkCubicBezier] = []
 
     for edge in elk_graph["edges"]:
-        for section in edge["sections"]:
+        for section in edge.get("sections", list()):
             points = _section_points(section)
             cubic_bezier_path = CubicBezierPath.from_points(
                 points=points,

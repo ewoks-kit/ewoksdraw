@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="507.154" height="43.0">
+  <style><![CDATA[
+.background {
+    fill: #000000;
+}
+]]></style>
+  <style><![CDATA[
+.task_title {
+    font-family: Helvetica, sans-serif;
+    fill:  rgb(255, 255, 255);
+}
+]]></style>
+  <style><![CDATA[
+.task_box {
+    fill: #00000000;
+    stroke: rgb(255, 255, 255);
+    stroke-width: 0.2%;
+    rx: 0.5%;
+    ry: 0.5%;
+}
+
+.task_box[data-import-error='true'] {
+    stroke: rgb(212, 38, 38);
+}
+]]></style>
+  <style><![CDATA[
+.task_line {
+  stroke: #ffffff;
+  stroke-width: 1;
+  stroke-dasharray: none;
+}
+]]></style>
+  <rect width="507.154" height="43.0" class="background"/>
+  <g id="integrate_scan_with_saving_subtract_ascii">
+    <g id="0" transform="translate(10.0,10.0)">
+      <text x="10.0" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">0</text>
+      <rect x="0" y="0" width="20" height="23.0" class="task_box"/>
+      <g transform="translate(0,20.0)"/>
+      <g transform="translate(20.0,0) translate(0,23.0)"/>
+      <line x1="0" y1="12.0" x2="20.0" y2="12.0" class="task_line"/>
+    </g>
+    <g id="1" transform="translate(40.0,10.0)">
+      <text x="10.0" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">1</text>
+      <rect x="0" y="0" width="20" height="23.0" class="task_box"/>
+      <g transform="translate(0,20.0)"/>
+      <g transform="translate(20.0,0) translate(0,23.0)"/>
+      <line x1="0" y1="12.0" x2="20.0" y2="12.0" class="task_line"/>
+    </g>
+    <g id="SubtractBackgroundPattern0" transform="translate(70.0,10.0)">
+      <text x="59.78" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">SubtractBackgroundPattern0</text>
+      <rect x="0" y="0" width="119.56" height="23.0" class="task_box"/>
+      <g transform="translate(0,20.0)"/>
+      <g transform="translate(119.56,0) translate(0,23.0)"/>
+      <line x1="0" y1="12.0" x2="119.56" y2="12.0" class="task_line"/>
+    </g>
+    <g id="SaveSubtractedNexusPatternsAsAscii" transform="translate(199.56,10.0)">
+      <text x="78.2795" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">SaveSubtractedNexusPatternsAsAscii</text>
+      <rect x="0" y="0" width="156.559" height="23.0" class="task_box"/>
+      <g transform="translate(0,20.0)"/>
+      <g transform="translate(156.559,0) translate(0,23.0)"/>
+      <line x1="0" y1="12.0" x2="156.559" y2="12.0" class="task_line"/>
+    </g>
+    <g id="SaveRawNexusPatternsAsAscii" transform="translate(366.119,10.0)">
+      <text x="65.5175" y="3" text-anchor="middle" dominant-baseline="hanging" font-size="9px" class="task_title">SaveRawNexusPatternsAsAscii</text>
+      <rect x="0" y="0" width="131.035" height="23.0" class="task_box"/>
+      <g transform="translate(0,20.0)"/>
+      <g transform="translate(131.035,0) translate(0,23.0)"/>
+      <line x1="0" y1="12.0" x2="131.035" y2="12.0" class="task_line"/>
+    </g>
+  </g>
+</svg>

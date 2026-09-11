@@ -85,7 +85,7 @@ class ElkGraph(ElkGraphBase):
     width: float
     height: float
     children: list[ElkChild]
-    edges: list[ElkEdge]
+    edges: list[ElkEdge | ElkEdgeBeforeLayout]
 
 
 def extract_task_positions_from_elk_graph(
