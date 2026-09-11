@@ -8,6 +8,7 @@ from ewokscore import load_graph
 from ewokscore.graph import TaskGraph
 from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
+from pytest import LogCaptureFixture
 
 from ewoksdraw import graph_to_svg
 
@@ -94,7 +95,9 @@ def test_elk_links_are_rendered(ewoks_graph: TaskGraph, tmp_path: Path) -> None:
     assert all((link.get("d") or "").startswith("M ") for link in links)
 
 
-def test_workflow_with_non_importable_task(tmp_path: Path, caplog) -> None:
+def test_workflow_with_non_importable_task(
+    tmp_path: Path, caplog: LogCaptureFixture
+) -> None:
     output_path = tmp_path / "workflow1.svg"
 
     ewoksgraph = load_graph(Path(__file__).parent / "resources" / "workflow1.json")
