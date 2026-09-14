@@ -25,8 +25,6 @@ class ElkPort(TypedDict):
 
 
 class ElkChildBeforeLayout(TypedDict):
-    """An ELK child before layout."""
-
     id: str
     width: float
     height: float
@@ -35,14 +33,11 @@ class ElkChildBeforeLayout(TypedDict):
 
 
 class ElkChild(ElkChildBeforeLayout):
-    """An ELK child with coordinates computed by ELK."""
-
     x: float
     y: float
 
 
-class ElkPoint(Point):
-    """A point in an ELK layout."""
+class ElkPoint(Point): ...
 
 
 class ElkSection(TypedDict):
@@ -54,16 +49,12 @@ class ElkSection(TypedDict):
 
 
 class ElkEdgeBeforeLayout(TypedDict):
-    """An ELK edge before layout."""
-
     id: str
     sources: list[str]
     targets: list[str]
 
 
 class ElkEdge(ElkEdgeBeforeLayout):
-    """An ELK edge with routing sections computed by ELK."""
-
     sections: list[ElkSection]
 
 
@@ -73,15 +64,11 @@ class ElkGraphBase(TypedDict):
 
 
 class ElkGraphBeforeLayout(ElkGraphBase):
-    """An ELK graph before layout."""
-
     children: list[ElkChildBeforeLayout]
     edges: list[ElkEdgeBeforeLayout]
 
 
 class ElkGraph(ElkGraphBase):
-    """An ELK graph with coordinates and routing computed by ELK."""
-
     width: float
     height: float
     children: list[ElkChild]
