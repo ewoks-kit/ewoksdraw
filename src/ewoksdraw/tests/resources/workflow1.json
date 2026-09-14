@@ -1,0 +1,52 @@
+{
+  "graph": { "id": "demo", "label": "demo", "schema_version": "1.2" },
+  "nodes": [
+    {
+      "id": "task1",
+      "default_inputs": [
+        { "name": "a", "value": 0 },
+        { "name": "b", "value": 10 }
+      ],
+      "task_type": "class",
+      "task_identifier": "ewokscore.tests.examples.tasks.sumtask.SumTask"
+    },
+    {
+      "id": "task2",
+      "default_inputs": [
+        { "name": "a", "value": 1 },
+        { "name": "b", "value": 2 }
+      ],
+      "task_type": "class",
+      "task_identifier": "ewokscore.tests.examples.tasks.sumtask.SumTask"
+    },
+    {
+      "id": "non_importable_task",
+      "default_inputs": [{ "name": "delay", "value": 1 }],
+      "task_type": "class",
+      "task_identifier": "not.a.task"
+    },
+    {
+      "id": "task3",
+      "default_inputs": [{ "name": "b", "value": 0 }],
+      "task_type": "class",
+      "task_identifier": "ewokscore.tests.examples.tasks.sumtask.SumTask"
+    }
+  ],
+  "links": [
+    {
+      "source": "task1",
+      "target": "task2",
+      "data_mapping": [{ "source_output": "result", "target_input": "b" }]
+    },
+    {
+      "source": "task2",
+      "target": "non_importable_task",
+      "data_mapping": [{ "source_output": "result", "target_input": "a" }]
+    },
+    {
+      "source": "non_importable_task",
+      "target": "task3",
+      "data_mapping": [{ "source_output": "result", "target_input": "a" }]
+    }
+  ]
+}
