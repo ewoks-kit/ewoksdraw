@@ -1,5 +1,10 @@
 import warnings
 from typing import Any
+
+try:
+    from typing import NotRequired
+except ImportError:
+    from typing_extensions import NotRequired
 from typing import TypedDict
 
 from ewokscore.graph import TaskGraph
@@ -55,7 +60,9 @@ class ElkEdgeBeforeLayout(TypedDict):
 
 
 class ElkEdge(ElkEdgeBeforeLayout):
-    sections: list[ElkSection]
+    """An ELK edge with routing sections computed by ELK."""
+
+    sections: NotRequired[list[ElkSection]]
 
 
 class ElkGraphBase(TypedDict):

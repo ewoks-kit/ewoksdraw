@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from xml.etree.ElementTree import Element
 
@@ -7,6 +8,7 @@ from ewokscore import load_graph
 from ewokscore.graph import TaskGraph
 from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
+from pytest import LogCaptureFixture
 
 from ewoksdraw import graph_to_svg
 
@@ -33,17 +35,25 @@ def _translation(group: Element) -> tuple[float, float]:
     return float(coordinates[0]), float(coordinates[1])
 
 
+def assert_svg_is_matching_workflow(
+    output_path: Path, ewoks_graph: TaskGraph
+) -> Element:
+    tree_root = ElementTree.parse(output_path).getroot()
+    assert tree_root is not None
+    task_group = _find_svg_group(tree_root, str(ewoks_graph.graph_id))
+    for node_name in ewoks_graph.graph.nodes:
+        svg_task = _find_svg_group(task_group, str(node_name))
+        task_title = svg_task[0]
+        assert task_title.text == node_name
+    return task_group
+
+
 def test_groups_are_matching_nodes(ewoks_graph: TaskGraph, tmp_path: Path) -> None:
     output_path = tmp_path / f"{ewoks_graph.graph_id}.svg"
     graph_to_svg(ewoks_graph, output_path)
 
     assert output_path.is_file()
-
-    tree = ElementTree.parse(output_path)
-    task_group = _find_svg_group(tree.getroot(), str(ewoks_graph.graph_id))
-    for node_name in ewoks_graph.graph.nodes:
-        svg_task = _find_svg_group(task_group, str(node_name))
-        assert svg_task[0].text == node_name
+    assert_svg_is_matching_workflow(output_path, ewoks_graph)
 
 
 def test_elk_positions_data_mapped_tasks(
@@ -91,3 +101,26 @@ def test_elk_links_are_rendered(ewoks_graph: TaskGraph, tmp_path: Path) -> None:
     assert len(links) == expected_link_count
     assert all(link.get("class") == "link_cubic_bezier" for link in links)
     assert all((link.get("d") or "").startswith("M ") for link in links)
+
+
+def test_workflow_with_non_importable_task(
+    tmp_path: Path, caplog: LogCaptureFixture
+) -> None:
+    output_path = tmp_path / "workflow1.svg"
+
+    ewoks_graph = load_graph(Path(__file__).parent / "resources" / "workflow1.json")
+
+    with caplog.at_level(logging.WARNING):
+        graph_to_svg(ewoks_graph, output_path)
+
+    assert "Cannot import 'not.a.task'" in caplog.text
+    assert output_path.is_file()
+
+    task_group = assert_svg_is_matching_workflow(output_path, ewoks_graph)
+    svg_task = _find_svg_group(task_group, "non_importable_task")
+    task_box = None
+    for element in svg_task:
+        if element.get("class") == "task_box":
+            task_box = element
+    assert task_box is not None
+    assert "data-import-error" in task_box.keys()
