@@ -1,5 +1,6 @@
-import warnings
 from typing import Any
+
+from ..utils import get_valid_data_mappings
 
 try:
     from typing import NotRequired
@@ -152,38 +153,19 @@ def convert_ewoks_to_elk_graph(
     used_ids.add(root_id)
 
     edges: list[ElkEdgeBeforeLayout] = []
-    for source, target, link_attrs in ewoks_graph.graph.edges(data=True):
-        if link_attrs.get("map_all_data", False):
-            warnings.warn(
-                f"Ewoks link {source!r} -> {target!r} uses 'map_all_data', which "
-                "is not yet supported.",
-                UserWarning,
-                stacklevel=2,
-            )
+    for mapping in get_valid_data_mappings(ewoks_graph):
+        edge_id = _available_elk_id(
+            f"edge_{len(edges)}_{mapping.source}_{mapping.target}", used_ids
+        )
 
-        for mapping in link_attrs.get("data_mapping", []):
-            source_output = mapping.get("source_output")
-            if source_output is None:
-                warnings.warn(
-                    f"Data mapping on Ewoks link {source!r} -> {target!r} has no "
-                    "'source_output', which is not yet supported.",
-                    UserWarning,
-                    stacklevel=2,
-                )
-                continue
-
-            edge_id = _available_elk_id(
-                f"edge_{len(edges)}_{source}_{target}", used_ids
-            )
-
-            edges.append(
-                {
-                    "id": edge_id,
-                    "sources": [f"{source}.output.{source_output}"],
-                    "targets": [f"{target}.input.{mapping['target_input']}"],
-                }
-            )
-            used_ids.add(edge_id)
+        edges.append(
+            {
+                "id": edge_id,
+                "sources": [f"{mapping.source}.output.{mapping.source_output}"],
+                "targets": [f"{mapping.target}.input.{mapping.target_input}"],
+            }
+        )
+        used_ids.add(edge_id)
 
     return {
         "id": root_id,
