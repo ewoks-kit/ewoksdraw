@@ -124,3 +124,9 @@ def test_workflow_with_non_importable_task(
             task_box = element
     assert task_box is not None
     assert "data-import-error" in task_box.keys()
+
+    tree_root = ElementTree.parse(output_path).getroot()
+    link_group = _find_svg_group(tree_root, f"{ewoks_graph.graph_id}-links")
+    links = [element for element in link_group if element.tag.endswith("path")]
+    flagged_links = [link for link in links if "data-import-error" in link.keys()]
+    assert len(flagged_links) == 2
