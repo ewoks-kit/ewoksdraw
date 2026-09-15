@@ -59,6 +59,12 @@ class SvgTaskGroup(SvgGroup[SvgTask]):
             for task_id, svg_task in self._svg_tasks.items()
         }
 
+    def extract_import_errors(self) -> dict[str, bool]:
+        return {
+            task_id: svg_task.import_error
+            for task_id, svg_task in self._svg_tasks.items()
+        }
+
     def extract_input_positions(self) -> TaskInputPositions:
         return {
             task_id: svg_task.get_input_positions()
