@@ -10,6 +10,7 @@ class SvgLinkCubicBezier(SvgElement):
     :param color: The stroke color of the link.
     :param stroke_width: The stroke width of the link.
     :param stroke_dasharray: The SVG stroke-dasharray value of the link.
+    :param import_error: Whether the link connects to a task that cannot be imported.
     """
 
     def __init__(
@@ -18,10 +19,13 @@ class SvgLinkCubicBezier(SvgElement):
         color: str | None = None,
         stroke_width: float | None = None,
         stroke_dasharray: str | None = None,
+        import_error: bool = False,
     ):
         string_svg = self._convert_path_data_to_svg_attribute(path)
 
         attr = {"d": string_svg}
+        if import_error:
+            attr["data-import-error"] = ""
         styles = []
 
         if color is not None:

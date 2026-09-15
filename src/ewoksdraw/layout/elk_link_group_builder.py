@@ -3,29 +3,46 @@ from ..geometry.cubic_bezier_path import CubicBezierPath
 from ..geometry.cubic_bezier_path import Point
 from ..svg.svg_group import SvgGroup
 from ..svg.svg_link_cubic_bezier import SvgLinkCubicBezier
+from .elk_converter import ElkEdge
 from .elk_converter import ElkGraph
 from .elk_converter import ElkSection
 
 
 def build_svg_link_group(
-    elk_graph: ElkGraph, group_id: str | None = None
+    elk_graph: ElkGraph,
+    task_import_errors: dict[str, bool] | None = None,
+    group_id: str | None = None,
 ) -> SvgGroup[SvgLinkCubicBezier]:
     """Build an SVG link group from the routed edges of an ELK graph."""
     link_group: SvgGroup[SvgLinkCubicBezier] = SvgGroup(group_id=group_id)
     svg_links: list[SvgLinkCubicBezier] = []
 
     for edge in elk_graph["edges"]:
+        import_error = _edge_has_import_error(edge, task_import_errors)
         for section in edge.get("sections", list()):
             points = _section_points(section)
             cubic_bezier_path = CubicBezierPath.from_points(
                 points=points,
                 radius=LINK_TURN_RADIUS,
             )
-            svg_link = SvgLinkCubicBezier(cubic_bezier_path)
+            svg_link = SvgLinkCubicBezier(cubic_bezier_path, import_error=import_error)
             svg_links.append(svg_link)
 
     link_group.add_elements(svg_links)
     return link_group
+
+
+def _edge_has_import_error(
+    edge: ElkEdge, task_import_errors: dict[str, bool] | None = None
+) -> bool:
+    if task_import_errors is None:
+        return False
+    # FIXME:
+    source_task_id = edge["sources"][0].split(".output.")[0]
+    target_task_id = edge["targets"][0].split(".input.")[0]
+    return task_import_errors.get(source_task_id, False) or task_import_errors.get(
+        target_task_id, False
+    )
 
 
 def _section_points(section: ElkSection) -> list[Point]:
