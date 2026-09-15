@@ -3,6 +3,8 @@ from ..geometry.cubic_bezier_path import CubicBezierPath
 from ..geometry.cubic_bezier_path import Point
 from ..svg.svg_group import SvgGroup
 from ..svg.svg_link_cubic_bezier import SvgLinkCubicBezier
+from ..utils import get_task_id_from_source_id
+from ..utils import get_task_id_from_target_id
 from .elk_converter import ElkEdge
 from .elk_converter import ElkGraph
 from .elk_converter import ElkSection
@@ -37,9 +39,8 @@ def _edge_has_import_error(
 ) -> bool:
     if task_import_errors is None:
         return False
-    # FIXME:
-    source_task_id = edge["sources"][0].split(".output.")[0]
-    target_task_id = edge["targets"][0].split(".input.")[0]
+    source_task_id = get_task_id_from_source_id(edge["sources"][0])
+    target_task_id = get_task_id_from_target_id(edge["targets"][0])
     return task_import_errors.get(source_task_id, False) or task_import_errors.get(
         target_task_id, False
     )
