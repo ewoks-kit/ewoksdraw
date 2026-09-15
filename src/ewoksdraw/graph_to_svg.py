@@ -61,7 +61,11 @@ def graph_to_svg(graph: TaskGraph, output_path: str | Path) -> None:
     canvas = SvgCanvas(width=elk_graph["width"], height=elk_graph["height"])
     canvas.add_background()
     canvas.add_element(
-        build_svg_link_group(elk_graph, group_id=f"{graph.graph_id}-links")
+        build_svg_link_group(
+            elk_graph,
+            task_group.extract_import_errors(),
+            group_id=f"{graph.graph_id}-links",
+        )
     )
     canvas.add_element(task_group)
     canvas.draw(output_path)

@@ -6,3 +6,7 @@
   stroke-linejoin: round;
   stroke-dasharray: none;
 }
+
+.link_cubic_bezier[data-import-error=''] {
+  stroke: var(--error);
+}
