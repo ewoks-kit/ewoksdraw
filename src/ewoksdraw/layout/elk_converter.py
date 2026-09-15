@@ -19,6 +19,8 @@ from ..svg.svg_task_group import TaskInputPositions
 from ..svg.svg_task_group import TaskOutputPositions
 from ..svg.svg_task_group import TaskPositions
 from ..svg.svg_task_group import TaskSizes
+from ..utils import get_edge_source_id
+from ..utils import get_edge_target_id
 
 
 class ElkPort(TypedDict):
@@ -161,8 +163,8 @@ def convert_ewoks_to_elk_graph(
         edges.append(
             {
                 "id": edge_id,
-                "sources": [f"{mapping.source}.output.{mapping.source_output}"],
-                "targets": [f"{mapping.target}.input.{mapping.target_input}"],
+                "sources": [get_edge_source_id(mapping.source, mapping.source_output)],
+                "targets": [get_edge_target_id(mapping.target, mapping.target_input)],
             }
         )
         used_ids.add(edge_id)
@@ -180,36 +182,34 @@ def _convert_io_positions_to_elk_ports(
     input_positions: list[TaskIOPosition],
     output_positions: list[TaskIOPosition],
 ) -> list[ElkPort]:
-    ports = _convert_positions_to_elk_ports(
-        input_positions,
-        id_prefix=f"{task_id}.input",
-        elk_port_side="WEST",
-    )
-    ports.extend(
-        _convert_positions_to_elk_ports(
-            output_positions,
-            id_prefix=f"{task_id}.output",
-            elk_port_side="EAST",
-        )
-    )
-    return ports
-
-
-def _convert_positions_to_elk_ports(
-    positions: list[TaskIOPosition], id_prefix: str, elk_port_side: str
-) -> list[ElkPort]:
     ports: list[ElkPort] = []
 
-    for index, position in enumerate(positions):
+    for index, position in enumerate(input_positions):
         ports.append(
             {
-                "id": f"{id_prefix}.{position.name}",
+                "id": get_edge_target_id(task_id, position.name),
                 "x": position.x,
                 "y": position.y,
                 "width": 0,
                 "height": 0,
                 "layoutOptions": {
-                    "org.eclipse.elk.port.side": elk_port_side,
+                    "org.eclipse.elk.port.side": "WEST",
+                    "org.eclipse.elk.port.index": index,
+                    "org.eclipse.elk.port.borderOffset": 0,
+                },
+            }
+        )
+
+    for index, position in enumerate(output_positions):
+        ports.append(
+            {
+                "id": get_edge_source_id(task_id, position.name),
+                "x": position.x,
+                "y": position.y,
+                "width": 0,
+                "height": 0,
+                "layoutOptions": {
+                    "org.eclipse.elk.port.side": "EAST",
                     "org.eclipse.elk.port.index": index,
                     "org.eclipse.elk.port.borderOffset": 0,
                 },
