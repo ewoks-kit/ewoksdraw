@@ -51,3 +51,19 @@ def get_edge_sources_and_targets(
         targets[mapping.target].append(mapping.target_input)
 
     return sources, targets
+
+
+def get_edge_source_id(task_id: str, name: str) -> str:
+    return f"{task_id}.output.{name}"
+
+
+def get_task_id_from_source_id(source_id: str) -> str:
+    return source_id.split(".output.")[0]
+
+
+def get_edge_target_id(task_id: str, name: str) -> str:
+    return f"{task_id}.input.{name}"
+
+
+def get_task_id_from_target_id(target_id: str) -> str:
+    return target_id.split(".input.")[0]
