@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=46.4"]
-build-backend = "setuptools.build_meta"
+requires = ["maturin>=1.11,<2"]
+build-backend = "maturin"
 
 [project]
 name = "ewoksdraw"
@@ -17,7 +17,7 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "defusedxml",
-    "ewokscore==5.1.0rc3",
+    "ewokscore==5.1.0rc4",
     "reportlab",
     "typing-extensions; python_version < '3.11'",
     "xmltodict",
@@ -46,14 +46,21 @@ doc = [
     "pydata-sphinx-theme",
 ]
 
-[tool.setuptools]
-package-dir = { "" = "src" }
-
-[tool.setuptools.package-data]
-ewoksdraw = ["**/*.css", "**/*.json"]
-
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.maturin]
+manifest-path = "rust/Cargo.toml"
+python-source = "src"
+module-name = "ewoksdraw._elk_rs"
+bindings = "pyo3"
+profile = "release"
+editable-profile = "dev"
+strip = true
+locked = true
+compatibility = "pypi"
+include = [
+    { path = "ewoksdraw/**/*.css", format = ["sdist", "wheel"] },
+    { path = "ewoksdraw/**/*.json", format = ["sdist", "wheel"] },
+    { path = "ewoksdraw/**/*.pyi", format = ["sdist", "wheel"] },
+]
 
 [tool.coverage.run]
 omit = ["*/tests/*"]
@@ -83,11 +90,6 @@ known-first-party = ["ewoksdraw"]
 ignore_missing_imports = true
 disallow_untyped_defs = true
 
-[[tool.mypy.overrides]]
-module = "setuptools.*"
-ignore_missing_imports = true
-
-
 ########
 # pixi #
 ########
@@ -98,6 +100,9 @@ platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
 
 [tool.pixi.pypi-dependencies]
 ewoksdraw = { path = ".", editable = true }
+
+[tool.pixi.pypi-options]
+prerelease-mode = "allow"
 
 [tool.pixi.feature.pylow.dependencies]
 python = "3.10.*"
