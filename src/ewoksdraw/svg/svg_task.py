@@ -136,6 +136,10 @@ class SvgTask(SvgGroup):
         )
 
     @property
+    def import_error(self) -> bool:
+        return self._box.get_attr("data-import-error") is not None
+
+    @property
     def width(self) -> float:
         return self._box.width
 
