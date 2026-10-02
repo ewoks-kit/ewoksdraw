@@ -1,8 +1,12 @@
+from typing import Any
+from typing import cast
+
 from ewoksdraw.layout.elk_backend import layout
+from ewoksdraw.layout.elk_converter import ElkGraphBeforeLayout
 
 
 def test_layout() -> None:
-    graph = {
+    graph: dict[str, Any] = {
         "id": "root",
         "layoutOptions": {
             "org.eclipse.elk.algorithm": "layered",
@@ -21,7 +25,7 @@ def test_layout() -> None:
             }
         ],
     }
-    result = layout(graph)
+    result = layout(cast(ElkGraphBeforeLayout, graph))
 
     assert result["width"] > 0
     assert result["height"] > 0
