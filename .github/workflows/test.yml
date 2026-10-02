@@ -7,42 +7,84 @@ on:
   pull_request:
   workflow_dispatch:
   workflow_call:
+    secrets:
+      CODECOV_TOKEN:
+        required: false
 
 jobs:
-  # Build Python package
+  # Build the native wheels and the sdist
   build:
-    uses: ewoks-kit/.github/.github/workflows/python-build.yml@main
+    uses: ./.github/workflows/build.yml
 
-  # Run tests
+  # Run tests on the wheel built for the platform of each job
   tests:
     needs: build
-    uses: ewoks-kit/.github/.github/workflows/python-tests.yml@main
-    secrets:
-      codecov_token: ${{ secrets.CODECOV_TOKEN }}
-    with:
-      os: ${{ matrix.os }}
-      python-version: ${{ matrix.python-version }}
-      enable-coverage: ${{ matrix.enable-coverage }}
-      jupyter-platform-dirs: "1"
-      codecov-flags: "unit"
+    name: Tests (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    env:
+      JUPYTER_PLATFORM_DIRS: "1"
     strategy:
       fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
             python-version: "3.10"
-            enable-coverage: "false"
-            extra-pytest-warnings: ""
+            enable-coverage: false
 
           - os: ubuntu-latest
             python-version: "3.14"
-            enable-coverage: "true"
-            extra-pytest-warnings: ""
+            enable-coverage: true
+
+          - os: ubuntu-24.04-arm
+            python-version: "3.14"
+            enable-coverage: false
 
           - os: windows-latest
             python-version: "3.14"
-            enable-coverage: "false"
-            extra-pytest-warnings: ""
+            enable-coverage: false
+
+          - os: macos-15-intel
+            python-version: "3.14"
+            enable-coverage: false
+
+          - os: macos-latest
+            python-version: "3.14"
+            enable-coverage: false
+    steps:
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist-wheel-${{ matrix.os }}
+          path: dist
+
+      # No checkout and no Rust toolchain: only the wheel is tested
+      - name: Install wheel
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          pip install --pre "$(ls dist/*.whl)[test]"
+
+      - name: Run pytest
+        if: ${{ !matrix.enable-coverage }}
+        run: pytest -v -ra -W error --pyargs ewoksdraw
+
+      - name: Run pytest with coverage
+        if: ${{ matrix.enable-coverage }}
+        run: |
+          pip install pytest-cov "coverage[toml]"
+          pytest -v -ra -W error --cov=ewoksdraw --cov-report=term --cov-report=xml --pyargs ewoksdraw
+
+      - name: Upload coverage to Codecov
+        if: ${{ matrix.enable-coverage }}
+        uses: codecov/codecov-action@v7
+        with:
+          files: coverage.xml
+          flags: unit
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
 
   # Run linter / checks
   checks:

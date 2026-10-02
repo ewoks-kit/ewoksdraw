@@ -51,6 +51,6 @@ def _section_points(section: ElkSection) -> list[Point]:
     """
     return [
         section["startPoint"],
-        *section["bendPoints"],
+        *section.get("bendPoints", []),
         section["endPoint"],
     ]

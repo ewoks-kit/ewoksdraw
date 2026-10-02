@@ -3,10 +3,10 @@ from ewokscore import load_graph
 from ewokscore.graph import TaskGraph
 from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
-from pyelk.graph import validate_graph
 
 from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
 from ewoksdraw.graph_to_svg import build_svg_task_group
+from ewoksdraw.layout.elk_backend import layout
 from ewoksdraw.layout.elk_converter import ElkGraph
 from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
 from ewoksdraw.layout.elk_converter import extract_task_positions_from_elk_graph
@@ -436,8 +436,8 @@ def test_task_output_positions_missing_a_node_raises() -> None:
 
 @pytest.mark.parametrize("graph_name", graph_names())
 @pytest.mark.filterwarnings("ignore:.*uses 'map_all_data'.*:UserWarning")
-def test_output_is_a_valid_pyelk_graph(graph_name: str) -> None:
-    """Check graph validation from pyelk"""
+def test_output_is_accepted_by_the_rust_layout(graph_name: str) -> None:
+    """Check that the Rust ELK layout accepts the converted graph"""
 
     graph_description, _ = get_graph(graph_name)
     graph = load_graph(graph_description)
@@ -450,4 +450,8 @@ def test_output_is_a_valid_pyelk_graph(graph_name: str) -> None:
         task_group.extract_output_positions(),
     )
 
-    validate_graph(elk_graph)
+    result = layout(elk_graph)
+
+    assert len(result["children"]) == len(elk_graph["children"])
+    assert len(result["edges"]) == len(elk_graph["edges"])
+    assert all(edge["sections"] for edge in result["edges"])

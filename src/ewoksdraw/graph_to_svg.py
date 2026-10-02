@@ -2,9 +2,9 @@ from pathlib import Path
 
 from ewokscore.graph import TaskGraph
 from ewokscore.node.signature import node_signature
-from pyelk import ELK
 
 from .config.constants import TASK_GROUP_HORIZONTAL_GAP
+from .layout.elk_backend import layout
 from .layout.elk_converter import ElkGraph
 from .layout.elk_converter import ElkGraphBeforeLayout
 from .layout.elk_converter import convert_ewoks_to_elk_graph
@@ -41,7 +41,7 @@ def graph_to_svg(graph: TaskGraph, output_path: str | Path) -> None:
         task_group.extract_input_positions(),
         task_group.extract_output_positions(),
     )
-    elk_graph: ElkGraph = ELK().layout(elk_graph_before_layout)
+    elk_graph: ElkGraph = layout(elk_graph_before_layout)
 
     task_positions = extract_task_positions_from_elk_graph(elk_graph)
     task_group.set_task_positions(task_positions)
