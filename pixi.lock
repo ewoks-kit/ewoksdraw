@@ -55,7 +55,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2026c-h151e31d_0.conda
       - pypi: ./
-      - pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/04/6f/4c992cd7841ba589fefb14ddc9aff2f6db7f2a615d4074f9ad04115b5ce0/ast_serialize-0.11.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/0b/3e/ede57f735d4766b57de8088d72988edaf5e821d04cee89aa1d4b8aab23fa/ewokscore-5.1.0rc4-py3-none-any.whl
@@ -113,7 +112,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/tk-8.6.13-ha6c374e_4.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstd-1.5.7-hbc1a06c_7.conda
       - pypi: ./
-      - pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/06/bd/9b43ef1abfc9481bfa1ceb8dd550a2e9231723d4eae7e29212f2dffe7a15/fabio-2026.6.0.tar.gz
       - pypi: https://files.pythonhosted.org/packages/0b/3e/ede57f735d4766b57de8088d72988edaf5e821d04cee89aa1d4b8aab23fa/ewokscore-5.1.0rc4-py3-none-any.whl
@@ -172,7 +170,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/tk-8.6.13-hbeba79b_4.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hf451053_7.conda
       - pypi: ./
-      - pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/3e/ede57f735d4766b57de8088d72988edaf5e821d04cee89aa1d4b8aab23fa/ewokscore-5.1.0rc4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1c/1b/f55794f02fb4dc8a26aeb2b9ea56a4966f17c1963fd5e7ffbbe70b620fd9/silx-3.1.2-cp314-cp314-macosx_11_0_arm64.whl
@@ -231,7 +228,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/vcomp14-14.51.36247-habf1de7_41.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_7.conda
       - pypi: ./
-      - pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/3e/ede57f735d4766b57de8088d72988edaf5e821d04cee89aa1d4b8aab23fa/ewokscore-5.1.0rc4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1e/5d/a509c07d714b6da88f2c518b4637cf6f1d46b074be8f0f1e5fb9ff5126fe/ruff-0.16.8-py3-none-win_amd64.whl
@@ -303,7 +299,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.7.22-hbd8a1cb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2026c-h151e31d_0.conda
       - pypi: ./
-      - pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/3e/ede57f735d4766b57de8088d72988edaf5e821d04cee89aa1d4b8aab23fa/ewokscore-5.1.0rc4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/24/25/1de2678b631f5a49215c6c96fff41ba892b0a34df68d6d80292b1b48aa7f/pytest-9.1.1-py3-none-any.whl
@@ -353,7 +348,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/readline-8.3-h000c2f7_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/tk-8.6.13-ha6c374e_4.conda
       - pypi: ./
-      - pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/06/0c/0c411a0ec64ccb6d104dcabe0e713e05e153a9a2c3c2bd2b32ce412166fe/rpds_py-0.30.0-cp310-cp310-macosx_10_12_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/0b/3e/ede57f735d4766b57de8088d72988edaf5e821d04cee89aa1d4b8aab23fa/ewokscore-5.1.0rc4-py3-none-any.whl
@@ -404,7 +398,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.3-h8b90a29_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/tk-8.6.13-hbeba79b_4.conda
       - pypi: ./
-      - pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/14/52d505b5c59ce73244f59c7a50ecf47093ce4765f116cdb98286a71eeca2/pyyaml-6.0.3-cp310-cp310-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/0b/3e/ede57f735d4766b57de8088d72988edaf5e821d04cee89aa1d4b8aab23fa/ewokscore-5.1.0rc4-py3-none-any.whl
@@ -456,7 +449,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/vc14_runtime-14.51.36247-habf1de7_41.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vcomp14-14.51.36247-habf1de7_41.conda
       - pypi: ./
-      - pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
       - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/3e/ede57f735d4766b57de8088d72988edaf5e821d04cee89aa1d4b8aab23fa/ewokscore-5.1.0rc4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/24/25/1de2678b631f5a49215c6c96fff41ba892b0a34df68d6d80292b1b48aa7f/pytest-9.1.1-py3-none-any.whl
@@ -1691,7 +1683,6 @@ packages:
   - reportlab
   - typing-extensions ; python_full_version < '3.11'
   - xmltodict
-  - pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications
   - pytest>=7 ; extra == 'test'
   - ewoksdraw[test] ; extra == 'dev'
   - ruff>=0.16.0 ; extra == 'dev'
@@ -1700,12 +1691,6 @@ packages:
   - sphinx-autodoc-typehints>=1.16 ; extra == 'doc'
   - pydata-sphinx-theme ; extra == 'doc'
   requires_python: '>=3.10'
-- pypi: git+https://github.com/LudoBroche/pyelk.git?rev=ewoksdraw-modifications#d9957c0cccbd7dbd0cc58c2fd26b01b592485368
-  name: pyelk
-  version: 0.3.0
-  requires_dist:
-  - pytest>=7.0 ; extra == 'dev'
-  requires_python: '>=3.8'
 - pypi: https://files.pythonhosted.org/packages/01/fb/0e4489505dac46a0487ba925ea4b046612f1a40f432d63a000421de78549/filelock-4.0.0-py3-none-any.whl
   name: filelock
   version: 4.0.0
