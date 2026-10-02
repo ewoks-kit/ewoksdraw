@@ -2,6 +2,8 @@
 name = "ewoksdraw-rust"
 version = "0.0.0"
 edition = "2021"
+authors = ["ESRF <dau-pydev@esrf.fr>"]
+description = "Python bindings to the elk-rs graph layout engine, used by ewoksdraw"
 license = "MIT"
 publish = false
 
