@@ -17,6 +17,9 @@ Using pixi:
 ```bash
 pixi add --pypi "ewoksdraw @ git+https://github.com/ewoks-kit/ewoksdraw.git"
 ```
+
+> **Note:** the layout engine is a Rust extension. Prebuilt wheels are provided for Linux (x86_64, aarch64), Windows (x64) and macOS (Intel, arm64). Installing from Git, or on any other platform, builds it from source and requires a [Rust toolchain](https://rustup.rs) and network access to GitHub.
+
 ### Python
 
 ```python
