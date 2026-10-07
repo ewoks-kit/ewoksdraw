@@ -4,10 +4,12 @@ on:
   workflow_call:
 
 jobs:
-  # One wheel per platform. The wheels are abi3 (cp310-abi3): they work with
-  # any Python >= 3.10, so they do not need to be built per Python version.
+  # Build every wheel from the source distribution that will be published.
+  # The wheels are abi3 (cp310-abi3): they work with any Python >= 3.10,
+  # so they do not need to be built per Python version.
   wheels:
-    name: Wheel (${{ matrix.os }})
+    name: Wheel from sdist (${{ matrix.os }})
+    needs: sdist
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -24,22 +26,33 @@ jobs:
           - os: macos-latest # arm64
             manylinux: "off"
     steps:
-      - uses: actions/checkout@v7
-
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist-sdist
+          path: sdist
+
+      - name: Extract source distribution
+        shell: bash
+        run: |
+          mkdir source
+          tar -xzf sdist/*.tar.gz --directory source --strip-components=1
+
       - uses: PyO3/maturin-action@v1
         with:
           command: build
+          working-directory: source
           args: --release --out dist
           manylinux: ${{ matrix.manylinux }}
 
       - uses: actions/upload-artifact@v7
         with:
           name: dist-wheel-${{ matrix.os }}
-          path: dist/
+          path: source/dist/
+          if-no-files-found: error
 
   sdist:
     name: Source distribution
