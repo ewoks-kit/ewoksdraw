@@ -14,7 +14,7 @@ def css_dir(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
         "  --error: #ff0000;\n"
         "}\n"
     )
-    monkeypatch.setattr(utils, "CSS_DIR", tmp_path)
+    monkeypatch.setattr(utils, "ROOT_CSS_PATH", tmp_path / "root.css")
     return tmp_path
 
 
