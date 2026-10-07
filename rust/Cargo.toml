@@ -1,9 +1,9 @@
 [package]
-name = "ewoksdraw-rust"
+name = "elk-rs-python"
 version = "0.0.0"
 edition = "2021"
 authors = ["ESRF <dau-pydev@esrf.fr>"]
-description = "Python bindings to the elk-rs graph layout engine, used by ewoksdraw"
+description = "Python bindings to the elk-rs graph layout engine"
 license = "MIT"
 publish = false
 

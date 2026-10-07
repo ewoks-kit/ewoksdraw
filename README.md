@@ -32,3 +32,10 @@ graph = load_graph(...)
 # Generate the SVG
 graph_to_svg(graph, output_path="my_workflow.svg")
 ```
+
+## License
+
+The ewoksdraw code and Rust binding use the [MIT license](LICENSE.md). The
+bundled elk-rs layout engine uses EPL-2.0; see
+[third-party notices](THIRD_PARTY_NOTICES.md) for its license, attribution, and
+corresponding source code.
