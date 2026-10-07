@@ -131,7 +131,7 @@ def convert_ewoks_to_elk_graph(
 
     children: list[ElkChildBeforeLayout] = []
     used_ids: set[str] = set()
-    port_ids: set[str] = set()
+    declared_port_ids: set[str] = set()
     for task_id in ewoks_graph.graph.nodes:
         ports = _convert_io_positions_to_elk_ports(
             task_id,
@@ -151,7 +151,7 @@ def convert_ewoks_to_elk_graph(
         )
         used_ids.add(task_id)
         used_ids.update(port["id"] for port in ports)
-        port_ids.update(port["id"] for port in ports)
+        declared_port_ids.update(port["id"] for port in ports)
 
     root_id = _available_elk_id("__ewoksdraw_root__", used_ids)
     used_ids.add(root_id)
@@ -189,15 +189,17 @@ def convert_ewoks_to_elk_graph(
                 {
                     "id": edge_id,
                     "sources": [
-                        _port_or_task_id(
-                            source, f"{source}.output.{source_output}", port_ids
+                        _resolve_edge_endpoint_id(
+                            source,
+                            f"{source}.output.{source_output}",
+                            declared_port_ids,
                         )
                     ],
                     "targets": [
-                        _port_or_task_id(
+                        _resolve_edge_endpoint_id(
                             target,
                             f"{target}.input.{mapping['target_input']}",
-                            port_ids,
+                            declared_port_ids,
                         )
                     ],
                 }
@@ -254,13 +256,15 @@ def _convert_io_positions_to_elk_ports(
     return ports
 
 
-def _port_or_task_id(task_id: str, port_id: str, port_ids: set[str]) -> str:
-    """Return the port id, or the task id when the task does not declare that port.
+def _resolve_edge_endpoint_id(
+    task_id: str, port_id: str, declared_port_ids: set[str]
+) -> str:
+    """Use the requested port when declared; otherwise connect to the task's box.
 
     This happens for tasks that cannot be imported: their ports are unknown, but
     links from or to them must still be routed (to the task box).
     """
-    return port_id if port_id in port_ids else task_id
+    return port_id if port_id in declared_port_ids else task_id
 
 
 def _available_elk_id(preferred_id: str, used_ids: set[str]) -> str:
