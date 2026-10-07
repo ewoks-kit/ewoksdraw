@@ -26,16 +26,19 @@ def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
     for node_id, node_attrs in graph.graph.nodes.items():
         signature = node_signature(node_id, node_attrs)
 
-        inputs = set(node_input.name for node_input in signature.inputs)
+        # Use dict instead of set to remove duplicate while keeping order
+        inputs = dict.fromkeys(node_input.name for node_input in signature.inputs)
         # Add eventual missing target inputs
-        inputs |= set(target_inputs_per_node[node_id])
-        outputs = set(node_output.name for node_output in signature.outputs)
+        inputs.update(dict.fromkeys(target_inputs_per_node[node_id]))
+
+        outputs = dict.fromkeys(node_output.name for node_output in signature.outputs)
         # Add eventual missing source outputs
-        outputs |= set(source_outputs_per_node[node_id])
+        outputs.update(dict.fromkeys(source_outputs_per_node[node_id]))
+
         svg_tasks[node_id] = SvgTask(
             task_name=node_id,
-            input_names=list(inputs),
-            output_names=list(outputs),
+            input_names=list(inputs.keys()),
+            output_names=list(outputs.keys()),
             import_error=bool(signature.import_error),
         )
     return SvgTaskGroup(
