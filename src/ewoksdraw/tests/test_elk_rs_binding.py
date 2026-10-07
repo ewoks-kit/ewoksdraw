@@ -233,15 +233,10 @@ def test_back_edges_route_around_nodes() -> None:
     assert len(back_sections[0]["bendPoints"]) >= 2
 
 
-def test_splines_are_not_orthogonal_polylines() -> None:
-    """Spline routing yields diagonal segments, which the SVG renderer cannot draw."""
-    result = layout(_graph(["a", "b", "c"], [("a", "b"), ("a", "c")], "SPLINES"))
-
-    diagonals = 0
-    for edge in result["edges"]:
-        section = edge["sections"][0]
-        points = [section["startPoint"], *section["bendPoints"], section["endPoint"]]
-        diagonals += sum(
-            p["x"] != q["x"] and p["y"] != q["y"] for p, q in zip(points, points[1:])
-        )
-    assert diagonals > 0
+@pytest.mark.parametrize("routing", ["SPLINES", "POLYLINE"])
+def test_unsupported_edge_routing_raises(routing: str) -> None:
+    with pytest.raises(
+        ValueError,
+        match="SVG rendering currently supports only ORTHOGONAL edge routing",
+    ):
+        layout(_graph(["a", "b"], [("a", "b")], routing))
