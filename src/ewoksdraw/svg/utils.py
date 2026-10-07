@@ -1,39 +1,43 @@
-import re
 from pathlib import Path
 from xml.etree.ElementTree import Element
 
 CSS_DIR = Path(__file__).parent.parent / "css_styles"
-
-
-def _add_variable_fallbacks(css_content: str) -> str:
-    if "var(" not in css_content:
-        return css_content
-
-    variables = dict(
-        re.findall(r"(--[\w-]+)\s*:\s*([^;]+);", (CSS_DIR / "root.css").read_text())
-    )
-
-    def convert_rule(rule: re.Match[str]) -> str:
-        checks = " and ".join(
-            f"({name}: {value.strip()})"
-            for name, value in re.findall(r"([\w-]+)\s*:\s*([^;]+);", rule[2])
-            if "var(" in value
-        )
-        if not checks:
-            return rule[0]
-        fallback = re.sub(
-            r"var\(\s*(--[\w-]+)\s*\)",
-            lambda variable: variables[variable[1]].strip(),
-            rule[2],
-        )
-        return f"{rule[1]}{{{fallback}}}\n@supports {checks} {{\n{rule[0]}\n}}"
-
-    return re.sub(r"([^{}]+)\{([^{}]*)\}", convert_rule, css_content)
+ROOT_CSS_PATH = CSS_DIR / "root.css"
 
 
 def generate_style_element(css_file_name: str) -> Element:
-    css_file_path = CSS_DIR / css_file_name
+    css = (CSS_DIR / css_file_name).read_text()
+    css_with_fallback = _add_css_variable_fallback(css)
     style = Element("style")
-    css_content = _add_variable_fallbacks(css_file_path.read_text())
-    style.text = f"<![CDATA[\n{css_content}\n]]>"
+    style.text = f"<![CDATA[\n{css_with_fallback}\n]]>"
     return style
+
+
+def _add_css_variable_fallback(css: str) -> str:
+
+    if "var(" not in css:
+        return css
+
+    theme_values = _read_theme_values()
+    css_with_plain_values = _replace_css_variables(css, theme_values)
+    original_css_if_supported = f"@supports (--css: variables) {{\n{css}\n}}"
+    return f"{css_with_plain_values}\n{original_css_if_supported}"
+
+
+def _read_theme_values() -> dict[str, str]:
+    """Read root.css into {"--link-color": "rgb(176, 147, 255)", ...}."""
+    root_css = ROOT_CSS_PATH.read_text()
+    theme_values: dict[str, str] = {}
+    for line in root_css.splitlines():
+        declaration = line.strip().removesuffix(";")
+        if declaration.startswith("--"):
+            name, value = declaration.split(": ")
+            theme_values[name] = value
+    return theme_values
+
+
+def _replace_css_variables(css: str, theme_values: dict[str, str]) -> str:
+    """Replace each "var(--link-color)" by its value, e.g. "rgb(176, 147, 255)"."""
+    for name, value in theme_values.items():
+        css = css.replace(f"var({name})", value)
+    return css
