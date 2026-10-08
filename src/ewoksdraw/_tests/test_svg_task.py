@@ -1,4 +1,4 @@
-from ewoksdraw.svg.svg_task import SvgTask
+from ewoksdraw._svg.svg_task import SvgTask
 
 
 def test_io_positions_keep_original_names() -> None:

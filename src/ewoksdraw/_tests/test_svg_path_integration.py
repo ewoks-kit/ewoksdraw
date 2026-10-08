@@ -2,11 +2,11 @@ from pathlib import Path
 
 from defusedxml import ElementTree
 
-from ewoksdraw.geometry.cubic_bezier_path import CubicBezierPath
-from ewoksdraw.geometry.cubic_bezier_path import CubicBezierSegment
-from ewoksdraw.svg.svg_canvas import SvgCanvas
-from ewoksdraw.svg.svg_group import SvgGroup
-from ewoksdraw.svg.svg_link_cubic_bezier import SvgLinkCubicBezier
+from ewoksdraw._geometry.cubic_bezier_path import CubicBezierPath
+from ewoksdraw._geometry.cubic_bezier_path import CubicBezierSegment
+from ewoksdraw._svg.svg_canvas import SvgCanvas
+from ewoksdraw._svg.svg_group import SvgGroup
+from ewoksdraw._svg.svg_link_cubic_bezier import SvgLinkCubicBezier
 
 PATH = CubicBezierPath(
     start={"x": 0, "y": 0},

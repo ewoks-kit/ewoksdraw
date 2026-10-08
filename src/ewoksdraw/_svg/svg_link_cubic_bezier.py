@@ -1,4 +1,4 @@
-from ..geometry.cubic_bezier_path import CubicBezierPath
+from .._geometry.cubic_bezier_path import CubicBezierPath
 from .svg_element import SvgElement
 
 

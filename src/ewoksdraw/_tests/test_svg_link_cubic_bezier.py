@@ -1,8 +1,8 @@
 import pytest
 
-from ewoksdraw.geometry.cubic_bezier_path import CubicBezierPath
-from ewoksdraw.geometry.cubic_bezier_path import CubicBezierSegment
-from ewoksdraw.svg.svg_link_cubic_bezier import SvgLinkCubicBezier
+from ewoksdraw._geometry.cubic_bezier_path import CubicBezierPath
+from ewoksdraw._geometry.cubic_bezier_path import CubicBezierSegment
+from ewoksdraw._svg.svg_link_cubic_bezier import SvgLinkCubicBezier
 
 SIMPLE_PATH = CubicBezierPath(
     start={"x": 0, "y": 0},

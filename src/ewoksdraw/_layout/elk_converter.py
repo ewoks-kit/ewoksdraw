@@ -8,18 +8,18 @@ from typing import TypedDict
 
 from ewokscore.graph import TaskGraph
 
-from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
+from ewoksdraw._config.constants import ELK_LAYOUT_OPTIONS
 
-from ..geometry.cubic_bezier_path import Point
-from ..svg.svg_task import TaskIOPosition
-from ..svg.svg_task import TaskPosition
-from ..svg.svg_task_group import TaskInputPositions
-from ..svg.svg_task_group import TaskOutputPositions
-from ..svg.svg_task_group import TaskPositions
-from ..svg.svg_task_group import TaskSizes
-from ..utils import get_edge_source_id
-from ..utils import get_edge_target_id
-from ..utils import get_valid_data_mappings
+from .._geometry.cubic_bezier_path import Point
+from .._svg.svg_task import TaskIOPosition
+from .._svg.svg_task import TaskPosition
+from .._svg.svg_task_group import TaskInputPositions
+from .._svg.svg_task_group import TaskOutputPositions
+from .._svg.svg_task_group import TaskPositions
+from .._svg.svg_task_group import TaskSizes
+from .._utils import get_edge_source_id
+from .._utils import get_edge_target_id
+from .._utils import get_valid_data_mappings
 
 
 class ElkPort(TypedDict):

@@ -68,7 +68,7 @@ include = [
 ]
 
 [tool.coverage.run]
-omit = ["*/tests/*"]
+omit = ["*/_tests/*"]
 
 [tool.ruff]
 src = ["."]
@@ -83,7 +83,7 @@ select = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"src/ewoksdraw/tests/*.py" = [
+"src/ewoksdraw/_tests/*.py" = [
     "S101", # allow asserts
 ]
 
