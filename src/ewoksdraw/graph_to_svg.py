@@ -3,20 +3,20 @@ from pathlib import Path
 from ewokscore.graph import TaskGraph
 from ewokscore.node.signature import node_signature
 
-from .config.constants import TASK_GROUP_HORIZONTAL_GAP
-from .layout.elk_backend import layout
-from .layout.elk_converter import ElkGraph
-from .layout.elk_converter import ElkGraphBeforeLayout
-from .layout.elk_converter import convert_ewoks_to_elk_graph
-from .layout.elk_converter import extract_task_positions_from_elk_graph
-from .layout.elk_link_group_builder import build_svg_link_group
-from .svg.svg_canvas import SvgCanvas
-from .svg.svg_task import SvgTask
-from .svg.svg_task_group import SvgTaskGroup
-from .utils import get_edge_sources_and_targets
+from ._config.constants import TASK_GROUP_HORIZONTAL_GAP
+from ._layout.elk_backend import layout
+from ._layout.elk_converter import ElkGraph
+from ._layout.elk_converter import ElkGraphBeforeLayout
+from ._layout.elk_converter import convert_ewoks_to_elk_graph
+from ._layout.elk_converter import extract_task_positions_from_elk_graph
+from ._layout.elk_link_group_builder import build_svg_link_group
+from ._svg.svg_canvas import SvgCanvas
+from ._svg.svg_task import SvgTask
+from ._svg.svg_task_group import SvgTaskGroup
+from ._utils import get_edge_sources_and_targets
 
 
-def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
+def _build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
     """Build an SVG task group from an Ewoks task graph."""
     source_outputs_per_node, target_inputs_per_node = get_edge_sources_and_targets(
         graph
@@ -49,7 +49,7 @@ def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
 
 
 def graph_to_svg(graph: TaskGraph, output_path: str | Path) -> None:
-    task_group = build_svg_task_group(graph)
+    task_group = _build_svg_task_group(graph)
     elk_graph_before_layout: ElkGraphBeforeLayout = convert_ewoks_to_elk_graph(
         graph,
         task_group.extract_task_sizes(),

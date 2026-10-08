@@ -1,7 +1,7 @@
 from pathlib import Path
 from xml.etree.ElementTree import Element
 
-CSS_DIR = Path(__file__).parent.parent / "css_styles"
+CSS_DIR = Path(__file__).parent.parent / "_css_styles"
 
 
 def generate_style_element(css_file_name: str) -> None | Element:

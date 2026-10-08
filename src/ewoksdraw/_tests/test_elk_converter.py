@@ -4,18 +4,18 @@ from ewokscore.graph import TaskGraph
 from ewokscore.tests.examples.graphs import get_graph
 from ewokscore.tests.examples.graphs import graph_names
 
-from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
-from ewoksdraw.graph_to_svg import build_svg_task_group
-from ewoksdraw.layout.elk_backend import layout
-from ewoksdraw.layout.elk_converter import ElkGraph
-from ewoksdraw.layout.elk_converter import convert_ewoks_to_elk_graph
-from ewoksdraw.layout.elk_converter import extract_task_positions_from_elk_graph
-from ewoksdraw.svg.svg_task import TaskIOPosition
-from ewoksdraw.svg.svg_task import TaskPosition
-from ewoksdraw.svg.svg_task_group import TaskInputPositions
-from ewoksdraw.svg.svg_task_group import TaskOutputPositions
-from ewoksdraw.svg.svg_task_group import TaskSize
-from ewoksdraw.svg.svg_task_group import TaskSizes
+from ewoksdraw._config.constants import ELK_LAYOUT_OPTIONS
+from ewoksdraw._layout.elk_backend import layout
+from ewoksdraw._layout.elk_converter import ElkGraph
+from ewoksdraw._layout.elk_converter import convert_ewoks_to_elk_graph
+from ewoksdraw._layout.elk_converter import extract_task_positions_from_elk_graph
+from ewoksdraw._svg.svg_task import TaskIOPosition
+from ewoksdraw._svg.svg_task import TaskPosition
+from ewoksdraw._svg.svg_task_group import TaskInputPositions
+from ewoksdraw._svg.svg_task_group import TaskOutputPositions
+from ewoksdraw._svg.svg_task_group import TaskSize
+from ewoksdraw._svg.svg_task_group import TaskSizes
+from ewoksdraw.graph_to_svg import _build_svg_task_group
 
 _TASK_TYPE = "ewokscore.tests.examples.tasks.sumtask.SumTask"
 
@@ -441,7 +441,7 @@ def test_output_is_accepted_by_the_rust_layout(graph_name: str) -> None:
 
     graph_description, _ = get_graph(graph_name)
     graph = load_graph(graph_description)
-    task_group = build_svg_task_group(graph)
+    task_group = _build_svg_task_group(graph)
 
     elk_graph = convert_ewoks_to_elk_graph(
         graph,

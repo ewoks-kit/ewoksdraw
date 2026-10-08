@@ -16,7 +16,7 @@ class SvgElement:
 
     :param tag: The SVG tag (e.g., 'rect', 'circle', 'text').
     :param css_class: The CSS class to apply to the SVG element.
-                       Should match a CSS file in the css_styles directory.
+                       Should match a CSS file in the _css_styles directory.
     :param attr: A dictionary of svg attributes
     """
 
