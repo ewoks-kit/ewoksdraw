@@ -4,7 +4,7 @@ from ..utils import get_task_id_from_source_id
 from ..utils import get_task_id_from_target_id
 
 
-def test_edge_source_task_id_roundtrip():
+def test_edge_source_task_id_roundtrip() -> None:
     task_id = "pipeline.output.normalize"
     output_name = "value"
 
@@ -12,7 +12,7 @@ def test_edge_source_task_id_roundtrip():
     assert get_task_id_from_source_id(source_id) == task_id
 
 
-def test_edge_target_task_id_roundtrip():
+def test_edge_target_task_id_roundtrip() -> None:
     task_id = "pipeline.input.normalize"
     output_name = "value"
 
