@@ -1,7 +1,5 @@
 from typing import Any
 
-from ..utils import get_valid_data_mappings
-
 try:
     from typing import NotRequired
 except ImportError:
@@ -21,6 +19,7 @@ from ..svg.svg_task_group import TaskPositions
 from ..svg.svg_task_group import TaskSizes
 from ..utils import get_edge_source_id
 from ..utils import get_edge_target_id
+from ..utils import get_valid_data_mappings
 
 
 class ElkPort(TypedDict):
@@ -131,7 +130,6 @@ def convert_ewoks_to_elk_graph(
 
     children: list[ElkChildBeforeLayout] = []
     used_ids: set[str] = set()
-    declared_port_ids: set[str] = set()
     for task_id in ewoks_graph.graph.nodes:
         ports = _convert_io_positions_to_elk_ports(
             task_id,
@@ -151,7 +149,6 @@ def convert_ewoks_to_elk_graph(
         )
         used_ids.add(task_id)
         used_ids.update(port["id"] for port in ports)
-        declared_port_ids.update(port["id"] for port in ports)
 
     root_id = _available_elk_id("__ewoksdraw_root__", used_ids)
     used_ids.add(root_id)
@@ -170,41 +167,6 @@ def convert_ewoks_to_elk_graph(
             }
         )
         used_ids.add(edge_id)
-        for mapping in link_attrs.get("data_mapping", []):
-            source_output = mapping.get("source_output")
-            if source_output is None:
-                warnings.warn(
-                    f"Data mapping on Ewoks link {source!r} -> {target!r} has no "
-                    "'source_output', which is not yet supported.",
-                    UserWarning,
-                    stacklevel=2,
-                )
-                continue
-
-            edge_id = _available_elk_id(
-                f"edge_{len(edges)}_{source}_{target}", used_ids
-            )
-
-            edges.append(
-                {
-                    "id": edge_id,
-                    "sources": [
-                        _resolve_edge_endpoint_id(
-                            source,
-                            f"{source}.output.{source_output}",
-                            declared_port_ids,
-                        )
-                    ],
-                    "targets": [
-                        _resolve_edge_endpoint_id(
-                            target,
-                            f"{target}.input.{mapping['target_input']}",
-                            declared_port_ids,
-                        )
-                    ],
-                }
-            )
-            used_ids.add(edge_id)
 
     return {
         "id": root_id,
@@ -254,17 +216,6 @@ def _convert_io_positions_to_elk_ports(
         )
 
     return ports
-
-
-def _resolve_edge_endpoint_id(
-    task_id: str, port_id: str, declared_port_ids: set[str]
-) -> str:
-    """Use the requested port when declared; otherwise connect to the task's box.
-
-    This happens for tasks that cannot be imported: their ports are unknown, but
-    links from or to them must still be routed (to the task box).
-    """
-    return port_id if port_id in declared_port_ids else task_id
 
 
 def _available_elk_id(preferred_id: str, used_ids: set[str]) -> str:
