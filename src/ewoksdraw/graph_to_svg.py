@@ -13,17 +13,32 @@ from .layout.elk_link_group_builder import build_svg_link_group
 from .svg.svg_canvas import SvgCanvas
 from .svg.svg_task import SvgTask
 from .svg.svg_task_group import SvgTaskGroup
+from .utils import get_edge_sources_and_targets
 
 
 def build_svg_task_group(graph: TaskGraph) -> SvgTaskGroup:
     """Build an SVG task group from an Ewoks task graph."""
+    source_outputs_per_node, target_inputs_per_node = get_edge_sources_and_targets(
+        graph
+    )
+
     svg_tasks = {}
     for node_id, node_attrs in graph.graph.nodes.items():
         signature = node_signature(node_id, node_attrs)
+
+        # Use dict instead of set to remove duplicate while keeping order
+        inputs = dict.fromkeys(node_input.name for node_input in signature.inputs)
+        # Add eventual missing target inputs
+        inputs.update(dict.fromkeys(target_inputs_per_node[node_id]))
+
+        outputs = dict.fromkeys(node_output.name for node_output in signature.outputs)
+        # Add eventual missing source outputs
+        outputs.update(dict.fromkeys(source_outputs_per_node[node_id]))
+
         svg_tasks[node_id] = SvgTask(
             task_name=node_id,
-            input_names=[node_input.name for node_input in signature.inputs],
-            output_names=[node_output.name for node_output in signature.outputs],
+            input_names=list(inputs.keys()),
+            output_names=list(outputs.keys()),
             import_error=bool(signature.import_error),
         )
     return SvgTaskGroup(
@@ -49,7 +64,11 @@ def graph_to_svg(graph: TaskGraph, output_path: str | Path) -> None:
     canvas = SvgCanvas(width=elk_graph["width"], height=elk_graph["height"])
     canvas.add_background()
     canvas.add_element(
-        build_svg_link_group(elk_graph, group_id=f"{graph.graph_id}-links")
+        build_svg_link_group(
+            elk_graph,
+            task_group.extract_import_errors(),
+            group_id=f"{graph.graph_id}-links",
+        )
     )
     canvas.add_element(task_group)
     canvas.draw(output_path)

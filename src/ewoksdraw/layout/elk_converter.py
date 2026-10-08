@@ -1,5 +1,6 @@
-import warnings
 from typing import Any
+
+from ..utils import get_valid_data_mappings
 
 try:
     from typing import NotRequired
@@ -18,6 +19,8 @@ from ..svg.svg_task_group import TaskInputPositions
 from ..svg.svg_task_group import TaskOutputPositions
 from ..svg.svg_task_group import TaskPositions
 from ..svg.svg_task_group import TaskSizes
+from ..utils import get_edge_source_id
+from ..utils import get_edge_target_id
 
 
 class ElkPort(TypedDict):
@@ -152,38 +155,19 @@ def convert_ewoks_to_elk_graph(
     used_ids.add(root_id)
 
     edges: list[ElkEdgeBeforeLayout] = []
-    for source, target, link_attrs in ewoks_graph.graph.edges(data=True):
-        if link_attrs.get("map_all_data", False):
-            warnings.warn(
-                f"Ewoks link {source!r} -> {target!r} uses 'map_all_data', which "
-                "is not yet supported.",
-                UserWarning,
-                stacklevel=2,
-            )
+    for mapping in get_valid_data_mappings(ewoks_graph):
+        edge_id = _available_elk_id(
+            f"edge_{len(edges)}_{mapping.source}_{mapping.target}", used_ids
+        )
 
-        for mapping in link_attrs.get("data_mapping", []):
-            source_output = mapping.get("source_output")
-            if source_output is None:
-                warnings.warn(
-                    f"Data mapping on Ewoks link {source!r} -> {target!r} has no "
-                    "'source_output', which is not yet supported.",
-                    UserWarning,
-                    stacklevel=2,
-                )
-                continue
-
-            edge_id = _available_elk_id(
-                f"edge_{len(edges)}_{source}_{target}", used_ids
-            )
-
-            edges.append(
-                {
-                    "id": edge_id,
-                    "sources": [f"{source}.output.{source_output}"],
-                    "targets": [f"{target}.input.{mapping['target_input']}"],
-                }
-            )
-            used_ids.add(edge_id)
+        edges.append(
+            {
+                "id": edge_id,
+                "sources": [get_edge_source_id(mapping.source, mapping.source_output)],
+                "targets": [get_edge_target_id(mapping.target, mapping.target_input)],
+            }
+        )
+        used_ids.add(edge_id)
 
     return {
         "id": root_id,
@@ -198,36 +182,34 @@ def _convert_io_positions_to_elk_ports(
     input_positions: list[TaskIOPosition],
     output_positions: list[TaskIOPosition],
 ) -> list[ElkPort]:
-    ports = _convert_positions_to_elk_ports(
-        input_positions,
-        id_prefix=f"{task_id}.input",
-        elk_port_side="WEST",
-    )
-    ports.extend(
-        _convert_positions_to_elk_ports(
-            output_positions,
-            id_prefix=f"{task_id}.output",
-            elk_port_side="EAST",
-        )
-    )
-    return ports
-
-
-def _convert_positions_to_elk_ports(
-    positions: list[TaskIOPosition], id_prefix: str, elk_port_side: str
-) -> list[ElkPort]:
     ports: list[ElkPort] = []
 
-    for index, position in enumerate(positions):
+    for index, position in enumerate(input_positions):
         ports.append(
             {
-                "id": f"{id_prefix}.{position.name}",
+                "id": get_edge_target_id(task_id, position.name),
                 "x": position.x,
                 "y": position.y,
                 "width": 0,
                 "height": 0,
                 "layoutOptions": {
-                    "org.eclipse.elk.port.side": elk_port_side,
+                    "org.eclipse.elk.port.side": "WEST",
+                    "org.eclipse.elk.port.index": index,
+                    "org.eclipse.elk.port.borderOffset": 0,
+                },
+            }
+        )
+
+    for index, position in enumerate(output_positions):
+        ports.append(
+            {
+                "id": get_edge_source_id(task_id, position.name),
+                "x": position.x,
+                "y": position.y,
+                "width": 0,
+                "height": 0,
+                "layoutOptions": {
+                    "org.eclipse.elk.port.side": "EAST",
                     "org.eclipse.elk.port.index": index,
                     "org.eclipse.elk.port.borderOffset": 0,
                 },
