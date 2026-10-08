@@ -1,12 +1,12 @@
 import pytest
 
-from ewoksdraw.geometry.cubic_bezier_path import CubicBezierPath
-from ewoksdraw.geometry.cubic_bezier_path import Point
-from ewoksdraw.geometry.cubic_bezier_path import Vector
-from ewoksdraw.geometry.cubic_bezier_path import _direction
-from ewoksdraw.geometry.cubic_bezier_path import _l1_distance
-from ewoksdraw.geometry.cubic_bezier_path import _move
-from ewoksdraw.geometry.cubic_bezier_path import _straight_segment
+from ewoksdraw._geometry.cubic_bezier_path import CubicBezierPath
+from ewoksdraw._geometry.cubic_bezier_path import Point
+from ewoksdraw._geometry.cubic_bezier_path import Vector
+from ewoksdraw._geometry.cubic_bezier_path import _direction
+from ewoksdraw._geometry.cubic_bezier_path import _l1_distance
+from ewoksdraw._geometry.cubic_bezier_path import _move
+from ewoksdraw._geometry.cubic_bezier_path import _straight_segment
 
 
 def _point(x: float, y: float) -> Point:

@@ -3,7 +3,7 @@ from collections import defaultdict
 
 from ewokscore.graph import TaskGraph
 
-from .models import DataMapping
+from ._models import DataMapping
 
 
 def get_valid_data_mappings(ewoks_graph: TaskGraph) -> list[DataMapping]:

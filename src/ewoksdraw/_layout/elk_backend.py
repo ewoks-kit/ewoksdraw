@@ -2,7 +2,7 @@ import json
 from typing import cast
 
 from ewoksdraw import _elk_rs
-from ewoksdraw.config.constants import ELK_LAYOUT_OPTIONS
+from ewoksdraw._config.constants import ELK_LAYOUT_OPTIONS
 
 from .elk_converter import ElkGraph
 from .elk_converter import ElkGraphBeforeLayout

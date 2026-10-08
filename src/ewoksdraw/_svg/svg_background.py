@@ -4,7 +4,7 @@ from .svg_element import SvgElement
 class SvgBackground(SvgElement):
     """
     Represents a background rectangle element in SVG.
-    Color can be set using the ./css_styles/css_background.css
+    Color can be set using the ./_css_styles/css_background.css
     style.
     """
 
