@@ -20,6 +20,5 @@ ELK_LAYOUT_OPTIONS = {
     "org.eclipse.elk.spacing.nodeNode": 60,
     "org.eclipse.elk.layered.spacing.nodeNodeBetweenLayers": 80,
     "org.eclipse.elk.spacing.edgeEdge": 20,
-    "org.eclipse.elk.edgeRouting": "SPLINES",
-    "elk.layered.edgeRouting.splines.mode": "CONSERVATIVE_SOFT",
+    "org.eclipse.elk.edgeRouting": "ORTHOGONAL",
 }

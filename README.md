@@ -17,6 +17,9 @@ Using pixi:
 ```bash
 pixi add --pypi "ewoksdraw @ git+https://github.com/ewoks-kit/ewoksdraw.git"
 ```
+
+> **Note:** the layout engine is a Rust extension. Prebuilt wheels are provided for Linux (x86_64, aarch64), Windows (x64) and macOS (Intel, arm64). Installing from Git, or on any other platform, builds it from source and requires a [Rust toolchain](https://rustup.rs) and network access to GitHub.
+
 ### Python
 
 ```python
@@ -29,3 +32,10 @@ graph = load_graph(...)
 # Generate the SVG
 graph_to_svg(graph, output_path="my_workflow.svg")
 ```
+
+## License
+
+The ewoksdraw code and Rust binding use the [MIT license](LICENSE.md). The
+bundled elk-rs layout engine uses EPL-2.0; see
+[third-party notices](THIRD_PARTY_NOTICES.md) for its license, attribution, and
+corresponding source code.

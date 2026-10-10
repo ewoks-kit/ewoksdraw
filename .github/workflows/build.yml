@@ -1,0 +1,90 @@
+name: Build
+
+on:
+  workflow_call:
+
+jobs:
+  # Build every wheel from the source distribution that will be published.
+  # The wheels are abi3 (cp310-abi3): they work with any Python >= 3.10,
+  # so they do not need to be built per Python version.
+  wheels:
+    name: Wheel from sdist (${{ matrix.os }})
+    needs: sdist
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest # x86_64
+            manylinux: auto
+          - os: ubuntu-24.04-arm # aarch64
+            manylinux: auto
+          - os: windows-latest
+            manylinux: "off"
+          - os: macos-15-intel # x86_64
+            manylinux: "off"
+          - os: macos-latest # arm64
+            manylinux: "off"
+    steps:
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist-sdist
+          path: sdist
+
+      - name: Extract source distribution
+        shell: bash
+        run: |
+          mkdir source
+          tar -xzf sdist/*.tar.gz --directory source --strip-components=1
+
+      - uses: PyO3/maturin-action@v1
+        with:
+          command: build
+          working-directory: source
+          args: --release --out dist
+          manylinux: ${{ matrix.manylinux }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist-wheel-${{ matrix.os }}
+          path: source/dist/
+          if-no-files-found: error
+
+  sdist:
+    name: Source distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: PyO3/maturin-action@v1
+        with:
+          command: sdist
+          args: --out dist
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist-sdist
+          path: dist/
+
+  # All wheels + sdist in one artifact, as published to PyPI.
+  dist:
+    name: Collect distribution
+    needs: [wheels, sdist]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: dist-*
+          merge-multiple: true
+          path: dist
+
+      - run: ls -l dist
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
