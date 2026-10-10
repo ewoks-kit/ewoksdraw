@@ -47,3 +47,18 @@ jobs:
   # Run linter / checks
   checks:
     uses: ewoks-kit/.github/.github/workflows/python-check.yml@main
+
+  # Single stable check for branch protection: aggregates all other jobs so
+  # branch protection never needs updating when jobs/matrix entries change.
+  ci-gate:
+    name: CI gate
+    needs: [build, tests, checks]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check all jobs succeeded
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') }}" == "true" || "${{ contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "A required job failed or was cancelled"
+            exit 1
+          fi
