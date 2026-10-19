@@ -1,7 +1,5 @@
 from typing import Any
 
-from ..utils import get_valid_data_mappings
-
 try:
     from typing import NotRequired
 except ImportError:
@@ -21,6 +19,7 @@ from ..svg.svg_task_group import TaskPositions
 from ..svg.svg_task_group import TaskSizes
 from ..utils import get_edge_source_id
 from ..utils import get_edge_target_id
+from ..utils import get_valid_data_mappings
 
 
 class ElkPort(TypedDict):
@@ -51,7 +50,7 @@ class ElkPoint(Point): ...
 class ElkSection(TypedDict):
     id: str
     startPoint: ElkPoint
-    bendPoints: list[ElkPoint]
+    bendPoints: NotRequired[list[ElkPoint]]
     endPoint: ElkPoint
     routing: str
 

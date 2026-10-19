@@ -3,46 +3,102 @@ name: Test
 on:
   push:
     branches:
-      - main
+      - "**"
   pull_request:
   workflow_dispatch:
   workflow_call:
 
 jobs:
-  # Build Python package
-  build:
-    uses: ewoks-kit/.github/.github/workflows/python-build.yml@main
-
-  # Run tests
-  tests:
-    needs: build
-    uses: ewoks-kit/.github/.github/workflows/python-tests.yml@main
-    secrets:
-      codecov_token: ${{ secrets.CODECOV_TOKEN }}
-    with:
-      os: ${{ matrix.os }}
-      python-version: ${{ matrix.python-version }}
-      enable-coverage: ${{ matrix.enable-coverage }}
-      jupyter-platform-dirs: "1"
-      codecov-flags: "unit"
+  source-tests:
+    name: Source tests (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    env:
+      JUPYTER_PLATFORM_DIRS: "1"
     strategy:
       fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
             python-version: "3.10"
-            enable-coverage: "false"
-            extra-pytest-warnings: ""
+          - os: ubuntu-latest
+            python-version: "3.14"
+          - os: ubuntu-24.04-arm
+            python-version: "3.14"
+          - os: windows-latest
+            python-version: "3.14"
+          - os: macos-15-intel
+            python-version: "3.14"
+          - os: macos-latest
+            python-version: "3.14"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install from source
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --pre -e ".[test]"
+
+      - name: Run pytest
+        run: python -m pytest -v -ra -W error --pyargs ewoksdraw
+
+  # Build and test release artifacts only on main.
+  build:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/build.yml
+
+  wheel-tests:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    name: Wheel tests (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    env:
+      JUPYTER_PLATFORM_DIRS: "1"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python-version: "3.10"
 
           - os: ubuntu-latest
             python-version: "3.14"
-            enable-coverage: "true"
-            extra-pytest-warnings: ""
+
+          - os: ubuntu-24.04-arm
+            python-version: "3.14"
 
           - os: windows-latest
             python-version: "3.14"
-            enable-coverage: "false"
-            extra-pytest-warnings: ""
+
+          - os: macos-15-intel
+            python-version: "3.14"
+
+          - os: macos-latest
+            python-version: "3.14"
+    steps:
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist-wheel-${{ matrix.os }}
+          path: dist
+
+      # No checkout and no Rust toolchain: only the wheel is tested
+      - name: Install wheel
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          pip install --pre "$(ls dist/*.whl)[test]"
+
+      - name: Run pytest
+        run: pytest -v -ra -W error --pyargs ewoksdraw
 
   # Run linter / checks
   checks:
@@ -52,7 +108,7 @@ jobs:
   # branch protection never needs updating when jobs/matrix entries change.
   ci-gate:
     name: CI gate
-    needs: [build, tests, checks]
+    needs: [build, source-tests, wheel-tests, checks]
     if: always()
     runs-on: ubuntu-latest
     steps:
