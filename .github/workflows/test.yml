@@ -108,7 +108,7 @@ jobs:
   # branch protection never needs updating when jobs/matrix entries change.
   ci-gate:
     name: CI gate
-    needs: [build, tests, checks]
+    needs: [build, source-tests, wheel-tests, checks]
     if: always()
     runs-on: ubuntu-latest
     steps:
