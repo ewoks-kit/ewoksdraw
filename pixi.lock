@@ -1454,11 +1454,11 @@ packages:
   name: ewoksdraw
   requires_dist:
   - defusedxml
+  - ewokscore==5.1.0rc3
   - reportlab
   - typing-extensions ; python_full_version < '3.11'
   - xmltodict
   - pyelk @ git+https://github.com/LudoBroche/pyelk.git@ewoksdraw-modifications
-  - ewokscore==5.1.0rc3
   - pytest>=7 ; extra == 'test'
   - ewoksdraw[test] ; extra == 'dev'
   - ruff>=0.16.0 ; extra == 'dev'
