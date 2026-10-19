@@ -159,17 +159,19 @@ def test_empty_graph() -> None:
     assert result["children"] == []
 
 
-@pytest.mark.parametrize(
-    "graph_json, message",
-    [
-        ("{not json", "Failed to parse graph JSON"),
-        ("[]", "must be a json object"),
-        ("{}", "Every element must have an id"),
-    ],
-)
-def test_invalid_graph_raises(graph_json: str, message: str) -> None:
-    with pytest.raises(RuntimeError, match=message):
-        _elk_rs.layout_json(graph_json)
+def test_malformed_graph_json_raises() -> None:
+    with pytest.raises(RuntimeError, match="Failed to parse graph JSON"):
+        _elk_rs.layout_json("{not json")
+
+
+def test_graph_must_be_an_object() -> None:
+    with pytest.raises(RuntimeError, match="must be a json object"):
+        _elk_rs.layout_json("[]")
+
+
+def test_graph_without_id_raises() -> None:
+    with pytest.raises(RuntimeError, match="Every element must have an id"):
+        _elk_rs.layout_json("{}")
 
 
 def test_invalid_options_raises() -> None:

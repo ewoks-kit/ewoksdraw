@@ -67,9 +67,6 @@ include = [
     { path = "ewoksdraw/**/*.pyi", format = ["sdist", "wheel"] },
 ]
 
-[tool.coverage.run]
-omit = ["*/tests/*"]
-
 [tool.ruff]
 src = ["."]
 line-length = 88

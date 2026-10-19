@@ -19,6 +19,3 @@ The layout engine is compiled directly from this revision. The upstream
 [license](LICENSES/elk-rs/LICENSE) and [attribution notice](LICENSES/elk-rs/NOTICE)
 are reproduced without modification and included in the wheel and source
 distributions. The upstream notice describes the wider ELK project.
-
-When updating the elk-rs revision in `rust/Cargo.toml`, update these source
-links and the copies of the upstream license and notice together.
