@@ -4,15 +4,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Build Python package
-  build:
-    uses: ewoks-kit/.github/.github/workflows/python-build.yml@main
-
-  # Run tests
+  # Build the wheels + sdist and run the tests on them
   tests:
-    needs: build
-    uses: ewoks-kit/.github/.github/workflows/python-tests.yml@main
-
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
 
   # Publish package to TestPyPI
   publish-testpypi:
@@ -23,7 +18,10 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: ewoks-kit/.github/.github/actions/setup-python-package@main
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
@@ -37,17 +35,27 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: ewoks-kit/.github/.github/actions/setup-python-package@main
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
       - uses: pypa/gh-action-pypi-publish@release/v1
 
-  # Tag
+  # Tag (the version is read from the installed Linux wheel)
   tag-release:
     needs: publish-pypi
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: ewoks-kit/.github/.github/actions/setup-python-package@main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist-wheel-ubuntu-latest
+          path: dist
+      - run: pip install --pre dist/*.whl
       - uses: ewoks-kit/.github/.github/actions/tag-release@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

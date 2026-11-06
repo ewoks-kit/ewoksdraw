@@ -1,21 +1,27 @@
-### General guidelines
+# Contributing
 
-<a href="https://github.com/ewoks-kit/.github/blob/main/shared/CONTRIBUTING.md" target="_blank">CONTRIBUTING.md</a>
+[General guidelines](https://github.com/ewoks-kit/.github/blob/main/shared/CONTRIBUTING.md)
 
-### Pixi
+## Pixi
 
-This project is managed by [Pixi](https://pixi.prefix.dev/) with a single environment (`default`).
+### Development setup
 
-We reproduce below the most relevant commands. For more, see [Pixi's Getting Started](https://pixi.prefix.dev/latest/getting_started/)
+Prerequisites:
 
-#### Install the project
+- Stable [Rust](https://rustup.rs/) with `cargo` and `rustfmt` on `PATH`.
+- Native compiler/linker: `build-essential` on Debian/Ubuntu, Xcode Command Line
+  Tools on macOS, or Visual Studio C++ Build Tools with Windows SDK on Windows.
+
+From the repository root:
 
 ```bash
 pixi install
-pixi update
 ```
 
-#### Run the tests
+Pixi installs the development dependencies and builds the Rust extension in
+editable mode. Release wheels are not used for this checkout.
+
+### Run tests and checks
 
 ```bash
 pixi run test
@@ -25,25 +31,23 @@ pixi run typecheck
 pixi run full-ci
 ```
 
-#### Run the example
+### Run the example
 
-Turn a workflow into a SVG
-
-```
+```bash
 pixi run graph-to-svg <workflow_path>
 ```
 
-If `workflow_name` is not given, `ewoksdraw` will use a test workflow.
-
-
-#### Add dependencies
+### Manage dependencies
 
 ```bash
-pixi add <package_name>
+pixi update
+pixi add <package_name>         # Conda
+pixi add --pypi <package_name>  # PyPI
 ```
 
-By default, this will install the conda package (if there is one). To install from PyPI:
+## Updating elk-rs
 
-```bash
-pixi add --pypi <package_name>
-```
+When updating the elk-rs revision in `rust/Cargo.toml`, update the revision
+and source links in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the
+copies of the upstream [license](LICENSES/elk-rs/LICENSE) and
+[attribution notice](LICENSES/elk-rs/NOTICE) together.
