@@ -1,7 +1,7 @@
 from pathlib import Path
 from xml.etree.ElementTree import Element
 
-CSS_DIR = Path(__file__).parent.parent / "css_styles"
+CSS_DIR = Path(__file__).parent.parent / "_css_styles"
 ROOT_CSS_PATH = CSS_DIR / "root.css"
 
 

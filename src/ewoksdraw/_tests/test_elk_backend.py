@@ -1,8 +1,8 @@
 from typing import Any
 from typing import cast
 
-from ewoksdraw.layout.elk_backend import layout
-from ewoksdraw.layout.elk_converter import ElkGraphBeforeLayout
+from ewoksdraw._layout.elk_backend import layout
+from ewoksdraw._layout.elk_converter import ElkGraphBeforeLayout
 
 
 def test_layout() -> None:

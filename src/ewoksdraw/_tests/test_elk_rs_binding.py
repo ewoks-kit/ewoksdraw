@@ -6,10 +6,10 @@ from typing import cast
 import pytest
 
 from ewoksdraw import _elk_rs
-from ewoksdraw.layout.elk_backend import ElkLayoutError
-from ewoksdraw.layout.elk_backend import layout
-from ewoksdraw.layout.elk_converter import ElkGraph
-from ewoksdraw.layout.elk_converter import ElkGraphBeforeLayout
+from ewoksdraw._layout.elk_backend import ElkLayoutError
+from ewoksdraw._layout.elk_backend import layout
+from ewoksdraw._layout.elk_converter import ElkGraph
+from ewoksdraw._layout.elk_converter import ElkGraphBeforeLayout
 
 NODE_WIDTH = 100
 NODE_HEIGHT = 60

@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from ewoksdraw.svg import utils
+from ewoksdraw._svg import utils
 
 
 @pytest.fixture

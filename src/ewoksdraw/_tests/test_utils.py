@@ -1,7 +1,7 @@
-from ..utils import get_edge_source_id
-from ..utils import get_edge_target_id
-from ..utils import get_task_id_from_source_id
-from ..utils import get_task_id_from_target_id
+from .._utils import get_edge_source_id
+from .._utils import get_edge_target_id
+from .._utils import get_task_id_from_source_id
+from .._utils import get_task_id_from_target_id
 
 
 def test_edge_source_task_id_roundtrip() -> None:
