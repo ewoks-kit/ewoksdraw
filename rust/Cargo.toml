@@ -16,5 +16,5 @@ pyo3 = { version = "0.29", features = ["abi3-py310"] }
 
 [dependencies.org-eclipse-elk-graph-json]
 git = "https://github.com/openedges/elk-rs.git"
-rev = "2191680292b9565592223c22a28b5ef33c3acbad"
+tag = "v0.12.2"
 package = "org-eclipse-elk-graph-json"

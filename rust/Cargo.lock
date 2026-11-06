@@ -74,8 +74,8 @@ checksum = "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
 
 [[package]]
 name = "org-eclipse-elk-alg-common"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-core",
  "org-eclipse-elk-graph",
@@ -84,8 +84,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-alg-disco"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-alg-common",
  "org-eclipse-elk-core",
@@ -94,8 +94,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-alg-force"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-alg-common",
  "org-eclipse-elk-core",
@@ -104,8 +104,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-alg-layered"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-alg-common",
  "org-eclipse-elk-core",
@@ -116,8 +116,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-alg-mrtree"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-alg-common",
  "org-eclipse-elk-core",
@@ -126,8 +126,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-alg-radial"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-alg-common",
  "org-eclipse-elk-core",
@@ -136,8 +136,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-alg-rectpacking"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-alg-common",
  "org-eclipse-elk-core",
@@ -146,8 +146,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-alg-spore"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-alg-common",
  "org-eclipse-elk-core",
@@ -156,8 +156,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-alg-vertiflex"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-alg-common",
  "org-eclipse-elk-core",
@@ -166,16 +166,16 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-core"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "org-eclipse-elk-graph",
 ]
 
 [[package]]
 name = "org-eclipse-elk-graph"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "parking_lot",
  "rustc-hash",
@@ -183,8 +183,8 @@ dependencies = [
 
 [[package]]
 name = "org-eclipse-elk-graph-json"
-version = "0.11.0"
-source = "git+https://github.com/openedges/elk-rs.git?rev=2191680292b9565592223c22a28b5ef33c3acbad#2191680292b9565592223c22a28b5ef33c3acbad"
+version = "0.12.2"
+source = "git+https://github.com/openedges/elk-rs.git?tag=v0.12.2#a7f4005790793f2a072e0e383dc43dcd83395048"
 dependencies = [
  "json5",
  "org-eclipse-elk-alg-disco",
